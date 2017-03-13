@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enttax.dao.BillMapper">
+  <resultMap id="BaseResultMap" type="com.enttax.model.Bill">
+    <id column="BId" jdbcType="CHAR" property="bid" />
+    <result column="BType" jdbcType="VARCHAR" property="btype" />
+    <result column="BNum" jdbcType="INTEGER" property="bnum" />
+    <result column="BPrice" jdbcType="DOUBLE" property="bprice" />
+    <result column="BMonth" jdbcType="CHAR" property="bmonth" />
+    <result column="BTitle" jdbcType="VARCHAR" property="btitle" />
+    <result column="BDate" jdbcType="DATE" property="bdate" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bill
+    where BId = #{bid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.enttax.model.Bill">
+    insert into bill (BId, BType, BNum, 
+      BPrice, BMonth, BTitle, 
+      BDate)
+    values (#{bid,jdbcType=CHAR}, #{btype,jdbcType=VARCHAR}, #{bnum,jdbcType=INTEGER}, 
+      #{bprice,jdbcType=DOUBLE}, #{bmonth,jdbcType=CHAR}, #{btitle,jdbcType=VARCHAR}, 
+      #{bdate,jdbcType=DATE})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.enttax.model.Bill">
+    update bill
+    set BType = #{btype,jdbcType=VARCHAR},
+      BNum = #{bnum,jdbcType=INTEGER},
+      BPrice = #{bprice,jdbcType=DOUBLE},
+      BMonth = #{bmonth,jdbcType=CHAR},
+      BTitle = #{btitle,jdbcType=VARCHAR},
+      BDate = #{bdate,jdbcType=DATE}
+    where BId = #{bid,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select BId, BType, BNum, BPrice, BMonth, BTitle, BDate
+    from bill
+    where BId = #{bid,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select BId, BType, BNum, BPrice, BMonth, BTitle, BDate
+    from bill
+  </select>
+</mapper>

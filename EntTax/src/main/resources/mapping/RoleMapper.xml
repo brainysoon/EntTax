@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enttax.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.enttax.model.Role">
+    <id column="RId" jdbcType="CHAR" property="rid" />
+    <result column="RName" jdbcType="VARCHAR" property="rname" />
+    <result column="RUpdateTime" jdbcType="TIMESTAMP" property="rupdatetime" />
+    <result column="RMark" jdbcType="SMALLINT" property="rmark" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from role
+    where RId = #{rid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.enttax.model.Role">
+    insert into role (RId, RName, RUpdateTime, 
+      RMark)
+    values (#{rid,jdbcType=CHAR}, #{rname,jdbcType=VARCHAR}, #{rupdatetime,jdbcType=TIMESTAMP}, 
+      #{rmark,jdbcType=SMALLINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.enttax.model.Role">
+    update role
+    set RName = #{rname,jdbcType=VARCHAR},
+      RUpdateTime = #{rupdatetime,jdbcType=TIMESTAMP},
+      RMark = #{rmark,jdbcType=SMALLINT}
+    where RId = #{rid,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select RId, RName, RUpdateTime, RMark
+    from role
+    where RId = #{rid,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select RId, RName, RUpdateTime, RMark
+    from role
+  </select>
+</mapper>

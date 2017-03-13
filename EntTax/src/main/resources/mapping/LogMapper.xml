@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enttax.dao.LogMapper">
+  <resultMap id="BaseResultMap" type="com.enttax.model.Log">
+    <id column="LId" jdbcType="CHAR" property="lid" />
+    <result column="SId" jdbcType="CHAR" property="sid" />
+    <result column="BId" jdbcType="CHAR" property="bid" />
+    <result column="LTime" jdbcType="TIMESTAMP" property="ltime" />
+    <result column="LMessage" jdbcType="VARCHAR" property="lmessage" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from log
+    where LId = #{lid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.enttax.model.Log">
+    insert into log (LId, SId, BId, LTime, 
+      LMessage)
+    values (#{lid,jdbcType=CHAR}, #{sid,jdbcType=CHAR}, #{bid,jdbcType=CHAR}, #{ltime,jdbcType=TIMESTAMP}, 
+      #{lmessage,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.enttax.model.Log">
+    update log
+    set SId = #{sid,jdbcType=CHAR},
+      BId = #{bid,jdbcType=CHAR},
+      LTime = #{ltime,jdbcType=TIMESTAMP},
+      LMessage = #{lmessage,jdbcType=VARCHAR}
+    where LId = #{lid,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select LId, SId, BId, LTime, LMessage
+    from log
+    where LId = #{lid,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select LId, SId, BId, LTime, LMessage
+    from log
+  </select>
+</mapper>
