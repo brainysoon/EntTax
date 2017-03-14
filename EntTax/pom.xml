@@ -40,6 +40,18 @@
       <version>5.1.27</version>
     </dependency>
 
+    <!--util 工具类使用jar-->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.4</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.10</version>
+    </dependency>
+
     <!--log4j日志文件-->
     <dependency>
       <groupId>log4j</groupId>

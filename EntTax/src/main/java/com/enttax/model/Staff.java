@@ -1,5 +1,7 @@
 package com.enttax.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Staff {
@@ -15,6 +17,7 @@ public class Staff {
 
     private Boolean ssex;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date sbirthday;
 
     private Date senter;

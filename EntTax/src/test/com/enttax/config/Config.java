@@ -11,8 +11,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.Date;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -45,14 +43,12 @@ public class Config {
     public void registerTest() throws  Exception{
         this.mockMvc.perform(post("/user/register")
          .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("sid","1212121")
-                .param("sname","奥巴马")
-                .param("spassword","lc121718")
+                .param("sname","麦克")
+                .param("spassword","lc02041217")
                 .param("semail","845892601@qq.com")
                 .param("sphone","13125723136")
                 .param("ssex","1")
                 .param("sbirthday","1993-12-17")
-                .param("senter" ,"'"+new Date()+"'")
                 .param("smark","1")
                 .param("saddress","重庆市黔江区")
                 .param("savator","c://user/image")
