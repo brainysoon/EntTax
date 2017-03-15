@@ -6,7 +6,10 @@
     <title>主页</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/ace.min.css">
-    <link rel="stylesheet" href="css/ace-rtl.min.css">
+    <script type="text/javascript" src="js/default-jq.js">
+    </script>
+    <!--<link rel="stylesheet" href="css/ace-rtl.min.css">-->
+
 </head>
 
 <body>
@@ -15,7 +18,7 @@
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
             <div class="login-container">
-                <!--注册页面标题名字-->
+                <!--标题名字-->
                 <div class="center-name">
                     <h1>
                         <span class="red">增值税</span>
@@ -26,8 +29,9 @@
 
                 <div class="space-6"></div>
 
-                <!--登录页面-->
+
                 <div class="position-relative">
+                    <!--登录页面-->
                     <div class="login-box widget-box no-border visible" id="login-box">
                         <div class="widget-body">
                             <div class="widget-main">
@@ -35,9 +39,9 @@
 
                                 <div class="space-6"></div>
 
-                                <form class="bs-example bs-example-form" role="form">
+                                <!--form表单用于登录用户名和密码-->
+                                <form>
                                     <label class="block clearfix">
-
                                         <div class="input-group" style="width:100%">
                                             <span class="input-group-addon "><i class="glyphicon glyphicon-user"> </i></span>
                                             <input type="text" class="form-control" placeholder="用户名" value="" />
@@ -57,12 +61,12 @@
 
                                     <div class="clearfix">
                                         <label class="inline">
-                                            <input type="checkbox">
-                                            <span class="spl">记住密码</span>
+                                            <input type="checkbox" class="checked">
+                                            <span class="">记住密码</span>
                                         </label>
 
                                         <button type="button" class="width-35 pull-right btn btn-sm btn-primary">
-                                            <i class="ace-icon fa fa-key"></i>
+                                            <i class="glyphicon glyphicon-log-in"></i>
                                             <span class="bigger-110">登录</span>
                                         </button>
                                     </div>
@@ -93,32 +97,177 @@
                                     </a>
                                 </div>
 
-                                <div class="toolbar clearfix">
-                                    <div>
-                                        <a href="#" data-target="#forgot-box" class="forgot-password-link">
-                                            <i class="ace-icon fa fa-arrow-left"></i>
-                                            忘记密码
-                                        </a>
+
+                            </div>
+
+                            <div class="toolbar clearfix">
+                                <!--data-target 连接到忘记密码页面-->
+                                <div>
+                                    <a href="#" data-target="#forgot-box" class="forgot-password-link">
+                                        <i class="glyphicon glyphicon-arrow-left"></i>
+                                        忘记密码
+                                    </a>
+                                </div>
+
+                                <!--data-target 连接到注册页面-->
+                                <div>
+                                    <a href="#" data-target="#signup-box" id="click_event" class="user-signup-link">
+                                        注册
+                                        <i class="glyphicon glyphicon-arrow-right"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--找回密码页面-->
+                    <div class="forgot-box widget-box no-border" id="forgot-box">
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <h4 class="header red lighter bigger">找回密码</h4>
+                                <div class="space-6"></div>
+                                <p>输入您的电子邮件</p>
+                                <form>
+                                    <fieldset>
+                                        <label class="block clearfix">
+                                            <div class="input-group" style="width:100%">
+                                                <span class="input-group-addon "><i class="glyphicon glyphicon-envelope"> </i></span>
+                                                <input type="text" class="form-control" placeholder="邮箱" value="" />
+                                            </div>
+                                        </label>
+
+                                        <div class="clearfix">
+                                            <button type="button" class="width-35 pull-right btn btn-sm btn-danger">
+                                                <i class="ace-icon fa fa-lightbulb-o"></i>
+                                                <span class="bigger-110">发送邮件</span>
+                                            </button>
+                                        </div>
+
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <!--data-target 连接到登录页面-->
+                                <div class="toolbar center">
+                                    <a href="#" data-target="#login-box" class="back-to-login-link">
+                                        <i class="glyphicon glyphicon-arrow-right"></i>
+                                        返回登录
+                                    </a>
+
+                                </div>
+
+                        </div>
+                    </div>
+                    <!--注册页面-->
+                    <div class="signup-box widget-box no-border" id="signup-box">
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <h4 class="header green lighter bigger">用户注册</h4>
+                                <div class="space-6"></div>
+                                <p>填写信息</p>
+                                <form>
+
+                                    <label class="block clearfix">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon "><i class="glyphicon glyphicon-envelope"></i></span>
+                                            <input type="text" class="form-control" placeholder="邮箱" value="">
+                                        </div>
+                                    </label>
+
+                                    <label class="block clearfix">
+                                        <div class="input-group" style="width:100%">
+                                            <span class="input-group-addon "><i class="glyphicon glyphicon-user"> </i></span>
+                                            <input type="text" class="form-control" placeholder="用户名" value="" />
+
+                                        </div>
+                                    </label>
+
+                                    <label class="block clearfix">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon "><i class="glyphicon glyphicon-lock"></i></span>
+                                            <input type="password" class="form-control" placeholder="密码" value="">
+                                        </div>
+                                    </label>
+
+                                    <label class="block clearfix">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon "><i class="glyphicon glyphicon-retweet"></i></span>
+                                            <input type="password" class="form-control" placeholder="确认密码" value="">
+                                        </div>
+                                    </label>
+
+                                    <label class="block">
+                                        <input type="checkbox">
+                                        <span class="lbl"><a href="#">用户协议</a></span>
+                                    </label>
+
+                                    <div class="space-24"></div>
+
+                                    <div class="clearfix">
+                                        <button type="reset" class="width-30 pull-left btn btn-sm">
+                                            <i class="glyphicon glyphicon-refresh"></i>
+                                            <span class="bigger-110">重置</span>
+                                        </button>
+
+                                        <button type="button" class="width-65 pull-right btn btn-sm btn-success">
+                                            <span class="bigger-110">注册</span>
+                                            <i class="glyphicon glyphicon-arrow-right"></i>
+                                        </button>
+
                                     </div>
 
-                                    <div>
-                                        <a href="#" data-target="#signup-box" class="user-signup-link">
-                                            注册
-                                            <i class="ace-icon fa fa-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
+                                </form>
+                            </div>
+
+                            <!--data-target 连接到登录页面-->
+                            <div class="toolbar center">
+                                <a href="#" data-target="#login-box" class="back-to-login-link">
+                                    <i class="glyphicon glyphicon-arrow-left"></i>
+                                    返回登录
+                                </a>
                             </div>
                         </div>
                     </div>
 
                 </div>
+
+
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+
+    $(function(){
+
+        if ($('#login-box').is(':visible')){
+            $('#forgot-box').hide();
+            $('#signup-box').hide();
+
+            $('.forgot-password-link').click(function () {
+                $('#login-box').hide();
+                $('#forgot-box').show();
+            })
+            $('.user-signup-link').click(function () {
+                $('#login-box').hide();
+                $('#signup-box').show();
+            })
+            $('.back-to-login-link').click(function () {
+                $('#forgot-box').hide();
+                $('#signup-box').hide();
+                $('#login-box').show();
+            })
+        }
+    })
+</script>
+
+
 
 </body>
 
