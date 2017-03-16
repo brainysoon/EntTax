@@ -1,6 +1,8 @@
 package com.enttax.dao;
 
 import com.enttax.model.Staff;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface StaffMapper {
@@ -13,4 +15,6 @@ public interface StaffMapper {
     List<Staff> selectAll();
 
     int updateByPrimaryKey(Staff record);
+
+    Staff selectByNameAndPassword(@Param("sname") String sname,@Param("spassword") String  spassword);
 }

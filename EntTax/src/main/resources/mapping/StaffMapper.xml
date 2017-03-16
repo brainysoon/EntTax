@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.enttax.dao.StaffMapper">
-  <resultMap id="BaseResultMap" type="com.enttax.model.Staff">
+  <resultMap id="BaseResultMap" type="Staff">
     <id column="SId" jdbcType="CHAR" property="sid" />
     <result column="SName" jdbcType="VARCHAR" property="sname" />
     <result column="SPassword" jdbcType="VARCHAR" property="spassword" />
@@ -18,35 +18,41 @@
     delete from staff
     where SId = #{sid,jdbcType=CHAR}
   </delete>
-  <insert id="insert" parameterType="com.enttax.model.Staff">
+  <insert id="insert" parameterType="Staff">
     insert into staff (SId, SName, SPassword, 
       SEmail, SPhone, SSex, SBirthday, 
       SEnter, SMark, SAddress, 
       SAvator)
-    values (#{sid,jdbcType=CHAR}, #{sname,jdbcType=VARCHAR}, #{spassword,jdbcType=VARCHAR}, 
-      #{semail,jdbcType=VARCHAR}, #{sphone,jdbcType=CHAR}, #{ssex,jdbcType=BIT}, #{sbirthday,jdbcType=DATE}, 
-      #{senter,jdbcType=TIMESTAMP}, #{smark,jdbcType=SMALLINT}, #{saddress,jdbcType=VARCHAR}, 
-      #{savator,jdbcType=VARCHAR})
+    values (#{sid}, #{sname}, #{spassword},
+      #{semail}, #{sphone}, #{ssex}, #{sbirthday},
+      #{senter}, #{smark}, #{saddress},
+      #{savator})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.enttax.model.Staff">
+  <update id="updateByPrimaryKey" parameterType="Staff">
     update staff
-    set SName = #{sname,jdbcType=VARCHAR},
-      SPassword = #{spassword,jdbcType=VARCHAR},
-      SEmail = #{semail,jdbcType=VARCHAR},
-      SPhone = #{sphone,jdbcType=CHAR},
-      SSex = #{ssex,jdbcType=BIT},
-      SBirthday = #{sbirthday,jdbcType=DATE},
-      SEnter = #{senter,jdbcType=TIMESTAMP},
-      SMark = #{smark,jdbcType=SMALLINT},
-      SAddress = #{saddress,jdbcType=VARCHAR},
-      SAvator = #{savator,jdbcType=VARCHAR}
-    where SId = #{sid,jdbcType=CHAR}
+    set SName = #{sname},
+      SPassword = #{spassword},
+      SEmail = #{semail},
+      SPhone = #{sphone},
+      SSex = #{ssex},
+      SBirthday = #{sbirthday},
+      SEnter = #{senter},
+      SMark = #{smark},
+      SAddress = #{saddress},
+      SAvator = #{savator}
+    where SId = #{sid}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, 
     SAvator
     from staff
-    where SId = #{sid,jdbcType=CHAR}
+    where SId = #{sid}
+  </select>
+  <select id="selectByNameAndPassword"  resultType="Staff">
+    select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress,
+    SAvator
+    from staff
+    where SName = #{sname} AND SPassword=#{spassword}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, 

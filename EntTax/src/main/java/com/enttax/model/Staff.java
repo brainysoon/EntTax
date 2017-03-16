@@ -1,14 +1,20 @@
 package com.enttax.model;
 
+import com.sun.istack.internal.NotNull;
+import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+
+@Alias("Staff")
 public class Staff {
     private String sid;
 
+    @NotNull
     private String sname;
 
+    @NotNull
     private String spassword;
 
     private String semail;

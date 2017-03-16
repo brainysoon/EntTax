@@ -1,5 +1,6 @@
 package com.enttax.util;
 
+import com.enttax.util.tools.ToolDates;
 import org.junit.Test;
 
 import java.util.Date;
@@ -12,6 +13,7 @@ public class Encodes {
      public void base64Test(){
          System.out.println(com.enttax.util.tools.Encodes.encodeBase64("李常"));
          System.out.println(new Date());
+         System.out.println(Long.parseLong(ToolDates.getTime()));
 
      }
 }
