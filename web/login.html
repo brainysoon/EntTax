@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>主页</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/ace.min.css">
-    <script type="text/javascript" src="js/default-jq.js">
-    </script>
-    <!--<link rel="stylesheet" href="css/ace-rtl.min.css">-->
+    <!--<script type="text/javascript" src="js/default-jq.js">
+    </script>-->
 
 </head>
 
@@ -32,7 +34,7 @@
 
                 <div class="position-relative">
                     <!--登录页面-->
-                    <div class="login-box widget-box no-border visible" id="login-box">
+                    <div class="login-box widget-box no-border visible" id="login-box" >
                         <div class="widget-body">
                             <div class="widget-main">
                                 <h4 class="header blue lighter bigger">请输入您的信息</h4>
@@ -64,26 +66,28 @@
                                             <input type="checkbox" class="checked">
                                             <span class="">记住密码</span>
                                         </label>
-
+                                        <a href="index.html">
                                         <button type="button" class="width-35 pull-right btn btn-sm btn-primary">
                                             <i class="glyphicon glyphicon-log-in"></i>
                                             <span class="bigger-110">登录</span>
                                         </button>
+                                        </a>
                                     </div>
 
                                     <div class="space4"></div>
 
                                 </form>
 
-                                <div class="social-or-login center">
+                                <!--第三方登录-->
+                                <!--<div class="social-or-login center">
                                     <span class="bigger-110">
                                         第三方登录
                                     </span>
                                 </div>
 
-                                <div class="space-6"></div>
+                                <div class="space-6"></div>-->
 
-                                <div class="social-login center">
+                                <!--<div class="social-login center">
                                     <a class="btn btn-primary">
                                         <i class="ace-icon fa fa-facebook"></i>
                                     </a>
@@ -95,7 +99,7 @@
                                     <a class="btn btn-danger">
                                         <i class="ace-icon fa fa-google-plus"></i>
                                     </a>
-                                </div>
+                                </div>-->
 
 
                             </div>
@@ -103,7 +107,7 @@
                             <div class="toolbar clearfix">
                                 <!--data-target 连接到忘记密码页面-->
                                 <div>
-                                    <a href="#" data-target="#forgot-box" class="forgot-password-link">
+                                    <a href="#"  class="forgot-password-link">
                                         <i class="glyphicon glyphicon-arrow-left"></i>
                                         忘记密码
                                     </a>
@@ -111,7 +115,7 @@
 
                                 <!--data-target 连接到注册页面-->
                                 <div>
-                                    <a href="#" data-target="#signup-box" id="click_event" class="user-signup-link">
+                                    <a href="#"  id="click_event" class="user-signup-link">
                                         注册
                                         <i class="glyphicon glyphicon-arrow-right"></i>
                                     </a>
@@ -121,7 +125,7 @@
                         </div>
                     </div>
                     <!--找回密码页面-->
-                    <div class="forgot-box widget-box no-border" id="forgot-box">
+                    <div class="forgot-box widget-box no-border" id="forgot-box" >
                         <div class="widget-body">
                             <div class="widget-main">
                                 <h4 class="header red lighter bigger">找回密码</h4>
@@ -136,6 +140,7 @@
                                             </div>
                                         </label>
 
+                                        <div class="space"></div>
                                         <div class="clearfix">
                                             <button type="button" class="width-35 pull-right btn btn-sm btn-danger">
                                                 <i class="ace-icon fa fa-lightbulb-o"></i>
@@ -145,10 +150,11 @@
 
                                     </fieldset>
                                 </form>
+
                             </div>
                             <!--data-target 连接到登录页面-->
                                 <div class="toolbar center">
-                                    <a href="#" data-target="#login-box" class="back-to-login-link">
+                                    <a href="#"  class="back-to-login-link">
                                         <i class="glyphicon glyphicon-arrow-right"></i>
                                         返回登录
                                     </a>
@@ -158,16 +164,31 @@
                         </div>
                     </div>
                     <!--注册页面-->
-                    <div class="signup-box widget-box no-border" id="signup-box">
+                    <div class="signup-box widget-box no-border" id="signup-box" >
                         <div class="widget-body">
                             <div class="widget-main">
                                 <h4 class="header green lighter bigger">用户注册</h4>
-                                <div class="space-6"></div>
-                                <p>填写信息</p>
-                                <form>
 
+                                <div class="clearfix">
+                                    <!--邮箱注册-->
+                                    <button class="width-30 pull-left btn btn-sm email-register" >
+                                        <i class="glyphicon glyphicon-envelope"></i>
+                                        <span class="bigger-110 email-register" >邮箱注册</span>
+                                    </button>
+
+                                    <!--手机注册-->
+                                    <button  class="width-30 pull-right btn btn-sm phone-register" >
+                                        <i class="glyphicon glyphicon-earphone"></i>
+                                        <span class="bigger-110 phone-register" >手机注册</span>
+                                    </button>
+
+                                    <div class="space-24 dark"></div>
+
+                                </div>
+
+                                <!--邮箱信息-->
+                                <form id="email-mess">
                                     <label class="block clearfix">
-
                                         <div class="input-group">
                                             <span class="input-group-addon "><i class="glyphicon glyphicon-envelope"></i></span>
                                             <input type="text" class="form-control" placeholder="邮箱" value="">
@@ -198,12 +219,9 @@
                                         </div>
                                     </label>
 
-                                    <label class="block">
-                                        <input type="checkbox">
-                                        <span class="lbl"><a href="#">用户协议</a></span>
-                                    </label>
 
-                                    <div class="space-24"></div>
+
+                                    <div class="space"></div>
 
                                     <div class="clearfix">
                                         <button type="reset" class="width-30 pull-left btn btn-sm">
@@ -219,11 +237,65 @@
                                     </div>
 
                                 </form>
+                                <!--手机信息-->
+                                <form id="phone-mess">
+                                    <label class="block clearfix">
+                                        <div class="input-group">
+                                            <span class="input-group-addon "><i class="glyphicon glyphicon-earphone"></i></span>
+                                            <input type="text" class="form-control" placeholder="手机" value="">
+                                        </div>
+                                    </label>
+
+                                    <label class="block clearfix">
+                                        <div class="input-group" style="width:100%">
+                                            <span class="input-group-addon "><i class="glyphicon glyphicon-user"> </i></span>
+                                            <input type="text" class="form-control" placeholder="用户名" value="" />
+
+                                        </div>
+                                    </label>
+
+                                    <label class="block clearfix">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon "><i class="glyphicon glyphicon-lock"></i></span>
+                                            <input type="password" class="form-control" placeholder="密码" value="">
+                                        </div>
+                                    </label>
+
+                                    <label class="block clearfix">
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon "><i class="glyphicon glyphicon-retweet"></i></span>
+                                            <input type="password" class="form-control" placeholder="确认密码" value="">
+                                        </div>
+                                    </label>
+
+
+
+                                    <div class="space"></div>
+
+                                    <div class="clearfix">
+                                        <button type="reset" class="width-30 pull-left btn btn-sm">
+                                            <i class="glyphicon glyphicon-refresh"></i>
+                                            <span class="bigger-110">重置</span>
+                                        </button>
+
+                                        <button type="button" class="width-65 pull-right btn btn-sm btn-success">
+                                            <span class="bigger-110">注册</span>
+                                            <i class="glyphicon glyphicon-arrow-right"></i>
+                                        </button>
+
+                                    </div>
+
+                                </form>
+
+
+
                             </div>
 
                             <!--data-target 连接到登录页面-->
                             <div class="toolbar center">
-                                <a href="#" data-target="#login-box" class="back-to-login-link">
+                                <a href="#" class="back-to-login-link">
                                     <i class="glyphicon glyphicon-arrow-left"></i>
                                     返回登录
                                 </a>
@@ -243,13 +315,12 @@
 
 
 <script type="text/javascript">
-
+    $('#forgot-box').hide();
+    $('#signup-box').hide();
+    $('#phone-mess').hide();
     $(function(){
 
         if ($('#login-box').is(':visible')){
-            $('#forgot-box').hide();
-            $('#signup-box').hide();
-
             $('.forgot-password-link').click(function () {
                 $('#login-box').hide();
                 $('#forgot-box').show();
@@ -263,7 +334,28 @@
                 $('#signup-box').hide();
                 $('#login-box').show();
             })
+            /*手机和邮箱注册*/
+            $('.phone-register').click(function () {
+                $('#email-mess').hide();
+                $('#phone-mess').show();
+            })
+            $('.email-register').click(function () {
+                $('#phone-mess').hide();
+                $('#email-mess').show();
+            })
         }
+
+        /*if ($('#email-mess').is(':visible')){
+
+            $('#phone-register').click(function () {
+                $('#email-mess').hide();
+                $('#phone-mess').show();
+            })
+            $('#email-register').click(function () {
+                $('#phone-mess').hide();
+                $('#email-mess').show();
+            })
+        }*/
     })
 </script>
 
