@@ -115,7 +115,7 @@
 
                                 <!--data-target 连接到注册页面-->
                                 <div>
-                                    <a href="#"  id="click_event" class="user-signup-link">
+                                    <a href="register.html"  id="click_event" class="user-signup-link">
                                         注册
                                         <i class="glyphicon glyphicon-arrow-right"></i>
                                     </a>
@@ -125,7 +125,7 @@
                         </div>
                     </div>
                     <!--找回密码页面-->
-                    <div class="forgot-box widget-box no-border" id="forgot-box" >
+                    <div class="forgot-box widget-box no-border" id="forgot-box" style="display: none">
                         <div class="widget-body">
                             <div class="widget-main">
                                 <h4 class="header red lighter bigger">找回密码</h4>
@@ -163,145 +163,7 @@
 
                         </div>
                     </div>
-                    <!--注册页面-->
-                    <div class="signup-box widget-box no-border" id="signup-box" >
-                        <div class="widget-body">
-                            <div class="widget-main">
-                                <h4 class="header green lighter bigger">用户注册</h4>
 
-                                <div class="clearfix">
-                                    <!--邮箱注册-->
-                                    <button class="width-30 pull-left btn btn-sm email-register" >
-                                        <i class="glyphicon glyphicon-envelope"></i>
-                                        <span class="bigger-110 email-register" >邮箱注册</span>
-                                    </button>
-
-                                    <!--手机注册-->
-                                    <button  class="width-30 pull-right btn btn-sm phone-register" >
-                                        <i class="glyphicon glyphicon-earphone"></i>
-                                        <span class="bigger-110 phone-register" >手机注册</span>
-                                    </button>
-
-                                    <div class="space-24 dark"></div>
-
-                                </div>
-
-                                <!--邮箱信息-->
-                                <form id="email-mess">
-                                    <label class="block clearfix">
-                                        <div class="input-group">
-                                            <span class="input-group-addon "><i class="glyphicon glyphicon-envelope"></i></span>
-                                            <input type="text" class="form-control" placeholder="邮箱" value="">
-                                        </div>
-                                    </label>
-
-                                    <label class="block clearfix">
-                                        <div class="input-group" style="width:100%">
-                                            <span class="input-group-addon "><i class="glyphicon glyphicon-user"> </i></span>
-                                            <input type="text" class="form-control" placeholder="用户名" value="" />
-
-                                        </div>
-                                    </label>
-
-                                    <label class="block clearfix">
-
-                                        <div class="input-group">
-                                            <span class="input-group-addon "><i class="glyphicon glyphicon-lock"></i></span>
-                                            <input type="password" class="form-control" placeholder="密码" value="">
-                                        </div>
-                                    </label>
-
-                                    <label class="block clearfix">
-
-                                        <div class="input-group">
-                                            <span class="input-group-addon "><i class="glyphicon glyphicon-retweet"></i></span>
-                                            <input type="password" class="form-control" placeholder="确认密码" value="">
-                                        </div>
-                                    </label>
-
-
-
-                                    <div class="space"></div>
-
-                                    <div class="clearfix">
-                                        <button type="reset" class="width-30 pull-left btn btn-sm">
-                                            <i class="glyphicon glyphicon-refresh"></i>
-                                            <span class="bigger-110">重置</span>
-                                        </button>
-
-                                        <button type="button" class="width-65 pull-right btn btn-sm btn-success">
-                                            <span class="bigger-110">注册</span>
-                                            <i class="glyphicon glyphicon-arrow-right"></i>
-                                        </button>
-
-                                    </div>
-
-                                </form>
-                                <!--手机信息-->
-                                <form id="phone-mess">
-                                    <label class="block clearfix">
-                                        <div class="input-group">
-                                            <span class="input-group-addon "><i class="glyphicon glyphicon-earphone"></i></span>
-                                            <input type="text" class="form-control" placeholder="手机" value="">
-                                        </div>
-                                    </label>
-
-                                    <label class="block clearfix">
-                                        <div class="input-group" style="width:100%">
-                                            <span class="input-group-addon "><i class="glyphicon glyphicon-user"> </i></span>
-                                            <input type="text" class="form-control" placeholder="用户名" value="" />
-
-                                        </div>
-                                    </label>
-
-                                    <label class="block clearfix">
-
-                                        <div class="input-group">
-                                            <span class="input-group-addon "><i class="glyphicon glyphicon-lock"></i></span>
-                                            <input type="password" class="form-control" placeholder="密码" value="">
-                                        </div>
-                                    </label>
-
-                                    <label class="block clearfix">
-
-                                        <div class="input-group">
-                                            <span class="input-group-addon "><i class="glyphicon glyphicon-retweet"></i></span>
-                                            <input type="password" class="form-control" placeholder="确认密码" value="">
-                                        </div>
-                                    </label>
-
-
-
-                                    <div class="space"></div>
-
-                                    <div class="clearfix">
-                                        <button type="reset" class="width-30 pull-left btn btn-sm">
-                                            <i class="glyphicon glyphicon-refresh"></i>
-                                            <span class="bigger-110">重置</span>
-                                        </button>
-
-                                        <button type="button" class="width-65 pull-right btn btn-sm btn-success">
-                                            <span class="bigger-110">注册</span>
-                                            <i class="glyphicon glyphicon-arrow-right"></i>
-                                        </button>
-
-                                    </div>
-
-                                </form>
-
-
-
-                            </div>
-
-                            <!--data-target 连接到登录页面-->
-                            <div class="toolbar center">
-                                <a href="#" class="back-to-login-link">
-                                    <i class="glyphicon glyphicon-arrow-left"></i>
-                                    返回登录
-                                </a>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -317,11 +179,12 @@
 <script type="text/javascript">
     $('#forgot-box').hide();
     $('#signup-box').hide();
-    $('#phone-mess').hide();
     $(function(){
 
         if ($('#login-box').is(':visible')){
             $('.forgot-password-link').click(function () {
+                $(document).attr('title','找回密码');
+                $('title').html('找回密码');
                 $('#login-box').hide();
                 $('#forgot-box').show();
             })
@@ -335,14 +198,14 @@
                 $('#login-box').show();
             })
             /*手机和邮箱注册*/
-            $('.phone-register').click(function () {
+            /*$('.phone-register').click(function () {
                 $('#email-mess').hide();
                 $('#phone-mess').show();
             })
             $('.email-register').click(function () {
                 $('#phone-mess').hide();
                 $('#email-mess').show();
-            })
+            })*/
         }
 
         /*if ($('#email-mess').is(':visible')){
