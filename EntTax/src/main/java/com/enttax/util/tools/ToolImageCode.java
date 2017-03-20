@@ -135,7 +135,7 @@ public class ToolImageCode  {
         // 将认证码存入缓存
       //  ToolCache.redisCache.set(ToolImageCode.class.getName(), sRand);
         HttpSession session=request.getSession();
-        session.setAttribute(ToolImageCode.class.getName(),sRand);
+        session.setAttribute("sRand",sRand);
         System.out.println("产生的图片号码："+sRand+"=="+ToolImageCode.class.getName());
 
         // 图象生效

@@ -1,5 +1,7 @@
 package com.enttax.util.tools;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -24,5 +26,15 @@ public class ToolRandoms {
         return codeStr;
     }
 
+    public static String randomId(){
+
+        SimpleDateFormat sdf=new SimpleDateFormat("YYYYHH");
+
+        String str=sdf.format(new Date());
+
+        System.out.println(str);
+
+        return str;
+    }
 
 }

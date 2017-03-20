@@ -28,8 +28,9 @@ public class ToolDates {
     public static String getSystemDateByyymmdd() throws ParseException {
         Date d = new Date();//获取时间
 
-        SimpleDateFormat sdf=new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdf=new SimpleDateFormat("HHmmss");
         String ymd = sdf.format(d);
+        System.out.println(ymd);
         return ymd ;
     }
 }
