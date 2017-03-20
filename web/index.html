@@ -6,48 +6,108 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="css/style.css">
     <!--<link rel="stylesheet" href="css/default.css">-->
     <title>主页</title>
 </head>
 <body>
-
+<!--头部导航-->
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-home"></i>增值税</a>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="出入内容">
-                </div>
-                <button type="submit" class="btn btn-default">搜索</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">注册</a></li>
-                <li><a href="#">登录</a></li>
+        <div class="col-xs-5">
+            <ul class="nav nav-tabs" id="nav-bot">
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-home"></i>
+                        主页
+                    </a>
+                </li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+        <div class="col-xs-7">
+            <ul class="nav nav-tabs" id="head-nav" style="float: right">
+                <li class="sh-lo">
+                    <a href="#">登录</a>
+                </li>
+                <li class="dis-none" style="display: none">
+                    <a href="#">用户名</a>
+                </li>
+                <li class="dis-none" style="display: none">
+
+                    <form name="form" action="" class="form-horizontal" method="post" enctype="multipart/form-data">
+                        <div class="modal-title text-center">
+                            <div class="zxx_main_con">
+                                <div class="zxx_test_list">
+                                    <img alt="" src="images/user.jpg" id="cutimg"/>
+                                    <input class="photo-file" type="file" name="imgFile" id="fcupload"
+                                           onchange="readURL(this);" style="display: none"/>
+                                    <input type="hidden" id="x" name="x"/>
+                                    <input type="hidden" id="y" name="y"/>
+                                    <input type="hidden" id="w" name="w"/>
+                                    <input type="hidden" id="h" name="h"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
-
-
-<div class="container">
+<div class="container-fluid">
     <div class="row">
+        <div class="col-xs-12" style="border: 1px solid red">
+
+        </div>
     </div>
 </div>
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        /*点击登录显示用户名*/
+
+        $('.sh-lo').click(function () {
+            $('.dis-none').show();
+            $('.sh-lo').hide();
+        })
+
+        $('#cutimg').click(function () {
+            $('#fcupload').click();
+        })
+    });
+    var api = null;
+    function readURL() {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.readAsDataURL(input.files[0]);
+            reader.onload = function (e) {
+                $('#cutimg').removeAttr('src');
+                $('#cutimg').attr('src', e.target.result);
+                api = $.jcrop('#cuting', {
+                    setSelect: [20, 30, 200, 300],
+                    aspectRatio: 1,
+                    onSelect: updateCoords
+                });
+            };
+            if (api != undefined) {
+                api.destroy();
+            }
+        }
+
+        function updateCoords() {
+            $("#x").var(obj.x);
+            $("#y").var(obj.y);
+            $("#w").var(obj.w);
+            $("#h").var(obj.h);
+        }
+    }
+
+
+</script>
+
 </body>
 </html>
