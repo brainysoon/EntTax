@@ -1,5 +1,8 @@
 package com.enttax.model;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("Permission")
 public class Permission {
     private String pid;
 

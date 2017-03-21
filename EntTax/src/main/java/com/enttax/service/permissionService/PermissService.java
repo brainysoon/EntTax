@@ -2,6 +2,8 @@ package com.enttax.service.permissionService;
 
 import com.enttax.model.Staff;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by lcyanxi on 17-3-13.
  */
@@ -28,4 +30,13 @@ public interface PermissService {
      */
 
     int updateStaffInfo(Staff staff);
+
+    /**
+     * 找回密码
+     * @param phone
+     * @return
+     */
+    Staff findByPassword(String phone);
+
+    boolean selectByPhone(String phone , HttpServletRequest request);
 }

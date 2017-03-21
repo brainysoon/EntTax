@@ -35,6 +35,17 @@ public class ToolString {
     }
 
     /**
+     * 验证是否是邮箱
+     * @param content
+     * @return
+     */
+    public static boolean isEmail(String content) {
+        String regExp_email = "^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+$";
+        Pattern pattern = Pattern.compile(regExp_email);
+        Matcher matcher = pattern.matcher(content);
+        return matcher.matches();
+    }
+    /**
      * 转换为Double类型
      */
     public static Double toDouble(Object val){

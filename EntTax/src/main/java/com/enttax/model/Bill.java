@@ -1,7 +1,9 @@
 package com.enttax.model;
 
-import java.util.Date;
+import org.apache.ibatis.type.Alias;
 
+import java.util.Date;
+@Alias("Bill")
 public class Bill {
     private String bid;
 

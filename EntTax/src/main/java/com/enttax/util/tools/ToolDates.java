@@ -5,6 +5,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Created by lcyanxi on 17-3-15.
@@ -25,12 +26,15 @@ public class ToolDates {
         return formatDate(new Date(), "HH:mm:ss");
     }
 
-    public static String getSystemDateByyymmdd() throws ParseException {
+    /**
+     * 用分，秒，毫秒时间戳做随机数
+     * @return
+     * @throws ParseException
+     */
+    public static String getDateNum() {
         Date d = new Date();//获取时间
-
-        SimpleDateFormat sdf=new SimpleDateFormat("HHmmss");
-        String ymd = sdf.format(d);
-        System.out.println(ymd);
+        SimpleDateFormat sdf=new SimpleDateFormat("mmssSSS");
+        String ymd = sdf.format(d)+new Random().nextInt(10);
         return ymd ;
     }
 }
