@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -147,25 +148,41 @@ public class PermissionController {
     }
 
 
-
-    public  void  findByPassword(@RequestParam(value="code") String code,
+    /**
+     * 重置密码
+     * @param request
+     * @param password
+     */
+    @RequestMapping(value = "/updatepassword")
+    public  String  updateToPassword(HttpServletRequest request,
                                  @RequestParam(value = "password") String password){
+       String sid = (String) request.getSession().getAttribute("sid");
 
-
+        if (permissService.updateToPassword(sid,Encodes.encodeBase64(password))){
+            return "main";
+        }
+          return "updatepassword";
     }
 
     /**
-     * 通过电话号码找回密码
+     * 查找电话号码是否存在
      * @param request
      * @param phone
      */
-    public String selectByPhone(
+    @RequestMapping(value = "/findphone",method = RequestMethod.GET)
+    @ResponseBody
+    public Map selectByPhone(
             HttpServletRequest request,
             @RequestParam(value = "phone") String phone){
+        System.out.println(phone);
+        Map<String ,String> map=new HashMap<String, String>();
         if (permissService.selectByPhone(phone,request)){
-            return "successful";
+            map.put("status",ConstantStr.str_one);
+        }else {
+            map.put("status",ConstantStr.str_zero);
         }
-        return "error";
+        System.out.println(map);
+        return map;
 
     }
 

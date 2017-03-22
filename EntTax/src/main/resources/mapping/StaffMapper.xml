@@ -2,17 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.enttax.dao.StaffMapper">
   <resultMap id="BaseResultMap" type="Staff">
-    <id column="SId" jdbcType="CHAR" property="sid" />
-    <result column="SName" jdbcType="VARCHAR" property="sname" />
-    <result column="SPassword" jdbcType="VARCHAR" property="spassword" />
-    <result column="SEmail" jdbcType="VARCHAR" property="semail" />
-    <result column="SPhone" jdbcType="CHAR" property="sphone" />
-    <result column="SSex" jdbcType="BIT" property="ssex" />
-    <result column="SBirthday" jdbcType="DATE" property="sbirthday" />
-    <result column="SEnter" jdbcType="TIMESTAMP" property="senter" />
-    <result column="SMark" jdbcType="SMALLINT" property="smark" />
-    <result column="SAddress" jdbcType="VARCHAR" property="saddress" />
-    <result column="SAvator" jdbcType="VARCHAR" property="savator" />
+    <id column="SId"  property="sid" />
+    <result column="SName"  property="sname" />
+    <result column="SPassword"  property="spassword" />
+    <result column="SEmail"  property="semail" />
+    <result column="SPhone"  property="sphone" />
+    <result column="SSex"  property="ssex" />
+    <result column="SBirthday" property="sbirthday" />
+    <result column="SEnter"  property="senter" />
+    <result column="SMark"  property="smark" />
+    <result column="SAddress"  property="saddress" />
+    <result column="SAvator"  property="savator" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from staff
@@ -28,6 +28,8 @@
       #{senter}, #{smark}, #{saddress},
       #{savator})
   </insert>
+
+  <!--update-->
   <update id="updateByPrimaryKey" parameterType="Staff">
     update staff
     set SName = #{sname},
@@ -42,6 +44,13 @@
       SAvator = #{savator}
     where SId = #{sid}
   </update>
+
+  <update id="updateToPassword">
+    update staff set SPassword = #{newpassword}
+    where SId = #{sid}
+  </update>
+
+  <!--select-->
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, 
     SAvator
@@ -49,14 +58,28 @@
     where SId = #{sid}
   </select>
   <select id="selectByNameAndPassword"  resultType="Staff">
-    select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress,
-    SAvator
+    select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress,SAvator
     from staff
     where SName = #{sname} AND SPassword=#{spassword}
   </select>
+  <select id="selectByEmailAndPassword"  resultType="Staff">
+    select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, SAvator
+    from staff
+    where SEmail= #{semail} AND SPassword=#{spassword}
+  </select>
+  <select id="selectByPhoneAndPassword"  resultType="Staff">
+    select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress,SAvator
+    from staff
+    where SPhone = #{sphone} AND SPassword=#{spassword}
+  </select>
+  <select id="selectByPhone" resultMap="BaseResultMap">
+    select SId from staff WHERE SPhone = #{sphone}
+  </select>
+  <select id="selectByEmail" resultMap="BaseResultMap">
+    select SId from staff WHERE SEmail = #{semail}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, 
-    SAvator
+    select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, SAvator
     from staff
   </select>
 </mapper>

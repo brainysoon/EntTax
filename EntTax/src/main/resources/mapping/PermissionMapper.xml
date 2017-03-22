@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.enttax.dao.PermissionMapper">
-  <resultMap id="BaseResultMap" type="com.enttax.model.Permission">
-    <id column="PId" jdbcType="CHAR" property="pid" />
-    <result column="PName" jdbcType="VARCHAR" property="pname" />
-    <result column="PType" jdbcType="INTEGER" property="ptype" />
+  <resultMap id="BaseResultMap" type="Permission">
+    <id column="PId"  property="pid" />
+    <result column="PName" property="pname" />
+    <result column="PType" property="ptype" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from permission
-    where PId = #{pid,jdbcType=CHAR}
+    where PId = #{pid}
   </delete>
-  <insert id="insert" parameterType="com.enttax.model.Permission">
+  <insert id="insert" parameterType="Permission">
     insert into permission (PId, PName, PType
       )
-    values (#{pid,jdbcType=CHAR}, #{pname,jdbcType=VARCHAR}, #{ptype,jdbcType=INTEGER}
+    values (#{pid}, #{pname}, #{ptype}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.enttax.model.Permission">
+  <update id="updateByPrimaryKey" parameterType="Permission">
     update permission
-    set PName = #{pname,jdbcType=VARCHAR},
-      PType = #{ptype,jdbcType=INTEGER}
-    where PId = #{pid,jdbcType=CHAR}
+    set PName = #{pname},
+      PType = #{ptype}
+    where PId = #{pid}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select PId, PName, PType
     from permission
-    where PId = #{pid,jdbcType=CHAR}
+    where PId = #{pid}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select PId, PName, PType

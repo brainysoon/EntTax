@@ -32,11 +32,18 @@ public interface PermissService {
     int updateStaffInfo(Staff staff);
 
     /**
-     * 找回密码
+     * 通过用户名查找用户是否存在
      * @param phone
+     * @param request
      * @return
      */
-    Staff findByPassword(String phone);
-
     boolean selectByPhone(String phone , HttpServletRequest request);
+
+    /**
+     * 重置密码
+     * @param sid
+     * @param newPassword
+     * @return
+     */
+    boolean updateToPassword(String sid,String newPassword);
 }

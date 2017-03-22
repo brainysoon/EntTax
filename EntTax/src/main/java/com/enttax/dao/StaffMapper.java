@@ -53,4 +53,12 @@ public interface StaffMapper {
      * @return
      */
     List<Staff> selectByEmail(@Param("semail") String semail);
+
+    /**
+     * 找回密码（也就是）
+     * @param sid
+     * @param newpassword
+     * @return
+     */
+    int updateToPassword(@Param("sid") String sid,@Param("newpassword") String newpassword);
 }

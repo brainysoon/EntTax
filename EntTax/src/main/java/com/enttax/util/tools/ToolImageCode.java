@@ -18,8 +18,8 @@ public class ToolImageCode  {
 
     private static Font mFont = new Font("Arial", Font.BOLD, 15); // 设置字体
     private static  int lineWidth = 2; // 干扰线的长度=1.414*lineWidth
-    private static int width = 80; // 定义图形大小
-    private static int height = 29; // 定义图形大小
+    private static int width = 60; // 定义图形大小
+    private static int height = 20; // 定义图形大小
     private static int count = 200;
 
     /**

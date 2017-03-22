@@ -62,19 +62,21 @@ public class PermissServiceImpl implements PermissService {
         return staff;
     }
 
+    /**
+     * 更新用户信息
+     * @param staff
+     * @return
+     */
     public int updateStaffInfo(Staff staff) {
         return staffMapper.updateByPrimaryKey(staff);
     }
 
-    public Staff findByPassword(String phone) {
-         List<Staff> list=staffMapper.selectByPhone(phone);
-         if (ToolString.isEmpty(list)){
-             return null;
-         }
-
-        return null;
-    }
-
+    /**
+     * 通过电话号码查找用户是否存在
+     * @param phone
+     * @param request
+     * @return
+     */
     public boolean selectByPhone(String phone, HttpServletRequest request) {
         List<Staff> list=staffMapper.selectByPhone(phone);
         if (ToolString.isEmpty(list)){
@@ -84,5 +86,15 @@ public class PermissServiceImpl implements PermissService {
             request.getSession().setAttribute("sid",staff.getSid());
         }
         return true;
+    }
+
+    /**
+     * 重置密码
+     * @param sid
+     * @param newPasswod
+     * @return
+     */
+    public boolean updateToPassword(String sid,String newPasswod) {
+        return staffMapper.updateToPassword(sid,newPasswod)>0?true:false;
     }
 }

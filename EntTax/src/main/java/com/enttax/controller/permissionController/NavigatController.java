@@ -1,16 +1,20 @@
 package com.enttax.controller.permissionController;
 
+import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.ToolImageCode;
 import com.enttax.util.tools.ToolSendSms;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -42,21 +46,27 @@ public class NavigatController {
 //            return "successful";
 //        }
     }
-    @RequestMapping(value = "/validaSMS")
-    public String validaSMS(@RequestParam("code") String code,HttpServletRequest request){
-        System.out.println(code);
-        String smsCode=(String)request.getSession().getAttribute("smsCode");
-        System.out.println(smsCode);
-        if (!code.equals(smsCode)){
-            return "error";
+
+    @RequestMapping(value = "/findpassword")
+    String findPassword(HttpServletRequest request,HttpServletResponse response){
+        return "findpassword";
+    }
+    @RequestMapping(value = "/validacode")
+    @ResponseBody
+    public Map<String,String> validacode(HttpServletRequest request,
+                          @RequestParam("code") String code,
+                          @RequestParam("numcode") String numcode){
+        System.out.println(code+numcode);
+        Map<String,String> map=new HashMap<String, String>();
+        String sRand = (String) request.getSession().getAttribute("sRand");
+        String smsCode= (String) request.getSession().getAttribute("smsCode");
+        if (code.equals(sRand) && numcode.equals(smsCode)){
+            map.put("status", ConstantStr.str_one);
+        }else {
+            map.put("status",ConstantStr.str_zero);
         }
 
-        return "login";
-    }
-
-    public String updataPassword(@RequestParam("code") String code,
-                                  @RequestParam("smsCode") String smsCode){
-        return null;
+        return map;
 
     }
 
