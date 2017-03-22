@@ -56,20 +56,99 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-12" style="border: 1px solid red">
+<div id="wrapper">
+    <div class="overlay"></div>
+    <nav class="nav navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+        <ul class="nav sidebar-nav">
+            <li class="sidebar-brand"><a href="#">顶部</a></li>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">个人资料</a></li>
+            <li><a href="#">权限设置</a></li>
+            <li><a href="#">公司成就</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">信息管理</a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header"><a href="#">成员管理</a></li>
+                    <li><a href="#">数据管理</a></li>
+                    <li><a href="#">公司管理</a></li>
+                    <li><a href="#">自定义</a></li>
+                </ul>
+            </li>
+            <li><a href="#">数据前景</a></li>
+            <li><a href="#">数据分析</a></li>
+            <li><a href="#">增值发票</a></li>
+        </ul>
+    </nav>
+    <div id="page-content-wrapper">
+        <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas" style="border: 1px solid red">
+            <span class="hamp-top icon-bar"></span>
+            <span class="hamp-middle icon-bar"></span>
+            <span class="hamp-bottom icon-bar"></span>
+        </button>
 
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-11" style="border: 1px solid red;margin-top: -5px">
+                    <!--左部侧边栏-->
+                    国际在线专稿：日前，特斯拉汽车公司总裁伊隆·马斯克（Elon Musk）关于“超级高铁”的梦想离现实又近了一步：据英国《每日邮报》3月21日报道，“超级铁路交通技术公司”（HTT，Hyperloop Transportation Technologies）表示，他们已经开始建造“超级高铁”的乘客舱，并预计将于明年年初完工。
+
+                    按照预定计划，“超级高铁”的列车每日可以运送16.4万名乘客，每40秒就可发车一次。这种新式交通系统能够加速到时速1220公里，超过绝大部分飞机的最高时速。
+
+                    据悉，这种”超级高铁“的设计思路是利用磁悬浮以及低气压轨道来达到其前所未有的高速。
+
+                    “车厢将会在空气被几乎抽干、几乎毫无空气阻力的封闭轨道中移动，就像喷气飞机在极高海拔飞行时一样，”HTT公司在介绍中表示，“轨道中仅存的空气将会被通过空气压缩机抽到车厢的后面，以此推动前进。这让列车可以达到每小时760英里（约合每小时1220公里）的时速，并且耗能极低。”
+
+                    据HTT公司提供的一个展示视频显示，列车的窗户可以展示轨道外的“真实”世界，以展现列车本身的高速。同时，它们也可以显示时间、车速、以及外部的天气情况。
+
+                    自伊隆·马斯克在2013年提出”超级高铁“的概念后，多家公司便一直在竞争，力图最先将这个设计变成现实。
+
+                    本月早些时候，另一家从事”超级高铁“研究的公司，超级铁路壹号公司（Hyperloop One）公布了其设计的原型机照片。这个位于内华达沙漠的原型机被公司称为DevLoop，全长1.8英里（3千米）。原型机与实物等大，并能够达到预计的全速。公司预计将会于2017年上半年开始公开测试。
+
+                    延伸阅读：
+
+                    超级高铁创始人：中国需要超级高铁已在研究可能路线
+
+                    2016.7.17报道
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
+    $(document).ready(function () {
+        var trigger = $('.hamburger'),
+            overlay = $('.overlay'),
+            isClosed = false;
+
+        trigger.click(function () {
+            hamburger_cross();
+        });
+
+        function hamburger_cross() {
+            if (isClosed == true) {
+                overlay.hide();
+                trigger.removeClass('is-open');
+                trigger.addClass('is-closed');
+                isClosed = false;
+            } else {
+                overlay.show();
+                trigger.removeClass('is-closed');
+                trigger.addClass('is-open');
+                isClosed = true;
+            }
+        }
+        $('[data-toggle="offcanvas"]').click(function () {
+            $('#wrapper').toggleClass('toggled');
+        });
+    });
+
     $(function () {
         /*点击登录显示用户名*/
-
         $('.sh-lo').click(function () {
             $('.dis-none').show();
             $('.sh-lo').hide();
@@ -78,6 +157,8 @@
         $('#cutimg').click(function () {
             $('#fcupload').click();
         })
+
+
     });
     var api = null;
     function readURL() {

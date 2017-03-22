@@ -10,46 +10,355 @@ body {
     font-family: 'Open Sans';
     font-size: 13px;
     color: #393939;
-    line-height: 1.5
+    line-height: 1.5;
+    overflow-x: hidden;
 }
 
-a{
+a {
     white-space: normal;
 }
 
 /*
     标题头部
 */
-.navbar{
+.navbar {
     background: #4ebc30;
     color: #fff;
     font-size: 18px;
 }
-.nav{
+
+.nav {
     border-bottom: 0px;
 }
-.nav li a{
+
+.nav li a {
     color: #fff;
 
 }
-.nav li a:hover{
-    color: #fff;
-    background: #4ebc30;
-    border: 1px solid #4ebc30;
-}
-.nav li a:visited{
-    color: #fff;
-    background: #4ebc30;
-    border: 1px solid #4ebc30;
-}
-.nav li a:focus{
+
+.nav li a:hover {
     color: #fff;
     background: #4ebc30;
     border: 1px solid #4ebc30;
 }
 
-#head-nav li a:hover{
+.nav li a:visited {
+    color: #fff;
+    background: #4ebc30;
+    border: 1px solid #4ebc30;
+}
+
+.nav li a:focus {
+    color: #fff;
+    background: #4ebc30;
+    border: 1px solid #4ebc30;
+}
+
+#head-nav li a:hover {
     color: #fff;
     background: #2eb222;
     border: 1px solid #4ebc30;
 }
+
+/*
+    侧边栏
+*/
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: transparent;
+}
+
+/*----------------------------------------------*/
+/*       Wrappers 头部样式和，开始时隐藏           */
+/*----------------------------------------------*/
+#wrapper {
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    padding-left: 0;
+}
+
+#wrapper.toggled {
+    padding-left: 220px;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 220px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    margin-right: -220px;
+    position: absolute;
+}
+
+/*设置整个侧边栏的颜色*/
+#sidebar-wrapper {
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    background: #1a1a1a;
+    height: 100%;
+    left: 220px;
+    margin-left: -220px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 0;
+    z-index: 1000;
+}
+
+#sidebar-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+#page-content-wrapper {
+    padding-top: 70px;
+    width: 100%;
+}
+
+/*-------------------------------------------------------*/
+/*     Sidebar nav styles  进入效果时，不会有多余显示       */
+/*-------------------------------------------------------*/
+#wrapper .nav {
+    margin-top: 50px; /*设置真个左侧栏距离上部的边距*/
+}
+
+.sidebar-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0px; /*修改*/
+    width: 220px;
+}
+
+.sidebar-nav li {
+    display: inline-block;
+    line-height: 20px;
+    position: relative;
+    width: 100%;
+}
+
+.sidebar-nav li:before {
+    background-color: #1c1c1c;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0px; /*修改*/
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+    width: 3px;
+    z-index: -1;
+}
+
+/*
+!*设置鼠标放上去的变换颜色显示特效效果*!
+
+.sidebar-nav li:first-child a {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+.sidebar-nav li:nth-child(2):before {
+    background-color: #402d5c;
+}
+.sidebar-nav li:nth-child(3):before {
+    background-color: #4c366d;
+}
+.sidebar-nav li:nth-child(4):before {
+    background-color: #583e7e;
+}
+.sidebar-nav li:nth-child(5):before {
+    background-color: #64468f;
+}
+.sidebar-nav li:nth-child(6):before {
+    background-color: #704fa0;
+}
+.sidebar-nav li:nth-child(7):before {
+    background-color: #7c5aae;
+}
+.sidebar-nav li:nth-child(8):before {
+    background-color: #8a6cb6;
+}
+.sidebar-nav li:nth-child(9):before {
+    background-color: #987dbf;
+}
+.sidebar-nav li:hover:before {
+    -webkit-transition: width 0.2s ease-in;
+    transition: width 0.2s ease-in;
+    width: 100%;
+}
+!* 上面的  设置鼠标放上去的变换颜色显示特效效果*!*/
+
+.sidebar-nav a {
+    color: #dddddd;
+    display: block;
+    padding: 10px 15px 10px 30px;
+    text-decoration: none;
+}
+
+.sidebar-nav li.open:hover {
+    -webkit-transition: width 0.2s ease-in;
+    transition: width 0.2s ease-in;
+    width: 100%;
+}
+
+.sidebar-nav .dropdown-menu {
+    background-color: #222222;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus,
+.sidebar-nav li.open a:hover,
+.sidebar-nav li.open a:active,
+.sidebar-nav li.open a:focus {
+    background-color: transparent;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.sidebar-nav, .sidebar-brand {
+    font-size: 20px;
+    height: 65px;
+    line-height: 44px;
+}
+
+/*-----------------------------------------------*/
+/*Hamburger-Cross  点击该按钮显示侧边栏菜单         */
+/*-----------------------------------------------*/
+
+.hamburger {
+    background: transparent;
+    border: none;
+    display: block;
+    height: 32px;
+    margin-left: 15px;
+    position: fixed;
+    top: 20px;
+    width: 32px;
+    z-index: 999;
+}
+
+.hamburger:hover, .hamburger:focus, .hamburger:active {
+    outline: none;
+}
+
+.hamburger.is-closed:before {
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-transition: all 0.35s ease-in-out;
+    color: #fff;
+    content: '';
+    display: block;
+    font-size: 14px;
+    line-height: 32px;
+    opacity: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.hamburger.is-closed:hover before {
+    -webkit-transform: translate3d(-100px, 0, 0);
+    -webkit-transition: all 0.35s ease-in-out;
+    display: block;
+    opacity: 1;
+}
+
+.hamburger.is-closed:hover .hamp-top, .hamburger.is-closed:hover .hamp-bottom {
+    -webkit-transition: all 0.35s ease-in-out;
+    bottom: 0;
+}
+
+.hamburger.is-closed .hamp-top {
+    -webkit-transition: all 0.35s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.7);
+    top: 5px;
+}
+
+.hamburger.is-closed .hamp-middle {
+    background-color: rgba(255, 255, 255, 0.7);
+    margin-top: -2px;
+    top: 50%;
+}
+
+.hamburger.is-closed .hamp-bottom {
+    background-color: rgba(255, 255, 255, 0.7);
+    -webkit-transition: all 0.35s ease-in-out;
+    bottom: 5px;
+}
+
+.hamburger.is-closed .hamb-top,
+.hamburger.is-closed .hamb-middle,
+.hamburger.is-closed .hamb-bottom,
+.hamburger.is-open .hamb-top,
+.hamburger.is-open .hamb-middle,
+.hamburger.is-open .hamb-bottom {
+    height: 4px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.hamburger.is-open .hamb-top {
+    -webkit-transform: rotate(45deg);
+    -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.73, 1, 0.28, 0.08);
+    background-color: #fff;
+    margin-top: -2px;
+    top: 50px;
+}
+
+.hamburger.is-open .hamb-middle {
+    background-color: #fff;
+    display: none;
+}
+
+.hamburger.is-open .hamb-bottom {
+    -webkit-transform: rotate(-45deg);
+    -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.73, 1, 0.28, 0.08);
+    background-color: #fff;
+    margin-top: -2px;
+    top: 50px;
+}
+
+.hamburger.is-open:before {
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-transition: all 0.35s ease-in-out;
+    color: #fff;
+    content: '';
+    display: block;
+    font-size: 14px;
+    line-height: 32px;
+    opacity: 0;
+    text-align: center;
+    width: 100%;
+}
+.hamburger.is-open:hover before{
+    -webkit-transform: translate3d(-100px,0,0);
+    -webkit-transition: all 0.35s ease-in-out;
+    display: block;
+    opacity: 1;
+}
+
+/*-------------------------------*/
+/*当侧边栏出现时整个页面显示的颜色                  */
+/*-------------------------------*/
+/*.overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}*/
+
