@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>error</title>
 </head>
 <body>
-$END$
+   <h1>您输入的短信验证码错误，请重新输入！！！</h1>
 </body>
 </html>

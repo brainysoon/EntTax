@@ -1,100 +1,71 @@
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>demo</title>
-    <link rel="stylesheet" href="<c:url value="/jcrop/css/jquery.Jcrop.css"/>" type="text/css"></link>
+    <meta charset="UTF-8">
+    <title>Title</title>
     <script type="text/javascript" src="<c:url value="/jcrop/js/jquery.min.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/jcrop/js/jquery.Jcrop.js"/>"></script>
 </head>
 <body>
-<form name="form" action="<%=request.getContextPath()%>/user/uploadHeadImage" class="form-horizontal" method="post" enctype="multipart/form-data">
-    <div class="modal-body text-center">
-        <div class="zxx_main_con">
-            <div class="zxx_test_list">
-                <input class="photo-file" type="file" name="imgFile" id="fcupload" onchange="readURL(this);" />
-                <img alt="" src="" id="cutimg" />
-                <input type="hidden" id="x" name="x" />
-                <input type="hidden" id="y" name="y" />
-                <input type="hidden" id="w" name="w" />
-                <input type="hidden" id="h" name="h" />
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-footer">
-        <button id="submit" onclick="">上传</button>
-    </div>
-
-    <div id="preview-pane">
-        <div class="preview-container">
-            <img src="" class="jcrop-preview" alt="预览">
-        </div>
-    </div>
-
+<h2>登录界面</h2>
+<form>
+    用户名：<input type="text" name="sname" id="sname" width="10" maxlength="6"><br><br>
+    密 码 ：<input type="password" name="spassword" id="spassword" width="10" maxlength="10"><br>
+    验证码：<input type="text" name="kcode" id="kcode" width="5" maxlength="6">
+          <img id="captchaImage" src="captcha.form"/><br><br>
+          <input type="button" value="登 录" onclick="login()">
+         <a href="findpassword.from">
+          <input type="button" value="忘记密码">
+         </a>
 </form>
-
-<script type="text/javascript">
-    //定义一个全局api，这样操作起来比较灵活
-    var api = null,
-
-        boundx,
-        boundy,
-
-        $preview = $('#preview-pane'),
-        $pcnt = $('#preview-pane .preview-container'),
-        $pimg = $('#preview-pane .preview-container img'),
-
-        xsize = $pcnt.width(),
-        ysize = $pcnt.height();
-
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.readAsDataURL(input.files[0]);
-            reader.onload = function(e) {
-                $('#cutimg').removeAttr('src');
-                $('#cutimg').attr('src', e.target.result);
-                $pimg.removeAttr('src');
-                $pimg.attr('src', e.target.result);
-
-                api = $.Jcrop('#cutimg', {
-                    setSelect: [ 20, 20, 200, 200 ],
-                    aspectRatio: 1,
-                    onSelect: updateCoords,
-                    onChange:updateCoords
-                });
-                var bounds = api.getBounds();
-                boundx = bounds[0];
-                boundy = bounds[1];
-                $preview.appendTo(api.ui.holder);
-            };
-            if (api != undefined) {
-                api.destroy();
-            }
-        }
-        function updateCoords(obj) {
-            $("#x").val(obj.x);
-            $("#y").val(obj.y);
-            $("#w").val(obj.w);
-            $("#h").val(obj.h);
-            if (parseInt(obj.w) > 0) {
-                var rx = xsize / obj.w;
-                var ry = ysize / obj.h;
-                $pimg.css({
-                    width : Math.round(rx * boundx) + 'px',
-                    height : Math.round(ry * boundy) + 'px',
-                    marginLeft : '-' + Math.round(rx * obj.x) + 'px',
-                    marginTop : '-' + Math.round(ry * obj.y) + 'px'
-                });
-            }
-        }
-        ;
-    }
-</script>
 </body>
-</html>
+<script type="text/javascript">
+    // 更换验证码
+    $('#captchaImage').click(function()
+    {
+        $('#captchaImage').attr("src", "captcha.form?timestamp=" + (new Date()).valueOf());
+    });
+    function login() {
+        $.get("user/login.from",{sname:$("#sname").val(),spassword:$("#spassword").val(),kcode:$("#kcode").val()},
+            function (data) {
+            if (data.status==100){
+                window.location.href="main.from";
+            }else {
+                alert(data.message);
+            }
 
+
+        });
+    }
+
+//   function login(){
+//       alert("aaa");
+//
+//        $.ajax({
+//            type:"POST",
+//            date: {
+//                sname:$("#sname").val(),
+//                spassword:$("#spassword").val(),
+//                kcode:$("#kcode").val()
+//            },
+//            dataType: "JSON",
+//            contentType: "application/json; charset=utf-8",
+//            async: true,
+//            url: "user/login.from",
+//            success: function (data) {
+////                if (data.status==100){
+////                    window.location.href="main.from";
+////                }else {
+////                    alert(data.message);
+////                }
+//            },
+//            error:function () {
+//                alert("网络延迟！");
+//            },
+//        });
+//   }
+
+</script>
+</html>
