@@ -1,12 +1,19 @@
 package com.enttax.service.permissionService.permissionImpl;
 
+import com.enttax.dao.RoleMapper;
 import com.enttax.dao.StaffMapper;
+import com.enttax.model.Role;
 import com.enttax.model.Staff;
 import com.enttax.service.permissionService.PermissService;
+import com.enttax.util.tools.Encodes;
+import com.enttax.util.tools.ToolDates;
 import com.enttax.util.tools.ToolString;
+import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,15 +21,19 @@ import java.util.List;
  */
 @org.springframework.stereotype.Service
 public class PermissServiceImpl implements PermissService {
+    private static final Logger logger=Logger.getLogger(PermissServiceImpl.class);
    @Resource
     private StaffMapper staffMapper;
+   @Resource
+   private RoleMapper roleMapper;
 
     /** 注册
      * 需要校验电话号码和邮箱的唯一性
      * @param staff
      * @return
      */
-    public boolean register(Staff staff) {
+    @Transactional
+    public boolean register(Staff staff,String rid) {
         List<Staff> list;
         try {
             list = staffMapper.selectByEmail(staff.getSemail());
@@ -34,11 +45,27 @@ public class PermissServiceImpl implements PermissService {
                return false;
            }
 
+           Role role=roleMapper.selectByPrimaryKey(rid);
+           if (role==null){
+               return false;
+           }
+
+            String sid= ToolDates.getDate8Num();
+            staff.setSid(sid);
+            staff.setSenter(new Date());
+            staff.setSpassword(Encodes.encodeBase64(staff.getSpassword()));
+
            staffMapper.insert(staff);
+            //将用户和角色的关系插入中间表中
+           staffMapper.insertStaffAndRoleRelation(staff.getSid(),rid);
+
+           logger.info("－－－－－－－用户添加成功－－－－－－－");
+           logger.debug("----------debug用户添加成功－－－－");
             return  true;
         }catch (Exception e){
-            e.printStackTrace();
-            return false;
+            logger.info("－－－－－－添加用户出错了－－－－－－－");
+            logger.debug("----------debug添加用户出错了－－－－");
+            throw  new RuntimeException(e);
         }
 
     }

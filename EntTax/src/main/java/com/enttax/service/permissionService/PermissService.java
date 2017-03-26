@@ -13,7 +13,7 @@ public interface PermissService {
      * @param staff
      * @return
      */
-    boolean register(Staff staff);
+    boolean register(Staff staff,String rid);
 
     /**
      * 登录功能

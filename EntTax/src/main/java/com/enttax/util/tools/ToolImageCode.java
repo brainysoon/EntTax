@@ -16,10 +16,10 @@ import java.util.Random;
 public class ToolImageCode  {
     private static final long serialVersionUID = 1L;
 
-    private static Font mFont = new Font("Arial", Font.BOLD, 15); // 设置字体
+    private static Font mFont = new Font("Arial", Font.BOLD, 16); // 设置字体
     private static  int lineWidth = 2; // 干扰线的长度=1.414*lineWidth
-    private static int width = 60; // 定义图形大小
-    private static int height = 20; // 定义图形大小
+    private static int width = 80; // 定义图形大小
+    private static int height = 25; // 定义图形大小
     private static int count = 200;
 
     /**

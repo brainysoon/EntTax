@@ -22,6 +22,14 @@ public interface ConstantStr {
     String str_three = "3";
 
     String  RESOURCEPATH="resources/uploadImages/";
+    /**
+     * 生成excel模板的绝对地址
+     */
+    String EXCELRESOURCEPATH="resources/excel/";
+    /**
+     * 生成excel模板的模板名
+     */
+    String EXCELMODELNAME="进销数据表.xls";
 
 
 }

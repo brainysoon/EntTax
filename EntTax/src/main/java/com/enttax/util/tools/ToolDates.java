@@ -27,14 +27,26 @@ public class ToolDates {
     }
 
     /**
-     * 用分，秒，毫秒时间戳做随机数
+     * 用分，秒，毫秒时间戳产生８位随机数
      * @return
      * @throws ParseException
      */
-    public static String getDateNum() {
+    public static String getDate8Num() {
         Date d = new Date();//获取时间
         SimpleDateFormat sdf=new SimpleDateFormat("mmssSSS");
         String ymd = sdf.format(d)+new Random().nextInt(10);
         return ymd ;
     }
+
+    /**
+     * 产生15为随机数
+     * @return
+     */
+    public static String getDate15Num() {
+        Date d = new Date();//获取时间
+        SimpleDateFormat sdf=new SimpleDateFormat("ddHHmmssSSS");
+        String ymd = sdf.format(d)+new Random().nextInt(10000);
+        return ymd ;
+    }
+
 }

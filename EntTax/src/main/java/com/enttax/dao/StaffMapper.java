@@ -7,14 +7,26 @@ import java.util.List;
 
 public interface StaffMapper {
     int deleteByPrimaryKey(String sid);
-
-    int insert(Staff record);
-
     Staff selectByPrimaryKey(String sid);
 
     List<Staff> selectAll();
 
     int updateByPrimaryKey(Staff record);
+
+    /**
+     * 添加用户
+     * @param record
+     * @return
+     */
+    int insert(Staff record);
+
+    /**
+     * 添加用户和角色之间的关系
+     * @param sid
+     * @param rid
+     * @return
+     */
+    int insertStaffAndRoleRelation(@Param("sid") String sid,@Param("rid") String rid);
 
     /**
      * 用户名，密码登录
@@ -55,7 +67,7 @@ public interface StaffMapper {
     List<Staff> selectByEmail(@Param("semail") String semail);
 
     /**
-     * 找回密码（也就是）
+     * 找回密码（也就是重置密码）
      * @param sid
      * @param newpassword
      * @return

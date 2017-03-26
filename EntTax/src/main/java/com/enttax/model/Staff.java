@@ -5,6 +5,7 @@ import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Alias("Staff")
@@ -33,6 +34,8 @@ public class Staff {
     private String saddress;
 
     private String savator;
+
+    private List<Role> roles;
 
     public String getSid() {
         return sid;
@@ -120,5 +123,13 @@ public class Staff {
 
     public void setSavator(String savator) {
         this.savator = savator == null ? null : savator.trim();
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

@@ -5,17 +5,14 @@ import com.enttax.service.permissionService.PermissService;
 import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.*;
-import org.apache.ibatis.annotations.Param;
+import com.enttax.vo.LoginInfo;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,7 +25,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/user")
-public class PermissionController {
+public class PermissionController extends BaseController{
     private PermissService permissService;
     @Autowired
     public void setPermissService(PermissService permissService) {
@@ -36,40 +33,44 @@ public class PermissionController {
     }
 
     /**
-     *  登录功能
-     * @param sname
-     * @param spassword
+     * 登录功能
+     * @param
      * @return
      */
    @RequestMapping(value = "/login")
-    public String login(@RequestParam(value = "sname") String sname,
-                        @RequestParam(value = "spassword") String spassword,
-                        @RequestParam(value = "kcode") String kcode,
-                        HttpServletRequest request,
-                        Model model) {
+   @ResponseBody
+    public Map<String ,String> login(
+           @RequestParam("sname")String sname,
+           @RequestParam("spassword")String spassword,
+           @RequestParam("kcode")String kcode) {
+
+       Map<String,String> map=new HashMap<String, String>();
+
        if (sname==null||spassword==null){
-           model.addAttribute("state", ConstantException.args_error_code);
-           model.addAttribute("message",ConstantException.args_error_message);
-           return "index";
+           map.put("status",ConstantException.args_error_code);
+           map.put("message",ConstantException.args_error_message);
+           return map;
        }
        if (!kcode.equals(request.getSession().getAttribute("sRand"))){
-           model.addAttribute("state",ConstantException.authcode_error_code);
-           model.addAttribute("message",ConstantException.authcode_error_message);
-           return "index";
-       }
-        Staff staff=  permissService.login(sname,Encodes.encodeBase64(spassword));
-       System.out.println(staff);
-       if (staff==null){
-           model.addAttribute("state",ConstantException.no_data_code);
-           model.addAttribute("message",ConstantException.no_data_message);
-           return "index";
+           map.put("status",ConstantException.image_error_code);
+           map.put("message",ConstantException.image_error_message);
+           return map;
        }
 
-       model.addAttribute("state",ConstantException.sucess_code);
-       model.addAttribute("message",ConstantException.sucess_message);
-       model.addAttribute("staff",staff);
-       model.addAttribute("sid",staff.getSid());
-       return "login";
+        Staff staff=  permissService.login(sname,Encodes.encodeBase64(spassword));
+
+       if (staff==null){
+           map.put("status",ConstantException.no_data_code);
+           map.put("message",ConstantException.no_data_message);
+           return map;
+       }
+
+       map.put("status",ConstantException.sucess_code);
+       map.put("message",ConstantException.sucess_message);
+
+       session.setAttribute("staff",staff);
+       session.setAttribute("sid",staff.getSid());
+       return map;
     }
 
 
@@ -79,14 +80,12 @@ public class PermissionController {
      * @return
      */
     @RequestMapping(value = "/register" ,method = RequestMethod.POST)
-    public String register(@ModelAttribute Staff staff , Model model){
-        String sid= ToolDates.getDateNum();
-        staff.setSid(sid);
-        staff.setSenter(new Date());
-        staff.setSpassword(Encodes.encodeBase64(staff.getSpassword()));
-        if (permissService.register(staff)){
+    public String register(@RequestParam("rid") String rid,
+            @ModelAttribute Staff staff , Model model){
+        boolean result= permissService.register(staff,rid);
+        if (result){
             model.addAttribute("state", ConstantStr.str_one);
-            model.addAttribute("sid",sid);
+//            model.addAttribute("sid",sid);
             return "successful";
         }else {
             model.addAttribute("state",ConstantStr.str_zero);
@@ -114,7 +113,6 @@ public class PermissionController {
 
     /**
      * 头像上传
-     * @param request
      * @param x
      * @param y
      * @param h
@@ -124,7 +122,6 @@ public class PermissionController {
      */
     @RequestMapping(value = "/uploadHeadImage",method = RequestMethod.POST)
     public String uploadHeadImage(
-            HttpServletRequest request,
             @RequestParam(value = "x") String x,
             @RequestParam(value = "y") String y,
             @RequestParam(value = "h") String h,
@@ -150,44 +147,38 @@ public class PermissionController {
 
     /**
      * 重置密码
-     * @param request
      * @param password
      */
-    @RequestMapping(value = "/updatepassword")
-    public  String  updateToPassword(HttpServletRequest request,
-                                 @RequestParam(value = "password") String password){
+    @RequestMapping(value = "/updatepassword",method = RequestMethod.GET)
+    @ResponseBody
+    public  Map<String ,String >  updateToPassword(@RequestParam(value = "password") String password){
        String sid = (String) request.getSession().getAttribute("sid");
-
+        Map<String,String> map=new HashMap<String, String>();
         if (permissService.updateToPassword(sid,Encodes.encodeBase64(password))){
-            return "main";
+            map.put("status",ConstantStr.str_one);
+        }else {
+            map.put("status",ConstantStr.str_zero);
         }
-          return "updatepassword";
+        map.put("status",ConstantStr.str_one);
+          return map;
     }
 
     /**
      * 查找电话号码是否存在
-     * @param request
      * @param phone
      */
     @RequestMapping(value = "/findphone",method = RequestMethod.GET)
     @ResponseBody
-    public Map selectByPhone(
-            HttpServletRequest request,
-            @RequestParam(value = "phone") String phone){
-        System.out.println(phone);
+    public Map selectByPhone(@RequestParam(value = "phone") String phone){
         Map<String ,String> map=new HashMap<String, String>();
         if (permissService.selectByPhone(phone,request)){
             map.put("status",ConstantStr.str_one);
         }else {
             map.put("status",ConstantStr.str_zero);
         }
-        System.out.println(map);
         return map;
 
     }
-
-
-
 
 
 }

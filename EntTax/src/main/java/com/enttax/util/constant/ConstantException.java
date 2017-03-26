@@ -41,10 +41,15 @@ public interface ConstantException {
     String authcode_timeout_code = "106";
     String authcode_timeout_message = "验证码过期";
     /**
-     * 107 验证码错误
+     * 107 短信验证码错误
      */
-    String authcode_error_code = "107";
-    String authcode_error_message = "验证码错误";
+    String smscode_error_code = "107";
+    String smscode_error_message = "短信验证码错误";
+    /**
+     * 108图片验证码错误
+     */
+    String image_error_code="108";
+    String image_error_message="图片验证码错误";
     /**
      * 108 验证码发送频繁
      */
