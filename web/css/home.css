@@ -1,13 +1,18 @@
 
-body{
+body {
     background-color: #ffffff !important;
+}
+
+#nav-top {
+    height: 56px;
+    box-shadow: 0 0 2px !important;
 }
 
 #nav-top ul > li > a {
     position: relative;
     display: block;
     padding: 5px 15px;
-    color: #777;
+    color: #585858;
 }
 
 #nav-top .nav-tabs {
@@ -20,29 +25,54 @@ body{
     padding: 8px 10px 1px 1px;
 }
 
-/*设置左侧栏*/
-.navbar-side {
-    z-index: 0;
+/*
+设置activemenu*/
+#main-menu .active-menu {
+    background-color: #f1f7f9;
+    color: #585858 !important;
 }
 
-.navbar-side .nav > li > a > i {
-    color: #585858;
-    padding: 8px;
-    width: 30px;
-    text-align: center;
+#main-menu .active-menu i {
+    color: #585858 !important;
+}
+
+/*
+设置内容部分*/
+#page-wrapper {
+    padding: 15px 15px;
+    min-height: 600px;
+    background: #E6E6E6;
+}
+
+#page-inner {
+    width: 100%;
+    margin: 10px 20px 10px 0px;
+    background-color: transparent;
+    padding: 10px;
+    min-height: 725px;
+}
+
+.navbar-side {
+    z-index: 0;
 }
 
 .navbar-side {
     z-index: 1;
     position: fixed;
     width: 260px;
-    top: 80px;
+    top: 56px;
+}
+
+#page-wrapper {
+    position: relative;
+    top: 55px;
 }
 
 /*
 设置侧边栏的sidebar-collapse*/
+
 .sidebar-collapse, .sidebar-collapse .nav {
-    background: #f9f9f9;
+    background: none;
 }
 
 .sidebar-collapse .nav {
@@ -54,47 +84,43 @@ body{
     background: transparent;
     text-shadow: none;
 }
-.sidebar-collapse .nav > li > a:hover,.sidebar-collapse .nav > li > a:focus{
-    color: #337ab7;
-    background-color: #ffffff;
-}
 
-.sidebar-collapse > .nav>  li >a{
+.sidebar-collapse > .nav > li > a {
     padding: 12px 10px;
 }
 
-.sidebar-collapse > .nav>li{
-    border-bottom: rgba(107,108,109,0.19);
-}
-.sidebar-collapse .nav>li>a:hover,.sidebar-collapse .nav>li>a:focus{
-    outline:0;
+.nav-second-level li > a {
+    background-color: #fff;
+
 }
 
-.navbar-side{
+
+ul.nav.nav-second-level.collapse.in {
+    background: #fff;
+}
+
+.sidebar-collapse .nav > li > a:hover,
+.sidebar-collapse .nav > li > a:focus {
+    background-color: #f9f9f9;
+    color: #1963aa;
+    outline: 0;
+}
+
+.navbar-side {
     border: none;
-    background: #3983c2 !important;
+    background-color: #fff;
 }
-/*
-设置activemenu*/
-#main-menu .active-menu{
-    background-color: #f1f7f9;
-    color: #585858 !important;
-}
-#main-menu .active-menu i{
-    color: #585858 !important;
-}
-
 
 /*
 设置li显示 下划线*/
-.sidebar-collapse .nav > li > a{
+.sidebar-collapse .nav > li > a {
     border-top: 1px solid #fcfcfc;
     border-bottom: 1px solid #e5e5e5;
 }
 
 /*
 设置second nav*/
-.nav-second-level li{
+.nav-second-level li {
     border-bottom: none !important;
     padding-left: 37px;
 }
@@ -106,42 +132,29 @@ body{
     z-index: 3;
     background-color: #f9f9f9;
     padding: 3px 6px;
-    top: -26px;
-    color: #283646;
+    top: -0px;
+    color: #585858;
     cursor: pointer;
     border-radius: 0px 15px 15px 0px;
     width: 28px;
     font-size: 16px;
 }
 
-#sideNav i{
+#sideNav i {
     background-color: #f9f8f7f9;
-    color:#959595;
+    color: #585858;
 }
 
-/*
-设置page-wrapper*/
-#page-wrapper{
-    padding: 15px;
-    min-width: 650px;
-    background: #e6e6e6;
-    position: relative;
-    top: 80px;
-}
-#page-inner{
-    width: 100%;
-    margin: 10px 20px 0px;
-    background-color: transparent;
-    padding: 10px;
-    min-height: 1200px;
-    position: fixed;
-}
-/*设置响应布局*/
+/*----------------------------------------------
+    MEDIA QUERIES
+------------------------------------------------*/
+
 @media (min-width: 768px) {
     #page-wrapper {
         margin: 0 0 0 260px;
         padding: 15px 30px;
-        min-height: 1200px;
+        min-height: 725px;
+
     }
 
     .navbar-side {
