@@ -5,8 +5,6 @@ import com.enttax.service.permissionService.PermissService;
 import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.*;
-import com.enttax.vo.LoginInfo;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -128,7 +125,7 @@ public class PermissionController extends BaseController{
             @RequestParam(value = "w") String w,
             @RequestParam(value = "imgFile") MultipartFile imageFile,
             Model model) {
-        String realPath = request.getSession().getServletContext().getRealPath("/");
+        String realPath = session.getServletContext().getRealPath("/");
         try {
            String savator= FileUploadUtil.uploadHeadImage(realPath,x,y,h,w,imageFile);
            if (savator==null){
