@@ -5,6 +5,8 @@ body {
 
 #nav-top {
     height: 56px;
+    margin: 0;
+    padding: 0;
     box-shadow: 0 0 2px !important;
 }
 
@@ -40,16 +42,16 @@ body {
 设置内容部分*/
 #page-wrapper {
     padding: 15px 15px;
-    min-height: 600px;
+    /*min-height: 600px;*/
     background: #E6E6E6;
 }
 
 #page-inner {
     width: 100%;
-    margin: 10px 20px 10px 0px;
+    /*margin: 10px 20px 10px 0px;*/
     background-color: transparent;
-    padding: 10px;
-    min-height: 725px;
+    /*padding: 10px;*/
+    height: 100%;
 }
 
 .navbar-side {
@@ -126,7 +128,7 @@ ul.nav.nav-second-level.collapse.in {
 }
 
 /*设置左右显示按钮*/
-#sideNav {
+/*#sideNav {
     position: absolute;
     right: -28px;
     z-index: 3;
@@ -143,7 +145,7 @@ ul.nav.nav-second-level.collapse.in {
 #sideNav i {
     background-color: #f9f8f7f9;
     color: #585858;
-}
+}*/
 
 /*----------------------------------------------
     MEDIA QUERIES
@@ -153,7 +155,7 @@ ul.nav.nav-second-level.collapse.in {
     #page-wrapper {
         margin: 0 0 0 260px;
         padding: 15px 30px;
-        min-height: 725px;
+        /*min-height: 725px;*/
 
     }
 

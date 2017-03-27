@@ -58,14 +58,9 @@
         </div>
     </div>
 
-
     <div class="navbar-default navbar-side" id="nav-side" role="navigation">
-        <!--<div id="sideNav">
-            <i class="glyphicon glyphicon-resize-horizontal"></i>
-        </div>-->
-
         <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu" >
+            <ul class="nav" id="main-menu">
                 <li>
                     <a href="http://www.baidu.com" class="active-menu">
                         <i class="glyphicon glyphicon-lock"></i>主页
@@ -111,19 +106,16 @@
                 </li>
             </ul>
         </div>
-
     </div>
 
-
     <div id="page-wrapper" class="fixed">
-        <div class="breadcrumbs" id="breadcrumbs" style="border: 1px solid red">
-            <script type="text/javascript">
-                try {
-                    ace.settings.check('breadcrumbs', 'fixed')
-                } catch (e) {
-                }
-            </script>
-
+        <div class="breadcrumbs" id="breadcrumbs" style="width: 100%">
+            <!-- <script type="text/javascript">
+                 try {
+                     ace.settings.check('breadcrumbs', 'fixed')
+                 } catch (e) {
+                 }
+             </script>-->
             <ul class="breadcrumb">
                 <li>
                     <i class="icon-home home-icon"></i>
@@ -134,13 +126,86 @@
                     <a href="#">个人资料</a>
                 </li>
                 <li class="active">修改个人资料</li>
-            </ul><!-- .breadcrumb -->
+            </ul>
 
         </div>
 
-        <div id="page-inner" style="border: 1px solid green">
+        <div id="page-inner">
 
             <div class="row">
+                <div class="col-md-12" style="border: 1px solid dodgerblue">
+                    <div class="col-xs-12 col-sm-3 text-center" style="border: 1px solid blue;">
+                        <div id="interface" class="page-interface">
+                            <img src="http://jcrop-cdn.tapmodo.com/assets/images/sierra2-750.jpg" id="target" style="width: 200px;height: 200px"></div>
+                        <div class="nav-box">
+                            <form onsubmit="return false;" id="text-inputs"><span class="input-group"><b>X</b>
+                                    <input type="text" name="cx" id="crop-x" class="span1"></span><span
+                                    class="input-group"><b>Y</b>
+                                    <input type="text" name="cy" id="crop-y" class="span1"></span><span
+                                    class="input-group"><b>W</b>
+                                    <input type="text" name="cw" id="crop-w" class="span1"></span><span
+                                    class="input-group"><b>H</b>
+                                    <input type="text" name="ch" id="crop-h" class="span1"></span>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-9" style="border: 1px solid darkblue;">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="name" class="col-xs-3 control-label">姓名:</label>
+                                <div class="col-xs-9">
+                                    <input type="text" class="form-control" id="name" style="width: 205px">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="optionsRadiosinline" class="col-xs-3 control-label">性别:</label>
+                                <div class="col-xs-9">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optionsRadiosinline" id="optionsRadios3" checked> 男
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optionsRadiosinline" id="optionsRadios4"> 女
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="" class="col-xs-3 control-label">出生年月:</label>
+                                <div class="col-xs-9">
+                                    <select name="y" id="" style="height: 34px;border-radius: 3px ">
+                                        <option value="0"></option>
+                                        <option value="2017">2017</option>
+                                    </select>年
+                                    <select name="m" id="" style="height: 34px;border-radius: 3px ">
+                                        <option value="0"></option>
+                                        <option value="2017">2017</option>
+                                    </select>月
+                                    <select name="d" id="" style="height: 34px;border-radius: 3px ">
+                                        <option value="0"></option>
+                                        <option value="2017">2017</option>
+                                    </select>日
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="" class="col-xs-3 control-label">家庭住址:</label>
+                                <div class="col-xs-9">
+                                    <select name="y" id="" style="height: 34px;width: 146px;;border-radius: 3px ">
+                                        <option value="0"></option>
+                                        <option value="2017">2017</option>
+                                    </select>
+                                    <select name="m" id="" style="height: 34px;border-radius: 3px ">
+                                        <option value="0"></option>
+                                        <option value="2017">2017</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
 
             </div>
         </div>
@@ -168,9 +233,8 @@
         /*设置整个内容部分的高度*/
         var page_h = $(window).height();
         var top_h = $('#nav-top').height();
-        var wrap_h = $('#page-wrapper').outerHeight();
-        var hei = page_h - top_h-wrap_h;
-        $('#page-inner').css({'height': hei});
+        var hei = page_h - top_h;
+        $('#page-wrapper').css({'height': hei});
 
         var mainApp = {
 
