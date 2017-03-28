@@ -12,6 +12,9 @@
 </head>
 <body>
 <div id="wrapper">
+
+
+
     <!--头部标签-->
     <div class="navbar navbar-default navbar-fixed-top" id="nav-top">
         <div class="nav-container">
@@ -23,13 +26,9 @@
             </div>
             <div class="navbar-header pull-right" role="navigation">
                 <ul class="nav nav-tabs" id="head-nav">
-                    <li class="login">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle head-right">
-                            登录
-                        </a>
-
+                    <li class="login1">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle head-right">登录</a>
                     </li>
-
                     <li class="user" style="display: none">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                             <img src="images/user.jpg" alt="">
@@ -57,8 +56,7 @@
             </div>
         </div>
     </div>
-
-
+    <!--侧边栏-->
     <div class="navbar-default navbar-side" id="nav-side" role="navigation">
         <!--<div id="sideNav">
             <i class="glyphicon glyphicon-resize-horizontal"></i>
@@ -113,8 +111,7 @@
         </div>
 
     </div>
-
-
+    <!--内容部分-->
     <div id="page-wrapper" class="fixed">
         <div class="breadcrumbs" id="breadcrumbs" style="border: 1px solid red">
             <script type="text/javascript">
@@ -138,8 +135,154 @@
 
         </div>
 
-        <div id="page-inner" style="border: 1px solid green">
 
+
+        <div id="page-inner" style="border: 1px solid green">
+                <div class="row" id="con" style="display: none">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div class="login-container" style="border: 1px solid red; margin: 10% auto; width: 400px">
+
+                            <div class="position-relation" style="position: relative; border: 1px solid green;">
+                                <div class="login-box" id="login-box" style=" padding: 0; margin: 3px 0;">
+                                    <div class="widget-body" style="background: #fff">
+                                        <div class="clearfix text-center" style="background: #f0ad4e;margin-top: 0px">
+                                            <a href="javascript:;" title="关闭" class="close pull-right"
+                                               style="color: rgb(153, 153, 153)">x</a>
+                                            <h4 class="pull-left">登录</h4>
+                                        </div>
+                                        <div class="widget-main" style="padding: 12px;border: 1px solid black;">
+
+                                            <div class="space" style="padding: 5px"></div>
+
+                                            <form action="" method="post">
+                                                <label class="clearfix">
+                                                    <div class="input-group" style="width:100%">
+                                            <span class="input-group-addon "><i
+                                                    class="glyphicon glyphicon-user"> </i></span>
+                                                        <input type="text" class="form-control" placeholder="用户名" value=""/>
+
+                                                    </div>
+                                                </label>
+
+                                                <label class="block clearfix">
+
+                                                    <div class="input-group">
+                                            <span class="input-group-addon "><i
+                                                    class="glyphicon glyphicon-lock"></i></span>
+                                                        <input type="password" class="form-control" placeholder="密码" value="">
+                                                    </div>
+                                                </label>
+
+                                                <div class="clearfix">
+                                                    <label class="pull-left">
+                                                        <input type="checkbox" class="checked">
+                                                        <span class="">记住密码</span>
+                                                    </label>
+
+                                                    <label class="pull-right">
+                                                        <a href="#" class="forgot-password-link">忘记密码?</a>
+                                                    </label>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="clearfix text-center">
+                                            <!--data-target 连接到忘记密码页面-->
+                                            <a href="#" >
+                                                登录
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="forget-box" id="forget-box" style="display: none; padding: 0; margin: 3px 0;">
+                                    <div class="widget-body" style="background: #fff">
+                                        <div class="clearfix text-center" style="background: #f0ad4e;margin-top: 0px">
+                                            <a href="javascript:;" title="关闭" class="close pull-right"
+                                               style="color: rgb(153, 153, 153)">x</a>
+                                            <h4 class="pull-left">找回密码</h4>
+                                        </div>
+                                        <div class="widget-main" style="padding: 12px;border: 1px solid black;">
+
+                                            <div class="space" style="padding: 5px"></div>
+
+                                            <form action="" method="post">
+                                                <label class="clearfix">
+                                                    <div class="input-group" style="width:100%">
+                                            <span class="input-group-addon "><i
+                                                    class="glyphicon glyphicon-phone"> </i></span>
+                                                        <input type="text" class="form-control" placeholder="手机号" value=""/>
+                                                    </div>
+                                                </label>
+
+                                                <label class="block clearfix">
+
+                                                    <div class="input-group">
+                                            <span class="input-group-addon "><i
+                                                    class="glyphicon glyphicon-comment"></i></span>
+                                                        <input type="text" class="form-control" placeholder="短信验证码" value="">
+                                                    </div>
+                                                </label>
+
+
+                                            </form>
+                                        </div>
+                                        <div class="clearfix text-center">
+                                            <!--data-target 连接到忘记密码页面-->
+                                            <a href="#" class="new-password-link">
+                                                下一步
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="newpwd-box" id="newpwd-box" style="display: none; padding: 0; margin: 3px 0;">
+                                    <div class="widget-body" style="background: #fff">
+                                        <div class="clearfix text-center" style="background: #f0ad4e;margin-top: 0px">
+                                            <a href="javascript:;" title="关闭" class="close pull-right"
+                                               style="color: rgb(153, 153, 153)">x</a>
+                                            <h4 class="pull-left">修改密码</h4>
+                                        </div>
+                                        <div class="widget-main" style="padding: 12px;border: 1px solid black;">
+
+                                            <div class="space" style="padding: 5px"></div>
+
+                                            <form action="" method="post">
+                                                <label class="clearfix">
+                                                    <div class="input-group" style="width:100%">
+                                            <span class="input-group-addon "><i
+                                                    class="glyphicon glyphicon-lock"> </i></span>
+                                                        <input type="password" class="form-control" placeholder="新密码" value=""/>
+                                                    </div>
+                                                </label>
+
+                                                <label class="block clearfix">
+
+                                                    <div class="input-group">
+                                            <span class="input-group-addon "><i
+                                                    class="glyphicon glyphicon-retweet"></i></span>
+                                                        <input type="password" class="form-control" placeholder="确认密码" value="">
+                                                    </div>
+                                                </label>
+
+
+                                            </form>
+                                        </div>
+                                        <div class="clearfix text-center">
+                                            <!--data-target 连接到忘记密码页面-->
+                                            <a href="#" class="back-login-link">
+                                                返回登录
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             <div class="row">
 
             </div>
@@ -156,21 +299,43 @@
 
 <script type="text/javascript">
     $(function () {
+        $('.forgot-password-link').click(function () {
+            $('.forget-box').show();
+            $('.login-box').hide();
+        });
+        $('.new-password-link').click(function () {
+            $('.forget-box').hide();
+            $('.newpwd-box').show();
+        });
+        $('.back-login-link').click(function () {
+            $('.newpwd-box').hide();
+            $('.login-box').show();
+        })
+
+        $('.login1').click(function () {
+            $('#con').slideDown(200);
+        });
+        $('.close').click(function () {
+            $('#con').slideUp(100);
+        })
+
+
         /*设置登录和用户信息的显示*/
-        $('.login').click(function () {
+        $('.login1').click(function () {
             $('.user').show();
-            $('.login').hide();
+            $('.login1').hide();
         })
         $('.logout').click(function () {
-            $('.login').show();
+            $('.login1').show();
             $('.user').hide();
         })
         /*设置整个内容部分的高度*/
         var page_h = $(window).height();
         var top_h = $('#nav-top').height();
         var wrap_h = $('#page-wrapper').outerHeight();
-        var hei = page_h - top_h-wrap_h;
+        var hei = page_h - top_h - wrap_h;
         $('#page-inner').css({'height': hei});
+
 
         var mainApp = {
 
