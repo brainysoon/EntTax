@@ -1,11 +1,14 @@
 package com.enttax.controller.excelController;
 
 import com.enttax.controller.permissionController.BaseController;
+import com.enttax.model.Bill;
+import com.enttax.service.excelService.ExcelService;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.ExcelUtil;
 import com.enttax.util.tools.FileUploadUtil;
 import com.enttax.util.tools.FiledownUtil;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.Map;
 
 import static com.enttax.util.tools.FileUploadUtil.rename;
 
@@ -21,7 +25,14 @@ import static com.enttax.util.tools.FileUploadUtil.rename;
  */
 @Controller
 public class ExcelController extends BaseController {
-   private  static final Logger logger=Logger.getLogger(ExcelController.class);
+
+    private  static final Logger logger=Logger.getLogger(ExcelController.class);
+    @Autowired
+    private ExcelService excelService;
+
+    /**
+     * excel模板下载
+     */
     @RequestMapping(value = "/downloadExcelModel")
     public void downloadExcelModel(){
         String filePath =session.getServletContext().getRealPath(ConstantStr.EXCELRESOURCEPATH)+ConstantStr.EXCELMODELNAME;
@@ -35,12 +46,17 @@ public class ExcelController extends BaseController {
 
         }
     }
+
+    /**
+     * excel数据导入
+     * @param excelFile
+     */
     @RequestMapping(value = "/uploadExcelDate" ,method = RequestMethod.POST)
     public void uploadExcelData(@RequestParam(value = "excelFile") MultipartFile excelFile){
 
         // 判断文件是否为空
         if (!excelFile.isEmpty()) {
-            if (excelFile.getContentType().contains(ConstantStr.EXCELTYPE)) {
+            System.out.println("excelFile类型："+excelFile.getContentType());
                 try {
                     // 文件保存路径
                     String filePath = session.getServletContext().getRealPath("/") + ConstantStr.EXCELRESOURCEPATH;
@@ -52,14 +68,24 @@ public class ExcelController extends BaseController {
                     }
                     File file = new File(dir, fileName);
                     excelFile.transferTo(file);
-                    ExcelUtil.readExcelFile(0, filePath + fileName);
-                    System.out.println("-------文件上传成功！！-----------");
+
+                    Map<Object,Object> map=ExcelUtil.readExcelFile(0, filePath + fileName);
+                   if (map!=null){
+                       //将上传的数据保存到数据库
+                       if (excelService.insertExcelData(map)){
+                           System.out.println("-------数据保存成功！！-----------");
+                       }else {
+                           System.out.println("-------数据保存失败！！-----------");
+                       }
+                       System.out.println("-------文件上传成功！！-----------");
+                   }else {
+                       System.out.println("-------文件上传失败！！-----------");
+                   }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     logger.info("-------ExcelController的uploadExcelData方法文件上传出错！！---------");
                 }
             }
-        }
-        System.out.println("error");
     }
 }

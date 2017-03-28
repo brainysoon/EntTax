@@ -1,5 +1,6 @@
 package com.enttax.util.tools;
 
+import com.enttax.util.constant.ConstantStr;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
@@ -7,6 +8,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -78,6 +80,15 @@ public class ExcelUtil {
         cell.setCellValue("月份");
         cell.setCellStyle(style);
 
+        for(int i=0;i<5;i++){
+            row=sheet.createRow((int)i+1);
+            //4.3单元格信息值填写
+            row.createCell((short)0).setCellValue(("猪肉罐头"));
+            row.createCell((short)1).setCellValue("进项数据");
+            row.createCell((short)2).setCellValue(("54.7"));
+            row.createCell((short)3).setCellValue("8.25");
+            row.createCell((short)4).setCellValue(("3月"));
+        }
 
 
         //将文件保存到指定位置
@@ -121,11 +132,24 @@ public class ExcelUtil {
             fileAddress.replace("/", File.separator);
             fileAddress.replace("\\", File.separator);
             File file = new File(fileAddress);
-            Workbook wb = WorkbookFactory.create(new FileInputStream(file));
+
+            int star = fileAddress.lastIndexOf(".");
+            String extName = fileAddress.substring(star, fileAddress.length());
+
+            Workbook wb ;
+            //判断excel的类型（xls、xlsx、或者其他）
+                if (ConstantStr.EXCELTYPEXLS.equals(extName)) {
+                    wb = new HSSFWorkbook(new FileInputStream(file));
+                } else if (ConstantStr.EXCELTYPEXLSX.equals(extName)) {
+                    wb = new XSSFWorkbook(new FileInputStream(file));
+                } else {
+                    throw new Exception("当前文件不是excel文件");
+                }
+
             Sheet sheet = wb.getSheetAt(sheetAt);
             int numRows = sheet.getLastRowNum();
             System.out.println("行："+numRows);
-            for(int i = 0; i<numRows;i++){
+            for(int i = 1; i<=numRows;i++){
                 //当前行的集合
                 List rowList = new ArrayList();
                 //获取当前行
@@ -136,7 +160,8 @@ public class ExcelUtil {
                     //获取元素
                     Cell cell = row.getCell(j);
                     if(cell==null){
-                        continue;
+                        System.out.println("-----------表格中有为空的数据！！--------");
+                        return null;
                     }
                     type = cell.getCellType();
                     Object result = null;
@@ -177,8 +202,6 @@ public class ExcelUtil {
         }
         long end = System.currentTimeMillis();
         System.out.println("use time :"+(end-begain));
-        System.out.println(map);
         return map;
     }
-
 }
