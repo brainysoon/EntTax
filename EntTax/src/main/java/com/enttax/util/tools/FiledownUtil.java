@@ -1,5 +1,7 @@
 package com.enttax.util.tools;
 
+import org.apache.log4j.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -8,6 +10,7 @@ import java.io.*;
  * Created by lcyanxi on 17-3-26.
  */
 public class FiledownUtil {
+    private static  final Logger logger=Logger.getLogger(FiledownUtil.class);
     /**
      * 文件下载
      * @param path
@@ -40,8 +43,7 @@ public class FiledownUtil {
 
             response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename));
             response.addHeader("Content-Length", "" + file.length());
-            OutputStream toClient = new BufferedOutputStream(
-                    response.getOutputStream());
+            OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
             response.setContentType("application/vnd.ms-excel;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
 
@@ -50,6 +52,7 @@ public class FiledownUtil {
             toClient.close();
         } catch (IOException ex) {
             ex.printStackTrace();
+            logger.info("FiledownUtil的download方法报错"+ex);
         }
     }
 
@@ -81,4 +84,9 @@ public class FiledownUtil {
         }
 
     }
+
+
+
+
+
 }
