@@ -31,5 +31,14 @@ public interface ConstantStr {
      */
     String EXCELMODELNAME="进销数据表.xls";
 
+    /**
+     * xls类型扩展名
+     */
+    String EXCELTYPEXLS=".xls";
+    /**
+     * xlsx类型扩展名
+     */
+    String  EXCELTYPEXLSX=".xlsx";
+
 
 }

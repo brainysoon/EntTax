@@ -37,7 +37,6 @@ public class ToolSendSms {
         NameValuePair[] data = {//提交短信
                 new NameValuePair("account", APIID),
                 new NameValuePair("password", APIKEY),
-                //new NameValuePair("password", util.StringUtil.MD5Encode("密码")),
                 new NameValuePair("mobile", phone),
                 new NameValuePair("content", content),
         };
