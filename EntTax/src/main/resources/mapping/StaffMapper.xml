@@ -13,11 +13,21 @@
     <result column="SMark"  property="smark" />
     <result column="SAddress"  property="saddress" />
     <result column="SAvator"  property="savator" />
+    <collection property="roles" resultMap="RoleResultMap"/>
+  </resultMap>
+  
+  <resultMap id="RoleResultMap" type="Role">
+     <id column="Rid" property="rid"/>
+    <result column="Rname"  property="rname" />
+    <result column="Rupdatetime"  property="rupdatetime" />
+    <result column="Rmark"  property="rmark" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from staff
-    where SId = #{sid,jdbcType=CHAR}
+    where SId = #{sid}
   </delete>
+  
+  <!--insert-->
   <insert id="insert" parameterType="Staff">
     insert into staff (SId, SName, SPassword, 
       SEmail, SPhone, SSex, SBirthday, 
@@ -27,6 +37,9 @@
       #{semail}, #{sphone}, #{ssex}, #{sbirthday},
       #{senter}, #{smark}, #{saddress},
       #{savator})
+  </insert>
+  <insert id="insertStaffAndRoleRelation" parameterType="String">
+    insert into staff_role (SId, RId) values (#{sid}, #{rid})
   </insert>
 
   <!--update-->
