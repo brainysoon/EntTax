@@ -9,89 +9,6 @@
     <link rel="stylesheet" href="css/home.css">
     <title>登录页面</title>
 
-    <style type="text/css">
-        .login-container {
-            margin: 0 auto;
-            width: 400px;
-        }
-
-        .position-relation {
-            position: relative;
-            box-shadow: 0 0 6px 0 rgba(0, 0, 0, .12), 0 26px 24px 0 rgba(118, 153, 223, .1);
-        }
-
-        .blank {
-            padding-top: 10px;
-        }
-
-        .row {
-            margin-top: 20%;
-        }
-
-        .widget-main {
-            padding: 0;
-            margin: 3px 0;
-        }
-
-        .space {
-            max-height: 1px;
-            min-height: 1px;
-            overflow: hidden;
-            padding-top: 0;
-            margin: 12px 0;
-            margin: 6px 0 5px;
-            border-bottom: 1px solid #478fca;
-        }
-
-        .btn-submit {
-            width: 250px;
-            height: 40px;
-            line-height: 36px;
-            font-size: 14px;
-            text-align: center;
-            cursor: pointer;
-            background-color: #5182E4;
-            color: #fff;
-        }
-
-        .btn-animation {
-            overflow: hidden;
-            position: relative;
-            transition: .2s all 0s cubic-bezier(0.2, 1, .3, 1);
-        }
-
-        .btn-an-class {
-            display: inline-block;
-            padding: 0 14px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bolder;
-            color: #fff;
-            background: #5182E4;
-            border: 2px solid transparent;
-            line-height: 40px;
-            vertical-align: middle;
-        }
-        .get-mess {
-            float: right;
-            display: block;
-            margin: 3px 0 0;
-            padding: 6px 16px;
-            cursor: pointer;
-            color: rgba(0,0,0,.5);
-            font-size: 12px;
-            background: #f5f7f8;
-            box-shadow: 0 1px 2px 0 rgba(0,0,0,.1), inset 0 -1px 0 0 rgba(0,0,0,.1), inset 0 0 0 1px rgba(0,0,0,.15), inset 0 2px 0 0 rgba(255,255,255,.5);
-            transition: all .2s ease-in-out;
-        }
-        a:hover{
-            text-decoration: none;
-        }
-        .b-mess{
-            border: 0;
-        }
-
-    </style>
 </head>
 <body>
 
@@ -142,13 +59,14 @@
             <div class="login-container">
                 <div class="position-relation">
                     <div class="login-box" id="login-box">
-                        <div class="widget-body" style="background: #fff">
+                        <div class="widget-body" >
                             <div class="widget-main">
-                                <form action="" method="post" style="padding: 32px 64px">
-                                    <div class="clearfix text-center">
-                                        <h4 class="pull-left">登录</h4>
-                                    </div>
-                                    <div class="space"></div>
+                                <div class="clearfix text-center">
+                                    <h4 class="h4">用户登录</h4>
+                                </div>
+                                <form action="" method="post">
+
+
                                     <label class="blank clearfix">
                                         <div class="input-group" style="width:100%">
                                             <span class="input-group-addon "><i
@@ -183,54 +101,52 @@
                                             <a href="#" class="forgot-password-link">忘记密码?</a>
                                         </label>
                                     </div>
-                                    <div class="blank clearfix text-center">
+                                    <div class="blank clearfix text-center m-top">
                                         <a class="btn-animation btn-an-class btn-submit">登录</a>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-
                     <div class="forgot-box" id="forgot-box" style="display: none">
-                        <div class="widget-body" style="background: #fff">
+                        <div class="widget-body" >
                             <div class="widget-main">
-                                <form action="" method="post" style="padding: 32px 64px">
-                                    <div class="clearfix text-center">
-                                        <h4 class="pull-left">密码找回</h4>
-                                    </div>
-                                    <div class="space"></div>
+                                <div class="clearfix text-center">
+                                    <h4 class="h4">找回密码</h4>
+                                </div>
+                                <form action="" method="post">
                                     <label class="blank clearfix">
                                         <div class="input-group" style="width:100%">
                                             <span class="input-group-addon "><i
                                                     class="glyphicon glyphicon-phone"> </i></span>
                                             <input type="text" class="form-control" placeholder="手机号" value="">
                                         </div>
+
                                     </label>
                                     <label class="blank clearfix">
                                         <label class="blank clearfix">
                                             <div class="input-group" style="width:100%">
                                                 <input type="text" class="form-control" placeholder="短信验证码"
                                                        style="width: 60%;float: left">
-                                                <input type="button" class="get-mess b-mess" style="float: right" value="获取验证码" >
+                                                <input type="button" id="timer" class="get-mess b-mess"
+                                                       style="float: right" value="获取验证码">
                                             </div>
                                         </label>
                                     </label>
-                                    <div class="blank clearfix text-center back-to-newpwd">
+                                    <div class="blank clearfix text-center back-to-newpwd m-top">
                                         <a class="btn-animation btn-an-class btn-submit">下一步</a>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-
-                    <div class="newpwd-box" id="newpwd-box" style="display: none" >
-                        <div class="widget-body" style="background: #fff">
+                    <div class="newpwd-box" id="newpwd-box" style="display: none">
+                        <div class="widget-body" >
+                            <div class="clearfix text-center">
+                                <h4 class="h4">重置密码</h4>
+                            </div>
                             <div class="widget-main">
                                 <form action="" method="post" style="padding: 32px 64px">
-                                    <div class="clearfix text-center">
-                                        <h4 class="pull-left">设置密码</h4>
-                                    </div>
-                                    <div class="space"></div>
                                     <label class="blank clearfix">
                                         <div class="input-group" style="width:100%">
                                             <span class="input-group-addon "><i
@@ -246,15 +162,13 @@
                                         </div>
                                     </label>
 
-                                    <div class="blank clearfix text-center">
+                                    <div class="blank clearfix text-center m-top">
                                         <a class="btn-animation btn-an-class btn-submit">确认</a>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
 
@@ -266,39 +180,6 @@
 
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<script>
-    $(function () {
-        $().ready(function () {
-            $(".btn-an-class").mouseover(function () {
-               /* $('.btn-an-class').css({'background':'white'},{'color':'#5182e4'});*/
-                this.style.background = 'white';
-                this.style.color = '#5182e4';
-                this.style.border = '1px solid #5182e4'
-            }).mouseout(function () {
-                this.style.background = "#5182E4";
-                this.style.color = '#fff';
-            });
-
-            $('.b-mess').mousemove(function () {
-                this.style.color = '#000'
-            }).mouseout(function () {
-                this.style.color='rgba(0,0,0,.5)';
-            })
-            $('.b-mess').click(function () {
-                this.style.border='none'
-            })
-        })
-
-        $('.forgot-password-link').click(function () {
-            $('.login-box').hide();
-            $('.forgot-box').show();
-        })
-        $('.back-to-newpwd').click(function () {
-            $('.forgot-box').hide();
-            $('.newpwd-box').show();
-        })
-
-    })
-</script>
+<script type="text/javascript" src="js/home.js"></script>
 </body>
 </html>
