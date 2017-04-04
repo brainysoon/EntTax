@@ -23,7 +23,7 @@ body {
     margin-top: 20px;
 }
 
-.row {
+.container .row {
     margin-top: 18%;
 }
 
@@ -290,5 +290,11 @@ ul.nav.nav-second-level.collapse.in {
 }
 
 .breadcrumbs {
-    margin-bottom: 0;
+    margin-bottom: 0px;
+}
+
+.text-upload{
+    margin-top: -10%;
+    display: none;
+    color: #000;
 }
