@@ -59,7 +59,7 @@ public class ToolSendSms {
 
             if("2".equals(code)){
                 System.out.println("系统产生验证码："+mobile_code);
-               return  mobile_code+"";
+               return  String.valueOf(mobile_code);
             }
         } catch (HttpException e) {
             // TODO Auto-generated catch block

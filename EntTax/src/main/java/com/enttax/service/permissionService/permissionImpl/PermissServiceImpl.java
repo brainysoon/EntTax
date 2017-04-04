@@ -5,6 +5,7 @@ import com.enttax.dao.StaffMapper;
 import com.enttax.model.Role;
 import com.enttax.model.Staff;
 import com.enttax.service.permissionService.PermissService;
+import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.Encodes;
 import com.enttax.util.tools.ToolDates;
 import com.enttax.util.tools.ToolString;
@@ -110,7 +111,7 @@ public class PermissServiceImpl implements PermissService {
             return false;
         }
         for (Staff staff : list) {
-            request.getSession().setAttribute("sid",staff.getSid());
+            request.getSession().setAttribute(ConstantStr.SID,staff.getSid());
         }
         return true;
     }
