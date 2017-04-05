@@ -12,39 +12,12 @@
     <link rel="stylesheet" href="css/ace.min.css">
 
 
-
     <!--剪切大小时只让它在其中一块显示-->
     <style type="text/css">
         /*显示剪切图片显示的较小*/
         /* Apply these styles only when #preview-pane has
            been placed within the Jcrop widget */
-        .jcrop-holder #preview-pane {
-            display: block;
-            position: absolute;
-            z-index: 2000;
-            top: 10px;
-            right: -280px;
-            padding: 6px;
-            border: 1px rgba(0, 0, 0, .4) solid;
-            background-color: white;
 
-            -webkit-border-radius: 6px;
-            -moz-border-radius: 6px;
-            border-radius: 6px;
-
-            -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-            -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-            box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        /* The Javascript code will set the aspect ratio of the crop
-           area based on the size of the thumbnail preview,
-           specified here */
-        #preview-pane .preview-container {
-            width: 250px;
-            height: 170px;
-            overflow: hidden;
-        }
 
     </style>
 </head>
@@ -171,536 +144,511 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-xs-12">
-                    <div>
-                        <div id="user-profile-1" class="user-profile row">
-                            <div class="col-xs-12 col-sm-3 center">
-								<span class="profile-picture">
-									<img src="images/test.jpg" id="target" alt="[Jcrop Example]"/>
-                                    <!--显示剪切过后的图片-->
-                                 <div id="preview-pane">
-                                     <div class="preview-container">
-                                     <img src="images/test.jpg" class="jcrop-preview" alt="Preview"/>
-                                     </div>
-                                 </div>
-                                    <div class="text-upload">上传头像</div>
-								</span>
 
+                    <div id="user-profile-1" class="user-profile row">
+                        <div class="col-xs-12 col-sm-3 center">
+                            <div class="panel-body">
 
-                                <div class="space-4"></div>
-
-                                <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-                                    <div class="inline position-relative">
-                                        <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
-                                            <span class="white">用户名</span>
-                                        </a>
-                                    </div>
+                                <div class="panel-row clearfix pic-header">
+                                    <span class="pic-header-cut">图片剪切</span>
+                                    <span class="pic-header-close">X</span>
                                 </div>
+                                <div class="panel-row clearfix pic-container">
+                                    <!--显示头像部分-->
+                                    <span class="pic-container-left">
+                                             <div class="pic-container-content">
+                                                    <img class=" img-responsive editable-click img-size jcrop-preview"
+                                                         id="target" alt="[Jcrop Example]" src="images/test.jpg">
 
-                                <div class="space-6"></div>
+                                             </div>
 
-                                <div class="profile-contact-info">
-                                    <div class="profile-contact-links align-center">
-                                        <a class="btn btn-link" href="#">
-                                            <i class="icon-plus-sign bigger-120 green"></i>
-                                            日志管理
-                                        </a>
-
-                                        <a class="btn btn-link" href="#">
-                                            <i class="icon-envelope bigger-120 pink"></i>
-                                            权限管理
-                                        </a>
-
-                                    </div>
-
-                                    <div class="space-6"></div>
-
-                                    <div class="profile-social-links center">
-                                        <a href="#" class="tooltip-info" title=""
-                                           data-original-title="Visit my Facebook">
-                                            <i class="middle icon-facebook-sign icon-2x blue"></i>
-                                        </a>
-
-                                        <a href="#" class="tooltip-info" title=""
-                                           data-original-title="Visit my Twitter">
-                                            <i class="middle icon-twitter-sign icon-2x light-blue"></i>
-                                        </a>
-
-                                        <a href="#" class="tooltip-error" title=""
-                                           data-original-title="Visit my Pinterest">
-                                            <i class="middle icon-pinterest-sign icon-2x red"></i>
-                                        </a>
-                                    </div>
+                                            <div id="preview-pane">
+                                                     <div class="preview-container">
+                                                         <img src="images/test.jpg" class="jcrop-preview"
+                                                              alt="Preview"/>
+                                                     </div>
+                                            </div>
+                                         </span>
                                 </div>
-
-
-                            </div>
-
-                            <div class="col-xs-12 col-sm-9">
-                                <div class="center">
-												<span class="btn btn-app btn-sm btn-light no-hover">
-													<span class="line-height-1 bigger-170 blue"> 1,411 </span>
-
-													<br>
-													<span class="line-height-1 smaller-90"> Views </span>
-												</span>
-
-                                    <span class="btn btn-app btn-sm btn-yellow no-hover">
-													<span class="line-height-1 bigger-170"> 32 </span>
-
-													<br>
-													<span class="line-height-1 smaller-90"> Followers </span>
-												</span>
-
-                                    <span class="btn btn-app btn-sm btn-pink no-hover">
-													<span class="line-height-1 bigger-170"> 4 </span>
-
-													<br>
-													<span class="line-height-1 smaller-90"> Projects </span>
-												</span>
-
-                                    <span class="btn btn-app btn-sm btn-grey no-hover">
-													<span class="line-height-1 bigger-170"> 23 </span>
-
-													<br>
-													<span class="line-height-1 smaller-90"> Reviews </span>
-												</span>
-
-                                    <span class="btn btn-app btn-sm btn-success no-hover">
-													<span class="line-height-1 bigger-170"> 7 </span>
-
-													<br>
-													<span class="line-height-1 smaller-90"> Albums </span>
-												</span>
-
-                                    <span class="btn btn-app btn-sm btn-primary no-hover">
-													<span class="line-height-1 bigger-170"> 55 </span>
-
-													<br>
-													<span class="line-height-1 smaller-90"> Contacts </span>
-												</span>
-                                </div>
-
-                                <div class="space-12"></div>
-
-                                <div class="profile-user-info profile-user-info-striped">
-                                    <div class="profile-info-row">
-                                        <div class="profile-info-name"> Username</div>
-
-                                        <div class="profile-info-value">
-                                            <span class="editable editable-click" id="username">alexdoe</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="profile-info-row">
-                                        <div class="profile-info-name"> Location</div>
-
-                                        <div class="profile-info-value">
-                                            <i class="icon-map-marker light-orange bigger-110"></i>
-                                            <span class="editable editable-click" id="country">Netherlands</span>
-                                            <span class="editable editable-click" id="city">Amsterdam</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="profile-info-row">
-                                        <div class="profile-info-name"> Age</div>
-
-                                        <div class="profile-info-value">
-                                            <span class="editable editable-click" id="age">38</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="profile-info-row">
-                                        <div class="profile-info-name"> Joined</div>
-
-                                        <div class="profile-info-value">
-                                            <span class="editable editable-click" id="signup">20/06/2010</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="profile-info-row">
-                                        <div class="profile-info-name"> Last Online</div>
-
-                                        <div class="profile-info-value">
-                                            <span class="editable editable-click" id="login">3 hours ago</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="profile-info-row">
-                                        <div class="profile-info-name"> About Me</div>
-
-                                        <div class="profile-info-value">
-                                            <span class="editable editable-click" id="about">Editable as WYSIWYG</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="space-20"></div>
-
-                                <div class="widget-box transparent">
-                                    <div class="widget-header widget-header-small">
-                                        <h4 class="blue smaller">
-                                            <i class="icon-rss orange"></i>
-                                            Recent Activities
-                                        </h4>
-
-                                        <div class="widget-toolbar action-buttons">
-                                            <a href="#" data-action="reload">
-                                                <i class="icon-refresh blue"></i>
-                                            </a>
-
-                                            &nbsp;
-                                            <a href="#" class="pink">
-                                                <i class="icon-trash"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="widget-body">
-                                        <div class="widget-main padding-8">
-                                            <div class="slimScrollDiv"
-                                                 style="position: relative; overflow: hidden; width: auto; height: 250px;">
-                                                <div id="profile-feed-1" class="profile-feed"
-                                                     style="overflow: hidden; width: auto; height: 250px;">
-                                                    <div class="profile-activity clearfix">
-                                                        <div>
-                                                            <img class="pull-left" alt="Alex Doe's avatar"
-                                                                 src="assets/avatars/avatar5.png">
-                                                            <a class="user" href="#"> Alex Doe </a>
-                                                            changed his profile photo.
-                                                            <a href="#">Take a look</a>
-
-                                                            <div class="time">
-                                                                <i class="icon-time bigger-110"></i>
-                                                                an hour ago
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools action-buttons">
-                                                            <a href="#" class="blue">
-                                                                <i class="icon-pencil bigger-125"></i>
-                                                            </a>
-
-                                                            <a href="#" class="red">
-                                                                <i class="icon-remove bigger-125"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-activity clearfix">
-                                                        <div>
-                                                            <img class="pull-left" alt="Susan Smith's avatar"
-                                                                 src="assets/avatars/avatar1.png">
-                                                            <a class="user" href="#"> Susan Smith </a>
-
-                                                            is now friends with Alex Doe.
-                                                            <div class="time">
-                                                                <i class="icon-time bigger-110"></i>
-                                                                2 hours ago
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools action-buttons">
-                                                            <a href="#" class="blue">
-                                                                <i class="icon-pencil bigger-125"></i>
-                                                            </a>
-
-                                                            <a href="#" class="red">
-                                                                <i class="icon-remove bigger-125"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-activity clearfix">
-                                                        <div>
-                                                            <i class="pull-left thumbicon icon-ok btn-success no-hover"></i>
-                                                            <a class="user" href="#"> Alex Doe </a>
-                                                            joined
-                                                            <a href="#">Country Music</a>
-
-                                                            group.
-                                                            <div class="time">
-                                                                <i class="icon-time bigger-110"></i>
-                                                                5 hours ago
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools action-buttons">
-                                                            <a href="#" class="blue">
-                                                                <i class="icon-pencil bigger-125"></i>
-                                                            </a>
-
-                                                            <a href="#" class="red">
-                                                                <i class="icon-remove bigger-125"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-activity clearfix">
-                                                        <div>
-                                                            <i class="pull-left thumbicon icon-picture btn-info no-hover"></i>
-                                                            <a class="user" href="#"> Alex Doe </a>
-                                                            uploaded a new photo.
-                                                            <a href="#">Take a look</a>
-
-                                                            <div class="time">
-                                                                <i class="icon-time bigger-110"></i>
-                                                                5 hours ago
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools action-buttons">
-                                                            <a href="#" class="blue">
-                                                                <i class="icon-pencil bigger-125"></i>
-                                                            </a>
-
-                                                            <a href="#" class="red">
-                                                                <i class="icon-remove bigger-125"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-activity clearfix">
-                                                        <div>
-                                                            <img class="pull-left" alt="David Palms's avatar"
-                                                                 src="assets/avatars/avatar4.png">
-                                                            <a class="user" href="#"> David Palms </a>
-
-                                                            left a comment on Alex's wall.
-                                                            <div class="time">
-                                                                <i class="icon-time bigger-110"></i>
-                                                                8 hours ago
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools action-buttons">
-                                                            <a href="#" class="blue">
-                                                                <i class="icon-pencil bigger-125"></i>
-                                                            </a>
-
-                                                            <a href="#" class="red">
-                                                                <i class="icon-remove bigger-125"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-activity clearfix">
-                                                        <div>
-                                                            <i class="pull-left thumbicon icon-edit btn-pink no-hover"></i>
-                                                            <a class="user" href="#"> Alex Doe </a>
-                                                            published a new blog post.
-                                                            <a href="#">Read now</a>
-
-                                                            <div class="time">
-                                                                <i class="icon-time bigger-110"></i>
-                                                                11 hours ago
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools action-buttons">
-                                                            <a href="#" class="blue">
-                                                                <i class="icon-pencil bigger-125"></i>
-                                                            </a>
-
-                                                            <a href="#" class="red">
-                                                                <i class="icon-remove bigger-125"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-activity clearfix">
-                                                        <div>
-                                                            <img class="pull-left" alt="Alex Doe's avatar"
-                                                                 src="assets/avatars/avatar5.png">
-                                                            <a class="user" href="#"> Alex Doe </a>
-
-                                                            upgraded his skills.
-                                                            <div class="time">
-                                                                <i class="icon-time bigger-110"></i>
-                                                                12 hours ago
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools action-buttons">
-                                                            <a href="#" class="blue">
-                                                                <i class="icon-pencil bigger-125"></i>
-                                                            </a>
-
-                                                            <a href="#" class="red">
-                                                                <i class="icon-remove bigger-125"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-activity clearfix">
-                                                        <div>
-                                                            <i class="pull-left thumbicon icon-key btn-info no-hover"></i>
-                                                            <a class="user" href="#"> Alex Doe </a>
-
-                                                            logged in.
-                                                            <div class="time">
-                                                                <i class="icon-time bigger-110"></i>
-                                                                12 hours ago
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools action-buttons">
-                                                            <a href="#" class="blue">
-                                                                <i class="icon-pencil bigger-125"></i>
-                                                            </a>
-
-                                                            <a href="#" class="red">
-                                                                <i class="icon-remove bigger-125"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-activity clearfix">
-                                                        <div>
-                                                            <i class="pull-left thumbicon icon-off btn-inverse no-hover"></i>
-                                                            <a class="user" href="#"> Alex Doe </a>
-
-                                                            logged out.
-                                                            <div class="time">
-                                                                <i class="icon-time bigger-110"></i>
-                                                                16 hours ago
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools action-buttons">
-                                                            <a href="#" class="blue">
-                                                                <i class="icon-pencil bigger-125"></i>
-                                                            </a>
-
-                                                            <a href="#" class="red">
-                                                                <i class="icon-remove bigger-125"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-activity clearfix">
-                                                        <div>
-                                                            <i class="pull-left thumbicon icon-key btn-info no-hover"></i>
-                                                            <a class="user" href="#"> Alex Doe </a>
-
-                                                            logged in.
-                                                            <div class="time">
-                                                                <i class="icon-time bigger-110"></i>
-                                                                16 hours ago
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools action-buttons">
-                                                            <a href="#" class="blue">
-                                                                <i class="icon-pencil bigger-125"></i>
-                                                            </a>
-
-                                                            <a href="#" class="red">
-                                                                <i class="icon-remove bigger-125"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="slimScrollBar ui-draggable"
-                                                     style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 99.0491px;"></div>
-                                                <div class="slimScrollRail"
-                                                     style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+                                <div class="clearfix pic-footer" >
+                                    <span class="btn-upload">
+                                        <input type="button" class="btn btn-light" value="选择">
+
+                                        <form role="form" enctype="multipart/form-data" method="post">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <div class="embed-responsive-item pre-scrollable">
+                                                <img alt="" src="${pageContext.request.contextPath}/img/showings.jpg" id="cut-img"
+                                                     class="img-responsive img-thumbnail"/>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                        <div class="white-divider-md"></div>
+                                        <input type="file" name="imgFile" id="fileUpload" class="btn btn-light" value="选择"/>
+                                        <div class="white-divider-md"></div>
+                                        <div id="alert" class="alert alert-danger hidden" role="alert"></div>
+                                        <input type="hidden" id="x" name="x"/>
+                                        <input type="hidden" id="y" name="y"/>
+                                        <input type="hidden" id="w" name="w"/>
+                                        <input type="hidden" id="h" name="h"/>
+                                    </form>
+                                    </span>
 
-                                <div class="hr hr2 hr-double"></div>
+                                    <span class="btn-upload">
+                                        <input type="button" class="btn  btn-success" value="上传">
+
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            <span class="profile-picture" id="picClick">
+                                    <div class="pic-click">
+                                        <!--设置图片为响应式-->
+                                        <img class=" img-responsive editable-click" id="size-retain" alt=""
+                                             src="images/test.jpg">
+                                    </div>
+                                </span>
+
+
+                            <div class="space-4"></div>
+
+                            <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+                                <div class="inline position-relative">
+                                    <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+                                        <span class="white">用户名</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="space-6"></div>
+
+                            <div class="profile-contact-info">
+                                <div class="profile-contact-links align-center">
+                                    <a class="btn btn-link" href="#">
+                                        <i class="icon-plus-sign bigger-120 green"></i>
+                                        日志管理
+                                    </a>
+
+                                    <a class="btn btn-link" href="#">
+                                        <i class="icon-envelope bigger-120 pink"></i>
+                                        权限管理
+                                    </a>
+
+                                </div>
 
                                 <div class="space-6"></div>
 
-                                <div class="center">
-                                    <a href="#" class="btn btn-sm btn-primary">
-                                        <i class="icon-rss bigger-150 middle"></i>
-                                        <span class="bigger-110">View more activities</span>
+                                <div class="profile-social-links center">
+                                    <a href="#" class="tooltip-info" title=""
+                                       data-original-title="Visit my Facebook">
+                                        <i class="middle icon-facebook-sign icon-2x blue"></i>
+                                    </a>
 
-                                        <i class="icon-on-right icon-arrow-right"></i>
+                                    <a href="#" class="tooltip-info" title=""
+                                       data-original-title="Visit my Twitter">
+                                        <i class="middle icon-twitter-sign icon-2x light-blue"></i>
+                                    </a>
+
+                                    <a href="#" class="tooltip-error" title=""
+                                       data-original-title="Visit my Pinterest">
+                                        <i class="middle icon-pinterest-sign icon-2x red"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
+
+                        <!--<div class="col-xs-12 col-sm-9">
+                            <div class="center">
+                                            <span class="btn btn-app btn-sm btn-light no-hover">
+                                                <span class="line-height-1 bigger-170 blue"> 1,411 </span>
+
+                                                <br>
+                                                <span class="line-height-1 smaller-90"> Views </span>
+                                            </span>
+
+                                <span class="btn btn-app btn-sm btn-yellow no-hover">
+                                                <span class="line-height-1 bigger-170"> 32 </span>
+
+                                                <br>
+                                                <span class="line-height-1 smaller-90"> Followers </span>
+                                            </span>
+
+                                <span class="btn btn-app btn-sm btn-pink no-hover">
+                                                <span class="line-height-1 bigger-170"> 4 </span>
+
+                                                <br>
+                                                <span class="line-height-1 smaller-90"> Projects </span>
+                                            </span>
+
+                                <span class="btn btn-app btn-sm btn-grey no-hover">
+                                                <span class="line-height-1 bigger-170"> 23 </span>
+
+                                                <br>
+                                                <span class="line-height-1 smaller-90"> Reviews </span>
+                                            </span>
+
+                                <span class="btn btn-app btn-sm btn-success no-hover">
+                                                <span class="line-height-1 bigger-170"> 7 </span>
+
+                                                <br>
+                                                <span class="line-height-1 smaller-90"> Albums </span>
+                                            </span>
+
+                                <span class="btn btn-app btn-sm btn-primary no-hover">
+                                                <span class="line-height-1 bigger-170"> 55 </span>
+
+                                                <br>
+                                                <span class="line-height-1 smaller-90"> Contacts </span>
+                                            </span>
+                            </div>
+
+                            <div class="space-12"></div>
+
+                            <div class="profile-user-info profile-user-info-striped">
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Username</div>
+
+                                    <div class="profile-info-value">
+                                        <span class="editable editable-click" id="username">alexdoe</span>
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Location</div>
+
+                                    <div class="profile-info-value">
+                                        <i class="icon-map-marker light-orange bigger-110"></i>
+                                        <span class="editable editable-click" id="country">Netherlands</span>
+                                        <span class="editable editable-click" id="city">Amsterdam</span>
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Age</div>
+
+                                    <div class="profile-info-value">
+                                        <span class="editable editable-click" id="age">38</span>
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Joined</div>
+
+                                    <div class="profile-info-value">
+                                        <span class="editable editable-click" id="signup">20/06/2010</span>
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> Last Online</div>
+
+                                    <div class="profile-info-value">
+                                        <span class="editable editable-click" id="login">3 hours ago</span>
+                                    </div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> About Me</div>
+
+                                    <div class="profile-info-value">
+                                        <span class="editable editable-click" id="about">Editable as WYSIWYG</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-20"></div>
+
+                            <div class="widget-box transparent">
+                                <div class="widget-header widget-header-small">
+                                    <h4 class="blue smaller">
+                                        <i class="icon-rss orange"></i>
+                                        Recent Activities
+                                    </h4>
+
+                                    <div class="widget-toolbar action-buttons">
+                                        <a href="#" data-action="reload">
+                                            <i class="icon-refresh blue"></i>
+                                        </a>
+
+                                        &nbsp;
+                                        <a href="#" class="pink">
+                                            <i class="icon-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main padding-8">
+                                        <div class="slimScrollDiv"
+                                             style="position: relative; overflow: hidden; width: auto; height: 250px;">
+                                            <div id="profile-feed-1" class="profile-feed"
+                                                 style="overflow: hidden; width: auto; height: 250px;">
+                                                <div class="profile-activity clearfix">
+                                                    <div>
+                                                        <img class="pull-left" alt="Alex Doe's avatar"
+                                                             src="assets/avatars/avatar5.png">
+                                                        <a class="user" href="#"> Alex Doe </a>
+                                                        changed his profile photo.
+                                                        <a href="#">Take a look</a>
+
+                                                        <div class="time">
+                                                            <i class="icon-time bigger-110"></i>
+                                                            an hour ago
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tools action-buttons">
+                                                        <a href="#" class="blue">
+                                                            <i class="icon-pencil bigger-125"></i>
+                                                        </a>
+
+                                                        <a href="#" class="red">
+                                                            <i class="icon-remove bigger-125"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-activity clearfix">
+                                                    <div>
+                                                        <img class="pull-left" alt="Susan Smith's avatar"
+                                                             src="assets/avatars/avatar1.png">
+                                                        <a class="user" href="#"> Susan Smith </a>
+
+                                                        is now friends with Alex Doe.
+                                                        <div class="time">
+                                                            <i class="icon-time bigger-110"></i>
+                                                            2 hours ago
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tools action-buttons">
+                                                        <a href="#" class="blue">
+                                                            <i class="icon-pencil bigger-125"></i>
+                                                        </a>
+
+                                                        <a href="#" class="red">
+                                                            <i class="icon-remove bigger-125"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-activity clearfix">
+                                                    <div>
+                                                        <i class="pull-left thumbicon icon-ok btn-success no-hover"></i>
+                                                        <a class="user" href="#"> Alex Doe </a>
+                                                        joined
+                                                        <a href="#">Country Music</a>
+
+                                                        group.
+                                                        <div class="time">
+                                                            <i class="icon-time bigger-110"></i>
+                                                            5 hours ago
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tools action-buttons">
+                                                        <a href="#" class="blue">
+                                                            <i class="icon-pencil bigger-125"></i>
+                                                        </a>
+
+                                                        <a href="#" class="red">
+                                                            <i class="icon-remove bigger-125"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-activity clearfix">
+                                                    <div>
+                                                        <i class="pull-left thumbicon icon-picture btn-info no-hover"></i>
+                                                        <a class="user" href="#"> Alex Doe </a>
+                                                        uploaded a new photo.
+                                                        <a href="#">Take a look</a>
+
+                                                        <div class="time">
+                                                            <i class="icon-time bigger-110"></i>
+                                                            5 hours ago
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tools action-buttons">
+                                                        <a href="#" class="blue">
+                                                            <i class="icon-pencil bigger-125"></i>
+                                                        </a>
+
+                                                        <a href="#" class="red">
+                                                            <i class="icon-remove bigger-125"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-activity clearfix">
+                                                    <div>
+                                                        <img class="pull-left" alt="David Palms's avatar"
+                                                             src="assets/avatars/avatar4.png">
+                                                        <a class="user" href="#"> David Palms </a>
+
+                                                        left a comment on Alex's wall.
+                                                        <div class="time">
+                                                            <i class="icon-time bigger-110"></i>
+                                                            8 hours ago
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tools action-buttons">
+                                                        <a href="#" class="blue">
+                                                            <i class="icon-pencil bigger-125"></i>
+                                                        </a>
+
+                                                        <a href="#" class="red">
+                                                            <i class="icon-remove bigger-125"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-activity clearfix">
+                                                    <div>
+                                                        <i class="pull-left thumbicon icon-edit btn-pink no-hover"></i>
+                                                        <a class="user" href="#"> Alex Doe </a>
+                                                        published a new blog post.
+                                                        <a href="#">Read now</a>
+
+                                                        <div class="time">
+                                                            <i class="icon-time bigger-110"></i>
+                                                            11 hours ago
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tools action-buttons">
+                                                        <a href="#" class="blue">
+                                                            <i class="icon-pencil bigger-125"></i>
+                                                        </a>
+
+                                                        <a href="#" class="red">
+                                                            <i class="icon-remove bigger-125"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-activity clearfix">
+                                                    <div>
+                                                        <img class="pull-left" alt="Alex Doe's avatar"
+                                                             src="assets/avatars/avatar5.png">
+                                                        <a class="user" href="#"> Alex Doe </a>
+
+                                                        upgraded his skills.
+                                                        <div class="time">
+                                                            <i class="icon-time bigger-110"></i>
+                                                            12 hours ago
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tools action-buttons">
+                                                        <a href="#" class="blue">
+                                                            <i class="icon-pencil bigger-125"></i>
+                                                        </a>
+
+                                                        <a href="#" class="red">
+                                                            <i class="icon-remove bigger-125"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-activity clearfix">
+                                                    <div>
+                                                        <i class="pull-left thumbicon icon-key btn-info no-hover"></i>
+                                                        <a class="user" href="#"> Alex Doe </a>
+
+                                                        logged in.
+                                                        <div class="time">
+                                                            <i class="icon-time bigger-110"></i>
+                                                            12 hours ago
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tools action-buttons">
+                                                        <a href="#" class="blue">
+                                                            <i class="icon-pencil bigger-125"></i>
+                                                        </a>
+
+                                                        <a href="#" class="red">
+                                                            <i class="icon-remove bigger-125"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-activity clearfix">
+                                                    <div>
+                                                        <i class="pull-left thumbicon icon-off btn-inverse no-hover"></i>
+                                                        <a class="user" href="#"> Alex Doe </a>
+
+                                                        logged out.
+                                                        <div class="time">
+                                                            <i class="icon-time bigger-110"></i>
+                                                            16 hours ago
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tools action-buttons">
+                                                        <a href="#" class="blue">
+                                                            <i class="icon-pencil bigger-125"></i>
+                                                        </a>
+
+                                                        <a href="#" class="red">
+                                                            <i class="icon-remove bigger-125"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-activity clearfix">
+                                                    <div>
+                                                        <i class="pull-left thumbicon icon-key btn-info no-hover"></i>
+                                                        <a class="user" href="#"> Alex Doe </a>
+
+                                                        logged in.
+                                                        <div class="time">
+                                                            <i class="icon-time bigger-110"></i>
+                                                            16 hours ago
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tools action-buttons">
+                                                        <a href="#" class="blue">
+                                                            <i class="icon-pencil bigger-125"></i>
+                                                        </a>
+
+                                                        <a href="#" class="red">
+                                                            <i class="icon-remove bigger-125"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slimScrollBar ui-draggable"
+                                                 style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 99.0491px;"></div>
+                                            <div class="slimScrollRail"
+                                                 style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="hr hr2 hr-double"></div>
+
+                            <div class="space-6"></div>
+
+                            <div class="center">
+                                <a href="#" class="btn btn-sm btn-primary">
+                                    <i class="icon-rss bigger-150 middle"></i>
+                                    <span class="bigger-110">View more activities</span>
+
+                                    <i class="icon-on-right icon-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>-->
                     </div>
+
 
                 </div>
             </div>
         </div>
-
-
-        <!-- PAGE CONTENT ENDS -->
-        <!--<div class="col-xs-12" style="border: 1px solid dodgerblue">
-            <div class="col-xs-12 col-sm-3 center" style="border: 1px solid blue;">
-                <div class="user_img">
-                    <img src="images/user.jpg" class="jcrop-preview" alt="Preview" style="width: 156px;height: 173px">
-
-                    <div id="preview-pane">
-                        <div class="preview-container">
-                            <img src="images/user.jpg" class="jcrop-preview" alt="Preview"/>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-xs-12 col-sm-9" style="border: 1px solid darkblue;">
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <label for="name" class="col-xs-3 control-label">姓名:</label>
-                        <div class="col-xs-9">
-                            <input type="text" class="form-control" id="name" style="width: 205px">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="optionsRadiosinline" class="col-xs-3 control-label">性别:</label>
-                        <div class="col-xs-9">
-                            <label class="radio-inline">
-                                <input type="radio" name="optionsRadiosinline" id="optionsRadios3" checked> 男
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="optionsRadiosinline" id="optionsRadios4"> 女
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="" class="col-xs-3 control-label">出生年月:</label>
-                        <div class="col-xs-9">
-                            <select name="y" id="" style="height: 34px;border-radius: 3px ">
-                                <option value="0"></option>
-                                <option value="2017">2017</option>
-                            </select>年
-                            <select name="m" id="" style="height: 34px;border-radius: 3px ">
-                                <option value="0"></option>
-                                <option value="2017">2017</option>
-                            </select>月
-                            <select name="d" id="" style="height: 34px;border-radius: 3px ">
-                                <option value="0"></option>
-                                <option value="2017">2017</option>
-                            </select>日
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="" class="col-xs-3 control-label">家庭住址:</label>
-                        <div class="col-xs-9">
-                            <select name="y" id="" style="height: 34px;width: 146px;;border-radius: 3px ">
-                                <option value="0"></option>
-                                <option value="2017">2017</option>
-                            </select>
-                            <select name="m" id="" style="height: 34px;border-radius: 3px ">
-                                <option value="0"></option>
-                                <option value="2017">2017</option>
-                            </select>
-
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-        </div>
--->
     </div>
 </div>
 </div>
@@ -731,6 +679,7 @@
 
         console.log('init', [xsize, ysize]);
         $('#target').Jcrop({
+            maxSize: [360, 360],
             onChange: updatePreview,
             onSelect: updatePreview,
             aspectRatio: xsize / ysize
@@ -782,230 +731,249 @@
         var breadHeight = $('#breadcrumbs').height();
         var breadOut = $('#breadcrumbs').outerHeight();
         var pageinner = $('#page-inner').outerHeight();
-
         var hei = allHeight - navTop - breadHeight - breadOut;
         $('#page-inner').css({'height': hei});
 
-        /*鼠标移入显示更换头像*/
-        $().ready(function () {
-            $('.profile-picture').mouseover(function () {
-                $('.text-upload').show();
-                $('.profile-picture').click(function () {
+        /*设置弹出对话框进行上传头像*/
+        $('#picClick .pic-click').mouseenter(function () {
+            $(this).find("img").delay(200).stop().clearQueue().animate({
+                borderRadius: "20",
+                opacity: 1
+            }, "fast")
+        }).mouseleave(function () {
+            $(this).find("div").css("color", "black");
+            $(this).find("img").delay(200).stop().clearQueue().animate({
+                borderRadius: "60",
+                opacity: 0.9
+            }, "fast")
+        });
 
-                })
-            }).mouseout(function () {
-                $('.text-upload').hide()
-            })
+        $("#picClick .editable-click").click(function () {
+            var picIndex = $("#picClick .editable-click").index($(this));
+            $(".panel-body").hide();
+            $("#picClick").hide();
+            $(".panel-body").eq(picIndex).slideDown("normal");
+        });
+        /*设置点击关闭按钮*/
+        $(".panel-body .pic-header-close").mouseenter(function () {
+            $(this).css({'background': 'url(img/close-n.png)'});
+        }).mouseleave(function () {
+            $(this).css({'background': 'url(img/close-n.png)'});
+        });
+        /*点击关闭按钮显示内容和隐藏内容*/
+        $(".panel-body .pic-header-close").click(function () {
+            $(".panel-body").hide();
+            $("#picClick").show();
         })
 
-        /* var mainApp = {
+        var mainApp = {
 
-         initFunction: function () {
-         /!*MENU
-         ------------------------------------*!/
-         $('#main-menu').metisMenu();
+            initFunction: function () {
+                /*MENU
+                 ------------------------------------*/
+                $('#main-menu').metisMenu();
 
-         $(window).bind("load resize", function () {
-         if ($(this).width() < 768) {
-         $('div.sidebar-collapse').addClass('collapse')
-         } else {
-         $('div.sidebar-collapse').removeClass('collapse')
-         }
-         });
+                $(window).bind("load resize", function () {
+                    if ($(this).width() < 768) {
+                        $('div.sidebar-collapse').addClass('collapse')
+                    } else {
+                        $('div.sidebar-collapse').removeClass('collapse')
+                    }
+                });
 
-         /!* MORRIS BAR CHART
-         -----------------------------------------*!/
-         Morris.Bar({
-         element: 'morris-bar-chart',
-         data: [{
-         y: '2006',
-         a: 100,
-         b: 90
-         }, {
-         y: '2007',
-         a: 75,
-         b: 65
-         }, {
-         y: '2008',
-         a: 50,
-         b: 40
-         }, {
-         y: '2009',
-         a: 75,
-         b: 65
-         }, {
-         y: '2010',
-         a: 50,
-         b: 40
-         }, {
-         y: '2011',
-         a: 75,
-         b: 65
-         }, {
-         y: '2012',
-         a: 100,
-         b: 90
-         }],
-         xkey: 'y',
-         ykeys: ['a', 'b'],
-         labels: ['Series A', 'Series B'],
-         barColors: [
-         '#A6A6A6', '#24C2CE',
-         '#A8E9DC'
-         ],
-         hideHover: 'auto',
-         resize: true
-         });
-
-
-         /!* MORRIS DONUT CHART
-         ----------------------------------------*!/
-         Morris.Donut({
-         element: 'morris-donut-chart',
-         data: [{
-         label: "Download Sales",
-         value: 12
-         }, {
-         label: "In-Store Sales",
-         value: 30
-         }, {
-         label: "Mail-Order Sales",
-         value: 20
-         }],
-         colors: [
-         '#A6A6A6', '#24C2CE',
-         '#A8E9DC'
-         ],
-         resize: true
-         });
-
-         /!* MORRIS AREA CHART
-         ----------------------------------------*!/
-
-         Morris.Area({
-         element: 'morris-area-chart',
-         data: [{
-         period: '2010 Q1',
-         iphone: 2666,
-         ipad: null,
-         itouch: 2647
-         }, {
-         period: '2010 Q2',
-         iphone: 2778,
-         ipad: 2294,
-         itouch: 2441
-         }, {
-         period: '2010 Q3',
-         iphone: 4912,
-         ipad: 1969,
-         itouch: 2501
-         }, {
-         period: '2010 Q4',
-         iphone: 3767,
-         ipad: 3597,
-         itouch: 5689
-         }, {
-         period: '2011 Q1',
-         iphone: 6810,
-         ipad: 1914,
-         itouch: 2293
-         }, {
-         period: '2011 Q2',
-         iphone: 5670,
-         ipad: 4293,
-         itouch: 1881
-         }, {
-         period: '2011 Q3',
-         iphone: 4820,
-         ipad: 3795,
-         itouch: 1588
-         }, {
-         period: '2011 Q4',
-         iphone: 15073,
-         ipad: 5967,
-         itouch: 5175
-         }, {
-         period: '2012 Q1',
-         iphone: 10687,
-         ipad: 4460,
-         itouch: 2028
-         }, {
-         period: '2012 Q2',
-         iphone: 8432,
-         ipad: 5713,
-         itouch: 1791
-         }],
-         xkey: 'period',
-         ykeys: ['iphone', 'ipad', 'itouch'],
-         labels: ['iPhone', 'iPad', 'iPod Touch'],
-         pointSize: 2,
-         hideHover: 'auto',
-         pointFillColors: ['#ffffff'],
-         pointStrokeColors: ['black'],
-         lineColors: ['#A6A6A6', '#24C2CE'],
-         resize: true
-         });
-
-         /!* MORRIS LINE CHART
-         ----------------------------------------*!/
-         Morris.Line({
-         element: 'morris-line-chart',
-         data: [
-         {y: '2014', a: 50, b: 90},
-         {y: '2015', a: 165, b: 185},
-         {y: '2016', a: 150, b: 130},
-         {y: '2017', a: 175, b: 160},
-         {y: '2018', a: 80, b: 65},
-         {y: '2019', a: 90, b: 70},
-         {y: '2020', a: 100, b: 125},
-         {y: '2021', a: 155, b: 175},
-         {y: '2022', a: 80, b: 85},
-         {y: '2023', a: 145, b: 155},
-         {y: '2024', a: 160, b: 195}
-         ],
+                /* MORRIS BAR CHART
+                 -----------------------------------------*/
+                Morris.Bar({
+                    element: 'morris-bar-chart',
+                    data: [{
+                        y: '2006',
+                        a: 100,
+                        b: 90
+                    }, {
+                        y: '2007',
+                        a: 75,
+                        b: 65
+                    }, {
+                        y: '2008',
+                        a: 50,
+                        b: 40
+                    }, {
+                        y: '2009',
+                        a: 75,
+                        b: 65
+                    }, {
+                        y: '2010',
+                        a: 50,
+                        b: 40
+                    }, {
+                        y: '2011',
+                        a: 75,
+                        b: 65
+                    }, {
+                        y: '2012',
+                        a: 100,
+                        b: 90
+                    }],
+                    xkey: 'y',
+                    ykeys: ['a', 'b'],
+                    labels: ['Series A', 'Series B'],
+                    barColors: [
+                        '#A6A6A6', '#24C2CE',
+                        '#A8E9DC'
+                    ],
+                    hideHover: 'auto',
+                    resize: true
+                });
 
 
-         xkey: 'y',
-         ykeys: ['a', 'b'],
-         labels: ['Total Income', 'Total Outcome'],
-         fillOpacity: 0.6,
-         hideHover: 'auto',
-         behaveLikeLine: true,
-         resize: true,
-         pointFillColors: ['#ffffff'],
-         pointStrokeColors: ['black'],
-         lineColors: ['gray', '#24C2CE']
+                /* MORRIS DONUT CHART
+                 ----------------------------------------*/
+                Morris.Donut({
+                    element: 'morris-donut-chart',
+                    data: [{
+                        label: "Download Sales",
+                        value: 12
+                    }, {
+                        label: "In-Store Sales",
+                        value: 30
+                    }, {
+                        label: "Mail-Order Sales",
+                        value: 20
+                    }],
+                    colors: [
+                        '#A6A6A6', '#24C2CE',
+                        '#A8E9DC'
+                    ],
+                    resize: true
+                });
 
-         });
+                /* MORRIS AREA CHART
+                 ----------------------------------------*/
+
+                Morris.Area({
+                    element: 'morris-area-chart',
+                    data: [{
+                        period: '2010 Q1',
+                        iphone: 2666,
+                        ipad: null,
+                        itouch: 2647
+                    }, {
+                        period: '2010 Q2',
+                        iphone: 2778,
+                        ipad: 2294,
+                        itouch: 2441
+                    }, {
+                        period: '2010 Q3',
+                        iphone: 4912,
+                        ipad: 1969,
+                        itouch: 2501
+                    }, {
+                        period: '2010 Q4',
+                        iphone: 3767,
+                        ipad: 3597,
+                        itouch: 5689
+                    }, {
+                        period: '2011 Q1',
+                        iphone: 6810,
+                        ipad: 1914,
+                        itouch: 2293
+                    }, {
+                        period: '2011 Q2',
+                        iphone: 5670,
+                        ipad: 4293,
+                        itouch: 1881
+                    }, {
+                        period: '2011 Q3',
+                        iphone: 4820,
+                        ipad: 3795,
+                        itouch: 1588
+                    }, {
+                        period: '2011 Q4',
+                        iphone: 15073,
+                        ipad: 5967,
+                        itouch: 5175
+                    }, {
+                        period: '2012 Q1',
+                        iphone: 10687,
+                        ipad: 4460,
+                        itouch: 2028
+                    }, {
+                        period: '2012 Q2',
+                        iphone: 8432,
+                        ipad: 5713,
+                        itouch: 1791
+                    }],
+                    xkey: 'period',
+                    ykeys: ['iphone', 'ipad', 'itouch'],
+                    labels: ['iPhone', 'iPad', 'iPod Touch'],
+                    pointSize: 2,
+                    hideHover: 'auto',
+                    pointFillColors: ['#ffffff'],
+                    pointStrokeColors: ['black'],
+                    lineColors: ['#A6A6A6', '#24C2CE'],
+                    resize: true
+                });
+
+                /* MORRIS LINE CHART
+                 ----------------------------------------*/
+                Morris.Line({
+                    element: 'morris-line-chart',
+                    data: [
+                        {y: '2014', a: 50, b: 90},
+                        {y: '2015', a: 165, b: 185},
+                        {y: '2016', a: 150, b: 130},
+                        {y: '2017', a: 175, b: 160},
+                        {y: '2018', a: 80, b: 65},
+                        {y: '2019', a: 90, b: 70},
+                        {y: '2020', a: 100, b: 125},
+                        {y: '2021', a: 155, b: 175},
+                        {y: '2022', a: 80, b: 85},
+                        {y: '2023', a: 145, b: 155},
+                        {y: '2024', a: 160, b: 195}
+                    ],
 
 
-         $('.bar-chart').cssCharts({type: "bar"});
-         $('.donut-chart').cssCharts({type: "donut"}).trigger('show-donut-chart');
-         $('.line-chart').cssCharts({type: "line"});
+                    xkey: 'y',
+                    ykeys: ['a', 'b'],
+                    labels: ['Total Income', 'Total Outcome'],
+                    fillOpacity: 0.6,
+                    hideHover: 'auto',
+                    behaveLikeLine: true,
+                    resize: true,
+                    pointFillColors: ['#ffffff'],
+                    pointStrokeColors: ['black'],
+                    lineColors: ['gray', '#24C2CE']
 
-         $('.pie-thychart').cssCharts({type: "pie"});
+                });
 
 
-         },
+                $('.bar-chart').cssCharts({type: "bar"});
+                $('.donut-chart').cssCharts({type: "donut"}).trigger('show-donut-chart');
+                $('.line-chart').cssCharts({type: "line"});
 
-         initialization: function () {
-         mainApp.initFunction();
+                $('.pie-thychart').cssCharts({type: "pie"});
 
-         }
 
-         }
-         mainApp.initFunction();
-         $('#sideNav').click(function () {
-         if ($(this).hasClass('closed')) {
-         $('.navbar-side').animate({left: '0px'});
-         $(this).removeClass('closed');
-         $('#page-wrapper').animate({'margin-left': '260px'});
-         } else {
-         $(this).addClass('closed');
-         $('.navbar-side').animate({left: '260px'})
-         $('#page-wrapper').animate({'margin-left': '0px'});
-         }
-         })*/
+            },
+
+            initialization: function () {
+                mainApp.initFunction();
+
+            }
+
+        }
+        mainApp.initFunction();
+        $('#sideNav').click(function () {
+            if ($(this).hasClass('closed')) {
+                $('.navbar-side').animate({left: '0px'});
+                $(this).removeClass('closed');
+                $('#page-wrapper').animate({'margin-left': '260px'});
+            } else {
+                $(this).addClass('closed');
+                $('.navbar-side').animate({left: '260px'})
+                $('#page-wrapper').animate({'margin-left': '0px'});
+            }
+        })
 
 
     })
