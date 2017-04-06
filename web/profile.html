@@ -9,17 +9,44 @@
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/jquery.Jcrop.css">
+    <link rel="stylesheet" href="css/file-input.min.css">
+    <link rel="stylesheet" href="css/sco/scojs.css">
+    <link rel="stylesheet" href="css/sco/sco.message.css">
     <link rel="stylesheet" href="css/ace.min.css">
 
 
-    <!--剪切大小时只让它在其中一块显示-->
     <style type="text/css">
         /*显示剪切图片显示的较小*/
         /* Apply these styles only when #preview-pane has
            been placed within the Jcrop widget */
+        .jcrop-holder #preview-pane {
+            display: block;
+            position: relative;
+            z-index: 2000;
+            padding: 6px;
+            border: 1px rgba(0, 0, 0, .4) solid;
+            background-color: white;
 
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+
+            -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* The Javascript code will set the aspect ratio of the crop
+           area based on the size of the thumbnail preview,
+           specified here */
+        #preview-pane .preview-container {
+
+            overflow: hidden;
+        }
 
     </style>
+    <!--剪切大小时只让它在其中一块显示-->
+
 </head>
 <body>
 <div id="wrapper">
@@ -147,64 +174,12 @@
 
                     <div id="user-profile-1" class="user-profile row">
                         <div class="col-xs-12 col-sm-3 center">
-                            <div class="panel-body">
-
-                                <div class="panel-row clearfix pic-header">
-                                    <span class="pic-header-cut">图片剪切</span>
-                                    <span class="pic-header-close">X</span>
-                                </div>
-                                <div class="panel-row clearfix pic-container">
-                                    <!--显示头像部分-->
-                                    <span class="pic-container-left">
-                                             <div class="pic-container-content">
-                                                    <img class=" img-responsive editable-click img-size jcrop-preview"
-                                                         id="target" alt="[Jcrop Example]" src="images/test.jpg">
-
-                                             </div>
-
-                                            <div id="preview-pane">
-                                                     <div class="preview-container">
-                                                         <img src="images/test.jpg" class="jcrop-preview"
-                                                              alt="Preview"/>
-                                                     </div>
-                                            </div>
-                                         </span>
-                                </div>
-                                <div class="clearfix pic-footer" >
-                                    <span class="btn-upload">
-                                        <input type="button" class="btn btn-light" value="选择">
-
-                                        <form role="form" enctype="multipart/form-data" method="post">
-                                        <div class="embed-responsive embed-responsive-16by9">
-                                            <div class="embed-responsive-item pre-scrollable">
-                                                <img alt="" src="${pageContext.request.contextPath}/img/showings.jpg" id="cut-img"
-                                                     class="img-responsive img-thumbnail"/>
-                                            </div>
-                                        </div>
-                                        <div class="white-divider-md"></div>
-                                        <input type="file" name="imgFile" id="fileUpload" class="btn btn-light" value="选择"/>
-                                        <div class="white-divider-md"></div>
-                                        <div id="alert" class="alert alert-danger hidden" role="alert"></div>
-                                        <input type="hidden" id="x" name="x"/>
-                                        <input type="hidden" id="y" name="y"/>
-                                        <input type="hidden" id="w" name="w"/>
-                                        <input type="hidden" id="h" name="h"/>
-                                    </form>
-                                    </span>
-
-                                    <span class="btn-upload">
-                                        <input type="button" class="btn  btn-success" value="上传">
-
-                                    </span>
-                                </div>
-                            </div>
-
 
                             <span class="profile-picture" id="picClick">
                                     <div class="pic-click">
                                         <!--设置图片为响应式-->
                                         <img class=" img-responsive editable-click" id="size-retain" alt=""
-                                             src="images/test.jpg">
+                                             src="images/test.jpg" name="upload">
                                     </div>
                                 </span>
 
@@ -655,12 +630,23 @@
 
 </div>
 
-<script src="js/jquery.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<!--加载jquery_js插件-->
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<!--加载bootstrap_js插件-->
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery.metisMenu.js"></script>
+<!--图片剪切插件-->
 <script type="text/javascript" src="js/jquery.Jcrop.js"></script>
-
+<!--增加图片上传插件-->
+<script type="text/javascript" src="js/fileinput/file-input.min.js"></script>
+<!--fileinput中文化-->
+<!--<script type="text/javascript" src="js/fileinput/zh.js"></script>-->
+<!--显示跳转出来的窗口 和所设置的样式-->
+<script type="text/javascript" src="js/sco.modal.js"></script>
+<!--模板功能插件-->
+<script type="text/javascript" src="js/template.js"></script>
+<script type="text/javascript" src="js/portrait.js"></script>
+<!--用于剪切和加载小图片显示功能-->
 <script type="text/javascript">
     jQuery(function ($) {
 
@@ -678,8 +664,7 @@
             ysize = $pcnt.height();
 
         console.log('init', [xsize, ysize]);
-        $('#target').Jcrop({
-            maxSize: [360, 360],
+        $('#cut-img').Jcrop({
             onChange: updatePreview,
             onSelect: updatePreview,
             aspectRatio: xsize / ysize
@@ -714,6 +699,40 @@
 
 </script>
 
+<!--这个是ArtTemplate专用的模板代码,就是前面加载的template.js这个插件-->
+<script id="portraitUpload" type="text/html">
+    <div style="padding: 10px 20px">
+        <form role="form" enctype="multipart/form-data" method="post">
+            <div class="embed-responsive embed-responsive-16by9">
+                <div class="embed-responsive-item embed-responsive-item-left">
+                    <img alt="" src="" id="cut-img"
+                         class="img-responsive img-thumbnail"/>
+                </div>
+
+
+                <!--显示剪切过后的图片-->
+                <div id="preview-pane">
+                        <div class="embed-responsive-item-right preview-container">
+                            <img src="images/test.jpg" class="jcrop-preview" alt="">
+                        </div>
+                </div>
+            </div>
+            <div class="white-divider-md"></div>
+            <input type="file" name="imgFile" id="fileUpload"/>
+            <div class="white-divider-md"></div>
+            <div id="alert" class="alert alert-danger hidden" role="alert"></div>
+            <input type="hidden" id="x" name="x"/>
+            <input type="hidden" id="y" name="y"/>
+            <input type="hidden" id="w" name="w"/>
+            <input type="hidden" id="h" name="h"/>
+        </form>
+    </div>
+</script>
+
+<!--加载设置左侧下拉栏插件-->
+<script type="text/javascript" src="js/jquery.metisMenu.js"></script>
+<script type="text/javascript" src="js/jquery.Jcrop.js"></script>
+
 <script type="text/javascript">
     $(function () {
         /*设置登录和用户信息的显示*/
@@ -732,39 +751,8 @@
         var breadOut = $('#breadcrumbs').outerHeight();
         var pageinner = $('#page-inner').outerHeight();
         var hei = allHeight - navTop - breadHeight - breadOut;
+        $('#page-inner').css({'min-height': '650px'})
         $('#page-inner').css({'height': hei});
-
-        /*设置弹出对话框进行上传头像*/
-        $('#picClick .pic-click').mouseenter(function () {
-            $(this).find("img").delay(200).stop().clearQueue().animate({
-                borderRadius: "20",
-                opacity: 1
-            }, "fast")
-        }).mouseleave(function () {
-            $(this).find("div").css("color", "black");
-            $(this).find("img").delay(200).stop().clearQueue().animate({
-                borderRadius: "60",
-                opacity: 0.9
-            }, "fast")
-        });
-
-        $("#picClick .editable-click").click(function () {
-            var picIndex = $("#picClick .editable-click").index($(this));
-            $(".panel-body").hide();
-            $("#picClick").hide();
-            $(".panel-body").eq(picIndex).slideDown("normal");
-        });
-        /*设置点击关闭按钮*/
-        $(".panel-body .pic-header-close").mouseenter(function () {
-            $(this).css({'background': 'url(img/close-n.png)'});
-        }).mouseleave(function () {
-            $(this).css({'background': 'url(img/close-n.png)'});
-        });
-        /*点击关闭按钮显示内容和隐藏内容*/
-        $(".panel-body .pic-header-close").click(function () {
-            $(".panel-body").hide();
-            $("#picClick").show();
-        })
 
         var mainApp = {
 

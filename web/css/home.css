@@ -298,114 +298,30 @@ ul.nav.nav-second-level.collapse.in {
     border-radius: 60px;
     opacity: 0.9;
 }
-
-.panel-body{
-    display: none;
-    position: absolute;
-    z-index: 10;
-    width: 590px;
-    -moz-border-radius:12px;
-    -webkit-border-radius:12px;
-    border-radius:12px;
-    background:#FFFFFF;
-}
-.pic-header-cut {
-    margin: 0;
-    padding: 0;
+.embed-responsive .embed-responsive-item{
+    width: 350px;
+    min-height: 100%;
     float: left;
-    font-size: 15px;
-}
-.pic-header-close{
-    position: absolute;
-    right: 8px;
-    top: 16px;
-    color: #ccc;
-    font-size: 20px;
-    width: 20px;
-    height: 20px;
-    overflow: hidden;
-    line-height: 20px;
-    text-align: center;
-    cursor: pointer;
-    font-weight: lighter;
-    font-family: sans-serif
-}
-.pic-container{
-    margin: 30px 0 20px 0 ;
-    padding: 10px;
+    border: 1px solid #f0f0f0;
 
 }
-
-.pic-container-left {
-    float:left;
-    width: 360px;
-    height: 360px;
-    background: #f6f6f6;
-}
-.profile-picture{
-    border: none;
-}
-
-.pic-container-content {
-    margin: 20%;
-    box-shadow: rgba(0, 0, 0, .12);
-}
-
-.jcrop-holder #preview-pane {
-    display: block;
-    position: absolute;
-    z-index: 2000;
-    top: 10px;
-    right: -280px;
-    padding: 6px;
-    border: 1px rgba(0, 0, 0, .4) solid;
-    background-color: white;
-
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-
-    -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-}
-
-#preview-pane {
-    border-radius: 60px;
-    opacity: 0.9;
-
-}
-
-#preview-pane .preview-container {
-    right: 0px;
-    width: 100px;
-    height: 100px;
-    overflow: hidden;
-}
-
-
-.img-size{
-    margin: 20px;
-    max-width: 360px;
-    max-height: 360px;
-}
-
-#size-retain{
-    width: 200px;
-    height: 200px;
-}
-
-.panel-shadow {
-    -moz-box-shadow: 1px 1px 20px 4px #afafaf;
-    -webkit-box-shadow:1px 1px 20px 4px #afafaf;
-    box-shadow:1px 1px 20px 4px #afafaf;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#afafaf')";
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#afafaf');
-}
-
-.pic-footer{
+.embed-responsive-item-right{
     float: right;
 }
-.btn-upload{
-    margin-left: 10px;
+
+.embed-responsive-item-right img{
+    width: 100px;
+    height: 100px;
+}
+.progress{
+    margin-right: 200px;
+}
+
+.file-caption-main .form-control,.fileinput-remove,.fileinput-cancel{
+    visibility: hidden;
+}
+
+.fileinput-upload{
+    visibility: visible;
+    display: block;
 }
