@@ -6,6 +6,8 @@ import com.enttax.util.config.CompositeFactory;
 import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.*;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +43,7 @@ public class PermissionController extends BaseController{
            @RequestParam("sname")String sname,
            @RequestParam("spassword")String spassword,
            @RequestParam("kcode")String kcode) {
+       System.out.println(sname+spassword);
 
        Map<String,String> map=new HashMap<String, String>();
 
@@ -57,8 +60,8 @@ public class PermissionController extends BaseController{
            return map;
        }
 
-        Staff staff=  permissService.login(sname,Encodes.encodeBase64(spassword));
-
+       Staff staff=  permissService.login(sname,Encodes.encodeBase64(spassword));
+       System.out.println("aaaaaaaaaaaa");
        //判断用户是否存在
        if (staff==null){
            map.put(ConstantStr.STATUS,ConstantException.no_data_code);
@@ -66,14 +69,20 @@ public class PermissionController extends BaseController{
            return map;
        }
 
+       System.out.println("bbbbbbbbbb");
+
+//       SecurityUtils.getSubject().login(new UsernamePasswordToken(sname, spassword));
+
+
        //登录成功 设置session 时间为60分钟
        map.put(ConstantStr.STATUS,ConstantException.sucess_code);
        map.put(ConstantStr.MESSAGE,ConstantException.sucess_message);
 
        session.setAttribute(ConstantStr.STAFFINFO,staff);
        session.setAttribute(ConstantStr.SID,staff.getSid());
-       String sessionTime = CompositeFactory.getString(ConstantStr.SESSION_INVALID_TIME);
-       session.setMaxInactiveInterval(Integer.parseInt(sessionTime));
+//       String sessionTime = CompositeFactory.getString(ConstantStr.SESSION_INVALID_TIME);
+//       session.setMaxInactiveInterval(Integer.parseInt(sessionTime));
+       System.out.println(map);
        return map;
     }
 
