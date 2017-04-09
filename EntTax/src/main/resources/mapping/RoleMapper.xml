@@ -19,6 +19,9 @@
     values (#{rid}, #{rname}, #{rupdatetime},
       #{rmark})
   </insert>
+  <insert id="insertPerm_Role" parameterType="String">
+    insert into perm_role (PId, RId) values (#{pid}, #{rid})
+  </insert>
   <update id="updateByPrimaryKey" parameterType="Role">
     update role
     set RName = #{rname},

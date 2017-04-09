@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Created by lcyanxi on 17-3-30.
  */
 public abstract class RedisGeneratorDao<k extends Serializable, v extends Serializable> {
-    @Autowired
+//    @Autowired
     private RedisTemplate<k,v> redisTemplate;
 
 

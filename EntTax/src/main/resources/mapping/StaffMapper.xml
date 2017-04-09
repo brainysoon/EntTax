@@ -23,7 +23,15 @@
     <result column="Rname"  property="rname" />
     <result column="Rupdatetime"  property="rupdatetime" />
     <result column="Rmark"  property="rmark" />
+    <collection property="permissions" resultMap="PermissResultMap"/>
   </resultMap>
+
+  <resultMap id="PermissResultMap" type="Permission">
+    <id column="Pid" property="pid"/>
+    <result column="Pname"  property="pname" />
+    <result column="Ptype"  property="ptype" />
+  </resultMap>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from staff
     where SId = #{sid}
@@ -86,6 +94,15 @@
     select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress,SAvator
     from staff
     where SPhone = #{sphone} AND SPassword=#{spassword}
+  </select>
+
+
+  <select id="selectByUserName" resultMap="BaseResultMap">
+     select s.*,r.*,p.*
+     from staff s left join staff_role su on s.sid=su.sid left join role r on r.rid=su.rid
+     left join perm_role pr on pr.rid=r.rid left join permission p on p.pid=pr.pid
+     where sname=#{sname};
+
   </select>
   <select id="selectByPhone" resultMap="BaseResultMap">
     select SId from staff WHERE SPhone = #{sphone}

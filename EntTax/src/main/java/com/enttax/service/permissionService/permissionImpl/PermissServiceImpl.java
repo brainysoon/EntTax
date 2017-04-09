@@ -9,7 +9,9 @@ import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.Encodes;
 import com.enttax.util.tools.ToolDates;
 import com.enttax.util.tools.ToolString;
+import com.github.pagehelper.PageHelper;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -20,7 +22,7 @@ import java.util.List;
 /**
  * Created by lcyanxi on 17-3-13.
  */
-@org.springframework.stereotype.Service
+@Service
 public class PermissServiceImpl implements PermissService {
     private static final Logger logger=Logger.getLogger(PermissServiceImpl.class);
    @Resource
@@ -124,5 +126,10 @@ public class PermissServiceImpl implements PermissService {
      */
     public boolean updateToPassword(String sid,String newPasswod) {
         return staffMapper.updateToPassword(sid,newPasswod)>0?true:false;
+    }
+
+    public Staff selectByUserName(String username) {
+        staffMapper.selectByUserName(username);
+        return null;
     }
 }

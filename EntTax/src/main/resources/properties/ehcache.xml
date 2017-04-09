@@ -17,23 +17,23 @@
             diskExpiryThreadIntervalSeconds="120"
             memoryStoreEvictionPolicy="LRU"
             />
-            
-	<cache name="categoryCache" 
-		maxElementsInMemory="50000" 
-		eternal="false" 
-		timeToIdleSeconds="300"
-		timeToLiveSeconds="300"
-		overflowToDisk="false" 
-		memoryStoreEvictionPolicy="LRU"
-	/>
-	
-	<cache name="blogCache" 
-		maxElementsInMemory="50000" 
-		eternal="false" 
-		timeToIdleSeconds="300"
-		timeToLiveSeconds="300"
-		overflowToDisk="false" 
-		memoryStoreEvictionPolicy="LRU"
-	/>
+            <!---->
+	<!--<cache name="categoryCache" -->
+		<!--maxElementsInMemory="50000" -->
+		<!--eternal="false" -->
+		<!--timeToIdleSeconds="300"-->
+		<!--timeToLiveSeconds="300"-->
+		<!--overflowToDisk="false" -->
+		<!--memoryStoreEvictionPolicy="LRU"-->
+	<!--/>-->
+	<!---->
+	<!--<cache name="blogCache" -->
+		<!--maxElementsInMemory="50000" -->
+		<!--eternal="false" -->
+		<!--timeToIdleSeconds="300"-->
+		<!--timeToLiveSeconds="300"-->
+		<!--overflowToDisk="false" -->
+		<!--memoryStoreEvictionPolicy="LRU"-->
+	<!--/>-->
 
 </ehcache>

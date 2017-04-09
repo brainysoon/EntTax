@@ -43,7 +43,6 @@ public class PermissionController extends BaseController{
            @RequestParam("sname")String sname,
            @RequestParam("spassword")String spassword,
            @RequestParam("kcode")String kcode) {
-       System.out.println(sname+spassword);
 
        Map<String,String> map=new HashMap<String, String>();
 
@@ -61,17 +60,12 @@ public class PermissionController extends BaseController{
        }
 
        Staff staff=  permissService.login(sname,Encodes.encodeBase64(spassword));
-       System.out.println("aaaaaaaaaaaa");
        //判断用户是否存在
        if (staff==null){
            map.put(ConstantStr.STATUS,ConstantException.no_data_code);
            map.put(ConstantStr.MESSAGE,ConstantException.no_data_message);
            return map;
        }
-
-       System.out.println("bbbbbbbbbb");
-
-//       SecurityUtils.getSubject().login(new UsernamePasswordToken(sname, spassword));
 
 
        //登录成功 设置session 时间为60分钟
@@ -80,9 +74,6 @@ public class PermissionController extends BaseController{
 
        session.setAttribute(ConstantStr.STAFFINFO,staff);
        session.setAttribute(ConstantStr.SID,staff.getSid());
-//       String sessionTime = CompositeFactory.getString(ConstantStr.SESSION_INVALID_TIME);
-//       session.setMaxInactiveInterval(Integer.parseInt(sessionTime));
-       System.out.println(map);
        return map;
     }
 
@@ -196,6 +187,11 @@ public class PermissionController extends BaseController{
             map.put(ConstantStr.STATUS,ConstantStr.str_zero);
         }
         return map;
+
+    }
+
+
+    public void login2(){
 
     }
 

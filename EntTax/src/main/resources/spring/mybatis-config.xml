@@ -47,8 +47,35 @@
         <!--&lt;!&ndash; 设置关联对象加载的形态，此处为按需加载字段(加载字段由SQL指 定)，不会加载关联表的所有字段，以提高性能 &ndash;&gt;-->
         <!--<setting name="aggressiveLazyLoading" value="true"/>-->
     </settings>
+
+
     <typeAliases>
         <package name="com.enttax.model"/>
         <!--配置别名-->
     </typeAliases>
+
+    <plugins>
+
+        <!-- PageHelper4.1.1 -->
+
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+
+            <property name="dialect" value="mysql"/>
+
+            <property name="offsetAsPageNum" value="false"/>
+
+            <property name="rowBoundsWithCount" value="false"/>
+
+            <property name="pageSizeZero" value="true"/>
+
+            <property name="reasonable" value="false"/>
+
+            <property name="supportMethodsArguments" value="false"/>
+
+            <property name="returnPageInfo" value="none"/>
+
+        </plugin>
+
+    </plugins>
+
 </configuration>
