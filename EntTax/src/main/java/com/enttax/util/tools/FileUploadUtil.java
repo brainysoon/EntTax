@@ -72,10 +72,11 @@ public class FileUploadUtil {
         return null;
     }
 
+
         /**
          * 文件重命名
          */
-    private static  String rename(String fileName){
+    public  static  String rename(String fileName){
         int i = fileName.lastIndexOf(".");
         String str = fileName.substring(i);
         return new Date().getTime()+""+ new Random().nextInt(99999999) +str;

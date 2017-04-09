@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.enttax.dao.StaffMapper">
+  <!--<cache type="com.strive.cms.cache.RedisCache"/>-->
+
   <resultMap id="BaseResultMap" type="Staff">
     <id column="SId"  property="sid" />
     <result column="SName"  property="sname" />
@@ -13,11 +15,29 @@
     <result column="SMark"  property="smark" />
     <result column="SAddress"  property="saddress" />
     <result column="SAvator"  property="savator" />
+    <collection property="roles" resultMap="RoleResultMap"/>
   </resultMap>
+  
+  <resultMap id="RoleResultMap" type="Role">
+     <id column="Rid" property="rid"/>
+    <result column="Rname"  property="rname" />
+    <result column="Rupdatetime"  property="rupdatetime" />
+    <result column="Rmark"  property="rmark" />
+    <collection property="permissions" resultMap="PermissResultMap"/>
+  </resultMap>
+
+  <resultMap id="PermissResultMap" type="Permission">
+    <id column="Pid" property="pid"/>
+    <result column="Pname"  property="pname" />
+    <result column="Ptype"  property="ptype" />
+  </resultMap>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from staff
-    where SId = #{sid,jdbcType=CHAR}
+    where SId = #{sid}
   </delete>
+  
+  <!--insert-->
   <insert id="insert" parameterType="Staff">
     insert into staff (SId, SName, SPassword, 
       SEmail, SPhone, SSex, SBirthday, 
@@ -27,6 +47,9 @@
       #{semail}, #{sphone}, #{ssex}, #{sbirthday},
       #{senter}, #{smark}, #{saddress},
       #{savator})
+  </insert>
+  <insert id="insertStaffAndRoleRelation" parameterType="String">
+    insert into staff_role (SId, RId) values (#{sid}, #{rid})
   </insert>
 
   <!--update-->
@@ -71,6 +94,15 @@
     select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress,SAvator
     from staff
     where SPhone = #{sphone} AND SPassword=#{spassword}
+  </select>
+
+
+  <select id="selectByUserName" resultMap="BaseResultMap">
+     select s.*,r.*,p.*
+     from staff s left join staff_role su on s.sid=su.sid left join role r on r.rid=su.rid
+     left join perm_role pr on pr.rid=r.rid left join permission p on p.pid=pr.pid
+     where sname=#{sname};
+
   </select>
   <select id="selectByPhone" resultMap="BaseResultMap">
     select SId from staff WHERE SPhone = #{sphone}

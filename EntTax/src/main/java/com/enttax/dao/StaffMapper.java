@@ -66,6 +66,10 @@ public interface StaffMapper {
      */
     List<Staff> selectByEmail(@Param("semail") String semail);
 
+
+
+    List<Staff> selectByUserName(@Param("sname") String sname);
+
     /**
      * 找回密码（也就是重置密码）
      * @param sid
