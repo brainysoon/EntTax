@@ -19,11 +19,12 @@ body {
 .blank {
     padding-top: 10px;
 }
-.m-top{
+
+.m-top {
     margin-top: 20px;
 }
 
-.row {
+.container .row {
     margin-top: 18%;
 }
 
@@ -290,5 +291,63 @@ ul.nav.nav-second-level.collapse.in {
 }
 
 .breadcrumbs {
-    margin-bottom: 0;
+    margin-bottom: 0px;
 }
+
+/*图片上传显示对话框设置*/
+
+#picClick img {
+    border-radius: 60px;
+    opacity: 0.9;
+}
+
+.embed-responsive .embed-responsive-item {
+    width: 350px;
+    min-height: 100%;
+    float: left;
+    border: 1px solid #f0f0f0;
+
+}
+
+.embed-responsive-item-right {
+    float: right;
+}
+
+.embed-responsive-item-right img {
+    width: 100px;
+    height: 100px;
+}
+
+.progress {
+    margin-right: 200px;
+}
+
+.file-caption-main .form-control, .fileinput-remove, .fileinput-cancel {
+    visibility: hidden;
+}
+
+.fileinput-upload {
+    visibility: visible;
+    display: block;
+}
+
+/*个人信息管理*/
+.control-input {
+    width: 253px;
+    float: left;
+}
+.control-input select{
+    height: auto;
+}
+
+@media (min-width: 768px){
+    .col-xs-12 .col-sm-9{
+        left: -10%;
+    }
+}
+@media (max-width: 768px ) {
+    .col-xs-12 .col-sm-9{
+        left: -0%;
+    }
+}
+
