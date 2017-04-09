@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -43,6 +44,7 @@ public class ExcelController extends BaseController {
             FiledownUtil.download(filePath, request,response);
 
         }catch (Exception e){
+            logger.info("-----"+ExcelController.class.getName()+"downloadExcelModel出现错误------");
 
         }
     }
@@ -87,5 +89,11 @@ public class ExcelController extends BaseController {
                     logger.info("-------ExcelController的uploadExcelData方法文件上传出错！！---------");
                 }
             }
+    }
+
+    @RequestMapping(value = "/downExcelDate")
+    @ResponseBody
+    public void downExcelDate(){
+
     }
 }

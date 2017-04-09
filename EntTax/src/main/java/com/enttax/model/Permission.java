@@ -10,6 +10,8 @@ public class Permission {
 
     private Integer ptype;
 
+    private Role role;//一个权限对应一个角色
+
     public String getPid() {
         return pid;
     }
@@ -32,5 +34,13 @@ public class Permission {
 
     public void setPtype(Integer ptype) {
         this.ptype = ptype;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

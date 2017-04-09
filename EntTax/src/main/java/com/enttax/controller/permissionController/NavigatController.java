@@ -26,7 +26,7 @@ import java.util.Random;
 @Controller
 public class NavigatController extends BaseController {
     /**
-     * 产生随机验证码
+     * 产生随机图片验证码
      * @return
      * @throws IOException
      * @throws ServletException
@@ -36,6 +36,7 @@ public class NavigatController extends BaseController {
         ToolImageCode.doPost(request,response);
         return "index";
     }
+
     @RequestMapping(value = "/sendSMS")
     public void    sendSMS(@RequestParam("phone") String phone){
         System.out.println(phone);
@@ -43,7 +44,7 @@ public class NavigatController extends BaseController {
 //        if (smsCode==null){
 //            return "error";
 //        }else{
-            request.getSession().setAttribute("smsCode",smsCode);
+            session.setAttribute(ConstantStr.SMSCODE,smsCode);
 //            return "successful";
 //        }
     }
@@ -60,12 +61,12 @@ public class NavigatController extends BaseController {
                           @RequestParam("numcode") String numcode){
         System.out.println(code+numcode);
         Map<String,String> map=new HashMap<String, String>();
-        String sRand = (String) request.getSession().getAttribute("sRand");
-        String smsCode= (String) request.getSession().getAttribute("smsCode");
+        String sRand = (String) request.getSession().getAttribute(ConstantStr.SRAND);
+        String smsCode= (String) request.getSession().getAttribute(ConstantStr.SMSCODE);
         if (code.equals(sRand) && numcode.equals(smsCode)){
-            map.put("status", ConstantStr.str_one);
+            map.put(ConstantStr.STATUS, ConstantStr.str_one);
         }else {
-            map.put("status",ConstantStr.str_zero);
+            map.put(ConstantStr.MESSAGE,ConstantStr.str_zero);
         }
 
         return map;
@@ -87,8 +88,7 @@ public class NavigatController extends BaseController {
      */
     @RequestMapping(value = "/main")
     public String mainPage(Model model){
-       Staff staff=(Staff) session.getAttribute("staff");
-       System.out.println(staff.getSname());
+       Staff staff=(Staff) session.getAttribute(ConstantStr.STAFFINFO);
        model.addAttribute(staff);
         return "redirect:/html/main.jsp";
     }
@@ -100,6 +100,22 @@ public class NavigatController extends BaseController {
     @RequestMapping(value = "/findpassword")
     public String findpasswordPage(){
         return "findpassword";
+    }
+
+    /**
+     * 安全退出
+     * @return
+     */
+    @RequestMapping(value = "/loginOut")
+    public String loginOut(){
+        session.removeAttribute(ConstantStr.STAFFINFO);
+        session.invalidate();
+        return "redirect:/index";
+    }
+
+    @RequestMapping(value = "/")
+    public void indexTest(){
+        System.out.println("hello world");
     }
 
 }

@@ -2,9 +2,12 @@ package com.enttax.controller.permissionController;
 
 import com.enttax.model.Staff;
 import com.enttax.service.permissionService.PermissService;
+import com.enttax.util.config.CompositeFactory;
 import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.*;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,30 +46,34 @@ public class PermissionController extends BaseController{
 
        Map<String,String> map=new HashMap<String, String>();
 
+       //判断参数是否为空
        if (sname==null||spassword==null){
-           map.put("status",ConstantException.args_error_code);
-           map.put("message",ConstantException.args_error_message);
+           map.put(ConstantStr.STATUS,ConstantException.args_error_code);
+           map.put(ConstantStr.MESSAGE,ConstantException.args_error_message);
            return map;
        }
-       if (!kcode.equals(request.getSession().getAttribute("sRand"))){
-           map.put("status",ConstantException.image_error_code);
-           map.put("message",ConstantException.image_error_message);
+       //判断验证码是否正确
+       if (!kcode.equals(request.getSession().getAttribute(ConstantStr.SRAND))){
+           map.put(ConstantStr.STATUS,ConstantException.image_error_code);
+           map.put(ConstantStr.MESSAGE,ConstantException.image_error_message);
            return map;
        }
 
-        Staff staff=  permissService.login(sname,Encodes.encodeBase64(spassword));
-
+       Staff staff=  permissService.login(sname,Encodes.encodeBase64(spassword));
+       //判断用户是否存在
        if (staff==null){
-           map.put("status",ConstantException.no_data_code);
-           map.put("message",ConstantException.no_data_message);
+           map.put(ConstantStr.STATUS,ConstantException.no_data_code);
+           map.put(ConstantStr.MESSAGE,ConstantException.no_data_message);
            return map;
        }
 
-       map.put("status",ConstantException.sucess_code);
-       map.put("message",ConstantException.sucess_message);
 
-       session.setAttribute("staff",staff);
-       session.setAttribute("sid",staff.getSid());
+       //登录成功 设置session 时间为60分钟
+       map.put(ConstantStr.STATUS,ConstantException.sucess_code);
+       map.put(ConstantStr.MESSAGE,ConstantException.sucess_message);
+
+       session.setAttribute(ConstantStr.STAFFINFO,staff);
+       session.setAttribute(ConstantStr.SID,staff.getSid());
        return map;
     }
 
@@ -81,11 +88,11 @@ public class PermissionController extends BaseController{
             @ModelAttribute Staff staff , Model model){
         boolean result= permissService.register(staff,rid);
         if (result){
-            model.addAttribute("state", ConstantStr.str_one);
+            model.addAttribute(ConstantStr.STATUS, ConstantStr.str_one);
 //            model.addAttribute("sid",sid);
             return "successful";
         }else {
-            model.addAttribute("state",ConstantStr.str_zero);
+            model.addAttribute(ConstantStr.STATUS,ConstantStr.str_zero);
             return "error";
         }
     }
@@ -132,7 +139,7 @@ public class PermissionController extends BaseController{
                return "index";
            }
 
-            Staff staff=(Staff) model.asMap().get("staff");
+            Staff staff=(Staff) model.asMap().get(ConstantStr.STAFFINFO);
             staff.setSavator(savator);
             permissService.updateStaffInfo(staff);
         }catch (IOException e){
@@ -149,14 +156,14 @@ public class PermissionController extends BaseController{
     @RequestMapping(value = "/updatepassword",method = RequestMethod.GET)
     @ResponseBody
     public  Map<String ,String >  updateToPassword(@RequestParam(value = "password") String password){
-       String sid = (String) request.getSession().getAttribute("sid");
+       String sid = (String) session.getAttribute(ConstantStr.SID);
         Map<String,String> map=new HashMap<String, String>();
         if (permissService.updateToPassword(sid,Encodes.encodeBase64(password))){
-            map.put("status",ConstantStr.str_one);
+            map.put(ConstantStr.STATUS,ConstantStr.str_one);
         }else {
-            map.put("status",ConstantStr.str_zero);
+            map.put(ConstantStr.STATUS,ConstantStr.str_zero);
         }
-        map.put("status",ConstantStr.str_one);
+        map.put(ConstantStr.STATUS,ConstantStr.str_one);
           return map;
     }
 
@@ -168,12 +175,23 @@ public class PermissionController extends BaseController{
     @ResponseBody
     public Map selectByPhone(@RequestParam(value = "phone") String phone){
         Map<String ,String> map=new HashMap<String, String>();
+
+        if (phone.equals(null)||phone==""){
+            map.put(ConstantStr.STATUS,ConstantStr.str_zero);
+            return map;
+        }
+
         if (permissService.selectByPhone(phone,request)){
-            map.put("status",ConstantStr.str_one);
+            map.put(ConstantStr.STATUS,ConstantStr.str_one);
         }else {
-            map.put("status",ConstantStr.str_zero);
+            map.put(ConstantStr.STATUS,ConstantStr.str_zero);
         }
         return map;
+
+    }
+
+
+    public void login2(){
 
     }
 

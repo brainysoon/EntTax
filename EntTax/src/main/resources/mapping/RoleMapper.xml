@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.enttax.dao.RoleMapper">
+  <!--<cache type="com.strive.cms.cache.RedisCache"/>-->
+
   <resultMap id="BaseResultMap" type="Role">
     <id column="RId"  property="rid" />
     <result column="RName" property="rname" />
@@ -16,6 +18,9 @@
       RMark)
     values (#{rid}, #{rname}, #{rupdatetime},
       #{rmark})
+  </insert>
+  <insert id="insertPerm_Role" parameterType="String">
+    insert into perm_role (PId, RId) values (#{pid}, #{rid})
   </insert>
   <update id="updateByPrimaryKey" parameterType="Role">
     update role

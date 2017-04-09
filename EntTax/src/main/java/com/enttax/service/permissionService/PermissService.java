@@ -46,4 +46,7 @@ public interface PermissService {
      * @return
      */
     boolean updateToPassword(String sid,String newPassword);
+
+    Staff selectByUserName(String username);
+
 }

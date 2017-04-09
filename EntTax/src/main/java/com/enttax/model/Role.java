@@ -3,6 +3,8 @@ package com.enttax.model;
 import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
+import java.util.List;
+
 @Alias("Role")
 public class Role {
     private String rid;
@@ -12,6 +14,10 @@ public class Role {
     private Date rupdatetime;
 
     private Short rmark;
+
+    private List<Permission> permissions;//一个角色对应多个权限
+
+    private List<Staff> staffs;//一个角色对应多个用户
 
     public String getRid() {
         return rid;
@@ -43,5 +49,21 @@ public class Role {
 
     public void setRmark(Short rmark) {
         this.rmark = rmark;
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
+    }
+
+    public List<Staff> getStaffs() {
+        return staffs;
+    }
+
+    public void setStaffs(List<Staff> staffs) {
+        this.staffs = staffs;
     }
 }
