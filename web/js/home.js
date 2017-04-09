@@ -70,6 +70,16 @@ $(function () {
     $('#page-inner').css({'min-height': '650px'})
     $('#page-inner').css({'height': hei});
 
+    /*设置水平div的切换*/
+    $('#connect-information a').click(function () {
+        $('.connect').css({'display':'block'});
+        $('.person').css({'display':'none'});
+    });
+    $('#person-informaion a').click(function () {
+        $('.connect').css({'display':'none'});
+        $('.person').css({'display':'block'})
+    })
+
     var mainApp = {
 
         initFunction: function () {
@@ -278,6 +288,7 @@ $(function () {
             $('#page-wrapper').animate({'margin-left': '0px'});
         }
     })
+
 
 
 
