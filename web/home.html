@@ -8,12 +8,50 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/jquery.Jcrop.css">
+    <link rel="stylesheet" href="css/file-input.min.css">
+    <link rel="stylesheet" href="css/sco/scojs.css">
+    <link rel="stylesheet" href="css/sco/sco.message.css">
+    <link rel="stylesheet" href="css/ace.min.css">
+    <link rel="stylesheet" href="css/select2.css">
+
+
+    <style type="text/css">
+        /*显示剪切图片显示的较小*/
+        /* Apply these styles only when #preview-pane has
+           been placed within the Jcrop widget */
+        .jcrop-holder #preview-pane {
+            display: block;
+            position: relative;
+            z-index: 2000;
+            padding: 6px;
+            border: 1px rgba(0, 0, 0, .4) solid;
+            background-color: white;
+
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+
+            -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* The Javascript code will set the aspect ratio of the crop
+           area based on the size of the thumbnail preview,
+           specified here */
+        #preview-pane .preview-container {
+
+            overflow: hidden;
+        }
+
+    </style>
+    <script src="js/city-date/main.js"></script>
+    <!--剪切大小时只让它在其中一块显示-->
+
 </head>
 <body>
 <div id="wrapper">
-
-
     <!--头部标签-->
     <div class="navbar navbar-default navbar-fixed-top" id="nav-top">
         <div class="nav-container">
@@ -25,9 +63,13 @@
             </div>
             <div class="navbar-header pull-right" role="navigation">
                 <ul class="nav nav-tabs" id="head-nav">
-                    <li class="login1">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle head-right">登录</a>
+                    <li class="login">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle head-right">
+                            登录
+                        </a>
+
                     </li>
+
                     <li class="user" style="display: none">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                             <img src="images/user.jpg" alt="">
@@ -55,7 +97,7 @@
             </div>
         </div>
     </div>
-    <!--侧边栏-->
+
     <div class="navbar-default navbar-side" id="nav-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav" id="main-menu">
@@ -105,282 +147,46 @@
             </ul>
         </div>
     </div>
-    <!--内容部分-->
-    <div id="page-wrapper">
-        <div class="breadcrumbs" id="breadcrumbs">
 
-            <ul class="breadcrumb" style="margin-bottom: 0;">
-                <li>
-                    <i class="icon-home home-icon"></i>
-                    <a href="#">主页</a>
-                </li>
-
-                <li>
-                    <a href="#">个人资料</a>
-                </li>
-                <li class="active">修改个人资料</li>
-            </ul>
+    <div id="page-wrapper" class="fixed">
+        <div class="breadcrumbs" id="breadcrumbs" style="width: 100%">
 
         </div>
 
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div id="user-profile-1" class="user-profile row">
+                        <div class="col-xs-12 col-sm-4 center"></div>
+
+
+                        <div class="col-xs-12 col-sm-8"></div>
+                    </div>
+
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
+</div>
 
+</div>
 
+<script src="js/jquery.min.js"></script>
+<!--加载jquery_js插件-->
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<!--加载bootstrap_js插件-->
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+
+<!--加载设置左侧下拉栏插件-->
 <script type="text/javascript" src="js/jquery.metisMenu.js"></script>
+<script type="text/javascript" src="js/jquery.Jcrop.js"></script>
 
-<script type="text/javascript">
-    $(function () {
-        $('.forgot-password-link').click(function () {
-            $('.forget-box').show();
-            $('.login-box').hide();
-        });
-        $('.new-password-link').click(function () {
-            $('.forget-box').hide();
-            $('.newpwd-box').show();
-        });
-        $('.back-login-link').click(function () {
-            $('.newpwd-box').hide();
-            $('.login-box').show();
-        })
+<script type="text/javascript" src="js/home.js">
 
-        $('.login1').click(function () {
-            $('#con').slideDown(200);
-        });
-        $('.close').click(function () {
-            $('#con').slideUp(100);
-        })
-
-
-        /*设置登录和用户信息的显示*/
-        $('.login1').click(function () {
-            $('.user').show();
-            $('.login1').hide();
-        })
-        $('.logout').click(function () {
-            $('.login1').show();
-            $('.user').hide();
-        })
-        /*设置整个内容部分的高度*/
-       /* var page_h = $(document).height();
-        var top_h = $('#nav-top').height();
-        var wrap_h = $('#page-wrapper').outerHeight();
-        var hei = page_h - top_h - wrap_h;
-        $('.container-fluid').css({'height': hei});*/
-
-
-        var mainApp = {
-
-            initFunction: function () {
-                /*MENU
-                 ------------------------------------*/
-                $('#main-menu').metisMenu();
-
-                $(window).bind("load resize", function () {
-                    if ($(this).width() < 768) {
-                        $('div.sidebar-collapse').addClass('collapse')
-                    } else {
-                        $('div.sidebar-collapse').removeClass('collapse')
-                    }
-                });
-
-                /* MORRIS BAR CHART
-                 -----------------------------------------*/
-                Morris.Bar({
-                    element: 'morris-bar-chart',
-                    data: [{
-                        y: '2006',
-                        a: 100,
-                        b: 90
-                    }, {
-                        y: '2007',
-                        a: 75,
-                        b: 65
-                    }, {
-                        y: '2008',
-                        a: 50,
-                        b: 40
-                    }, {
-                        y: '2009',
-                        a: 75,
-                        b: 65
-                    }, {
-                        y: '2010',
-                        a: 50,
-                        b: 40
-                    }, {
-                        y: '2011',
-                        a: 75,
-                        b: 65
-                    }, {
-                        y: '2012',
-                        a: 100,
-                        b: 90
-                    }],
-                    xkey: 'y',
-                    ykeys: ['a', 'b'],
-                    labels: ['Series A', 'Series B'],
-                    barColors: [
-                        '#A6A6A6', '#24C2CE',
-                        '#A8E9DC'
-                    ],
-                    hideHover: 'auto',
-                    resize: true
-                });
-
-
-                /* MORRIS DONUT CHART
-                 ----------------------------------------*/
-                Morris.Donut({
-                    element: 'morris-donut-chart',
-                    data: [{
-                        label: "Download Sales",
-                        value: 12
-                    }, {
-                        label: "In-Store Sales",
-                        value: 30
-                    }, {
-                        label: "Mail-Order Sales",
-                        value: 20
-                    }],
-                    colors: [
-                        '#A6A6A6', '#24C2CE',
-                        '#A8E9DC'
-                    ],
-                    resize: true
-                });
-
-                /* MORRIS AREA CHART
-                 ----------------------------------------*/
-
-                Morris.Area({
-                    element: 'morris-area-chart',
-                    data: [{
-                        period: '2010 Q1',
-                        iphone: 2666,
-                        ipad: null,
-                        itouch: 2647
-                    }, {
-                        period: '2010 Q2',
-                        iphone: 2778,
-                        ipad: 2294,
-                        itouch: 2441
-                    }, {
-                        period: '2010 Q3',
-                        iphone: 4912,
-                        ipad: 1969,
-                        itouch: 2501
-                    }, {
-                        period: '2010 Q4',
-                        iphone: 3767,
-                        ipad: 3597,
-                        itouch: 5689
-                    }, {
-                        period: '2011 Q1',
-                        iphone: 6810,
-                        ipad: 1914,
-                        itouch: 2293
-                    }, {
-                        period: '2011 Q2',
-                        iphone: 5670,
-                        ipad: 4293,
-                        itouch: 1881
-                    }, {
-                        period: '2011 Q3',
-                        iphone: 4820,
-                        ipad: 3795,
-                        itouch: 1588
-                    }, {
-                        period: '2011 Q4',
-                        iphone: 15073,
-                        ipad: 5967,
-                        itouch: 5175
-                    }, {
-                        period: '2012 Q1',
-                        iphone: 10687,
-                        ipad: 4460,
-                        itouch: 2028
-                    }, {
-                        period: '2012 Q2',
-                        iphone: 8432,
-                        ipad: 5713,
-                        itouch: 1791
-                    }],
-                    xkey: 'period',
-                    ykeys: ['iphone', 'ipad', 'itouch'],
-                    labels: ['iPhone', 'iPad', 'iPod Touch'],
-                    pointSize: 2,
-                    hideHover: 'auto',
-                    pointFillColors: ['#ffffff'],
-                    pointStrokeColors: ['black'],
-                    lineColors: ['#A6A6A6', '#24C2CE'],
-                    resize: true
-                });
-
-                /* MORRIS LINE CHART
-                 ----------------------------------------*/
-                Morris.Line({
-                    element: 'morris-line-chart',
-                    data: [
-                        {y: '2014', a: 50, b: 90},
-                        {y: '2015', a: 165, b: 185},
-                        {y: '2016', a: 150, b: 130},
-                        {y: '2017', a: 175, b: 160},
-                        {y: '2018', a: 80, b: 65},
-                        {y: '2019', a: 90, b: 70},
-                        {y: '2020', a: 100, b: 125},
-                        {y: '2021', a: 155, b: 175},
-                        {y: '2022', a: 80, b: 85},
-                        {y: '2023', a: 145, b: 155},
-                        {y: '2024', a: 160, b: 195}
-                    ],
-
-
-                    xkey: 'y',
-                    ykeys: ['a', 'b'],
-                    labels: ['Total Income', 'Total Outcome'],
-                    fillOpacity: 0.6,
-                    hideHover: 'auto',
-                    behaveLikeLine: true,
-                    resize: true,
-                    pointFillColors: ['#ffffff'],
-                    pointStrokeColors: ['black'],
-                    lineColors: ['gray', '#24C2CE']
-
-                });
-
-
-                $('.bar-chart').cssCharts({type: "bar"});
-                $('.donut-chart').cssCharts({type: "donut"}).trigger('show-donut-chart');
-                $('.line-chart').cssCharts({type: "line"});
-
-                $('.pie-thychart').cssCharts({type: "pie"});
-
-
-            },
-
-            initialization: function () {
-                mainApp.initFunction();
-
-            }
-
-        }
-        mainApp.initFunction();
-        $('#sideNav').click(function () {
-            if ($(this).hasClass('closed')) {
-                $('.navbar-side').animate({left: '0px'});
-                $(this).removeClass('closed');
-                $('#page-wrapper').animate({'margin-left': '260px'});
-            } else {
-                $(this).addClass('closed');
-                $('.navbar-side').animate({left: '260px'})
-                $('#page-wrapper').animate({'margin-left': '0px'});
-            }
-        })
-    })
 </script>
 </body>
 </html>

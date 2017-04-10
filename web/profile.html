@@ -251,24 +251,28 @@
                                             </a>
                                         </li>
 
-                                        <li class="dropdown">
+                                        <li id="password-information">
+                                            <a data-toggle="tab" href="#dropdown1">修改密码</a>
+                                        </li>
+
+                                        <!--<li class="dropdown">
                                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                                 安全信息 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </a>
 
                                             <ul class="dropdown-menu dropdown-info">
-                                                <li>
+                                                <li id="password-information">
                                                     <a data-toggle="tab" href="#dropdown1">修改密码</a>
                                                 </li>
 
-                                                <li>
-                                                    <a data-toggle="tab" href="#dropdown2">安全设置</a>
+                                                <li id="security-information">
+                                                    <a data-toggle="tab" href="#dropdown2">操作日志</a>
                                                 </li>
                                             </ul>
-                                        </li>
+                                        </li>-->
                                     </ul>
                                 </div>
-
+                                <!--个人基本信息页面-->
                                 <form class="form-horizontal person">
                                     <div class="form-group">
                                         <label for="inputUser" class="col-sm-4 control-label">用户名:</label>
@@ -294,6 +298,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">出生年月:</label>
                                         <div class="col-sm-8">
@@ -310,7 +315,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">居住地区:</label>
@@ -333,9 +337,8 @@
                                         </div>
                                     </div>
 
-
                                 </form>
-
+                                <!--联系信息页面-->
                                 <form class="form-horizontal connect" style="display: none">
                                     <div class="form-group">
                                         <label for="inputPhone" class="col-sm-4 control-label">联系电话:</label>
@@ -359,7 +362,6 @@
                                         </div>
                                     </div>
 
-
                                     <div class="form-group">
                                         <label for="inputEmail" class="col-sm-4 control-label">电子邮箱:</label>
                                         <div class="col-sm-8">
@@ -380,24 +382,161 @@
                                         </div>
                                     </div>
 
-
                                     <div class="form-group">
                                         <div class="col-sm-4" style="float: right">
                                             <input type="button" class="btn btn-white" value="确认信息">
                                         </div>
                                     </div>
 
+                                </form>
+                                <!--密码修改页面-->
+                                <form class="form-horizontal password" style="display: none" >
+                                    <div class="form-group">
+                                        <!--登录后自动获取旧密码-->
+                                        <label for="oldPassword" class="col-sm-4 control-label">旧密码:</label>
+                                        <div class="col-sm-8">
+                                            <div class="control-input">
+                                                <input type="password" class="form-control input-information"
+                                                       id="oldPassword"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label for="newPassword" class="col-sm-4 control-label">新密码:</label>
+                                        <div class="col-sm-8">
+                                            <div class="control-input">
+                                                <input type="password" class="form-control input-information"
+                                                       id="newPassword"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="againPassword" class="col-sm-4 control-label">确认密码:</label>
+                                        <div class="col-sm-8">
+                                            <div class="control-input">
+                                                <input type="password" class="form-control input-information"
+                                                       id="againPassword"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-4" style="float: right">
+                                            <input type="button" class="btn btn-white" value="确认修改">
+                                        </div>
+                                    </div>
                                 </form>
 
-                                <!--<form class="form-control security">
+                                <!--操作日志没有完成-->
+                                <!--<div class="form-horizontal security1" style="display: none">
+                                    <div class="timeline-container timeline-style2">
+												<span class="timeline">
+													<b class="today-time"></b>
+												</span>
 
-                                </form>-->
+                                        <div class="timeline-items" >
+                                            <div class="timeline-item clearfix">
+                                                <div class="timeline-info">
+                                                    <span class="timeline-date time"></span>
+
+                                                    <i class="timeline-indicator btn btn-info no-hover"></i>
+                                                </div>
+
+                                                <div class="widget-box transparent">
+                                                    <div class="widget-body">
+                                                        <div class="widget-main no-padding">
+																	<span class="bigger-110">
+																		查看个人资料
+																	</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="timeline-item clearfix">
+                                                <div class="timeline-info">
+                                                    <span class="timeline-date">12:30 pm</span>
+
+                                                    <i class="timeline-indicator btn btn-info no-hover"></i>
+                                                </div>
+
+                                                <div class="widget-box transparent">
+                                                    <div class="widget-body">
+                                                        <div class="widget-main no-padding">
+                                                            Going to
+                                                            <span class="green bolder">veg cafe</span>
+                                                            for lunch
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="timeline-item clearfix">
+                                                <div class="timeline-info">
+                                                    <span class="timeline-date">11:15 pm</span>
+
+                                                    <i class="timeline-indicator btn btn-info no-hover"></i>
+                                                </div>
+
+                                                <div class="widget-box transparent">
+                                                    <div class="widget-body">
+                                                        <div class="widget-main no-padding">
+                                                            Designed a new logo for our website. Would appreciate feedback.
+                                                            <a href="#">
+                                                                Click to see
+                                                                <i class="icon-zoom-in blue bigger-110"></i>
+                                                            </a>
+
+                                                            <div class="space-2"></div>
+
+                                                            <div class="action-buttons">
+                                                                <a href="#">
+                                                                    <i class="icon-heart red bigger-125"></i>
+                                                                </a>
+
+                                                                <a href="#">
+                                                                    <i class="icon-facebook blue bigger-125"></i>
+                                                                </a>
+
+                                                                <a href="#">
+                                                                    <i class="icon-reply light-green bigger-130"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="timeline-item clearfix">
+                                                <div class="timeline-info">
+                                                    <span class="timeline-date">9:00 am</span>
+
+                                                    <i class="timeline-indicator btn btn-info no-hover"></i>
+                                                </div>
+
+                                                <div class="widget-box transparent">
+                                                    <div class="widget-body">
+                                                        <div class="widget-main no-padding"> Took the final exam. Phew! </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>&lt;!&ndash; /.timeline-items &ndash;&gt;
+                                    </div>&lt;!&ndash; /.timeline-container &ndash;&gt;
+
+
+
+                                </div>-->
+
+
                             </div>
 
                         </div>
                     </div>
-
 
                 </div>
             </div>
