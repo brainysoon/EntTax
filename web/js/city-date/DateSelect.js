@@ -3,7 +3,6 @@ $(function () {
     years();
     months();
     days();
-    var date = new Date();
 
     $('#year').val("--");
     $('#month').val("--");
