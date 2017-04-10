@@ -1,8 +1,7 @@
-package com.enttax.controller.showDateController;
+package com.enttax.web;
 
-import com.enttax.controller.permissionController.BaseController;
 import com.enttax.model.Bill;
-import com.enttax.service.showDateService.ShowDateService;
+import com.enttax.service.ShowDateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,14 +14,13 @@ import java.util.Map;
  * Created by lcyanxi on 17-4-7.
  */
 @Controller
-public class ShowDateCOntroller extends BaseController {
+public class ShowDateController extends BaseController {
     @Autowired
     private ShowDateService showDateService;
 
     @RequestMapping(value = "/showDate")
     public Map  showDate(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
                          @RequestParam(value = "pageSize",defaultValue = "10") int pageSize){
-        System.out.println("aaaaaaaaaaa");
 
         List<Bill> bills=showDateService.select(pageNum,pageSize);
 

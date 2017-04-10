@@ -1,4 +1,4 @@
-package com.enttax.controller.permissionController;
+package com.enttax.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
