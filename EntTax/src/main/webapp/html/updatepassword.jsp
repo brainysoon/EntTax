@@ -25,7 +25,8 @@
         alert(newpassword);
         $.get("user/updatepassword.from",{password:newpassword},function(data){
             if (data.status==1){
-                window.location.href="main.from";
+                alert("更新成功，请登录！！");
+                window.location.href="index.jsp";
             }else {
                 alert("密码设置失败！");
             }
