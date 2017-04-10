@@ -333,14 +333,15 @@ ul.nav.nav-second-level.collapse.in {
 
 /*个人信息管理*/
 .main-profile{
+    color: #777;
     margin: 20px 20px 0 0;
 }
 
 .control-input {
-    width: 50%;
+    width: 56%;
     float: left;
 }
-.person,.connect,.security{
+.person,.connect,.security,.password,.security1{
     padding: 10px;
     background-color: #fff;
 }
@@ -366,5 +367,14 @@ ul.nav.nav-second-level.collapse.in {
 
 .time-line{
     margin-right: 19px;
+}
+
+.today-time{
+    color: #888888;
+}
+
+.timeline-items{
+    padding: 20px;
+    margin: 0;
 }
 
