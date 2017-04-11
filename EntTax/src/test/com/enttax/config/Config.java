@@ -1,5 +1,8 @@
 package com.enttax.config;
 
+import com.enttax.util.tools.ToolDates;
+import com.enttax.util.tools.ToolRandoms;
+import com.enttax.util.tools.ToolString;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,13 +14,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.io.File;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 /**
  * Created by lcyanxi on 17-3-12.
  */
@@ -45,18 +46,18 @@ public class Config {
     public void registerTest() throws  Exception{
         this.mockMvc.perform(post("/user/register")
          .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("sname","习近平")
-                .param("spassword","84589lljkc7788")
-                .param("semail","845892601@qq.com")
-                .param("sphone","13125723136")
+                .param("sname","墨尔本")
+                .param("spassword","lc121718")
+                .param("semail","2752541@qq.com")
+                .param("sphone","13125723133")
                 .param("ssex","1")
                 .param("sbirthday","1993-12-17")
                 .param("smark","1")
                 .param("saddress","重庆市黔江区")
                 .param("savator","c://user/image")
-        )
+                .param("rid" ,"1002"))
                 .andDo(print())
-                .andExpect(view().name("successful"))
+                .andExpect(view().name("error"))
                 .andReturn();
     }
     @Test
@@ -65,8 +66,8 @@ public class Config {
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("sid","12345678")
                 .param("sname","丽娜")
-                .param("spassword","lc02041217")
-                .param("semail","845892601@qq.com")
+                .param("spassword","yanxi0204")
+                .param("semail","2757710657@qq.com")
                 .param("sphone","13125723136")
                 .param("ssex","1")
                 .param("sbirthday","1993-12-17")
@@ -83,11 +84,12 @@ public class Config {
     public void loginTest() throws  Exception{
         this.mockMvc.perform(post("/user/login")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("sname","奥朗普")
-                .param("spassword","84589lljkc")
+                .param("sname","金正恩")
+                .param("spassword","yanxi0204")
+                .param("kcode","1212")
         )
                 .andDo(print())
-                .andExpect(view().name("index"))
+                .andExpect(view().name("login"))
                 .andReturn();
     }
 
@@ -104,5 +106,29 @@ public class Config {
                 .andDo(print())
                 .andExpect(view().name("index"))
                 .andReturn();
+    }
+
+    @Test
+    public void updateToPasswordTest() throws Exception{
+        this.mockMvc.perform(post("/user/updatepassword")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("sid","021212")
+                .param("password","lc121718")
+        )
+                .andDo(print())
+                .andReturn();
+
+    }
+
+    @Test
+    public void selectByPhoneTest() throws Exception{
+        this.mockMvc.perform(get("/user/findphone")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("phone","15730870204")
+        )
+                .andDo(print())
+                .andExpect(view().name("successful"))
+                .andReturn();
+
     }
 }

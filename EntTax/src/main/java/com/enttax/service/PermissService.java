@@ -1,4 +1,4 @@
-package com.enttax.service.permissionService;
+package com.enttax.service;
 
 import com.enttax.model.Staff;
 

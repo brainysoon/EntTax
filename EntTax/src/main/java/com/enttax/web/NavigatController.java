@@ -1,4 +1,4 @@
-package com.enttax.controller.permissionController;
+package com.enttax.web;
 
 import com.enttax.model.Staff;
 import com.enttax.util.constant.ConstantStr;
@@ -6,19 +6,14 @@ import com.enttax.util.tools.ToolImageCode;
 import com.enttax.util.tools.ToolSendSms;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * Created by lcyanxi on 17-3-19.
@@ -39,7 +34,6 @@ public class NavigatController extends BaseController {
 
     @RequestMapping(value = "/sendSMS")
     public void    sendSMS(@RequestParam("phone") String phone){
-        System.out.println(phone);
         String smsCode=  ToolSendSms.sendSMS(phone);
 //        if (smsCode==null){
 //            return "error";
@@ -90,7 +84,7 @@ public class NavigatController extends BaseController {
     public String mainPage(Model model){
        Staff staff=(Staff) session.getAttribute(ConstantStr.STAFFINFO);
        model.addAttribute(staff);
-        return "redirect:/html/main.jsp";
+        return "main";
     }
 
     /**
