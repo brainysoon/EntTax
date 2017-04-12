@@ -70,22 +70,22 @@
                                         <div class="input-group" style="width:100%">
                                             <span class="input-group-addon "><i
                                                     class="glyphicon glyphicon-user"> </i></span>
-                                            <input type="text" class="form-control" placeholder="用户名" value="">
+                                            <input type="text" id="sname" class="form-control" placeholder="用户名" value="">
                                         </div>
                                     </label>
                                     <label class="blank clearfix">
                                         <div class="input-group" style="width:100%">
                                             <span class="input-group-addon "><i
                                                     class="glyphicon glyphicon-lock"> </i></span>
-                                            <input type="text" class="form-control" placeholder="密码" value=""/>
+                                            <input type="password" id="spassword" class="form-control" placeholder="密码" value=""/>
                                         </div>
                                     </label>
                                     <label class="blank clearfix inline">
                                         <label class="blank clearfix">
                                             <div class="input-group" style="width:100%">
-                                                <input type="text" class="form-control" placeholder="验证码"
+                                                <input type="text" id="kcode" class="form-control" placeholder="验证码"
                                                        style="width: 60%;float: left">
-                                                <img src="images/pic.gif" alt="" class="" style="float: right;">
+                                                <img id="captchaImage" src="captcha.form" alt="" class="" style="float: right;">
                                             </div>
                                         </label>
 
@@ -101,7 +101,7 @@
                                         </label>
                                     </div>
                                     <div class="blank clearfix text-center m-top">
-                                        <a class="btn-animation btn-an-class btn-submit">登录</a>
+                                        <a id="login" class="btn-animation btn-an-class btn-submit">登录</a>
                                     </div>
                                 </form>
                             </div>
@@ -176,8 +176,25 @@
 
 
 </div>
-
+<script type="text/javascript">
+    // 更换验证码
+    $('#captchaImage').click(function()
+    {
+        $('#captchaImage').attr("src", "captcha.form?timestamp=" + (new Date()).valueOf());
+    });
+    $('#login').click(function(){
+        $.get("user/login.from",{sname:$("#sname").val(),spassword:$("#spassword").val(),kcode:$("#kcode").val()},
+            function (data) {
+                if (data.status==100){
+                    window.location.href="main.from";
+                }else {
+                    alert(data.message);
+                }
+            });
+    });
+</script>
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/home.js"></script>
 </body>
