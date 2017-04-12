@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="myRealm" class="com.enttax.shiro.MyRealm"/>
+
+    <!-- remenberMe配置 -->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
+        <!-- 默认记住7天（单位：秒） -->
+        <property name="maxAge" value="604800"/>
+    </bean>
+    <!-- rememberMe管理器 -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <!--默认AES算法-->
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="myRealm"/>
+        <property name="rememberMeManager" ref="rememberMeManager"/>
+    </bean>
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/"/>
+        <property name="unauthorizedUrl" value="/"/>
+        <!-- 下面value值的第一个'/'代表的路径是相对于HttpServletRequest.getContextPath()的值来的 -->
+        <property name="filterChainDefinitions">
+            <value>
+                /user/login=anon
+                <!--/mydemo/getVerifyCodeImage=anon-->
+                <!--/main**=authc-->
+                <!--/user/info**=authc-->
+                /main=authc
+
+                <!--&lt;!&ndash; anon表示此地址不需要任何权限即可访问 &ndash;&gt;-->
+                <!--/static/**=anon-->
+                <!--&lt;!&ndash; perms[user:query]表示访问此连接需要权限为user:query的用户 &ndash;&gt;-->
+                <!--/user=perms[user:query]-->
+                <!--&lt;!&ndash; roles[manager]表示访问此连接需要用户的角色为manager &ndash;&gt;-->
+                <!--/user/add=roles[manager]-->
+                <!--/user/del/**=roles[admin]-->
+                <!--/user/edit/**=roles[manager]-->
+                <!--&lt;!&ndash;所有的请求(除去配置的静态资源请求或请求地址为anon的请求)都要通过登录验证,如果未登录则跳到/login&ndash;&gt;-->
+                <!--/** = authc-->
+            </value>
+        </property>
+    </bean>
+
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+</beans>
