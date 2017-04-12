@@ -3,6 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+  <welcome-file-list>
+    <welcome-file>/login.html</welcome-file>
+  </welcome-file-list>
   <display-name>Archetype Created Web Application</display-name>
   <!-- 加载所有的配置文件 -->
   <context-param>
