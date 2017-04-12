@@ -70,6 +70,45 @@ $(function () {
     $('#page-inner').css({'min-height': '650px'})
     $('#page-inner').css({'height': hei});
 
+    /*设置水平div的切换*/
+    $('#connect-information a').click(function () {
+        $('.connect').css({'display':'block'});
+        $('.person').css({'display':'none'});
+        $('.password').css({'display':'none'})
+        $('.security1').css({'display':'none'})
+    });
+    $('#person-informaion a').click(function () {
+        $('.connect').css({'display':'none'});
+        $('.person').css({'display':'block'});
+        $('.password').css({'display':'none'})
+        $('.security1').css({'display':'none'})
+    })
+    $('#password-information a').click(function () {
+        $('.connect').css({'display':'none'});
+        $('.person').css({'display':'none'});
+        $('.password').css({'display':'block'});
+        $('.security1').css({'display':'none'})
+    })
+    $('#security-information a').click(function () {
+        $('.connect').css({'display':'none'});
+        $('.person').css({'display':'none'});
+        $('.password').css({'display':'none'});
+        $('.security1').css({'display':'block'})
+    })
+    /*用于设置安全设置的信息查看*/
+    $(document).ready(function(){
+        date = new Date();
+        year = date.getFullYear();
+        month = date.getMonth();
+        day = date.getDay();
+        hour = date.getHours();
+        minute = date.getMinutes();
+        $('.today-time').html(year+"年"+month+"月"+day+"日");
+        $('.time').html(hour+":"+minute)
+    });
+
+
+
     var mainApp = {
 
         initFunction: function () {
@@ -278,6 +317,7 @@ $(function () {
             $('#page-wrapper').animate({'margin-left': '0px'});
         }
     })
+
 
 
 

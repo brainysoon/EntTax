@@ -16,39 +16,6 @@
     <link rel="stylesheet" href="css/select2.css">
 
 
-    <style type="text/css">
-        /*显示剪切图片显示的较小*/
-        /* Apply these styles only when #preview-pane has
-           been placed within the Jcrop widget */
-        .jcrop-holder #preview-pane {
-            display: block;
-            position: relative;
-            z-index: 2000;
-            padding: 6px;
-            border: 1px rgba(0, 0, 0, .4) solid;
-            background-color: white;
-
-            -webkit-border-radius: 6px;
-            -moz-border-radius: 6px;
-            border-radius: 6px;
-
-            -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-            -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-            box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        /* The Javascript code will set the aspect ratio of the crop
-           area based on the size of the thumbnail preview,
-           specified here */
-        #preview-pane .preview-container {
-
-            overflow: hidden;
-        }
-
-    </style>
-    <script src="js/city-date/main.js"></script>
-    <!--剪切大小时只让它在其中一块显示-->
-
 </head>
 <body>
 <div id="wrapper">
@@ -175,7 +142,8 @@
                 <div class="col-xs-12">
 
                     <div id="user-profile-1" class="user-profile row">
-                        <div class="col-xs-12 col-sm-3 center">
+                        <div class="col-xs-12 col-sm-4 center">
+                            <div class="main-profile">
 
                             <span class="profile-picture" id="picClick">
                                     <div class="pic-click">
@@ -186,61 +154,98 @@
                                 </span>
 
 
-                            <div class="space-4"></div>
+                                <div class="space-4"></div>
 
-                            <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-                                <div class="inline position-relative">
-                                    <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
-                                        <span class="white">用户名</span>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="space-6"></div>
-
-                            <div class="profile-contact-info">
-                                <div class="profile-contact-links align-center">
-                                    <a class="btn btn-link" href="#">
-                                        <i class="icon-plus-sign bigger-120 green"></i>
-                                        日志管理
-                                    </a>
-
-                                    <a class="btn btn-link" href="#">
-                                        <i class="icon-envelope bigger-120 pink"></i>
-                                        权限管理
-                                    </a>
-
+                                <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+                                    <div class="inline position-relative">
+                                        <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+                                            <span class="white">用户名</span>
+                                        </a>
+                                    </div>
                                 </div>
 
                                 <div class="space-6"></div>
 
-                                <div class="profile-social-links center">
-                                    <a href="#" class="tooltip-info" title=""
-                                       data-original-title="Visit my Facebook">
-                                        <i class="middle icon-facebook-sign icon-2x blue"></i>
-                                    </a>
+                                <div class="profile-contact-info">
+                                    <div class="profile-contact-links align-center">
+                                        <a class="btn btn-link" href="#">
+                                            <i class="icon-plus-sign bigger-120 green"></i>
+                                            日志管理
+                                        </a>
 
-                                    <a href="#" class="tooltip-info" title=""
-                                       data-original-title="Visit my Twitter">
-                                        <i class="middle icon-twitter-sign icon-2x light-blue"></i>
-                                    </a>
+                                        <a class="btn btn-link" href="#">
+                                            <i class="icon-envelope bigger-120 pink"></i>
+                                            权限管理
+                                        </a>
 
-                                    <a href="#" class="tooltip-error" title=""
-                                       data-original-title="Visit my Pinterest">
-                                        <i class="middle icon-pinterest-sign icon-2x red"></i>
-                                    </a>
+                                    </div>
+
+                                    <div class="space-6"></div>
+
+                                    <div class="profile-social-links center">
+                                        <a href="#" class="tooltip-info" title=""
+                                           data-original-title="Visit my Facebook">
+                                            <i class="middle icon-facebook-sign icon-2x blue"></i>
+                                        </a>
+
+                                        <a href="#" class="tooltip-info" title=""
+                                           data-original-title="Visit my Twitter">
+                                            <i class="middle icon-twitter-sign icon-2x light-blue"></i>
+                                        </a>
+
+                                        <a href="#" class="tooltip-error" title=""
+                                           data-original-title="Visit my Pinterest">
+                                            <i class="middle icon-pinterest-sign icon-2x red"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-9">
-                            <div class="main-profile" style="margin: 20px">
-                                <form class="form-horizontal">
+
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="main-profile">
+                                <div class="profile-nav">
+                                    <ul class="nav nav-tabs" id="myTab">
+                                        <li class="active" id="person-informaion">
+                                            <a data-toggle="tab" href="#home">
+                                                基本信息
+                                            </a>
+                                        </li>
+                                        <li class="" id="connect-information">
+                                            <a data-toggle="tab" href="#home">
+                                                联系信息
+                                            </a>
+                                        </li>
+
+                                        <li id="password-information">
+                                            <a data-toggle="tab" href="#dropdown1">修改密码</a>
+                                        </li>
+
+                                        <!--<li class="dropdown">
+                                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                                安全信息 <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-info">
+                                                <li id="password-information">
+                                                    <a data-toggle="tab" href="#dropdown1">修改密码</a>
+                                                </li>
+
+                                                <li id="security-information">
+                                                    <a data-toggle="tab" href="#dropdown2">操作日志</a>
+                                                </li>
+                                            </ul>
+                                        </li>-->
+                                    </ul>
+                                </div>
+                                <!--个人基本信息页面-->
+                                <form class="form-horizontal person">
                                     <div class="form-group">
                                         <label for="inputUser" class="col-sm-4 control-label">用户名:</label>
                                         <div class="col-sm-8">
                                             <div class="control-input">
-                                                <input type="text" class="form-control" id="inputUser"
+                                                <input type="text" class="form-control input-information" id="inputUser"
                                                        placeholder="用户名">
                                             </div>
                                         </div>
@@ -260,51 +265,245 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">出生年月:</label>
                                         <div class="col-sm-8">
                                             <div class="control-input">
-                                                <label class="inline ">
+                                                <label class="inline time-line">
                                                     <select name="year" id="year"></select> 年
                                                 </label>
-                                                <label class="inline">
+                                                <label class="inline time-line">
                                                     <select name="month" id="month"></select> 月
                                                 </label>
-                                                <label class="inline">
+                                                <label class="inline time-line">
                                                     <select name="day" id="day"></select>日
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
 
-
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">居住地区:</label>
                                         <div class="col-sm-8">
                                             <div class="control-input" id="distpicker5">
                                                 <label class="inline" for="province">
-                                                    <select  id="province"></select>
+                                                    <select id="province"></select>
                                                 </label>
 
                                                 <label class="inline" for="city">
-                                                    <select  id="city"></select>
+                                                    <select id="city"></select>
                                                 </label>
-
-
-
-
-
                                             </div>
                                         </div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <div class="col-sm-4" style="float: right">
+                                            <input type="button" class="btn btn-white" value="确认信息">
+                                        </div>
+                                    </div>
 
                                 </form>
+                                <!--联系信息页面-->
+                                <form class="form-horizontal connect" style="display: none">
+                                    <div class="form-group">
+                                        <label for="inputPhone" class="col-sm-4 control-label">联系电话:</label>
+                                        <div class="col-sm-8">
+                                            <div class="control-input">
+                                                <input type="text" class="form-control input-information"
+                                                       id="inputPhone"
+                                                       placeholder="联系电话">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="outputPhone" class="col-sm-4 control-label">备用电话:</label>
+                                        <div class="col-sm-8">
+                                            <div class="control-input">
+                                                <input type="text" class="form-control input-information"
+                                                       id="outputPhone"
+                                                       placeholder="备用电话">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputEmail" class="col-sm-4 control-label">电子邮箱:</label>
+                                        <div class="col-sm-8">
+                                            <div class="control-input">
+                                                <input type="email" class="form-control" id="inputEmail"
+                                                       placeholder="电子邮箱">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputQQ" class="col-sm-4 control-label">QQ:</label>
+                                        <div class="col-sm-8">
+                                            <div class="control-input">
+                                                <input type="email" class="form-control" id="inputQQ"
+                                                       placeholder="QQ">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-4" style="float: right">
+                                            <input type="button" class="btn btn-white" value="确认信息">
+                                        </div>
+                                    </div>
+
+                                </form>
+                                <!--密码修改页面-->
+                                <form class="form-horizontal password" style="display: none" >
+                                    <div class="form-group">
+                                        <!--登录后自动获取旧密码-->
+                                        <label for="oldPassword" class="col-sm-4 control-label">旧密码:</label>
+                                        <div class="col-sm-8">
+                                            <div class="control-input">
+                                                <input type="password" class="form-control input-information"
+                                                       id="oldPassword"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="newPassword" class="col-sm-4 control-label">新密码:</label>
+                                        <div class="col-sm-8">
+                                            <div class="control-input">
+                                                <input type="password" class="form-control input-information"
+                                                       id="newPassword"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="againPassword" class="col-sm-4 control-label">确认密码:</label>
+                                        <div class="col-sm-8">
+                                            <div class="control-input">
+                                                <input type="password" class="form-control input-information"
+                                                       id="againPassword"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-4" style="float: right">
+                                            <input type="button" class="btn btn-white" value="确认修改">
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <!--操作日志没有完成-->
+                                <!--<div class="form-horizontal security1" style="display: none">
+                                    <div class="timeline-container timeline-style2">
+												<span class="timeline">
+													<b class="today-time"></b>
+												</span>
+
+                                        <div class="timeline-items" >
+                                            <div class="timeline-item clearfix">
+                                                <div class="timeline-info">
+                                                    <span class="timeline-date time"></span>
+
+                                                    <i class="timeline-indicator btn btn-info no-hover"></i>
+                                                </div>
+
+                                                <div class="widget-box transparent">
+                                                    <div class="widget-body">
+                                                        <div class="widget-main no-padding">
+																	<span class="bigger-110">
+																		查看个人资料
+																	</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="timeline-item clearfix">
+                                                <div class="timeline-info">
+                                                    <span class="timeline-date">12:30 pm</span>
+
+                                                    <i class="timeline-indicator btn btn-info no-hover"></i>
+                                                </div>
+
+                                                <div class="widget-box transparent">
+                                                    <div class="widget-body">
+                                                        <div class="widget-main no-padding">
+                                                            Going to
+                                                            <span class="green bolder">veg cafe</span>
+                                                            for lunch
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="timeline-item clearfix">
+                                                <div class="timeline-info">
+                                                    <span class="timeline-date">11:15 pm</span>
+
+                                                    <i class="timeline-indicator btn btn-info no-hover"></i>
+                                                </div>
+
+                                                <div class="widget-box transparent">
+                                                    <div class="widget-body">
+                                                        <div class="widget-main no-padding">
+                                                            Designed a new logo for our website. Would appreciate feedback.
+                                                            <a href="#">
+                                                                Click to see
+                                                                <i class="icon-zoom-in blue bigger-110"></i>
+                                                            </a>
+
+                                                            <div class="space-2"></div>
+
+                                                            <div class="action-buttons">
+                                                                <a href="#">
+                                                                    <i class="icon-heart red bigger-125"></i>
+                                                                </a>
+
+                                                                <a href="#">
+                                                                    <i class="icon-facebook blue bigger-125"></i>
+                                                                </a>
+
+                                                                <a href="#">
+                                                                    <i class="icon-reply light-green bigger-130"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="timeline-item clearfix">
+                                                <div class="timeline-info">
+                                                    <span class="timeline-date">9:00 am</span>
+
+                                                    <i class="timeline-indicator btn btn-info no-hover"></i>
+                                                </div>
+
+                                                <div class="widget-box transparent">
+                                                    <div class="widget-body">
+                                                        <div class="widget-main no-padding"> Took the final exam. Phew! </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>&lt;!&ndash; /.timeline-items &ndash;&gt;
+                                    </div>&lt;!&ndash; /.timeline-container &ndash;&gt;
+
+
+
+                                </div>-->
+
+
                             </div>
 
                         </div>
                     </div>
-
 
                 </div>
             </div>

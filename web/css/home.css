@@ -332,12 +332,26 @@ ul.nav.nav-second-level.collapse.in {
 }
 
 /*个人信息管理*/
+.main-profile{
+    color: #777;
+    margin: 20px 20px 0 0;
+}
+
 .control-input {
-    width: 253px;
+    width: 56%;
     float: left;
 }
+.person,.connect,.security,.password,.security1{
+    padding: 10px;
+    background-color: #fff;
+}
+
 .control-input select{
     height: auto;
+}
+.input-information{
+    height: 30px;
+    line-height: 30px;
 }
 
 @media (min-width: 768px){
@@ -347,7 +361,20 @@ ul.nav.nav-second-level.collapse.in {
 }
 @media (max-width: 768px ) {
     .col-xs-12 .col-sm-9{
-        left: -0%;
+        left: 0%;
     }
+}
+
+.time-line{
+    margin-right: 19px;
+}
+
+.today-time{
+    color: #888888;
+}
+
+.timeline-items{
+    padding: 20px;
+    margin: 0;
 }
 
