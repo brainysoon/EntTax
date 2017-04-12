@@ -80,11 +80,12 @@ public class NavigatController extends BaseController {
      * 导航到主页面
      * @return
      */
-    @RequestMapping(value = "/main")
+    @RequestMapping(value = "/home")
     public String mainPage(Model model){
+        System.out.println("aaaaa");
        Staff staff=(Staff) session.getAttribute(ConstantStr.STAFFINFO);
        model.addAttribute(staff);
-        return "main";
+        return "home";
     }
 
     /**

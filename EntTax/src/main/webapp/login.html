@@ -176,6 +176,12 @@
 
 
 </div>
+
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/home.js"></script>
+
 <script type="text/javascript">
     // 更换验证码
     $('#captchaImage').click(function()
@@ -186,16 +192,12 @@
         $.get("user/login.from",{sname:$("#sname").val(),spassword:$("#spassword").val(),kcode:$("#kcode").val()},
             function (data) {
                 if (data.status==100){
-                    window.location.href="main.from";
+                    window.location.href="home.from";
                 }else {
                     alert(data.message);
                 }
             });
     });
 </script>
-<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/home.js"></script>
 </body>
 </html>

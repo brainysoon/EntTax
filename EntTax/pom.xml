@@ -40,6 +40,19 @@
       <version>1.2</version>
     </dependency>
 
+    <!--thymeleaf解析-->
+    <dependency>
+      <groupId>org.thymeleaf</groupId>
+      <artifactId>thymeleaf</artifactId>
+      <version>3.0.5.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.thymeleaf</groupId>
+      <artifactId>thymeleaf-spring4</artifactId>
+      <version>3.0.5.RELEASE</version>
+    </dependency>
+
+
     <!--数据库驱动包mysql-->
     <dependency>
       <groupId>mysql</groupId>
@@ -166,11 +179,11 @@
       <version>1.2.17</version>
     </dependency>
     <!--slf4j-->
-    <!--<dependency>-->
-      <!--<groupId>org.slf4j</groupId>-->
-      <!--<artifactId>slf4j-api</artifactId>-->
-      <!--<version>1.7.21</version>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.21</version>
+    </dependency>
     <!--<dependency>-->
       <!--<groupId>org.slf4j</groupId>-->
       <!--<artifactId>slf4j-log4j12</artifactId>-->
