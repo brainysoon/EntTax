@@ -33,29 +33,30 @@
     <form class="form-signin" action="index.html">
         <h2 class="form-signin-heading">登录</h2>
         <div class="login-wrap">
-            <input type="text" class="form-control" placeholder="员工号/手机号/邮箱" autofocus>
-            <input type="password" class="form-control" placeholder="密码">
-            <div>
-                <input type="text" class="form-control" placeholder="验证码"/>
-
+            <div class="form-group has-success">
+                <input type="text" class="form-control" placeholder="员工号/手机号/邮箱" autofocus>
+                <p class="help-block"></p>
             </div>
-            <label class="checkbox">
+            <div class="form-group has-success">
+                <input type="password" class="form-control" placeholder="密码">
+                <p class="help-block"></p>
+            </div>
+            <div class="form-group has-success">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <input type="text" class="form-control" placeholder="验证码"/>
+                    </div>
+                    <div class="col-xs-6">
+                        <img src="img/kcode.jpg" alt="验证码" class="img-rounded" width="50" height="35"/>
+                        <a href="login.html">看不清楚</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
                 <input type="checkbox" value="remember-me">记住我
                 <span class="pull-right"> <a href="#"> 忘记密码?</a></span>
-            </label>
+            </div>
             <button class="btn btn-lg btn-login btn-block" type="submit">立即登录</button>
-            <!-- <p>or you can sign in via social network</p>
-            <div class="login-social-link">
-                <a href="index.html" class="facebook">
-                    <i class="icon-facebook"></i>
-                    Facebook
-                </a>
-                <a href="index.html" class="twitter">
-                    <i class="icon-twitter"></i>
-                    Twitter
-                </a>
-            </div> -->
-
         </div>
         <!--end of login-wrap-->
     </form>
