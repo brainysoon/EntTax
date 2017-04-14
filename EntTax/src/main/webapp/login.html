@@ -58,7 +58,7 @@
             <div class="login-container">
                 <div class="position-relation">
                     <div class="login-box" id="login-box">
-                        <div class="widget-body" >
+                        <div class="widget-body">
                             <div class="widget-main">
                                 <div class="clearfix text-center">
                                     <h4 class="h4">用户登录</h4>
@@ -70,14 +70,16 @@
                                         <div class="input-group" style="width:100%">
                                             <span class="input-group-addon "><i
                                                     class="glyphicon glyphicon-user"> </i></span>
-                                            <input type="text" id="sname" class="form-control" placeholder="用户名" value="">
+                                            <input type="text" id="sname" class="form-control" placeholder="用户名"
+                                                   value="">
                                         </div>
                                     </label>
                                     <label class="blank clearfix">
                                         <div class="input-group" style="width:100%">
                                             <span class="input-group-addon "><i
                                                     class="glyphicon glyphicon-lock"> </i></span>
-                                            <input type="password" id="spassword" class="form-control" placeholder="密码" value=""/>
+                                            <input type="password" id="spassword" class="form-control" placeholder="密码"
+                                                   value=""/>
                                         </div>
                                     </label>
                                     <label class="blank clearfix inline">
@@ -85,7 +87,8 @@
                                             <div class="input-group" style="width:100%">
                                                 <input type="text" id="kcode" class="form-control" placeholder="验证码"
                                                        style="width: 60%;float: left">
-                                                <img id="captchaImage" src="captcha.form" alt="" class="" style="float: right;">
+                                                <img id="captchaImage" src="captcha.form" alt="" class=""
+                                                     style="float: right;">
                                             </div>
                                         </label>
 
@@ -108,7 +111,7 @@
                         </div>
                     </div>
                     <div class="forgot-box" id="forgot-box" style="display: none">
-                        <div class="widget-body" >
+                        <div class="widget-body">
                             <div class="widget-main">
                                 <div class="clearfix text-center">
                                     <h4 class="h4">找回密码</h4>
@@ -118,14 +121,14 @@
                                         <div class="input-group" style="width:100%">
                                             <span class="input-group-addon "><i
                                                     class="glyphicon glyphicon-phone"> </i></span>
-                                            <input type="text" class="form-control" placeholder="手机号" value="">
+                                            <input type="text" id="phone" class="form-control" placeholder="手机号" value="">
                                         </div>
 
                                     </label>
                                     <label class="blank clearfix">
                                         <label class="blank clearfix">
                                             <div class="input-group" style="width:100%">
-                                                <input type="text" class="form-control" placeholder="短信验证码"
+                                                <input type="text" id="numcode" class="form-control" placeholder="短信验证码"
                                                        style="width: 60%;float: left">
                                                 <input type="button" id="timer" class="get-mess b-mess"
                                                        style="float: right" value="获取验证码">
@@ -133,14 +136,14 @@
                                         </label>
                                     </label>
                                     <div class="blank clearfix text-center back-to-newpwd m-top">
-                                        <a class="btn-animation btn-an-class btn-submit">下一步</a>
+                                        <a id="next" class="btn-animation btn-an-class btn-submit">下一步</a>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div class="newpwd-box" id="newpwd-box" style="display: none">
-                        <div class="widget-body" >
+                        <div class="widget-body">
                             <div class="clearfix text-center">
                                 <h4 class="h4">重置密码</h4>
                             </div>
@@ -150,7 +153,7 @@
                                         <div class="input-group" style="width:100%">
                                             <span class="input-group-addon "><i
                                                     class="glyphicon glyphicon-lock"> </i></span>
-                                            <input type="password" class="form-control" placeholder="输入密码" value="">
+                                            <input type="password" id="password2" class="form-control" placeholder="输入密码" value="">
                                         </div>
                                     </label>
                                     <label class="blank clearfix">
@@ -162,7 +165,7 @@
                                     </label>
 
                                     <div class="blank clearfix text-center m-top">
-                                        <a class="btn-animation btn-an-class btn-submit">确认</a>
+                                        <a id="updatepassword" class="btn-animation btn-an-class btn-submit">确认</a>
                                     </div>
                                 </form>
                             </div>
@@ -184,20 +187,69 @@
 
 <script type="text/javascript">
     // 更换验证码
-    $('#captchaImage').click(function()
-    {
+    $('#captchaImage').click(function () {
         $('#captchaImage').attr("src", "captcha.form?timestamp=" + (new Date()).valueOf());
     });
-    $('#login').click(function(){
-        $.get("user/login.from",{sname:$("#sname").val(),spassword:$("#spassword").val(),kcode:$("#kcode").val()},
+
+    //login
+    $('#login').click(function () {
+        $.get("user/login.from", {sname: $("#sname").val(), spassword: $("#spassword").val(), kcode: $("#kcode").val()},
             function (data) {
-                if (data.status==100){
-                    window.location.href="home.from";
-                }else {
+                if (data.status == 100) {
+                    window.location.href = "home.from";
+                } else {
                     alert(data.message);
                 }
             });
     });
+
+
+    <!--获取短信验证码-->
+    $('#timer').click(function(){
+        var  phone=$("#phone").val();
+        if (phone==null||phone==""){
+            alert("手机号不能没空！");
+            return;
+        }else if(phone.length!=11){
+            alert("请输入合法的手机号");
+            return;
+        }
+        $.get("user/findphone.from?phone="+phone+"",null,function (data) {
+            if (data.status==0){
+                alert(data.message);
+            }
+        });
+    });
+
+    /**
+     * 校验短信验证码是否正确
+     */
+    $('#next').click(function(){
+        var  numcode=$("#numcode").val();
+        $.get("validacode.from",{numcode:numcode},function(data){
+            if (data.status==0){
+//                window.location.href="updatepassword.from";
+                alert(data.message);
+            }
+        });
+    });
+
+    <!--更新密码-->
+    $('#updatepassword').click(function(){
+        var newpassword=$("#password2").val();
+        alert(newpassword);
+        $.get("user/updatepassword.from",{password:newpassword},function(data){
+            if (data.status==1){
+                alert("更新成功，请登录！！");
+                window.location.href="login.html";
+            }else {
+                alert("密码设置失败！");
+            }
+
+        });
+    });
+
+
 </script>
 </body>
 </html>

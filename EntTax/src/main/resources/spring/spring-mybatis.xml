@@ -12,8 +12,8 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="com.enttax"/>
     <!--不加ignore-unresolvable="true"会出项Could not resolve placeholder错误-->
-    <context:property-placeholder location="classpath:properties/jdbc.properties" ignore-unresolvable="true"/>
-    <context:property-placeholder location="classpath:properties/log4j.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath:properties/jdbc.properties" ignore-unresolvable="true" />
+
     <import resource="spring-shiro.xml"/>
 
     <!-- 配置Druid连接池,通常只需要修改initialSize，minIdle，maxActive的值 -->

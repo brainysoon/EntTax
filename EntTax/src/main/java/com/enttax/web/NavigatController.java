@@ -1,6 +1,7 @@
 package com.enttax.web;
 
 import com.enttax.model.Staff;
+import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.ToolImageCode;
 import com.enttax.util.tools.ToolSendSms;
@@ -32,35 +33,40 @@ public class NavigatController extends BaseController {
         return "index";
     }
 
-    @RequestMapping(value = "/sendSMS")
-    public void    sendSMS(@RequestParam("phone") String phone){
-        String smsCode=  ToolSendSms.sendSMS(phone);
+//    @RequestMapping(value = "/sendSMS")
+//    @ResponseBody
+//    public  Map<String,String>  sendSMS(@RequestParam("phone") String phone){
+//        Map<String,String> map=new HashMap<String, String>();
+//        String smsCode=  ToolSendSms.sendSMS(phone);
 //        if (smsCode==null){
-//            return "error";
+//            map.put(ConstantStr.STATUS, ConstantException.phone_error_code);
+//            map.put(ConstantStr.MESSAGE,ConstantException.phone_error_message);
 //        }else{
-            session.setAttribute(ConstantStr.SMSCODE,smsCode);
-//            return "successful";
+//            session.setAttribute(ConstantStr.SMSCODE,smsCode);
+//            map.put(ConstantStr.STATUS,ConstantException.sucess_code);
 //        }
-    }
+//        return map;
+//    }
 
     /**
      *
-     * @param code
      * @param numcode
      * @return
      */
     @RequestMapping(value = "/validacode")
     @ResponseBody
-    public Map<String,String> validacode(@RequestParam("code") String code,
-                          @RequestParam("numcode") String numcode){
-        System.out.println(code+numcode);
+    public Map<String,String> validacode(@RequestParam("numcode") String numcode){
+//        @RequestParam("code") String code,
+//        System.out.println(code+numcode);
         Map<String,String> map=new HashMap<String, String>();
-        String sRand = (String) request.getSession().getAttribute(ConstantStr.SRAND);
+//        String sRand = (String) request.getSession().getAttribute(ConstantStr.SRAND);
         String smsCode= (String) request.getSession().getAttribute(ConstantStr.SMSCODE);
-        if (code.equals(sRand) && numcode.equals(smsCode)){
+//        code.equals(sRand) &&
+        if ( numcode.equals(smsCode)){
             map.put(ConstantStr.STATUS, ConstantStr.str_one);
         }else {
-            map.put(ConstantStr.MESSAGE,ConstantStr.str_zero);
+            map.put(ConstantStr.STATUS,ConstantStr.str_zero);
+            map.put(ConstantStr.MESSAGE,ConstantException.smscode_error_message);
         }
 
         return map;
@@ -82,7 +88,6 @@ public class NavigatController extends BaseController {
      */
     @RequestMapping(value = "/home")
     public String mainPage(Model model){
-        System.out.println("aaaaa");
        Staff staff=(Staff) session.getAttribute(ConstantStr.STAFFINFO);
        model.addAttribute(staff);
         return "home";

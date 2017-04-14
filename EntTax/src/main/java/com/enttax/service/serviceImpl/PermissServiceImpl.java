@@ -88,6 +88,7 @@ public class PermissServiceImpl implements PermissService {
         }else {
             staff= staffMapper.selectByNameAndPassword(sname,password);
         }
+        logger.info("login is successful!!");
         return staff;
     }
 
@@ -108,11 +109,13 @@ public class PermissServiceImpl implements PermissService {
      */
     public boolean selectByPhone(String phone, HttpServletRequest request) {
         List<Staff> list=staffMapper.selectByPhone(phone);
+        System.out.println("listsize:"+list.size());
         if (ToolString.isEmpty(list)){
             return false;
         }
         for (Staff staff : list) {
             request.getSession().setAttribute(ConstantStr.SID,staff.getSid());
+            System.out.println("sessionSet:"+staff.getSid());
         }
         return true;
     }
