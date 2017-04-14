@@ -29,12 +29,12 @@ public interface StaffMapper {
     int insertStaffAndRoleRelation(@Param("sid") String sid,@Param("rid") String rid);
 
     /**
-     * 用户名，密码登录
-     * @param sname
+     * 员工号+密码登录
+     * @param sid
      * @param spassword
      * @return
      */
-    Staff selectByNameAndPassword(@Param("sname") String sname,@Param("spassword") String  spassword);
+    Staff selectBySidAndPassword(@Param("sid") String sid,@Param("spassword") String spassword);
 
     /**
      * 邮箱，密码登录
