@@ -6,6 +6,7 @@ import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.Encodes;
 import com.enttax.util.tools.FileUploadUtil;
+import com.enttax.util.tools.ToolSendSms;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -163,14 +164,22 @@ public class PermissionController extends BaseController {
     @RequestMapping(value = "/updatepassword", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, String> updateToPassword(@RequestParam(value = "password") String password) {
-        String sid = (String) session.getAttribute(ConstantStr.SID);
         Map<String, String> map = new HashMap<String, String>();
-        if (permissService.updateToPassword(sid, Encodes.encodeBase64(password))) {
-            map.put(ConstantStr.STATUS, ConstantStr.str_one);
-        } else {
+        System.out.println("password" + password);
+        if (password == null || password == "") {
             map.put(ConstantStr.STATUS, ConstantStr.str_zero);
+        } else {
+
+            String sid = (String) session.getAttribute(ConstantStr.SID);
+            System.out.println("sid:"+sid);
+
+            if (permissService.updateToPassword(sid, Encodes.encodeBase64(password))) {
+                map.put(ConstantStr.STATUS, ConstantStr.str_one);
+            } else {
+                map.put(ConstantStr.STATUS, ConstantStr.str_zero);
+            }
         }
-        map.put(ConstantStr.STATUS, ConstantStr.str_one);
+        System.out.println(map);
         return map;
     }
 
@@ -188,12 +197,18 @@ public class PermissionController extends BaseController {
             map.put(ConstantStr.STATUS, ConstantStr.str_zero);
             return map;
         }
+        boolean isExistPhone=permissService.selectByPhone(phone, request);
 
-        if (permissService.selectByPhone(phone, request)) {
-            map.put(ConstantStr.STATUS, ConstantStr.str_one);
-        } else {
-            map.put(ConstantStr.STATUS, ConstantStr.str_zero);
+        if (isExistPhone) {
+            String smsCode = ToolSendSms.sendSMS(phone);
+            if (smsCode != null) {
+                map.put(ConstantStr.STATUS, ConstantStr.str_one);
+                return map;
+            }
         }
+        map.put(ConstantStr.STATUS, ConstantStr.str_zero);
+        map.put(ConstantStr.MESSAGE,ConstantException.phone_error_message);
+        System.out.println("findphone map:"+map);
         return map;
 
     }
