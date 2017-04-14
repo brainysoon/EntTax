@@ -36,51 +36,6 @@ public class PermissionController extends BaseController {
         this.permissService = permissService;
     }
 
-    /**
-     * 登录功能
-     *
-     * @param
-     * @return
-     */
-//   @RequestMapping(value = "/login")
-    @ResponseBody
-    public Map<String, String> login(
-            @RequestParam("sname") String sname,
-            @RequestParam("spassword") String spassword,
-            @RequestParam("kcode") String kcode) {
-
-        Map<String, String> map = new HashMap<String, String>();
-
-        //判断参数是否为空
-        if (sname == null || spassword == null) {
-            map.put(ConstantStr.STATUS, ConstantException.args_error_code);
-            map.put(ConstantStr.MESSAGE, ConstantException.args_error_message);
-            return map;
-        }
-        //判断验证码是否正确
-        if (!kcode.equals(request.getSession().getAttribute(ConstantStr.SRAND))) {
-            map.put(ConstantStr.STATUS, ConstantException.image_error_code);
-            map.put(ConstantStr.MESSAGE, ConstantException.image_error_message);
-            return map;
-        }
-
-        Staff staff = permissService.login(sname, Encodes.encodeBase64(spassword));
-        //判断用户是否存在
-        if (staff == null) {
-            map.put(ConstantStr.STATUS, ConstantException.no_data_code);
-            map.put(ConstantStr.MESSAGE, ConstantException.no_data_message);
-            return map;
-        }
-
-
-        //登录成功 设置session 时间为60分钟
-        map.put(ConstantStr.STATUS, ConstantException.sucess_code);
-        map.put(ConstantStr.MESSAGE, ConstantException.sucess_message);
-
-        session.setAttribute(ConstantStr.STAFFINFO, staff);
-        session.setAttribute(ConstantStr.SID, staff.getSid());
-        return map;
-    }
 
 
     /**
@@ -214,28 +169,35 @@ public class PermissionController extends BaseController {
     }
 
 
+    /**
+     * 登录功能
+     * @param sname
+     * @param spassword
+     * @param kcode
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/login")
-    @ResponseBody
-    public Map<String, String> login2(
+    public String login(
             @RequestParam("sname") String sname,
             @RequestParam("spassword") String spassword,
-            @RequestParam("kcode") String kcode) {
+            @RequestParam("kcode") String kcode,
+            Model model) {
 
-        System.out.println("snamepassword:" + sname + spassword);
 
         Map<String, String> map = new HashMap<String, String>();
 
         //判断参数是否为空
         if (sname == null || sname.equals("") || spassword == null || spassword.equals("")) {
-            map.put(ConstantStr.STATUS, ConstantException.args_error_code);
-            map.put(ConstantStr.MESSAGE, ConstantException.args_error_message);
-            return map;
+            model.addAttribute(ConstantStr.STATUS, ConstantException.args_error_code);
+            model.addAttribute(ConstantStr.MESSAGE, ConstantException.args_error_message);
+            return "login";
         }
         //判断验证码是否正确
         if (!kcode.equals(request.getSession().getAttribute(ConstantStr.SRAND))) {
-            map.put(ConstantStr.STATUS, ConstantException.image_error_code);
-            map.put(ConstantStr.MESSAGE, ConstantException.image_error_message);
-            return map;
+            model.addAttribute(ConstantStr.STATUS, ConstantException.image_error_code);
+            model.addAttribute(ConstantStr.MESSAGE, ConstantException.image_error_message);
+            return "login";
         }
 
         UsernamePasswordToken token = new UsernamePasswordToken(sname, spassword);
@@ -244,30 +206,27 @@ public class PermissionController extends BaseController {
         try {
             subject.login(token);
             if (subject.isAuthenticated()) {
-                map.put(ConstantStr.STATUS, ConstantException.sucess_code);
-                return map;
-            } else {
-                map.put(ConstantStr.STATUS, ConstantStr.str_zero);
+                model.addAttribute(ConstantStr.STATUS, ConstantException.sucess_code);
+                return "htmlLichangTest/charts";
             }
         } catch (IncorrectCredentialsException e) {
-            map.put(ConstantStr.STATUS, ConstantStr.str_zero);
-            map.put(ConstantStr.MESSAGE, "登录密码错误");
+            model.addAttribute(ConstantStr.MESSAGE, "登录密码错误");
         } catch (ExcessiveAttemptsException e) {
-            map.put(ConstantStr.MESSAGE, "登录失败次数过多");
+            model.addAttribute(ConstantStr.MESSAGE, "登录失败次数过多");
         } catch (LockedAccountException e) {
-            map.put(ConstantStr.MESSAGE, "帐号已被锁定");
+            model.addAttribute(ConstantStr.MESSAGE, "帐号已被锁定");
         } catch (DisabledAccountException e) {
-            map.put(ConstantStr.MESSAGE, "帐号已被禁用");
+            model.addAttribute(ConstantStr.MESSAGE, "帐号已被禁用");
         } catch (ExpiredCredentialsException e) {
-            map.put(ConstantStr.MESSAGE, "帐号已过期");
+            model.addAttribute(ConstantStr.MESSAGE, "帐号已过期");
         } catch (UnknownAccountException e) {
-            map.put(ConstantStr.MESSAGE, "帐号不存在");
+            model.addAttribute(ConstantStr.MESSAGE, "帐号不存在");
         } catch (UnauthorizedException e) {
-            map.put(ConstantStr.MESSAGE, "您没有得到相应的授权！");
+            model.addAttribute(ConstantStr.MESSAGE, "您没有得到相应的授权！");
         }
 
-
-        return map;
+        model.addAttribute(ConstantStr.STATUS, ConstantStr.str_zero);
+        return "login";
     }
 
 

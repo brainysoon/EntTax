@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,6 +32,7 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+    <script src="js/jquery-1.8.3.min.js"></script>
 </head>
 
 <body class="login-body">
@@ -54,7 +56,7 @@
                         <input type="text" name="kcode" class="form-control" placeholder="验证码"/>
                     </div>
                     <div class="col-xs-3">
-                        <img src="img/kcode.jpg" alt="验证码" class="img-rounded" width="65" height="40"/>
+                        <img src="img/kcode.jpg" alt="验证码" class="img-rounded" width="80" height="34"/>
                     </div>
                 </div>
             </div>
@@ -70,4 +72,10 @@
 </div>
 <!--end of container-->
 </body>
+<script type="text/javascript">
+    // 更换验证码
+    $('#captchaImage').click(function () {
+        $('#captchaImage').attr("src", "captcha.form?timestamp=" + (new Date()).valueOf());
+    });
+</script>
 </html>
