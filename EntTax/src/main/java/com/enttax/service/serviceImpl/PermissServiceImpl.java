@@ -73,7 +73,7 @@ public class PermissServiceImpl implements PermissService {
     }
 
     /**登录
-     * 可能方式为用户名+密码、电话号码+密码、邮箱+密码
+     * 可能方式为员工号+密码、电话号码+密码、邮箱+密码
      * @param sname
      * @param password
      * @return
@@ -86,7 +86,7 @@ public class PermissServiceImpl implements PermissService {
         else if (ToolString.isEmail(sname)){
             staff= staffMapper.selectByEmailAndPassword(sname,password);
         }else {
-            staff= staffMapper.selectByNameAndPassword(sname,password);
+            staff= staffMapper.selectBySidAndPassword(sname,password);
         }
         logger.info("login is successful!!");
         return staff;
