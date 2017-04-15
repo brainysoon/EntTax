@@ -20,6 +20,15 @@
           <input type="button" value="忘记密码">
          </a>
 </form>
+
+<h2>文件下载</h2>
+<a href="downloadExcelModel.from">excel下载</a>
+
+<h2>文件上传</h2>
+<form id="fileUpload" action="uploadExcelDate.from" enctype="multipart/form-data" method="post">
+    <input id="excelFile" name="excelFile" type="file"/>
+    <input type="button" value="提交" onclick="submitExcel()"/>
+</form>
 </body>
 <script type="text/javascript">
     // 更换验证码
@@ -35,12 +44,21 @@
             }else {
                 alert(data.message);
             }
-
-
         });
     }
 
-//   function login(){
+
+
+    function submitExcel(){
+        var excelFile = $("#excelFile").val();
+        if(excelFile=='') {alert("请选择需上传的文件!");return false;}
+        if(excelFile.indexOf('.xls')==-1){
+            alert("文件格式不正确，请选择正确的Excel文件(后缀名.xls或者xlsx)！");
+            return false;
+        }
+        $("#fileUpload").submit();
+    }
+    //   function login(){
 //       alert("aaa");
 //
 //        $.ajax({

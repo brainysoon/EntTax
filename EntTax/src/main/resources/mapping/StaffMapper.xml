@@ -80,10 +80,10 @@
     from staff
     where SId = #{sid}
   </select>
-  <select id="selectByNameAndPassword"  resultType="Staff">
+  <select id="selectBySidAndPassword"  resultType="Staff">
     select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress,SAvator
     from staff
-    where SName = #{sname} AND SPassword=#{spassword}
+    where SId = #{sid} AND SPassword=#{spassword}
   </select>
   <select id="selectByEmailAndPassword"  resultType="Staff">
     select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, SAvator

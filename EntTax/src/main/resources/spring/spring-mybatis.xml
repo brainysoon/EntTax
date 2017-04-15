@@ -12,42 +12,42 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="com.enttax"/>
     <!--不加ignore-unresolvable="true"会出项Could not resolve placeholder错误-->
-    <context:property-placeholder location="classpath:properties/jdbc.properties" ignore-unresolvable="true"/>
-    <context:property-placeholder location="classpath:properties/log4j.properties" ignore-unresolvable="true"/>
-    <!--<import resource="spring-redis.xml"/>-->
+    <context:property-placeholder location="classpath:properties/jdbc.properties" ignore-unresolvable="true" />
+
+    <import resource="spring-shiro.xml"/>
 
     <!-- 配置Druid连接池,通常只需要修改initialSize，minIdle，maxActive的值 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
 
         <!-- 配置初始化大小、最小、最大 -->
-        <property name="initialSize" value="1" />
-        <property name="minIdle" value="1" />
-        <property name="maxActive" value="20" />
+        <property name="initialSize" value="1"/>
+        <property name="minIdle" value="1"/>
+        <property name="maxActive" value="20"/>
         <!-- 配置获取连接等待超时的时间 -->
-        <property name="maxWait" value="60000" />
+        <property name="maxWait" value="60000"/>
         <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
-        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
         <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
-        <property name="minEvictableIdleTimeMillis" value="300000" />
-        <property name="validationQuery" value="SELECT 'x'" />
-        <property name="testWhileIdle" value="true" />
-        <property name="testOnBorrow" value="false" />
-        <property name="testOnReturn" value="false" />
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+        <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
         <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
-        <property name="poolPreparedStatements" value="false" />
-        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+        <property name="poolPreparedStatements" value="false"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
         <!-- 配置监控统计拦截的filters -->
-        <property name="filters" value="stat" />
+        <property name="filters" value="stat"/>
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!--配置一些mybatis自己的属性，比如别名之类的-->
-        <property name="configLocation" value="classpath:spring/mybatis-config.xml" />
+        <property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
 
         <!--通过实践这个路径不行，扫描找不到要注入的类，只能把mapping文件放在resources下-->
         <!--<property name="mapperLocations" value="classpath:cn/yanxi/mapping/*Mapper.xml"/>-->
@@ -71,9 +71,5 @@ http://www.springframework.org/schema/context/spring-context.xsd">
             <tx:method name="*" propagation="SUPPORTS"/>
         </tx:attributes>
     </tx:advice>
-    <!--<aop:config>-->
-        <!--<aop:pointcut id="transactionPointcut" expression="execution(public *  cn.yanxi.service..*Impl.*(..))"/>-->
-        <!--<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice"/>-->
-    <!--</aop:config>-->
 
 </beans>

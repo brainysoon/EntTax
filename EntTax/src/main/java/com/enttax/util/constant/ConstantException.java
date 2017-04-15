@@ -50,11 +50,18 @@ public interface ConstantException {
      */
     String image_error_code="108";
     String image_error_message="图片验证码错误";
+
+    /**
+     */
+    String phone_error_code="109";
+    String phone_error_message="电话号码不存在！";
     /**
      * 108 验证码发送频繁
      */
     String authcode_frequency_code = "108";
     String authcode_frequency_message = "验证码发送频繁";
+
+
 
     //    -----------------------------------------------异常状态码配置  end--------------------------------------------------------
 }
