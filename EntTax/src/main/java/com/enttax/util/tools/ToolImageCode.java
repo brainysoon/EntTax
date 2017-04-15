@@ -126,6 +126,9 @@ public class ToolImageCode {
             g.drawString(rand, (13 * i) + 6, 16);
         }
 
+        //全部转换成小写 为了大小写不明感
+        sRand = sRand.toLowerCase();
+
         // 将认证码存入缓存
         //  ToolCache.redisCache.set(ToolImageCode.class.getName(), sRand);
         HttpSession session = request.getSession();
