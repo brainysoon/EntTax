@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
->
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="enttax login">
     <meta name="author" content="brainy">
     <meta name="keyword" content="EntTax">
-    <link rel="shortcut icon" href="img/favicon.html">
+    <link rel="shortcut icon" th:href="@{/img/favicon.html}" href="../../img/favicon.html">
 
     <title>登录</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-reset.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-reset.css}" href="../../css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <link th:href="@{/assets/font-awesome/css/font-awesome.css}" href="../../assets/font-awesome/css/font-awesome.css"
+          rel="stylesheet"/>
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
+    <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
 
     <!--Jquery-->
-    <script src="js/jquery-1.8.3.min.js"></script>
+    <script th:src="@{/js/jquery-1.8.3.min.js}" src="../../js/jquery-1.8.3.min.js"></script>
     <!--Jquery Validate-->
-    <script src="js/jquery.validate.min.js"></script>
+    <script th:src="@{/js/jquery.validate.min.js}" src="../../js/jquery.validate.min.js"></script>
     <!--Custom Validate-->
-    <script src="js/custom-validate.js"></script>
+    <script th:src="@{/js/custom-validate.js}" src="../../js/custom-validate.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
+    <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
+    <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -38,7 +39,7 @@
 
 <div class="container">
 
-    <form id="loginForm" class="form-signin" action="user/login.from" method="post">
+    <form id="loginForm" class="form-signin" th:action="@{/user/login.from}" method="post">
         <h2 class="form-signin-heading">登录</h2>
         <div class="login-wrap">
             <div class="form-group has-success">
@@ -52,10 +53,10 @@
             <div class="form-group has-success">
                 <div class="row">
                     <div class="col-xs-7">
-                        <input type="text" name="kcode" class="form-control" placeholder="验证码"/>
+                        <input id="kcode" type="text" name="kcode" class="form-control" placeholder="验证码"/>
                     </div>
                     <div class="col-xs-3">
-                        <img id="captchaImage" src="captcha.form" alt="验证码" class="img-rounded" width="100"
+                        <img id="captchaImage" th:src="@{/captcha.form}" alt="验证码" class="img-rounded" width="100"
                              height="34"/>
                     </div>
                 </div>
@@ -75,7 +76,7 @@
 <script type="text/javascript">
     // 更换验证码
     $('#captchaImage').click(function () {
-        $('#captchaImage').attr("src", "captcha.form?timestamp=" + (new Date()).valueOf());
+        $('#captchaImage').attr("src", '/captcha.form?timestamp=' + (new Date()).valueOf());
     });
 </script>
 </html>
