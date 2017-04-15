@@ -103,12 +103,12 @@ a, a:hover, a:focus {
 }
 
 .form-signin .btn-login {
-    background: #f67a6e;
+    background: #41cac0;
     color: #fff;
     text-transform: uppercase;
     font-weight: 300;
     font-family: 'Open Sans', sans-serif;
-    box-shadow: 0 4px #e56b60;
+    box-shadow: 0 4px #41caa0;
     margin-bottom: 20px;
 }
 
