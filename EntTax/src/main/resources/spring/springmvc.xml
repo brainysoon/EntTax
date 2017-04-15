@@ -23,7 +23,7 @@
     <!--springMVC+thymeleaf的跳转页面配置-->
     <bean id="templateResolver"
           class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
-        <property name="prefix" value="/"/>
+        <property name="prefix" value="/WEB-INF/templates/"/>
         <property name="suffix" value=".html"/>
         <property name="templateMode" value="HTML"/>
         <property name="cacheable" value="false"/>
@@ -46,7 +46,7 @@
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/"/>
-        <property name="suffix" value=".html"/>
+        <property name="suffix" value=".jsp"/>
         <property name="order" value="1"/>
     </bean>
 

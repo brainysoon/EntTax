@@ -37,7 +37,6 @@ public class PermissionController extends BaseController {
     }
 
 
-
     /**
      * 注册功能  用户名和密码为必须字段0
      *
@@ -126,7 +125,7 @@ public class PermissionController extends BaseController {
         } else {
 
             String sid = (String) session.getAttribute(ConstantStr.SID);
-            System.out.println("sid:"+sid);
+            System.out.println("sid:" + sid);
 
             if (permissService.updateToPassword(sid, Encodes.encodeBase64(password))) {
                 map.put(ConstantStr.STATUS, ConstantStr.str_one);
@@ -152,7 +151,7 @@ public class PermissionController extends BaseController {
             map.put(ConstantStr.STATUS, ConstantStr.str_zero);
             return map;
         }
-        boolean isExistPhone=permissService.selectByPhone(phone, request);
+        boolean isExistPhone = permissService.selectByPhone(phone, request);
 
         if (isExistPhone) {
             String smsCode = ToolSendSms.sendSMS(phone);
@@ -162,22 +161,23 @@ public class PermissionController extends BaseController {
             }
         }
         map.put(ConstantStr.STATUS, ConstantStr.str_zero);
-        map.put(ConstantStr.MESSAGE,ConstantException.phone_error_message);
-        System.out.println("findphone map:"+map);
+        map.put(ConstantStr.MESSAGE, ConstantException.phone_error_message);
+        System.out.println("findphone map:" + map);
         return map;
 
     }
 
 
     /**
-     * 登录功能
+     * 处理登响应
+     *
      * @param sname
      * @param spassword
      * @param kcode
      * @param model
      * @return
      */
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(
             @RequestParam("sname") String sname,
             @RequestParam("spassword") String spassword,
@@ -194,7 +194,7 @@ public class PermissionController extends BaseController {
             return "login";
         }
         //判断验证码是否正确
-        if (!kcode.equals(request.getSession().getAttribute(ConstantStr.SRAND))) {
+        if (!kcode.toLowerCase().equals(request.getSession().getAttribute(ConstantStr.SRAND))) {
             model.addAttribute(ConstantStr.STATUS, ConstantException.image_error_code);
             model.addAttribute(ConstantStr.MESSAGE, ConstantException.image_error_message);
             return "login";
@@ -229,5 +229,12 @@ public class PermissionController extends BaseController {
         return "login";
     }
 
+    /**
+     * @return 返回登录页面
+     */
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginNavigate() {
 
+        return "login";
+    }
 }

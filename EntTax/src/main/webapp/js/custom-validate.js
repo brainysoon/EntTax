@@ -52,13 +52,23 @@ $().ready(function () {
             },
             kcode: {
                 required: true,
-                isCode: true
+                isCode: true,
+                remote: {
+                    type: "post",
+                    url: "/checkcaptcha",
+                    data: {
+                        kcode: function () {
+
+                            return $("#kcode").val();
+                        }
+                    }
+                }
             }
         },
         messages: {
             sname: "员工号/手机号/邮箱格式错误",
             spassword: "密码格式错误",
-            kcode: "验证码格式错误"
+            kcode: "验证码错误"
         }
     });
 });
