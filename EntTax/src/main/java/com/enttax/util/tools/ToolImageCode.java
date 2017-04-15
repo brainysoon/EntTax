@@ -2,6 +2,7 @@ package com.enttax.util.tools;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,14 +11,15 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
-/** 产生图片认证码
+/**
+ * 产生图片认证码
  * Created by lcyanxi on 17-3-17.
  */
-public class ToolImageCode  {
+public class ToolImageCode {
     private static final long serialVersionUID = 1L;
 
     private static Font mFont = new Font("Arial", Font.BOLD, 16); // 设置字体
-    private static  int lineWidth = 2; // 干扰线的长度=1.414*lineWidth
+    private static int lineWidth = 2; // 干扰线的长度=1.414*lineWidth
     private static int width = 80; // 定义图形大小
     private static int height = 25; // 定义图形大小
     private static int count = 200;
@@ -25,14 +27,11 @@ public class ToolImageCode  {
     /**
      * 描述：
      *
-     * @param fc
-     *            描述：
-     * @param bc
-     *            描述：
-     *
+     * @param fc 描述：
+     * @param bc 描述：
      * @return 描述：
      */
-    private static  Color getRandColor(int fc, int bc) { // 取得给定范围随机颜色
+    private static Color getRandColor(int fc, int bc) { // 取得给定范围随机颜色
         Random random = new Random();
         if (fc > 255) {
             fc = 255;
@@ -58,17 +57,12 @@ public class ToolImageCode  {
     /**
      * 描述：
      *
-     * @param request
-     *            描述：
-     * @param response
-     *            描述：
-     *
-     * @throws ServletException
-     *             描述：
-     * @throws IOException
-     *             描述：
+     * @param request  描述：
+     * @param response 描述：
+     * @throws ServletException 描述：
+     * @throws IOException      描述：
      */
-     private  static  void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private static void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // response.reset();
         // 设置页面不缓存
@@ -115,15 +109,15 @@ public class ToolImageCode  {
         // char[] selectChar = new
         // char[]{'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
         // zb 2015-1-4 去除奇异字符 去除0 O o I i L l
-        char[] selectChar = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f',
+        char[] selectChar = new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f',
                 'g', 'h', 'j', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C',
-                'D', 'E', 'F', 'G', 'H', 'J', 'K', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+                'D', 'E', 'F', 'G', 'H', 'J', 'K', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
         for (int i = 0; i < 4; i++) {
             int charIndex = random.nextInt(selectChar.length);
             String rand = String.valueOf(selectChar[charIndex]);
             sRand += rand;
-			/*
-			 * String rand = String.valueOf(random.nextInt(10)); sRand += rand;
+            /*
+             * String rand = String.valueOf(random.nextInt(10)); sRand += rand;
 			 */
 
             // 将认证码显示到图象中,调用函数出来的颜色相同，可能是因为种子太接近，所以只能直接生成
@@ -133,16 +127,20 @@ public class ToolImageCode  {
         }
 
         // 将认证码存入缓存
-      //  ToolCache.redisCache.set(ToolImageCode.class.getName(), sRand);
-        HttpSession session=request.getSession();
-        session.setAttribute("sRand",sRand);
-        System.out.println("产生的图片号码："+sRand+"=="+ToolImageCode.class.getName());
+        //  ToolCache.redisCache.set(ToolImageCode.class.getName(), sRand);
+        HttpSession session = request.getSession();
+        session.setAttribute("sRand", sRand);
+        System.out.println("产生的图片号码：" + sRand + "==" + ToolImageCode.class.getName());
 
         // 图象生效
         g.dispose();
 
+        ServletOutputStream out = response.getOutputStream();
+
         // 输出图象到页面
-        ImageIO.write(image, "PNG", response.getOutputStream());
+        ImageIO.write(image, "PNG", out);
+
+        out.close();
     }
 
 }
