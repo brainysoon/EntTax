@@ -128,4 +128,37 @@ public class NavigatController extends BaseController {
         session.invalidate();
         return "redirect:/index";
     }
+
+    /**
+     * 导航到 选择找回密码方式界面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/findways", method = RequestMethod.GET)
+    public String toFindWays() {
+
+        return "findways";
+    }
+
+    /**
+     * 导航到 通过邮箱重置密码
+     *
+     * @return
+     */
+    @RequestMapping(value = "/mailreset", method = RequestMethod.GET)
+    public String toMailReset() {
+
+        return "mailreset";
+    }
+
+    /**
+     * 导航到 通过手机重置密码
+     *
+     * @return
+     */
+    @RequestMapping(value = "/phonereset", method = RequestMethod.GET)
+    public String toPhoneReset() {
+
+        return "phonereset";
+    }
 }
