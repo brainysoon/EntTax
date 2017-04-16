@@ -165,6 +165,28 @@ a, a:hover, a:focus {
     float: left;
 }
 
+/*forget page*/
+.wrapper-forget-heading {
+    margin: 0;
+    padding: 20px 15px;
+    text-align: center;
+    background: #41cac0;
+    border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.login-common-wrapper {
+    max-width: 330px;
+    margin: 100px auto 0;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
 /*sidebar navigation*/
 
 #sidebar {
@@ -3645,6 +3667,7 @@ table.sliders tr td {
 
 .step {
     clear: left;
+    padding: 20px;
 }
 
 .step label {
