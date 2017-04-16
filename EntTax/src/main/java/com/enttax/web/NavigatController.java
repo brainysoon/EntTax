@@ -4,6 +4,7 @@ import com.enttax.model.Staff;
 import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.ToolImageCode;
+import com.enttax.util.tools.ToolSendSms;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Vector;
 
 /**
  * Created by lcyanxi on 17-3-19.
@@ -33,9 +35,9 @@ public class NavigatController extends BaseController {
     }
 
     /**
-     * 判断验证码是否正确
+     * 判断图片验证码是否正确
      *
-     * @param kcode 验证码
+     * @param kcode 图片验证码
      * @throws IOException
      */
     @RequestMapping(value = "/checkcaptcha", method = RequestMethod.POST)
@@ -45,21 +47,6 @@ public class NavigatController extends BaseController {
         response.getWriter().print(kcode.toLowerCase()
                 .equals(request.getSession().getAttribute(ConstantStr.SRAND)));
     }
-
-//    @RequestMapping(value = "/sendSMS")
-//    @ResponseBody
-//    public  Map<String,String>  sendSMS(@RequestParam("phone") String phone){
-//        Map<String,String> map=new HashMap<String, String>();
-//        String smsCode=  ToolSendSms.sendSMS(phone);
-//        if (smsCode==null){
-//            map.put(ConstantStr.STATUS, ConstantException.phone_error_code);
-//            map.put(ConstantStr.MESSAGE,ConstantException.phone_error_message);
-//        }else{
-//            session.setAttribute(ConstantStr.SMSCODE,smsCode);
-//            map.put(ConstantStr.STATUS,ConstantException.sucess_code);
-//        }
-//        return map;
-//    }
 
     /**
      * @param numcode
@@ -128,4 +115,37 @@ public class NavigatController extends BaseController {
         session.invalidate();
         return "redirect:/index";
     }
+
+
+    /**
+     * 校验短信验证码是否正确
+     *
+     * @param smscode 短息验证码
+     * @return
+     */
+    @RequestMapping(value = "/checksmscode", method = RequestMethod.POST)
+    public boolean checkSmsCode(@RequestParam(value = "smscode") String smscode) {
+        String sessionSmsCode = (String) session.getAttribute(ConstantStr.SMSCODE);
+        if (smscode.equals(sessionSmsCode)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 校验邮箱验证码是否正确
+     *
+     * @param emailcode 邮箱验证码
+     * @return
+     */
+    @RequestMapping(value = "checkemailcode",method = RequestMethod.POST)
+    public boolean checkEmailCode(@RequestParam(value = "emailcode") String emailcode) {
+        String sessionEmailCode = (String) session.getAttribute(ConstantStr.EMAILCODE);
+        if (emailcode.equals(sessionEmailCode)) {
+            return true;
+        }
+        return false;
+    }
+
+
 }

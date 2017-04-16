@@ -113,21 +113,20 @@ public class PermissionController extends BaseController {
     /**
      * 重置密码
      *
-     * @param password
+     * @param spassword
      */
-    @RequestMapping(value = "/updatepassword", method = RequestMethod.GET)
+    @RequestMapping(value = "/updatepassword", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, String> updateToPassword(@RequestParam(value = "password") String password) {
+    public Map<String, String> updateToPassword(@RequestParam(value = "spassword") String spassword) {
         Map<String, String> map = new HashMap<String, String>();
-        System.out.println("password" + password);
-        if (password == null || password == "") {
+        if (spassword == null || spassword == "") {
             map.put(ConstantStr.STATUS, ConstantStr.str_zero);
         } else {
 
             String sid = (String) session.getAttribute(ConstantStr.SID);
             System.out.println("sid:" + sid);
 
-            if (permissService.updateToPassword(sid, Encodes.encodeBase64(password))) {
+            if (permissService.updateToPassword(sid, Encodes.encodeBase64(spassword))) {
                 map.put(ConstantStr.STATUS, ConstantStr.str_one);
             } else {
                 map.put(ConstantStr.STATUS, ConstantStr.str_zero);
@@ -138,33 +137,48 @@ public class PermissionController extends BaseController {
     }
 
     /**
-     * 查找电话号码是否存在
+     * 查找电话号码是否存在,如果存在则发送短信验证码
      *
-     * @param phone
+     * @param sphone
      */
-    @RequestMapping(value = "/findphone", method = RequestMethod.GET)
-    @ResponseBody
-    public Map selectByPhone(@RequestParam(value = "phone") String phone) {
-        Map<String, String> map = new HashMap<String, String>();
+    @RequestMapping(value = "/sendsmscode", method = RequestMethod.POST)
+    public boolean selectByPhone(@RequestParam(value = "sphone") String sphone) {
 
-        if (phone.equals(null) || phone == "") {
-            map.put(ConstantStr.STATUS, ConstantStr.str_zero);
-            return map;
+        if (sphone.equals("") || sphone == null) {
+            return false;
         }
-        boolean isExistPhone = permissService.selectByPhone(phone, request);
+        boolean isExistPhone = permissService.selectByPhone(sphone, request);
 
         if (isExistPhone) {
-            String smsCode = ToolSendSms.sendSMS(phone);
-            if (smsCode != null) {
-                map.put(ConstantStr.STATUS, ConstantStr.str_one);
-                return map;
+            String smsCode = ToolSendSms.sendSMS(sphone);//发送短信
+            if (smsCode == null) {
+                return false;  //短信发送失败
             }
+            session.setAttribute(ConstantStr.SMSCODE, smsCode);
+            return true;
         }
-        map.put(ConstantStr.STATUS, ConstantStr.str_zero);
-        map.put(ConstantStr.MESSAGE, ConstantException.phone_error_message);
-        System.out.println("findphone map:" + map);
-        return map;
+        return false;
 
+    }
+
+    /**
+     * 检查 email 是否存在,存在则发送邮箱验证码
+     *
+     * @param semail
+     * @return
+     */
+    @RequestMapping(value = "/checkemail", method = RequestMethod.POST)
+    public boolean selectByEmail(@RequestParam(value = "semail") String semail) {
+        if (semail == null || semail.equals("")) {
+            return false;
+        }
+        if (permissService.selectByEamil(semail, session)) {
+            System.out.println("我已经发送了邮箱验证码了！！");
+            System.out.println("发送邮箱的代码还没写！！");
+            return true;
+        }
+
+        return false;
     }
 
 

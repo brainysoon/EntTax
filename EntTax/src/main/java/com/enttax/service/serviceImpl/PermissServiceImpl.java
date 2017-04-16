@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -109,12 +110,33 @@ public class PermissServiceImpl implements PermissService {
      */
     public boolean selectByPhone(String phone, HttpServletRequest request) {
         List<Staff> list=staffMapper.selectByPhone(phone);
-        System.out.println("listsize:"+list.size());
         if (ToolString.isEmpty(list)){
             return false;
         }
         for (Staff staff : list) {
             request.getSession().setAttribute(ConstantStr.SID,staff.getSid());
+            request.getSession().setAttribute(ConstantStr.PHONE,phone);
+            System.out.println("sessionSet:"+staff.getSid());
+        }
+        return true;
+    }
+
+    /**
+     * 通过email查找用户是否存在
+     * @param email
+     * @param session
+     * @return
+     */
+    @Override
+    public boolean selectByEamil(String email, HttpSession session) {
+       List<Staff> list= staffMapper.selectByEmail(email);
+        if (ToolString.isEmpty(list)){
+            return false;
+        }
+        for (Staff staff : list) {
+
+            session.setAttribute(ConstantStr.SID,staff.getSid());
+            session.setAttribute(ConstantStr.EMAIL,email);
             System.out.println("sessionSet:"+staff.getSid());
         }
         return true;
