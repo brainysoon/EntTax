@@ -27,8 +27,8 @@
     <script th:src="@{/js/jquery.validate.min.js}" src="../../js/jquery.validate.min.js"></script>
     <!--Custom Validate-->
     <script th:src="@{/js/custom-validate.js}" src="../../js/custom-validate.js"></script>
-    <!--stepy js-->
-    <script src="../../js/jquery.stepy.js"></script>
+    <!--Custom Function-->
+    <script th:src="@{/js/custom-function.js}" src="../../js/custom-function.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -40,61 +40,40 @@
 
 <div class="container">
     <!-- page start-->
-    <section class="panel login-common-wrapper">
+    <form class="form-signin" id="email_reset" th:action="@{/updatepassword}">
         <h2 class="wrapper-forget-heading">邮箱找回密码</h2>
-        <div class="panel-body">
-            <form class="form-horizontal" id="default">
-                <fieldset title="验证邮箱" class="step" id="default-step-0">
-                    <legend></legend>
-                    <div class="form-group has-success">
-                        <input type="text" class="form-control" placeholder="邮箱" autofocus>
+        <div class="login-wrap">
+            <div class="form-group has-success">
+                <input type="text" name="semail" id="semail" class="form-control" placeholder="邮箱" autofocus>
+                <p class="help-block"></p>
+            </div>
+            <div class="form-group has-success">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <input type="text" name="code" id="code" class="form-control" placeholder="验证码">
                         <p class="help-block"></p>
                     </div>
-                    <div class="form-group has-success">
-                        <div class="row">
-                            <div class="col-xs-7">
-                                <input type="text" class="form-control" placeholder="验证码">
-                                <p class="help-block"></p>
-                            </div>
-                            <div class="col-xs-5">
-                                <button class="btn btn-success">发送邮件</button>
-                            </div>
-                        </div>
+                    <div class="col-xs-6">
+                        <button type="button" id="sendcode" class="btn btn-success" onclick="sendEMailCode()">发送邮件验证码
+                        </button>
                     </div>
-                </fieldset>
-                <fieldset title="重置密码" class="step" id="default-step-1">
-                    <legend></legend>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="新密码">
-                        <p class="help-block"></p>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="确认密码">
-                        <p class="help-block"></p>
-                    </div>
-                </fieldset>
-                <input type="submit" class="finish btn btn-success" value="提交修改"/>
-                <h4 class="help-block text-danger text-center" th:text="${message}"></h4>
-            </form>
+                </div>
+            </div>
+            <div class="form-group has-success">
+                <input type="password" name="spassword" id="spassword" class="form-control" placeholder="新密码">
+                <p class="help-block"></p>
+            </div>
+            <div class="form-group has-success">
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control"
+                       placeholder="确认密码">
+                <p class="help-block"></p>
+            </div>
+            <input type="submit" class="btn btn-info btn-lg btn-block" value="提交修改"/>
+            <h4 class="help-block text-danger text-center" th:text="${message}"></h4>
         </div>
-    </section>
+    </form>
     <!-- page end-->
 </div>
 <!--end of container-->
-
-<!--Custom JS-->
-<script>
-
-    //step wizard
-    $(function () {
-        $('#default').stepy({
-            backLabel: '上一步',
-            block: true,
-            nextLabel: '验证完成',
-            titleClick: true,
-            titleTarget: '.stepy-tab'
-        });
-    });
-</script>
 </body>
 </html>
