@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="enttax login">
+    <meta name="description" content="enttax">
     <meta name="author" content="brainy">
     <meta name="keyword" content="EntTax">
     <link rel="shortcut icon" th:href="@{/img/favicon.html}" href="../../img/favicon.html">
 
-    <title>登录</title>
+    <title>找回密码</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -34,50 +34,30 @@
     <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body class="login-body">
-
 <div class="container">
-
-    <form id="loginForm" class="form-signin" th:action="@{/user/login.from}" method="post">
-        <h2 class="form-signin-heading">登录</h2>
+    <form id="loginForm" class="form-signin">
+        <h2 class="form-signin-heading">选择验证方式</h2>
         <div class="login-wrap">
-            <div class="form-group has-success">
-                <input type="text" name="sname" class="form-control" placeholder="员工号/手机号/邮箱" autofocus>
-                <p class="help-block"></p>
-            </div>
-            <div class="form-group has-success">
-                <input type="password" name="spassword" class="form-control" placeholder="密码">
-                <p class="help-block"></p>
-            </div>
-            <div class="form-group has-success">
-                <div class="row">
-                    <div class="col-xs-7">
-                        <input id="kcode" type="text" name="kcode" class="form-control" placeholder="验证码"/>
-                    </div>
-                    <div class="col-xs-3">
-                        <img id="captchaImage" th:src="@{/sendcaptcha.form}" alt="验证码" class="img-rounded" width="100"
-                             height="34"/>
-                    </div>
-                </div>
+            <div class="form-group">
+                <a th:href="@{/phonereset}" href="phonereset.html">
+                    <button type="button" class="btn btn-info btn-lg btn-block">
+                        <i class="icon-phone"></i>&nbsp;&nbsp;手机验证
+                    </button>
+                </a>
             </div>
             <div class="form-group">
-                <input type="checkbox" value="remember-me"><a>&nbsp;记住我</a>
-                <span class="pull-right"> <a th:href="@{/findways}" href="findways.html"> 忘记密码?</a></span>
+                <a th:href="@{/mailreset}" href="mailreset.html">
+                    <button type="button" class="btn btn-info btn-lg btn-block" href="login.html">
+                        <i class="icon-envelope"></i>&nbsp;&nbsp;邮箱验证
+                    </button>
+                </a>
             </div>
-            <button class="btn btn-lg btn-login btn-block" type="submit">立即登录</button>
-            <h4 class="help-block text-danger text-center" th:text="${message}"></h4>
         </div>
-        <!--end of login-wrap-->
+        <!--end of findways-wrap-->
     </form>
     <!--end of form-->
 </div>
 <!--end of container-->
 </body>
-<script type="text/javascript">
-    // 更换验证码
-    $('#captchaImage').click(function () {
-        $('#captchaImage').attr("src", '/sendcaptcha.form?timestamp=' + (new Date()).valueOf());
-    });
-</script>
 </html>

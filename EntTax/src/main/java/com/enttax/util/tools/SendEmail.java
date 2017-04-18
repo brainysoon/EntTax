@@ -8,6 +8,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.Properties;
 
@@ -26,8 +27,11 @@ public class SendEmail {
     // 网易163邮箱的 SMTP 服务器地址为: smtp.163.com
     public static String myEmailSMTPHost = "smtp.163.com";
 
+    //产生4位邮箱验证码
+    public static int eamilcode = (int) ((Math.random() * 9 + 1) * 100000);
 
-    public static void sendEmail(String receiveMailAccount) {
+
+    public static String sendEmail(String receiveMailAccount) {
         // 1. 创建参数配置, 用于连接邮件服务器的参数配置
         Properties props = new Properties();                    // 参数配置
         props.setProperty("mail.transport.protocol", "smtp");   // 使用的协议（JavaMail规范要求）
@@ -48,15 +52,18 @@ public class SendEmail {
             // 5. 使用 邮箱账号 和 密码 连接邮件服务器, 这里认证的邮箱必须与 message 中的发件人邮箱一致, 否则报错
 
             transport.connect(myEmailAccount, myEmailPassword);
-            System.out.println("发送成功");
+            System.out.println("发送成功,系统产生的验证码为" + eamilcode);
 
             // 6. 发送邮件, 发到所有的收件地址, message.getAllRecipients() 获取到的是在创建邮件对象时添加的所有收件人, 抄送人, 密送人
             transport.sendMessage(message, message.getAllRecipients());
 
             // 7. 关闭连接
             transport.close();
+
+            return eamilcode + "";
         } catch (Exception e) {
             logger.info("sendEmail 发生异常");
+            return null;
         }
     }
 
@@ -83,7 +90,7 @@ public class SendEmail {
         message.setSubject("邮箱验证码", "UTF-8");
 
         // 5. Content: 邮件正文（可以使用html标签）
-        message.setContent("尊敬的先生/女士，您的邮箱验证码为" + (int) ((Math.random() * 9 + 1) * 100000), "text/html;charset=UTF-8");
+        message.setContent("尊敬的先生/女士，您的邮箱验证码为" + eamilcode, "text/html;charset=UTF-8");
 
         // 6. 设置发件时间
         message.setSentDate(new Date());
