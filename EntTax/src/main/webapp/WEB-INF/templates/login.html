@@ -56,7 +56,7 @@
                         <input id="kcode" type="text" name="kcode" class="form-control" placeholder="验证码"/>
                     </div>
                     <div class="col-xs-3">
-                        <img id="captchaImage" th:src="@{/captcha.form}" alt="验证码" class="img-rounded" width="100"
+                        <img id="captchaImage" th:src="@{/sendcaptcha.form}" alt="验证码" class="img-rounded" width="100"
                              height="34"/>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
 <script type="text/javascript">
     // 更换验证码
     $('#captchaImage').click(function () {
-        $('#captchaImage').attr("src", '/captcha.form?timestamp=' + (new Date()).valueOf());
+        $('#captchaImage').attr("src", '/sendcaptcha.form?timestamp=' + (new Date()).valueOf());
     });
 </script>
 </html>

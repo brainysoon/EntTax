@@ -6,7 +6,6 @@ import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.Encodes;
 import com.enttax.util.tools.FileUploadUtil;
-import com.enttax.util.tools.ToolSendSms;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -14,7 +13,10 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -113,60 +115,48 @@ public class PermissionController extends BaseController {
     /**
      * 重置密码
      *
-     * @param password
+     * @param spassword
      */
-    @RequestMapping(value = "/updatepassword", method = RequestMethod.GET)
-    @ResponseBody
-    public Map<String, String> updateToPassword(@RequestParam(value = "password") String password) {
-        Map<String, String> map = new HashMap<String, String>();
-        System.out.println("password" + password);
-        if (password == null || password == "") {
-            map.put(ConstantStr.STATUS, ConstantStr.str_zero);
+    @RequestMapping(value = "/updatepassword", method = RequestMethod.POST)
+    public String updateToPassword(@RequestParam(value = "spassword") String spassword,
+                                   @RequestParam(value = "code") String code, Model model) {
+
+        String smsCode = (String) session.getAttribute(ConstantStr.SMSCODE);
+        String emailCode = (String) session.getAttribute(ConstantStr.EMAILCODE);
+
+        String resultView = "login";
+
+        if (smsCode != null) {
+
+            resultView = "phonereset";
+        } else if (emailCode != null) {
+
+            resultView = "mailreset";
+        }
+
+        if (spassword == null || spassword == "") {
+            model.addAttribute(ConstantStr.MESSAGE, "密码不能为空！！");
+            return resultView;
+
         } else {
+            if (code.equals(smsCode) || code.equals(emailCode)) {
 
-            String sid = (String) session.getAttribute(ConstantStr.SID);
-            System.out.println("sid:" + sid);
+                String sid = (String) session.getAttribute(ConstantStr.SID);
 
-            if (permissService.updateToPassword(sid, Encodes.encodeBase64(password))) {
-                map.put(ConstantStr.STATUS, ConstantStr.str_one);
+                if (permissService.updateToPassword(sid, Encodes.encodeBase64(spassword))) {
+                    model.addAttribute(ConstantStr.MESSAGE, "密码更新成功！！");
+                    return "login";
+                } else {
+                    model.addAttribute(ConstantStr.MESSAGE, "密码更新失败!！");
+                }
             } else {
-                map.put(ConstantStr.STATUS, ConstantStr.str_zero);
+                model.addAttribute(ConstantStr.MESSAGE, "验证码不正确！！");
             }
+
+
         }
-        System.out.println(map);
-        return map;
+        return resultView;
     }
-
-    /**
-     * 查找电话号码是否存在
-     *
-     * @param phone
-     */
-    @RequestMapping(value = "/findphone", method = RequestMethod.GET)
-    @ResponseBody
-    public Map selectByPhone(@RequestParam(value = "phone") String phone) {
-        Map<String, String> map = new HashMap<String, String>();
-
-        if (phone.equals(null) || phone == "") {
-            map.put(ConstantStr.STATUS, ConstantStr.str_zero);
-            return map;
-        }
-        boolean isExistPhone = permissService.selectByPhone(phone, request);
-
-        if (isExistPhone) {
-            String smsCode = ToolSendSms.sendSMS(phone);
-            if (smsCode != null) {
-                map.put(ConstantStr.STATUS, ConstantStr.str_one);
-                return map;
-            }
-        }
-        map.put(ConstantStr.STATUS, ConstantStr.str_zero);
-        map.put(ConstantStr.MESSAGE, ConstantException.phone_error_message);
-        System.out.println("findphone map:" + map);
-        return map;
-
-    }
-
 
     /**
      * 处理登响应
@@ -207,7 +197,7 @@ public class PermissionController extends BaseController {
             subject.login(token);
             if (subject.isAuthenticated()) {
                 model.addAttribute(ConstantStr.STATUS, ConstantException.sucess_code);
-                return "htmlLichangTest/charts";
+                return "index";
             }
         } catch (IncorrectCredentialsException e) {
             model.addAttribute(ConstantStr.MESSAGE, "登录密码错误");
@@ -226,15 +216,6 @@ public class PermissionController extends BaseController {
         }
 
         model.addAttribute(ConstantStr.STATUS, ConstantStr.str_zero);
-        return "login";
-    }
-
-    /**
-     * @return 返回登录页面
-     */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginNavigate() {
-
         return "login";
     }
 }

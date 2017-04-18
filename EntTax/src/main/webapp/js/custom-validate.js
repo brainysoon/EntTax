@@ -75,7 +75,7 @@ $().ready(function () {
                 required: true,
                 isCode: true,
                 remote: {
-                    type: "post",
+                    type: "get",
                     url: "/checkcaptcha",
                     data: {
                         kcode: function () {
@@ -128,7 +128,7 @@ $().ready(function () {
                     type: "get",
                     url: "/checksmscode",
                     data: {
-                        smscode: function () {
+                        code: function () {
                             return $("#code").val();
                         }
                     }
@@ -186,7 +186,7 @@ $().ready(function () {
                     type: "get",
                     url: "/checkemailcode",
                     data: {
-                        emailcode: function () {
+                        code: function () {
                             return $("#code").val();
                         }
                     }

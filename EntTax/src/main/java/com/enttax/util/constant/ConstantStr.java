@@ -60,11 +60,29 @@ public interface ConstantStr {
     String  MESSAGE="message";
 
     /**
-     * 系统产生随机验证码
+     * 图片验证码
      */
     String SRAND="sRand";
 
+    /**
+     * 短信验证码smsCode
+     */
     String SMSCODE="smsCode";
+
+    /**
+     * 邮箱验证码
+     */
+    String EMAILCODE="emailCode";
+
+    /**
+     * email
+     */
+    String EMAIL="email";
+
+    /**
+     * phone
+     */
+    String PHONE="phone";
 
     /** session失效时间 **/
     String SESSION_INVALID_TIME = "SESSION_INVALID_TIME";
