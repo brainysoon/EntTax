@@ -24,11 +24,11 @@ function sendSmsCode() {
             sphone: $("#sphone").val()      //传送电话号码
         },
         timeout: 5000,       //超时时间
-        dataType: "text",     //返回的数据类型
+        dataType: "json",     //返回的数据类型
         success: function (data) {
 
             //如果发送成功 则开启定时
-            if (data == "true") {
+            if (data.status) {
                 beginTimer();
             } else {
                 $("#sendcode").text("失败重新发送");
@@ -93,12 +93,13 @@ function sendEMailCode() {
             semail: $("#semail").val()
         },
         timeout: 5000,
-        dataType: "text",
+        dataType: "json",
         success: function (data) {
 
             //如果发送成功 则开启定时
-            if (data == "true") {
-                $("#sendcode").text("成功点击重发");
+            if (data.status) {
+
+                beginTimer();
             } else {
                 $("#sendcode").text("失败重新发送");
             }

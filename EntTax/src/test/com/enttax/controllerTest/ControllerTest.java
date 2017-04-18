@@ -15,6 +15,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,4 +42,17 @@ public class ControllerTest {
         );
 
     }
+
+    @Test
+    public void sendSmsCodeTest() throws  Exception{
+        this.mockMvc.perform(post("/user/sendsmscode")
+                .param("sphone","13125723133")
+
+        )
+                .andDo(print())
+                .andExpect(view().name("index"))
+                .andReturn();
+
+    }
+
 }

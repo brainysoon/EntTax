@@ -3,6 +3,7 @@ package com.enttax.service;
 import com.enttax.model.Staff;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by lcyanxi on 17-3-13.
@@ -38,6 +39,13 @@ public interface PermissService {
      * @return
      */
     boolean selectByPhone(String phone , HttpServletRequest request);
+
+    /**
+     * 通过email查找用户是否存在
+     * @param email
+     * @return
+     */
+    boolean selectByEamil(String email, HttpSession session);
 
     /**
      * 重置密码
