@@ -87,9 +87,26 @@ $().ready(function () {
             }
         },
         messages: {
-            sname: "员工号/手机号/邮箱格式错误",
-            spassword: "密码格式错误",
-            kcode: "验证码错误"
+            sname: {
+                required: "员工号/手机号/邮箱不能为空",
+                isStaffId: "员工号/手机号/邮箱格式错误",
+            },
+            spassword: {
+                required: "密码不能为空",
+                isPassword: "密码格式错误"
+            },
+            kcode: {
+                required: "验证码不能为空",
+                isCode: "验证码格式错误",
+                remote: "验证码错误"
+            }
+        },
+        highlight: function (e) {
+            $(e).closest(".form-group").removeClass("has-success").addClass("has-error");
+        },
+        success: function (e) {
+            $(e).closest(".form-group").removeClass("has-error").addClass("has-success");
+            e.remove();
         }
     });
 
