@@ -1,6 +1,7 @@
 package com.enttax.web;
 
 import com.enttax.service.PermissService;
+import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.SendEmail;
 import com.enttax.util.tools.ToolImageCode;
@@ -50,10 +51,11 @@ public class VaildateController extends BaseController {
     @ResponseBody
     public Map sendByPhone(@RequestParam(value = "sphone") String sphone) {
 
-        Map<String, Boolean> map = new HashMap<>();
+        Map map = new HashMap();
         if (sphone.equals("") || sphone == null) {
 
             map.put(ConstantStr.STATUS, false);
+            map.put(ConstantStr.MESSAGE, ConstantException.args_error_message);
             return map;
         }
         boolean isExistPhone = permissService.selectByPhone(sphone, request);
@@ -62,6 +64,7 @@ public class VaildateController extends BaseController {
             String smsCode = ToolSendSms.sendSMS(sphone);//发送短信
             if (smsCode == null) {
                 map.put(ConstantStr.STATUS, false);
+                map.put(ConstantStr.MESSAGE, ConstantException.exception_message);
             } else {
                 session.setAttribute(ConstantStr.SMSCODE, smsCode);
                 map.put(ConstantStr.STATUS, true);
@@ -69,6 +72,7 @@ public class VaildateController extends BaseController {
 
         } else {
             map.put(ConstantStr.STATUS, false);
+            map.put(ConstantStr.MESSAGE, ConstantException.no_data_message);
         }
 
         return map;
@@ -83,9 +87,10 @@ public class VaildateController extends BaseController {
     @RequestMapping(value = "/sendemailcode", method = RequestMethod.GET)
     @ResponseBody
     public Map sendByEmail(@RequestParam(value = "semail") String semail) {
-        Map<String, Boolean> map = new HashMap<>();
+        Map map = new HashMap();
         if (semail == null || semail.equals("")) {
             map.put(ConstantStr.STATUS, false);
+            map.put(ConstantStr.MESSAGE, ConstantException.args_error_message);
             return map;
         }
         if (permissService.selectByEamil(semail, session)) { //判断邮箱是否存在于数据库
@@ -95,10 +100,12 @@ public class VaildateController extends BaseController {
                 map.put(ConstantStr.STATUS, true);
             } else {
                 map.put(ConstantStr.STATUS, false);
+                map.put(ConstantStr.MESSAGE, ConstantException.exception_message);
             }
 
         } else {
             map.put(ConstantStr.STATUS, false);
+            map.put(ConstantStr.MESSAGE, ConstantException.no_data_message);
         }
 
         return map;
