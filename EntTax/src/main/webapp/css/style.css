@@ -2330,7 +2330,7 @@ ul.inbox-pagination li {
 /*profile*/
 
 .profile-nav .user-heading {
-    background: #ff766c;
+    background: #5bc0de;
     color: #fff;
     border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
@@ -2423,7 +2423,7 @@ ul.inbox-pagination li {
 }
 
 .bio-graph-heading {
-    background: #41cac0;
+    background: #5bc0de;
     color: #fff;
     text-align: center;
     font-style: italic;
