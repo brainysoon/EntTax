@@ -147,8 +147,9 @@
 
                         <ul class="nav nav-pills nav-stacked">
                             <li><a href="profile.html"> <i class="icon-user"></i>个人信息</a></li>
-                            <li class="active"><a href="profile_edit.html"> <i class="icon-edit"></i>修改信息</a></li>
-                            <li><a href="personal_security.html"> <i class="icon-warning-sign"></i>安全中心</a></li>
+                            <li><a href="profile_edit.html"> <i class="icon-edit"></i>修改信息</a></li>
+                            <li class="active"><a href="personal_security.html"> <i
+                                    class="icon-warning-sign"></i>安全中心</a></li>
                         </ul>
 
                     </section>
@@ -156,51 +157,53 @@
                 <aside class="profile-info col-lg-9">
                     <section class="panel">
                         <div class="bio-graph-heading">
-                            修改个人信息
+                            孙晓聪 的个人信息
                         </div>
                         <div class="panel-body bio-graph-info">
-                            <h1>修改基本信息</h1>
-                            <form class="form-horizontal" role="form">
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">姓名</label>
-                                    <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="f-name" placeholder="姓名">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">性别</label>
-                                    <div class="col-lg-6">
-                                        <div class="row col-xs-8">
-                                            <div class="col-xs-4">
-                                                <input type="radio" name="ssex" class="radio-inline" value="男">男
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <input type="radio" name="ssex" class="radio-inline" value="女">女
-                                            </div>
+                            <div class="panel">
+                                <h1>安全验证</h1>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <span class="label label-success">手机验证号码</span>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <span class="text-info">13166956701</span>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <button type="button" class="btn btn-danger btn-primary btn-sm"><i
+                                                    class="icon-edit-sign"></i>修改号码
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <span class="label label-success">邮箱验证号码</span>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <span class="text-info">brainysoon@163.com</span>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <button type="button" class="btn btn-danger btn-primary btn-sm"><i
+                                                    class="icon-edit-sign"></i>修改邮箱
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h1>修改密码</h1>
+                                <div class="panel-body">
 
-                                    <label class="col-lg-2 control-label">出生日期</label>
-                                    <div class="col-lg-10">
-                                        <input type="date" class="dataTables_info">
-                                    </div>
+                                    <button type="button" class="btn btn-primary btn-success">验证手机重置密码</button>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">详细地址</label>
-                                    <div class="col-lg-10">
-                                        <textarea name="" id="" class="form-control" cols="20" rows="3"
-                                                  placeholder="请输入你的详细地址"></textarea>
-                                    </div>
+                                <div class="panel-body">
+
+                                    <button type="button" class="btn btn-primary btn-success">验证邮箱重置密码</button>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-lg-offset-2 col-lg-10">
-                                        <button type="submit" class="btn btn-success">保存修改</button>
-                                        <button type="button" class="btn btn-default">取消</button>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </section>
                 </aside>
