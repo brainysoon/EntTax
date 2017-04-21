@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
@@ -84,7 +84,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="../../img/avatar-mini4.jpg">
-                        <span class="username">孙晓聪</span>
+                        <span class="username" th:text="${staff.sname}"></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
@@ -141,14 +141,15 @@
                             <a href="#">
                                 <img src="../../img/profile-avatar.jpg" alt="">
                             </a>
-                            <h1>孙晓聪</h1>
-                            <p>brainysoon@163.com</p>
+                            <h1><span th:text="${staff.sname}"></span></h1>
+                            <p th:if="${staff.smark}==1">账户已激活</p>
+                            <p th:if="${staff.smark}==0">账户未激活</p>
                         </div>
 
                         <ul class="nav nav-pills nav-stacked">
-                            <li><a href="profile.html"> <i class="icon-user"></i>个人信息</a></li>
-                            <li class="active"><a href="profile_edit.html"> <i class="icon-edit"></i>修改信息</a></li>
-                            <li><a href="personal_security.html"> <i class="icon-warning-sign"></i>安全中心</a></li>
+                            <li><a th:href="@{/user/showprofile}"> <i class="icon-user"></i>个人信息</a></li>
+                            <li class="active"><a> <i class="icon-edit"></i>修改信息</a></li>
+                            <li><a th:href="@{/user/personalsecurity}"> <i class="icon-warning-sign"></i>安全中心</a></li>
                         </ul>
 
                     </section>
@@ -164,18 +165,26 @@
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">姓名</label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="f-name" placeholder="姓名">
+                                        <input type="text" class="form-control" id="f-name" th:value="${staff.sname}" placeholder="姓名">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">性别</label>
                                     <div class="col-lg-6">
-                                        <div class="row col-xs-8">
+                                        <div class="row col-xs-8" th:if="${staff.ssex}==true">
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex" class="radio-inline" value="男">男
+                                                <input type="radio" name="ssex"  checked="checked" class="radio-inline" value="男">男
                                             </div>
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex" class="radio-inline" value="女">女
+                                                <input type="radio" name="ssex"  class="radio-inline" value="女">女
+                                            </div>
+                                        </div>
+                                        <div class="row col-xs-8" th:if="${staff.ssex}==false">
+                                            <div class="col-xs-4">
+                                                <input type="radio" name="ssex"  class="radio-inline" value="男">男
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <input type="radio" name="ssex" checked="checked"  class="radio-inline" value="女">女
                                             </div>
                                         </div>
                                     </div>
@@ -184,14 +193,16 @@
 
                                     <label class="col-lg-2 control-label">出生日期</label>
                                     <div class="col-lg-10">
-                                        <input type="date" class="dataTables_info">
+                                        <input type="date" class="dataTables_info" th:value="${toStringBirthday}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">详细地址</label>
-                                    <div class="col-lg-10">
-                                        <textarea name="" id="" class="form-control" cols="20" rows="3"
-                                                  placeholder="请输入你的详细地址"></textarea>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" th:value="${staff.saddress}" placeholder="请输入你的详细地址" >
+                                        <!--<textarea name="" id="" class="form-control" cols="20" rows="3"  placeholder="请输入你的详细地址" >-->
+                                            <!--<span th:text="${staff.saddress}"></span>-->
+                                        <!--</textarea>-->
                                     </div>
                                 </div>
                                 <div class="form-group">

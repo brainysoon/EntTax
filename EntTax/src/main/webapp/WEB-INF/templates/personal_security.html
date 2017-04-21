@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
@@ -84,7 +84,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="../../img/avatar-mini4.jpg">
-                        <span class="username">孙晓聪</span>
+                        <span class="username" th:text="${staff.sname}"></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
@@ -141,14 +141,15 @@
                             <a href="#">
                                 <img src="../../img/profile-avatar.jpg" alt="">
                             </a>
-                            <h1>孙晓聪</h1>
-                            <p>brainysoon@163.com</p>
+                            <h1><span th:text="${staff.sname}"></span></h1>
+                            <p th:if="${staff.smark}==1">账户已激活</p>
+                            <p th:if="${staff.smark}==0">账户未激活</p>
                         </div>
 
                         <ul class="nav nav-pills nav-stacked">
-                            <li><a href="profile.html"> <i class="icon-user"></i>个人信息</a></li>
-                            <li><a href="profile_edit.html"> <i class="icon-edit"></i>修改信息</a></li>
-                            <li class="active"><a href="personal_security.html"> <i
+                            <li><a th:href="@{/user/showprofile}"> <i class="icon-user"></i>个人信息</a></li>
+                            <li><a th:href="@{/user/profile_edit}"> <i class="icon-edit"></i>修改信息</a></li>
+                            <li class="active"><a> <i
                                     class="icon-warning-sign"></i>安全中心</a></li>
                         </ul>
 
@@ -157,7 +158,7 @@
                 <aside class="profile-info col-lg-9">
                     <section class="panel">
                         <div class="bio-graph-heading">
-                            孙晓聪 的个人信息
+                           <span th:text="${staff.sname}"></span> 的个人信息
                         </div>
                         <div class="panel-body bio-graph-info">
                             <div class="panel">

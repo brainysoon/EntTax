@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="brainy">
     <meta name="keyword" content="EntTax">
-    <link rel="shortcut icon" href="../../img/favicon.icon">
+    <link rel="shortcut icon" th:href="@{/img/favicon.icon}" href="../../img/favicon.icon">
 
     <title>企业增值税发票数据分析系统</title>
 
@@ -84,12 +84,12 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="../../img/avatar-mini4.jpg">
-                        <span class="username">孙晓聪</span>
+                        <span class="username" th:text="${staff.sname}"></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
-                        <li><a href="#"><i class="icon-user"></i>个人资料</a></li>
+                        <li><a th:href="@{/user/showprofile.from}" href="#"><i class="icon-user"></i>个人资料</a></li>
                         <li><a href="#"><i class="icon-cog"></i>个人设置</a></li>
                         <li><a href="#"><i class="icon-bell-alt"></i>消息通知</a></li>
                         <li><a href="login.html"><i class="icon-signout"></i>退出登录</a></li>

@@ -84,6 +84,16 @@ public interface ConstantStr {
      */
     String PHONE="phone";
 
+    /**
+     * birthday 生日
+     */
+    String TOSTRINGBIRTHDAY="toStringBirthday";
+
+    /**
+     * enter 入职时间
+     */
+    String TOSTRINGENTER="toStringEnter";
+
     /** session失效时间 **/
     String SESSION_INVALID_TIME = "SESSION_INVALID_TIME";
 

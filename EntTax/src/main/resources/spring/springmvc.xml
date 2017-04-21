@@ -41,14 +41,14 @@
         <property name="order" value="0"/>
     </bean>
 
-    <!--用于支持Servlet、JSP视图解析-->
-    <bean id="viewResolver"
-          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/"/>
-        <property name="suffix" value=".jsp"/>
-        <property name="order" value="1"/>
-    </bean>
+    <!--&lt;!&ndash;用于支持Servlet、JSP视图解析&ndash;&gt;-->
+    <!--<bean id="viewResolver"-->
+          <!--class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
+        <!--<property name="prefix" value="/"/>-->
+        <!--<property name="suffix" value=".jsp"/>-->
+        <!--<property name="order" value="1"/>-->
+    <!--</bean>-->
 
     <!-- 文件解析器 -->
     <bean id="multipartResolver"

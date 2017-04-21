@@ -99,4 +99,20 @@ public class NavigatController extends BaseController {
 
         return "login";
     }
+
+    /**
+     * 个人安全信息页面
+     * @return
+     */
+    @RequestMapping(value = "/user/personalsecurity" ,method = RequestMethod.GET)
+    public String toPersoanlSecurity(Model model){
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        model.addAttribute(ConstantStr.STAFFINFO, staff);
+        return "personal_security";
+    }
+    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    public String index(){
+
+        return "index";
+    }
 }

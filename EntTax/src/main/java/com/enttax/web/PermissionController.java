@@ -6,6 +6,7 @@ import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.Encodes;
 import com.enttax.util.tools.FileUploadUtil;
+import com.enttax.util.tools.ToolDates;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -59,6 +60,34 @@ public class PermissionController extends BaseController {
         }
     }
 
+    /**
+     * 显示个人信息
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/showprofile", method = RequestMethod.GET)
+    public String showProfile(Model model) {
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        if (staff == null) {
+            return "login";
+        }
+        model.addAttribute(ConstantStr.STAFFINFO, staff);
+        String birthday=ToolDates.formatDate(staff.getSbirthday());//将日期转换为yyyy-MM-dd形式
+        String enter=ToolDates.formatDate(staff.getSenter());
+        model.addAttribute(ConstantStr.TOSTRINGBIRTHDAY,birthday);
+        model.addAttribute(ConstantStr.TOSTRINGENTER,enter);
+
+        return "profile";
+    }
+
+    @RequestMapping(value = "profile_edit", method = RequestMethod.GET)
+    public String editProfile(Model model){
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        String birthday=ToolDates.formatDate(staff.getSbirthday());
+        model.addAttribute(ConstantStr.STAFFINFO, staff);
+        model.addAttribute(ConstantStr.TOSTRINGBIRTHDAY,birthday);
+        return "profile_edit";
+    }
 
     /**
      * 更新个人信息
@@ -196,7 +225,9 @@ public class PermissionController extends BaseController {
         try {
             subject.login(token);
             if (subject.isAuthenticated()) {
+                Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
                 model.addAttribute(ConstantStr.STATUS, ConstantException.sucess_code);
+                model.addAttribute(ConstantStr.STAFFINFO,staff);
                 return "index";
             }
         } catch (IncorrectCredentialsException e) {
