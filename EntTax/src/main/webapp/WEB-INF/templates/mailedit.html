@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="enttax">
+    <meta name="author" content="brainy">
+    <meta name="keyword" content="EntTax">
+    <link rel="shortcut icon" th:href="@{/img/favicon.html}" href="../../img/favicon.html">
+
+    <title>修改绑定邮箱</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-reset.css}" href="../../css/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+    <link th:href="@{/assets/font-awesome/css/font-awesome.css}" href="../../assets/font-awesome/css/font-awesome.css"
+          rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
+    <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
+
+    <!--Jquery-->
+    <script th:src="@{/js/jquery-1.8.3.min.js}" src="../../js/jquery-1.8.3.min.js"></script>
+    <!--Jquery Validate-->
+    <script th:src="@{/js/jquery.validate.min.js}" src="../../js/jquery.validate.min.js"></script>
+    <!--Custom Validate-->
+    <script th:src="@{/js/custom-validate.js}" src="../../js/custom-validate.js"></script>
+    <!--Custom Function-->
+    <script th:src="@{/js/custom-function.js}" src="../../js/custom-function.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
+    <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="login-body">
+
+<div class="container">
+    <!-- page start-->
+    <form class="form-signin" id="email_reset" th:action="@{/user/updatepassword}" method="post">
+        <h2 class="wrapper-forget-heading">修改绑定邮箱</h2>
+        <div class="login-wrap">
+            <div class="form-group has-success">
+                <input type="text" name="semail" id="semail" class="form-control" placeholder="新邮箱" autofocus>
+                <p class="help-block"></p>
+            </div>
+            <div class="form-group has-success">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <input type="text" name="code" id="code" class="form-control" placeholder="验证码">
+                        <p class="help-block"></p>
+                    </div>
+                    <div class="col-xs-6">
+                        <button type="button" id="sendcode" class="btn btn-success" onclick="sendEMailCode()">发送邮件验证码
+                        </button>
+                    </div>
+                </div>
+                <p id="message"></p>
+            </div>
+            <input type="submit" class="btn btn-info btn-lg btn-block" value="提交修改"/>
+            <h4 class="help-block text-danger text-center" th:text="${message}"></h4>
+        </div>
+    </form>
+    <!-- page end-->
+</div>
+<!--end of container-->
+</body>
+</html>

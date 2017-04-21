@@ -138,9 +138,11 @@
                 <aside class="profile-nav col-lg-3">
                     <section class="panel">
                         <div class="user-heading round">
-                            <a href="#">
+                            <a href="#" data-toggle="modal"
+                               data-target="#cropAvatar">
                                 <img src="../../img/profile-avatar.jpg" alt="">
                             </a>
+                            <p id="help_avatar" class="help-block">点击更换头像</p>
                             <h1><span th:text="${staff.sname}"></span></h1>
                             <p th:if="${staff.smark}==1">账户已激活</p>
                             <p th:if="${staff.smark}==0">账户未激活</p>
@@ -161,11 +163,14 @@
                         </div>
                         <div class="panel-body bio-graph-info">
                             <h1>修改基本信息</h1>
-                            <form class="form-horizontal" role="form" th:action="@{/user/updateprofile.from}" method="post">
+                            <form class="form-horizontal" role="form" th:action="@{/user/updateprofile.from}"
+                                  method="post" id="profile_edit">
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">姓名</label>
-                                    <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="sname" id="f-name" th:value="${staff.sname}" placeholder="姓名">
+                                    <div class="col-lg-6 has-success">
+                                        <input type="text" class="form-control" name="sname" id="sname"
+                                               th:value="${staff.sname}" placeholder="姓名">
+                                        <p class="help-block"></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -173,18 +178,20 @@
                                     <div class="col-lg-6">
                                         <div class="row col-xs-8" th:if="${staff.ssex}==true">
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex"  checked="checked" class="radio-inline" value="true">男
+                                                <input type="radio" name="ssex" checked="checked" class="radio-inline"
+                                                       value="true">男
                                             </div>
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex"  class="radio-inline" value="false">女
+                                                <input type="radio" name="ssex" class="radio-inline" value="false">女
                                             </div>
                                         </div>
                                         <div class="row col-xs-8" th:if="${staff.ssex}==false">
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex"  class="radio-inline" value="true">男
+                                                <input type="radio" name="ssex" class="radio-inline" value="true">男
                                             </div>
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex" checked="checked"  class="radio-inline" value="false">女
+                                                <input type="radio" name="ssex" checked="checked" class="radio-inline"
+                                                       value="false">女
                                             </div>
                                         </div>
                                     </div>
@@ -192,18 +199,19 @@
                                 <div class="form-group">
 
                                     <label class="col-lg-2 control-label">出生日期</label>
-                                    <div class="col-lg-10">
-                                        <input type="date" name="sbirthday" class="dataTables_info" th:value="${toStringBirthday}">
+                                    <div class="col-lg-6">
+                                        <input type="date" name="sbirthday" class="dataTables_info"
+                                               th:value="${toStringBirthday}" dataformatas="yyyy-mm-dd"
+                                               value="1994-01-15">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">详细地址</label>
-                                    <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="saddress" th:value="${staff.saddress}"
-                                               placeholder="请输入你的详细地址" >
-                                        <!--<textarea name="" id="" class="form-control" cols="20" rows="3"  placeholder="请输入你的详细地址" >-->
-                                            <!--<span th:text="${staff.saddress}"></span>-->
-                                        <!--</textarea>-->
+                                    <div class="col-lg-6 has-success">
+                                        <input type="text" class="form-control" name="saddress"
+                                               th:value="${staff.saddress}"
+                                               placeholder="请输入你的详细地址">
+                                        <p class="help-block"></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -225,6 +233,47 @@
     <!--main content end-->
 </section>
 
+<!-- Modal -->
+<div class="modal fade" id="cropAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">剪切头像</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="imageBox col-xs-7">
+                        <div class="thumbBox"></div>
+                        <div class="spinner" style="display: none">正在加载...</div>
+                    </div>
+                    <div class="cropped col-xs-4"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="new-contentarea tc"><a href="javascript:void(0)" class="upload-img">
+                            <label for="upload-file">选择图片</label>
+                        </a>
+                            <input type="file" class="" name="upload-file" id="upload-file"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <button type="button" id="btnZoomIn" class="btn btn-primary btn-sm"><i class="icon-zoom-in"></i>放大
+                        </button>
+                        <button type="button" id="btnZoomOut" class="btn btn-primary btn-sm"><i
+                                class="icon-zoom-out"></i> 缩小
+                        </button>
+                        <input type="button" id="btnCrop" class="btn btn-primary" value="保存头像">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- js placed at the end of the document so the pages load faster -->
 <script th:src="@{/js/jquery.js}" src="../../js/jquery.js"></script>
 <script th:src="@{/js/jquery-1.8.3.min.js}" src="../../js/jquery-1.8.3.min.js"></script>
@@ -239,6 +288,11 @@
 
 <!--common script for all pages-->
 <script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
+<!--Jquery Validate-->
+<script th:src="@{/js/jquery.validate.min.js}" src="../../js/jquery.validate.min.js"></script>
+<!--Crop js-->
+<script th:src="@{/js/cropbox.js}" src="../../js/cropbox.js"></script>
+
 
 <!--script for this page-->
 <script th:src="@{/js/sparkline-chart.js}" src="../../js/sparkline-chart.js"></script>
@@ -263,6 +317,75 @@
         $('select.styled').customSelect();
     });
 
+    //修改個人信息時候验证
+    $("#profile_edit").validate({
+
+        submitHandler: function (form) {
+
+            //验证成功后提交
+            form.submit();
+        },
+        rules: {
+            sname: {
+                required: true
+            },
+            saddress: {
+                required: true
+            }
+        },
+        messages: {
+            sname: "请输入姓名",
+            saddress: "请输入详细地址"
+        },
+        highlight: function (e) {
+            $(e).closest(".col-lg-6").removeClass("has-success").addClass("has-error");
+        },
+        success: function (e) {
+            $(e).closest(".col-lg-6").removeClass("has-error").addClass("has-success");
+            e.remove();
+        }
+    });
+
+    var cropper;
+
+    $(window).load(function () {
+        var options =
+            {
+                thumbBox: '.thumbBox',
+                spinner: '.spinner',
+                imgSrc: '../../img/avatar1.jpg'
+            }
+        cropper = $('.imageBox').cropbox(options);
+        $('#upload-file').on('change', function () {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                options.imgSrc = e.target.result;
+                cropper = $('.imageBox').cropbox(options);
+
+                changeFontAvatar();
+            }
+            reader.readAsDataURL(this.files[0]);
+//            this.files = [];
+        })
+        $('#btnZoomIn').on('click', function () {
+            cropper.zoomIn();
+        })
+        $('#btnZoomOut').on('click', function () {
+            cropper.zoomOut();
+        })
+        $("#cropAvatar").on('mouseup', changeFontAvatar);
+
+    });
+
+    function changeFontAvatar() {
+
+        var img = cropper.getDataURL();
+
+        var cropped = $('.cropped').html("");
+        cropped.append('<img src="' + img + '" align="absmiddle" style="width:32px;margin-top:4px;border-radius:32px;box-shadow:0px 0px 12px #7E7E7E;" ><p>32px*32px</p>');
+        cropped.append('<img src="' + img + '" align="absmiddle" style="width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;"><p>64px*64px</p>');
+        cropped.append('<img src="' + img + '" align="absmiddle" style="width:96px;margin-top:4px;border-radius:96px;box-shadow:0px 0px 12px #7E7E7E;"><p>96px*96px</p>');
+    }
 </script>
 
 </body>
