@@ -1,6 +1,7 @@
 package com.enttax.service;
 
 import com.enttax.model.Staff;
+import com.enttax.vo.Profile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,11 +27,11 @@ public interface PermissService {
 
     /**
      *  更新个人信息
-     * @param staff
+     * @param profile
      * @return
      */
 
-    int updateStaffInfo(Staff staff);
+    int updateStaffInfo(Profile profile,HttpSession session);
 
     /**
      * 通过用户名查找用户是否存在

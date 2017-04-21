@@ -161,11 +161,11 @@
                         </div>
                         <div class="panel-body bio-graph-info">
                             <h1>修改基本信息</h1>
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" th:action="@{/user/updateprofile.from}" method="post">
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">姓名</label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="f-name" th:value="${staff.sname}" placeholder="姓名">
+                                        <input type="text" class="form-control" name="sname" id="f-name" th:value="${staff.sname}" placeholder="姓名">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -173,18 +173,18 @@
                                     <div class="col-lg-6">
                                         <div class="row col-xs-8" th:if="${staff.ssex}==true">
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex"  checked="checked" class="radio-inline" value="男">男
+                                                <input type="radio" name="ssex"  checked="checked" class="radio-inline" value="true">男
                                             </div>
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex"  class="radio-inline" value="女">女
+                                                <input type="radio" name="ssex"  class="radio-inline" value="false">女
                                             </div>
                                         </div>
                                         <div class="row col-xs-8" th:if="${staff.ssex}==false">
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex"  class="radio-inline" value="男">男
+                                                <input type="radio" name="ssex"  class="radio-inline" value="true">男
                                             </div>
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex" checked="checked"  class="radio-inline" value="女">女
+                                                <input type="radio" name="ssex" checked="checked"  class="radio-inline" value="false">女
                                             </div>
                                         </div>
                                     </div>
@@ -193,13 +193,14 @@
 
                                     <label class="col-lg-2 control-label">出生日期</label>
                                     <div class="col-lg-10">
-                                        <input type="date" class="dataTables_info" th:value="${toStringBirthday}">
+                                        <input type="date" name="sbirthday" class="dataTables_info" th:value="${toStringBirthday}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">详细地址</label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" th:value="${staff.saddress}" placeholder="请输入你的详细地址" >
+                                        <input type="text" class="form-control" name="saddress" th:value="${staff.saddress}"
+                                               placeholder="请输入你的详细地址" >
                                         <!--<textarea name="" id="" class="form-control" cols="20" rows="3"  placeholder="请输入你的详细地址" >-->
                                             <!--<span th:text="${staff.saddress}"></span>-->
                                         <!--</textarea>-->
@@ -210,6 +211,7 @@
                                         <button type="submit" class="btn btn-success">保存修改</button>
                                         <button type="button" class="btn btn-default">取消</button>
                                     </div>
+                                    <h4 class="help-block text-danger text-center" th:text="${message}"></h4>
                                 </div>
                             </form>
                         </div>

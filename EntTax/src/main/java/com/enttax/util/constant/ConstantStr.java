@@ -94,6 +94,16 @@ public interface ConstantStr {
      */
     String TOSTRINGENTER="toStringEnter";
 
+    /**
+     * 字符串男
+     */
+    String STR_SEX_MAN="男";
+
+    /**
+     * 字符串女
+     */
+    String STR_SEX_WOMAN="女";
+
     /** session失效时间 **/
     String SESSION_INVALID_TIME = "SESSION_INVALID_TIME";
 

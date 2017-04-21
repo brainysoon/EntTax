@@ -7,6 +7,7 @@ import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.Encodes;
 import com.enttax.util.tools.FileUploadUtil;
 import com.enttax.util.tools.ToolDates;
+import com.enttax.vo.Profile;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -80,6 +81,11 @@ public class PermissionController extends BaseController {
         return "profile";
     }
 
+    /**
+     * 带着个人信息跳到profile_edit页面
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "profile_edit", method = RequestMethod.GET)
     public String editProfile(Model model){
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
@@ -92,17 +98,23 @@ public class PermissionController extends BaseController {
     /**
      * 更新个人信息
      *
-     * @param staff
+     * @param profile
      * @return
      */
-    @RequestMapping(value = "/updateStaffInfo", method = RequestMethod.POST)
-    public String updateStaffInfo(@ModelAttribute Staff staff) {
-        if (staff.getSid() == null) {
-            return "staffInfo";
+    @RequestMapping(value = "/updateprofile", method = RequestMethod.POST)
+    public String updateStaffInfo(@ModelAttribute Profile profile, Model model) {
+        //先拿到存在session里的staff
+        Staff sessionStaff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        if (sessionStaff.getSid()==null){
+            return "login";
         }
-        staff.setSpassword(Encodes.encodeBase64(staff.getSpassword()));
-        permissService.updateStaffInfo(staff);
-        return "staffInfo";
+        if (permissService.updateStaffInfo(profile, session)>0){
+            model.addAttribute(ConstantStr.MESSAGE,"更改成功！！");
+        }else {
+            model.addAttribute(ConstantStr.MESSAGE,"更改失败！！");
+        }
+
+        return "profile_edit";
     }
 
 
@@ -133,7 +145,7 @@ public class PermissionController extends BaseController {
 
             Staff staff = (Staff) model.asMap().get(ConstantStr.STAFFINFO);
             staff.setSavator(savator);
-            permissService.updateStaffInfo(staff);
+//            permissService.updateStaffInfo(staff);
         } catch (IOException e) {
 
         }
