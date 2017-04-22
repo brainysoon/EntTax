@@ -26,7 +26,12 @@ public interface ConstantStr {
      */
     String SID="sid";
 
-    String  RESOURCEPATH="resources/uploadImages/";
+    String  RESOURCEPATH="/uploadImages/";
+
+    /**
+     * 图片上传路径地址
+     */
+    String IMAGEUPLOADPATH="/home/lcyanxi/uploadImage/";
     /**
      * 生成excel模板的绝对地址
      */

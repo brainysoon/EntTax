@@ -1,22 +1,12 @@
 package com.enttax.util.tools;
 
-import org.apache.commons.lang.StringUtils;
-
 /**
  * Created by lcyanxi on 17-4-21.
  */
-public enum  EnumSex {
-    male, female;
+public class EnumSex {
 
-    public static String parseSex(int sex){
-        EnumSex[] enumSex = values();
-        switch (enumSex[sex]){
-            case male:
-                return "男";
-            case female:
-                return "女";
-            default:
-                return StringUtils.EMPTY;
-        }
+    public static Boolean ToSex(String sex){
+        return "男".equals(sex)?true:false;
     }
+
 }

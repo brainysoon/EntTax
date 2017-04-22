@@ -7,8 +7,8 @@ import java.util.Date;
  */
 public class Profile {
     private String sname;
-    private boolean ssex;
-    private Date sbirthday;
+    private String  ssex;
+    private String  sbirthday;
     private String saddress;
 
     public String getSname() {
@@ -19,19 +19,19 @@ public class Profile {
         this.sname = sname;
     }
 
-    public boolean isSsex() {
+    public String getSsex() {
         return ssex;
     }
 
-    public void setSsex(boolean ssex) {
+    public void setSsex(String ssex) {
         this.ssex = ssex;
     }
 
-    public Date getSbirthday() {
+    public String getSbirthday() {
         return sbirthday;
     }
 
-    public void setSbirthday(Date sbirthday) {
+    public void setSbirthday(String sbirthday) {
         this.sbirthday = sbirthday;
     }
 

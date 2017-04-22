@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by lcyanxi on 17-3-19.
@@ -102,17 +101,31 @@ public class NavigatController extends BaseController {
 
     /**
      * 个人安全信息页面
+     *
      * @return
      */
-    @RequestMapping(value = "/user/personalsecurity" ,method = RequestMethod.GET)
-    public String toPersoanlSecurity(Model model){
+    @RequestMapping(value = "/user/personalsecurity", method = RequestMethod.GET)
+    public String toPersoanlSecurity(Model model) {
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
         model.addAttribute(ConstantStr.STAFFINFO, staff);
         return "personal_security";
     }
-    @RequestMapping(value = "/index",method = RequestMethod.GET)
-    public String index(){
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index() {
 
         return "index";
+    }
+
+    @RequestMapping(value = "/user/phoneedit", method = RequestMethod.GET)
+    public String toPhoneEdit() {
+
+        return "phoneedit";
+    }
+
+    @RequestMapping(value = "/user/mailedit", method = RequestMethod.GET)
+    public String toMailEdit() {
+
+        return "mailedit";
     }
 }

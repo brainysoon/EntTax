@@ -79,6 +79,34 @@ public class VaildateController extends BaseController {
     }
 
     /**
+     * 只发送短信验证码，不去数据检查后台数据是否存在该电话号码
+     * @param sphone
+     * @return
+     */
+    @RequestMapping(value = "/sendsmscodetoupdate")
+    @ResponseBody
+    public Map sendByPhoneToUpdate(@RequestParam(value = "sphone") String sphone){
+
+        Map map = new HashMap();
+        if (sphone.equals("") || sphone == null) {
+            map.put(ConstantStr.STATUS, false);
+            map.put(ConstantStr.MESSAGE, ConstantException.args_error_message);
+            return map;
+        }
+            String smsCode = ToolSendSms.sendSMS(sphone);//发送短信
+            if (smsCode == null) {
+                map.put(ConstantStr.STATUS, false);
+                map.put(ConstantStr.MESSAGE, ConstantException.exception_message);
+            } else {
+                session.setAttribute(ConstantStr.SMSCODE, smsCode);
+                map.put(ConstantStr.STATUS, true);
+            }
+
+
+        return map;
+    }
+
+    /**
      * 检查 email 是否存在,存在则发送邮箱验证码
      *
      * @param semail
@@ -109,6 +137,32 @@ public class VaildateController extends BaseController {
         }
 
         return map;
+    }
+
+    /**
+     * 只发送邮箱验证码，不去验证码数据是否存在
+     * @param semail
+     * @return
+     */
+    @RequestMapping(value = "/sendemailcodetoupdate")
+    @ResponseBody
+    public Map sendByEmailToUpdate(@RequestParam(value = "semail") String semail){
+        Map map = new HashMap();
+        if (semail == null || semail.equals("")) {
+            map.put(ConstantStr.STATUS, false);
+            map.put(ConstantStr.MESSAGE, ConstantException.args_error_message);
+            return map;
+        }
+        String eamilCode = SendEmail.sendEmail(semail);     //发送邮箱验证码
+        if (eamilCode != null) {    //判断是否拿到邮箱验证码
+            session.setAttribute(ConstantStr.EMAILCODE, eamilCode);
+            map.put(ConstantStr.STATUS, true);
+        } else {
+            map.put(ConstantStr.STATUS, false);
+            map.put(ConstantStr.MESSAGE, ConstantException.exception_message);
+        }
+        return map;
+
     }
 
     /**

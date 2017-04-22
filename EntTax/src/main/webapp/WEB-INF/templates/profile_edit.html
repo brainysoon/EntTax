@@ -83,7 +83,7 @@
                 <!-- user login dropdown start-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" src="../../img/avatar-mini4.jpg">
+                        <img alt="" th:src="${staff.savator}"  width="35" height="35"  src="../../img/avatar-mini4.jpg">
                         <span class="username" th:text="${staff.sname}"></span>
                         <b class="caret"></b>
                     </a>
@@ -140,7 +140,7 @@
                         <div class="user-heading round">
                             <a href="#" data-toggle="modal"
                                data-target="#cropAvatar">
-                                <img src="../../img/profile-avatar.jpg" alt="">
+                                <img th:attr="src=${staff.savator}" src="../../img/profile-avatar.jpg" alt="">
                             </a>
                             <p id="help_avatar" class="help-block">点击更换头像</p>
                             <h1><span th:text="${staff.sname}"></span></h1>
@@ -179,19 +179,19 @@
                                         <div class="row col-xs-8" th:if="${staff.ssex}==true">
                                             <div class="col-xs-4">
                                                 <input type="radio" name="ssex" checked="checked" class="radio-inline"
-                                                       value="true">男
+                                                       value="男">男
                                             </div>
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex" class="radio-inline" value="false">女
+                                                <input type="radio" name="ssex" class="radio-inline" value="女">女
                                             </div>
                                         </div>
                                         <div class="row col-xs-8" th:if="${staff.ssex}==false">
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex" class="radio-inline" value="true">男
+                                                <input type="radio" name="ssex" class="radio-inline" value="男">男
                                             </div>
                                             <div class="col-xs-4">
                                                 <input type="radio" name="ssex" checked="checked" class="radio-inline"
-                                                       value="false">女
+                                                       value="女">女
                                             </div>
                                         </div>
                                     </div>
@@ -208,8 +208,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">详细地址</label>
                                     <div class="col-lg-6 has-success">
-                                        <input type="text" class="form-control" name="saddress"
-                                               th:value="${staff.saddress}"
+                                        <input type="text" class="form-control" name="saddress" th:value="${staff.saddress}"
                                                placeholder="请输入你的详细地址">
                                         <p class="help-block"></p>
                                     </div>
@@ -252,23 +251,26 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="new-contentarea tc"><a href="javascript:void(0)" class="upload-img">
-                            <label for="upload-file">选择图片</label>
-                        </a>
-                            <input type="file" class="" name="upload-file" id="upload-file"/>
+                <form th:action="@{/user/updateimage.from}" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="new-contentarea tc"><a href="javascript:void(0)" class="upload-img">
+                                <label for="upload-file">选择图片</label>
+                            </a>
+                                <input type="file" class="" name="upload-file" id="upload-file"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <button type="button" id="btnZoomIn" class="btn btn-primary btn-sm"><i
+                                    class="icon-zoom-in"></i>放大
+                            </button>
+                            <button type="button" id="btnZoomOut" class="btn btn-primary btn-sm"><i
+                                    class="icon-zoom-out"></i> 缩小
+                            </button>
+                            <input type="submit" id="btnCrop" class="btn btn-primary" value="保存头像">
                         </div>
                     </div>
-                    <div class="col-xs-6">
-                        <button type="button" id="btnZoomIn" class="btn btn-primary btn-sm"><i class="icon-zoom-in"></i>放大
-                        </button>
-                        <button type="button" id="btnZoomOut" class="btn btn-primary btn-sm"><i
-                                class="icon-zoom-out"></i> 缩小
-                        </button>
-                        <input type="button" id="btnCrop" class="btn btn-primary" value="保存头像">
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

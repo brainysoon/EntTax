@@ -56,6 +56,16 @@ public interface PermissService {
      */
     boolean updateToPassword(String sid,String newPassword);
 
+    /**
+     * 更新用户信息（用于更新phone和email）
+     * @param staff
+     * @return
+     */
+    int updateStaff(Staff staff);
+
+    int updateHeadImage(String realPath,HttpSession session);
+
+
     Staff selectByUserName(String username);
 
 }

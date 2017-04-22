@@ -50,6 +50,7 @@
         <!--<property name="order" value="1"/>-->
     <!--</bean>-->
 
+
     <!-- 文件解析器 -->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -59,5 +60,6 @@
         <property name="maxUploadSize" value="10485760000"/>
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960"/>
+        <property name="uploadTempDir" value="uploadImages"/>
     </bean>
 </beans>

@@ -33,7 +33,7 @@ public class Staff {
 
     private String saddress;
 
-    private String savator;
+        private String savator;
 
     private List<Role> roles;
 

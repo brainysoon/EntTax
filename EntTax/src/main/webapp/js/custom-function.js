@@ -17,7 +17,7 @@ function sendSmsCode() {
 
     //Ajax 请求服务器发送短信验证码
     $.ajax({
-        url: "/sendsmscode",
+        url: "/sendsmscodetoupdate",
         type: "GET",
         async: true,           //关闭异步，这儿需要同步
         data: {
@@ -91,7 +91,7 @@ function sendEMailCode() {
 
     //Ajax 请求服务器发送邮箱验证码
     $.ajax({
-        url: "/sendemailcode",
+        url: "/sendemailcodetoupdate",
         type: "GET",
         async: true,
         data: {
