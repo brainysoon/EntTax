@@ -34,13 +34,13 @@ public class FileUploadUtil {
                 String fileName = rename(imageFile.getOriginalFilename());
                 int end = fileName.lastIndexOf(".");
                 String saveName = fileName.substring(0, end);
-                File dir = new File(realPath + ConstantStr.RESOURCEPATH);
+                File dir = new File(realPath);
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
-                File file = new File(dir, saveName + "_src.jpg");
+                File file = new File(dir, saveName + "_src.png");
                 imageFile.transferTo(file);
-                return ConstantStr.RESOURCEPATH  + saveName+"_src.jpg";
+                return   saveName+"_src.png";
             }
 
 

@@ -85,7 +85,7 @@
                 <!--th:attr="src=${staff.savator}"-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" th:attr="src=${staff.savator}"  src="../../img/avatar-mini4.jpg">
+                        <img alt="" th:src="'http://localhost/'+ ${staff.savator}" width="35" height="35"  src="../../img/avatar-mini4.jpg">
                         <span class="username" th:text="${staff.sname}"></span>
                         <b class="caret"></b>
                     </a>
