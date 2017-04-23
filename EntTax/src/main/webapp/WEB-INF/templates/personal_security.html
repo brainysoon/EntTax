@@ -83,7 +83,7 @@
                 <!-- user login dropdown start-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" th:src="${staff.savator}" width="35" height="35"  src="../../img/avatar-mini4.jpg">
+                        <img alt="" th:src="'http://localhost/'+ ${staff.savator}" width="35" height="35"  src="../../img/avatar-mini4.jpg">
                         <span class="username" th:text="${staff.sname}"></span>
                         <b class="caret"></b>
                     </a>
@@ -139,7 +139,7 @@
                     <section class="panel">
                         <div class="user-heading round">
                             <a href="#">
-                                <img th:src="${staff.savator}" src="../../img/profile-avatar.jpg" alt="">
+                                <img th:src="'http://localhost/'+ ${staff.savator}" src="../../img/profile-avatar.jpg" alt="">
                             </a>
                             <h1><span th:text="${staff.sname}"></span></h1>
                             <p th:if="${staff.smark}==1">账户已激活</p>

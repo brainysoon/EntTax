@@ -16,10 +16,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -185,12 +182,13 @@ public class PermissionController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/updateimage", method = RequestMethod.POST)
-    public String uploadHeadImage(
-            @RequestParam(value = "upload-file") MultipartFile imageFile, Model model) {
-        String realPath = session.getServletContext().getRealPath("/");
+    public String uploadHeadImage(@RequestParam(value = "uploadfile") MultipartFile imageFile,
+                                  Model model) {
+//        String realPath = session.getServletContext().getRealPath("/");
         try {
             //把头像存在文件夹里  数据库存头像的地址
-            String savatorPath = FileUploadUtil.uploadHeadImage(realPath, imageFile);
+//            String savatorPath = FileUploadUtil.uploadHeadImage(realPath, imageFile);
+            String savatorPath = FileUploadUtil.uploadHeadImage(ConstantStr.IMAGEUPLOADPATH, imageFile);
             System.out.println("savatorPath:"+savatorPath);
             if (savatorPath != null) {    //判断文件是否存在文件夹里
                 //判断数据库是否更新了头像路劲
@@ -206,6 +204,28 @@ public class PermissionController extends BaseController {
         model.addAttribute(ConstantStr.MESSAGE, "头像更改失败！！");
         model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
         return "profile_edit";
+    }
+
+    @RequestMapping(value = "/updateavator",method = RequestMethod.POST)
+    @ResponseBody
+    public Map updateAvator(@RequestParam(value = "uploadfile") MultipartFile imageFile){
+        Map map =new HashMap();
+        try {
+            //把头像存在文件夹里  数据库存头像的地址
+            String savatorPath = FileUploadUtil.uploadHeadImage(ConstantStr.IMAGEUPLOADPATH, imageFile);
+            System.out.println("savatorPath:"+savatorPath);
+            if (savatorPath != null) {    //判断文件是否存在文件夹里
+                //判断数据库是否更新了头像路劲
+                if (permissService.updateHeadImage(savatorPath, session) > 0) {
+                    map.put(ConstantStr.STATUS,ConstantStr.str_one);
+                    return map;
+                }
+            }
+        } catch (IOException e) {
+            logger.info("uploadHeadImage 出现"+e+"异常");
+        }
+        map.put(ConstantStr.MESSAGE,"头像更改失败！！");
+        return map;
     }
 
 

@@ -83,7 +83,8 @@
                 <!-- user login dropdown start-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" th:src="${staff.savator}"  width="35" height="35"  src="../../img/avatar-mini4.jpg">
+                        <img alt="" th:src="'http://localhost/'+ ${staff.savator}" width="35" height="35"
+                             src="../../img/avatar-mini4.jpg">
                         <span class="username" th:text="${staff.sname}"></span>
                         <b class="caret"></b>
                     </a>
@@ -140,7 +141,7 @@
                         <div class="user-heading round">
                             <a href="#" data-toggle="modal"
                                data-target="#cropAvatar">
-                                <img th:attr="src=${staff.savator}" src="../../img/profile-avatar.jpg" alt="">
+                                <img th:src="'http://localhost/'+ ${staff.savator}" src="http://www.coolbhu.cn/lcyanxi.jpg" alt="">
                             </a>
                             <p id="help_avatar" class="help-block">点击更换头像</p>
                             <h1><span th:text="${staff.sname}"></span></h1>
@@ -208,7 +209,8 @@
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">详细地址</label>
                                     <div class="col-lg-6 has-success">
-                                        <input type="text" class="form-control" name="saddress" th:value="${staff.saddress}"
+                                        <input type="text" class="form-control" name="saddress"
+                                               th:value="${staff.saddress}"
                                                placeholder="请输入你的详细地址">
                                         <p class="help-block"></p>
                                     </div>
@@ -251,7 +253,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <form th:action="@{/user/updateimage.from}" method="post" enctype="multipart/form-data">
+                <form>
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="new-contentarea tc"><a href="javascript:void(0)" class="upload-img">
@@ -267,7 +269,7 @@
                             <button type="button" id="btnZoomOut" class="btn btn-primary btn-sm"><i
                                     class="icon-zoom-out"></i> 缩小
                             </button>
-                            <input type="submit" id="btnCrop" class="btn btn-primary" value="保存头像">
+                            <input type="button" id="btnCrop" class="btn btn-primary" value="保存头像">
                         </div>
                     </div>
                 </form>
@@ -388,6 +390,18 @@
         cropped.append('<img src="' + img + '" align="absmiddle" style="width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;"><p>64px*64px</p>');
         cropped.append('<img src="' + img + '" align="absmiddle" style="width:96px;margin-top:4px;border-radius:96px;box-shadow:0px 0px 12px #7E7E7E;"><p>96px*96px</p>');
     }
+
+    //提交剪切过后的头像
+    $('#btnCrop').click(function () {
+        //使用ajax发送
+        var fd = new FormData();
+        fd.append("uploadfile", cropper.getBlob(), "image.png");
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/user/updateavator', true);
+        xhr.send(fd);
+    });
+
+
 </script>
 
 </body>
