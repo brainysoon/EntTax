@@ -29,7 +29,7 @@ public interface ConstantStr {
     /**
      * 图片上传的域名前缀
      */
-    String IMAGE_UPLOAD_DOMAIN = "http://www.localhost/";
+    String IMAGE_UPLOAD_DOMAIN = "http://localhost/";
 
     /**
      * 图片上传路径地址
