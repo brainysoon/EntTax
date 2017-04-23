@@ -20,7 +20,7 @@ public class ShowDateController extends BaseController {
     private ShowDateService showDateService;
 
 //    @RequestMapping(value = "/showDate")
-    @ResponseBody
+//    @ResponseBody
     public Map  showDate(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
                          @RequestParam(value = "pageSize",defaultValue = "10") int pageSize){
 

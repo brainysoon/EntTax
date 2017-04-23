@@ -24,92 +24,98 @@ public interface ConstantStr {
     /**
      * 员工id号
      */
-    String SID="sid";
+    String SID = "sid";
 
-    String  RESOURCEPATH="/uploadImages/";
+    /**
+     * 图片上传的域名前缀
+     */
+    String IMAGE_UPLOAD_DOMAIN = "http://www.localhost/";
 
     /**
      * 图片上传路径地址
      */
-    String IMAGEUPLOADPATH="/home/lcyanxi/uploadImage/";
+    String IMAGEUPLOADPATH = "/tmp/avatar/";
+
     /**
      * 生成excel模板的绝对地址
      */
-    String EXCELRESOURCEPATH="resources/excel/";
+    String EXCELRESOURCEPATH = "resources/excel/";
     /**
      * 生成excel模板的模板名
      */
-    String EXCELMODELNAME="进销数据表.xls";
+    String EXCELMODELNAME = "进销数据表.xls";
 
     /**
      * xls类型扩展名
      */
-    String EXCELTYPEXLS=".xls";
+    String EXCELTYPEXLS = ".xls";
     /**
      * xlsx类型扩展名
      */
-    String  EXCELTYPEXLSX=".xlsx";
+    String EXCELTYPEXLSX = ".xlsx";
 
     /**
      * 保存用户信息
      */
-    String  STAFFINFO="staff";
+    String STAFFINFO = "staff";
     /**
      * 状态
      */
-    String STATUS="status";
+    String STATUS = "status";
 
     /**
      * 消息
      */
-    String  MESSAGE="message";
+    String MESSAGE = "message";
 
     /**
      * 图片验证码
      */
-    String SRAND="sRand";
+    String SRAND = "sRand";
 
     /**
      * 短信验证码smsCode
      */
-    String SMSCODE="smsCode";
+    String SMSCODE = "smsCode";
 
     /**
      * 邮箱验证码
      */
-    String EMAILCODE="emailCode";
+    String EMAILCODE = "emailCode";
 
     /**
      * email
      */
-    String EMAIL="email";
+    String EMAIL = "email";
 
     /**
      * phone
      */
-    String PHONE="phone";
+    String PHONE = "phone";
 
     /**
      * birthday 生日
      */
-    String TOSTRINGBIRTHDAY="toStringBirthday";
+    String TOSTRINGBIRTHDAY = "toStringBirthday";
 
     /**
      * enter 入职时间
      */
-    String TOSTRINGENTER="toStringEnter";
+    String TOSTRINGENTER = "toStringEnter";
 
     /**
      * 字符串男
      */
-    String STR_SEX_MAN="男";
+    String STR_SEX_MAN = "男";
 
     /**
      * 字符串女
      */
-    String STR_SEX_WOMAN="女";
+    String STR_SEX_WOMAN = "女";
 
-    /** session失效时间 **/
+    /**
+     * session失效时间
+     **/
     String SESSION_INVALID_TIME = "SESSION_INVALID_TIME";
 
 
