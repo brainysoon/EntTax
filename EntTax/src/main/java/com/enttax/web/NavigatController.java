@@ -111,10 +111,10 @@ public class NavigatController extends BaseController {
         return "personal_security";
     }
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
 
-        return "index";
+        return "login";
     }
 
     @RequestMapping(value = "/user/phoneedit", method = RequestMethod.GET)

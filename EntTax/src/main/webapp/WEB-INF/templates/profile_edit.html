@@ -83,7 +83,7 @@
                 <!-- user login dropdown start-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" th:src="'http://localhost/'+ ${staff.savator}" width="35" height="35"
+                        <img alt="" th:src="${staff.savator}" id="avatarsm" width="35" height="35"
                              src="../../img/avatar-mini4.jpg">
                         <span class="username" th:text="${staff.sname}"></span>
                         <b class="caret"></b>
@@ -141,7 +141,8 @@
                         <div class="user-heading round">
                             <a href="#" data-toggle="modal"
                                data-target="#cropAvatar">
-                                <img th:src="'http://localhost/'+ ${staff.savator}" src="http://www.coolbhu.cn/lcyanxi.jpg" alt="">
+                                <img th:src="${staff.savator}"
+                                     src="http://www.coolbhu.cn/lcyanxi.jpg" id="avatarlg" alt="">
                             </a>
                             <p id="help_avatar" class="help-block">点击更换头像</p>
                             <h1><span th:text="${staff.sname}"></span></h1>
@@ -354,11 +355,11 @@
 
     $(window).load(function () {
         var options =
-            {
-                thumbBox: '.thumbBox',
-                spinner: '.spinner',
-                imgSrc: '../../img/avatar1.jpg'
-            }
+        {
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: '../../img/avatar.jpg'
+        }
         cropper = $('.imageBox').cropbox(options);
         $('#upload-file').on('change', function () {
             var reader = new FileReader();
@@ -395,10 +396,39 @@
     $('#btnCrop').click(function () {
         //使用ajax发送
         var fd = new FormData();
+        var img = cropper.getDataURL();
         fd.append("uploadfile", cropper.getBlob(), "image.png");
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/user/updateavator', true);
-        xhr.send(fd);
+
+        $.ajax({
+            url: "/user/updateavatar",
+            type: "POST",
+            data: fd,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+
+                //如果发送成功 则开启定时
+                if (data.status) {
+
+                    $("#cropAvatar").modal("hide");
+
+                    //设置属性
+                    $("#avatarsm").attr('src', img);
+                    $("#avatarlg").attr('src', img);
+
+                } else {
+
+                    alert("上传失败，稍后重试:" + data.message);
+                }
+            },
+            complete: function (XMLHttpREquest, status) {
+                //发送失败
+                if (status == "error") {
+                    alert("发送超时请重发");
+                }
+            }
+        });
     });
 
 
