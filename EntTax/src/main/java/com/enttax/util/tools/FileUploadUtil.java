@@ -15,20 +15,19 @@ import java.util.Random;
 public class FileUploadUtil {
 
     public static final List<String> ALLOW_TYPES = Arrays.asList(
-            "image/jpg","image/jpeg","image/png","image/gif"
+            "image/jpg", "image/jpeg", "image/png", "image/gif"
     );
 
     /**
-     *
      * @param realPath
      * @param imageFile
      * @return
      * @throws IOException
      */
-    public static String uploadHeadImage(String  realPath, MultipartFile imageFile) throws IOException{
+    public static String uploadHeadImage(String realPath, MultipartFile imageFile) throws IOException {
 
 
-        if(imageFile!=null) {
+        if (imageFile != null) {
             if (FileUploadUtil.allowUpload(imageFile.getContentType())) {
                 String fileName = rename(imageFile.getOriginalFilename());
                 int end = fileName.lastIndexOf(".");
@@ -38,8 +37,13 @@ public class FileUploadUtil {
                     dir.mkdirs();
                 }
                 File file = new File(dir, saveName + "_src.png");
+
                 imageFile.transferTo(file);
-                return   saveName+"_src.png";
+
+                //给权限
+                file.setReadable(true, false);
+
+                return ConstantStr.IMAGE_UPLOAD_DOMAIN + saveName + "_src.png";
             }
 
 
@@ -48,23 +52,24 @@ public class FileUploadUtil {
     }
 
 
-        /**
-         * 文件重命名
-         */
-    public  static  String rename(String fileName){
+    /**
+     * 文件重命名
+     */
+    public static String rename(String fileName) {
         int i = fileName.lastIndexOf(".");
         String str = fileName.substring(i);
-        return new Date().getTime()+""+ new Random().nextInt(99999999) +str;
+        return new Date().getTime() + "" + new Random().nextInt(99999999) + str;
     }
+
     /**
      * 校验图片类型
+     *
      * @param postfix
      * @return
      */
-    private static boolean allowUpload(String postfix){
+    private static boolean allowUpload(String postfix) {
         return ALLOW_TYPES.contains(postfix);
     }
-
 
 
 }
