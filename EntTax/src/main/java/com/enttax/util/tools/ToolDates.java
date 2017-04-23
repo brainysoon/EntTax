@@ -1,7 +1,9 @@
 package com.enttax.util.tools;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.log4j.Logger;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,6 +14,14 @@ import java.util.Random;
  */
 public class ToolDates {
 
+    private static final Logger logger = Logger.getLogger(ToolDates.class);
+
+    /**
+     * 将date日期转换为字符串的日期
+     * @param date
+     * @param pattern
+     * @return
+     */
     public static String formatDate(Date date, Object... pattern) {
         String formatDate;
         if (pattern != null && pattern.length > 0) {
@@ -24,6 +34,21 @@ public class ToolDates {
 
     public static String getTime() {
         return formatDate(new Date(), "HH:mm:ss");
+    }
+
+    /**
+     * 将字符串的日期转换为date类型的日期
+     * @param date 当前日期
+     * @return date
+     */
+    public static Date parseDateStr(String date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            return format.parse(date);
+        } catch (ParseException e) {
+            logger.info("ToolDateTime.parse异常：date值" + date );
+            return null;
+        }
     }
 
     /**

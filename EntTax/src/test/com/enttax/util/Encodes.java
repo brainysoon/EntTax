@@ -33,5 +33,11 @@ public class Encodes {
     }
 
 
+    @Test
+    public void parseDate(){
+        System.out.println(ToolDates.parseDateStr("2014-7-10"));
+    }
+
+
 
 }

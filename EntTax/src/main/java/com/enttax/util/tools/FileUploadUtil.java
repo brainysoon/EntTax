@@ -3,12 +3,6 @@ package com.enttax.util.tools;
 import com.enttax.util.constant.ConstantStr;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.CropImageFilter;
-import java.awt.image.FilteredImageSource;
-import java.awt.image.ImageFilter;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -28,16 +22,11 @@ public class FileUploadUtil {
     /**
      *
      * @param realPath
-     * @param x
-     * @param y
-     * @param h
-     * @param w
      * @param imageFile
      * @return
      * @throws IOException
      */
-    public static String uploadHeadImage(String realPath,String x,String y,
-                                         String h,String w,MultipartFile imageFile) throws IOException{
+    public static String uploadHeadImage(String  realPath, MultipartFile imageFile) throws IOException{
 
 
         if(imageFile!=null) {
@@ -51,19 +40,6 @@ public class FileUploadUtil {
                 }
                 File file = new File(dir, saveName + "_src.jpg");
                 imageFile.transferTo(file);
-                String srcImagePath = realPath + ConstantStr.RESOURCEPATH + saveName;
-                System.out.println("图片存储路劲：" + srcImagePath);
-                int imageX = Integer.parseInt(x);
-                int imageY = Integer.parseInt(y);
-                int imageH = Integer.parseInt(h);
-                int imageW = Integer.parseInt(w);
-                //这里开始截取操作
-                System.out.println("==========imageCutStart=============");
-                FileUploadUtil.imgCut(srcImagePath, imageX, imageY, imageW, imageH);
-                System.out.println("==========imageCutEnd=============");
-//                request.getSession().setAttribute("imgSrc",resourcePath + saveName+"_src.jpg");//成功之后显示用
-//                request.getSession().setAttribute("imgCut",resourcePath + saveName+"_cut.jpg");//成功之后显示用
-                System.out.println( ConstantStr.RESOURCEPATH  + saveName+"_src.jpg");
                 return ConstantStr.RESOURCEPATH  + saveName+"_src.jpg";
             }
 
@@ -89,37 +65,7 @@ public class FileUploadUtil {
     private static boolean allowUpload(String postfix){
         return ALLOW_TYPES.contains(postfix);
     }
-    /**
-     * 截取图片
-     * @param srcImageFile  原图片地址
-     * @param x    截取时的x坐标
-     * @param y    截取时的y坐标
-     * @param desWidth   截取的宽度
-     * @param desHeight   截取的高度
-     */
-    private static void imgCut(String srcImageFile, int x, int y, int desWidth,
-                              int desHeight) {
-        try {
-            Image img;
-            ImageFilter cropFilter;
-            BufferedImage bi = ImageIO.read(new File(srcImageFile+"_src.jpg"));
-            int srcWidth = bi.getWidth();
-            int srcHeight = bi.getHeight();
-            if (srcWidth >= desWidth && srcHeight >= desHeight) {
-                Image image = bi.getScaledInstance(srcWidth, srcHeight,Image.SCALE_DEFAULT);
-                cropFilter = new CropImageFilter(x, y, desWidth, desHeight);
-                img = Toolkit.getDefaultToolkit().createImage(
-                        new FilteredImageSource(image.getSource(), cropFilter));
-                BufferedImage tag = new BufferedImage(desWidth, desHeight,
-                        BufferedImage.TYPE_INT_RGB);
-                Graphics g = tag.getGraphics();
-                g.drawImage(img, 0, 0, null);
-                g.dispose();
-                //输出文件
-                ImageIO.write(tag, "JPEG", new File(srcImageFile+"_cut.jpg"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
+
+
 }

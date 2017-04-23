@@ -6,6 +6,9 @@ import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.Encodes;
 import com.enttax.util.tools.FileUploadUtil;
+import com.enttax.util.tools.ToolDates;
+import com.enttax.vo.Profile;
+import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -31,6 +34,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/user")
 public class PermissionController extends BaseController {
+    private static final Logger logger = Logger.getLogger(PermissionController.class);
     private PermissService permissService;
 
     @Autowired
@@ -59,56 +63,149 @@ public class PermissionController extends BaseController {
         }
     }
 
+    /**
+     * 显示个人信息
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/showprofile", method = RequestMethod.GET)
+    public String showProfile(Model model) {
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        if (staff == null) {
+            return "login";
+        }
+        model.addAttribute(ConstantStr.STAFFINFO, staff);
+        //转换日期格式
+        model.addAttribute(ConstantStr.TOSTRINGBIRTHDAY,
+                ToolDates.formatDate(staff.getSbirthday()));
+        //转换日期格式
+        model.addAttribute(ConstantStr.TOSTRINGENTER,
+                ToolDates.formatDate(staff.getSenter()) );
+
+        return "profile";
+    }
+
+    /**
+     * 带着个人信息跳到profile_edit页面
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "profile_edit", method = RequestMethod.GET)
+    public String editProfile(Model model) {
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        model.addAttribute(ConstantStr.STAFFINFO, staff);
+        //转换日期格式
+        model.addAttribute(ConstantStr.TOSTRINGBIRTHDAY,
+                ToolDates.formatDate(staff.getSbirthday()));
+        return "profile_edit";
+    }
 
     /**
      * 更新个人信息
      *
-     * @param staff
+     * @param profile
      * @return
      */
-    @RequestMapping(value = "/updateStaffInfo", method = RequestMethod.POST)
-    public String updateStaffInfo(@ModelAttribute Staff staff) {
-        if (staff.getSid() == null) {
-            return "staffInfo";
+    @RequestMapping(value = "/updateprofile", method = RequestMethod.POST)
+    public String updateStaffInfo(@ModelAttribute Profile profile, Model model) {
+        //先拿到存在session里的staff
+        System.out.println(profile);
+        if (permissService.updateStaffInfo(profile, session)>0){
+            model.addAttribute(ConstantStr.MESSAGE,"更改成功！！");
+        }else {
+            model.addAttribute(ConstantStr.MESSAGE,"更改失败！！");
         }
-        staff.setSpassword(Encodes.encodeBase64(staff.getSpassword()));
-        permissService.updateStaffInfo(staff);
-        return "staffInfo";
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        model.addAttribute(ConstantStr.STAFFINFO,staff);
+        model.addAttribute(ConstantStr.TOSTRINGBIRTHDAY,   //转换日期格式
+                ToolDates.formatDate(staff.getSbirthday()));
+        return "profile_edit";
+    }
+
+    /**
+     * 更新电话号码
+     * @param sphone
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/updatephone",method = RequestMethod.POST)
+    public String updatePhone(@RequestParam(value = "sphone") String sphone,
+                              Model model){
+
+        if(sphone==null||sphone==""){
+            model.addAttribute(ConstantStr.MESSAGE,"电话号码不能为空");
+            return "phonereset";
+        }
+            Staff staff=(Staff) session.getAttribute(ConstantStr.STAFFINFO);
+            staff.setSphone(sphone);
+            if (permissService.updateStaff(staff)>0){
+                session.setAttribute(ConstantStr.STAFFINFO,staff);
+                model.addAttribute(ConstantStr.STAFFINFO,staff);
+                return "personal_security";
+            }
+        model.addAttribute(ConstantStr.MESSAGE,"电话号码绑定失败");
+
+        return "phonereset";
     }
 
 
     /**
-     * 头像上传
-     *
-     * @param x
-     * @param y
-     * @param h
-     * @param w
-     * @param imageFile
+     * 更新email
+     * @param semail
+     * @param model
      * @return
      */
-    @RequestMapping(value = "/uploadHeadImage", method = RequestMethod.POST)
-    public String uploadHeadImage(
-            @RequestParam(value = "x") String x,
-            @RequestParam(value = "y") String y,
-            @RequestParam(value = "h") String h,
-            @RequestParam(value = "w") String w,
-            @RequestParam(value = "imgFile") MultipartFile imageFile,
-            Model model) {
-        String realPath = session.getServletContext().getRealPath("/");
-        try {
-            String savator = FileUploadUtil.uploadHeadImage(realPath, x, y, h, w, imageFile);
-            if (savator == null) {
-                return "index";
-            }
-
-            Staff staff = (Staff) model.asMap().get(ConstantStr.STAFFINFO);
-            staff.setSavator(savator);
-            permissService.updateStaffInfo(staff);
-        } catch (IOException e) {
+    @RequestMapping(value = "/updateemail",method = RequestMethod.POST)
+    public String updateEmail(@RequestParam(value = "semail") String semail,
+                              Model model){
+        if (semail==null||semail==""){
+            model.addAttribute(ConstantStr.MESSAGE,"邮箱不能为空");
+            return "mailedit";
+        }
+        Staff staff=(Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        staff.setSemail(semail);
+        if (permissService.updateStaff(staff)>0){
+            session.setAttribute(ConstantStr.STAFFINFO,staff);
+            model.addAttribute(ConstantStr.STAFFINFO,staff);
+            return "personal_security";
 
         }
-        return "image";
+        model.addAttribute(ConstantStr.MESSAGE,"邮箱绑定失败");
+        return "mailedit";
+
+    }
+
+    /**
+     * 更新头像
+     *
+     * @param imageFile
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/updateimage", method = RequestMethod.POST)
+    public String uploadHeadImage(
+            @RequestParam(value = "upload-file") MultipartFile imageFile, Model model) {
+        String realPath = session.getServletContext().getRealPath("/");
+        try {
+            //把头像存在文件夹里  数据库存头像的地址
+            String savatorPath = FileUploadUtil.uploadHeadImage(realPath, imageFile);
+            System.out.println("savatorPath:"+savatorPath);
+            if (savatorPath != null) {    //判断文件是否存在文件夹里
+                //判断数据库是否更新了头像路劲
+                if (permissService.updateHeadImage(savatorPath, session) > 0) {
+                    model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
+                    model.addAttribute(ConstantStr.MESSAGE, "头像更改成功！！");
+                    return "profile_edit";
+                }
+            }
+        } catch (IOException e) {
+          logger.info("uploadHeadImage 出现"+e+"异常");
+        }
+        model.addAttribute(ConstantStr.MESSAGE, "头像更改失败！！");
+        model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
+        return "profile_edit";
     }
 
 
@@ -168,12 +265,10 @@ public class PermissionController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(
-            @RequestParam("sname") String sname,
+    public String login(@RequestParam("sname") String sname,
             @RequestParam("spassword") String spassword,
             @RequestParam("kcode") String kcode,
             Model model) {
-
 
         Map<String, String> map = new HashMap<String, String>();
 
@@ -196,7 +291,9 @@ public class PermissionController extends BaseController {
         try {
             subject.login(token);
             if (subject.isAuthenticated()) {
+                Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
                 model.addAttribute(ConstantStr.STATUS, ConstantException.sucess_code);
+                model.addAttribute(ConstantStr.STAFFINFO, staff);
                 return "index";
             }
         } catch (IncorrectCredentialsException e) {

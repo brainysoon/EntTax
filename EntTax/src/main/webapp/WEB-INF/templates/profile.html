@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
@@ -83,8 +83,8 @@
                 <!-- user login dropdown start-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" src="../../img/avatar-mini4.jpg">
-                        <span class="username">孙晓聪</span>
+                        <img alt="" th:src="${staff.savator}"  width="35" height="35" src="../../img/avatar-mini4.jpg">
+                        <span class="username" th:text="${staff.sname}"></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
@@ -139,16 +139,17 @@
                     <section class="panel">
                         <div class="user-heading round">
                             <a href="#">
-                                <img src="../../img/profile-avatar.jpg" alt="">
+                                <img th:src="${staff.savator}" src="../../img/profile-avatar.jpg" alt="">
                             </a>
-                            <h1>孙晓聪</h1>
-                            <p>brainysoon@163.com</p>
+                            <h1><span th:text="${staff.sname}"></span></h1>
+                            <p th:if="${staff.smark}==1">账户已激活</p>
+                            <p th:if="${staff.smark}==0">账户未激活</p>
                         </div>
 
                         <ul class="nav nav-pills nav-stacked">
-                            <li class="active"><a href="profile.html"> <i class="icon-user"></i>个人信息</a></li>
-                            <li><a href="profile_edit.html"> <i class="icon-edit"></i>修改信息</a></li>
-                            <li><a href="personal_security.html"> <i class="icon-warning-sign"></i>安全中心</a></li>
+                            <li class="active"><a> <i class="icon-user"></i>个人信息</a></li>
+                            <li><a th:href="@{/user/profile_edit}"> <i class="icon-edit"></i>修改信息</a></li>
+                            <li><a th:href="@{/user/personalsecurity}"> <i class="icon-warning-sign"></i>安全中心</a></li>
                         </ul>
 
                     </section>
@@ -156,23 +157,25 @@
                 <aside class="profile-info col-lg-9">
                     <section class="panel">
                         <div class="bio-graph-heading">
-                            孙晓聪 的个人信息
+                            <span th:text="${staff.sname}"></span> 的个人信息
                         </div>
                         <div class="panel-body bio-graph-info">
                             <div class="panel">
                                 <h1>基本信息</h1>
                                 <div class="row">
                                     <div class="bio-row">
-                                        <p><span>姓名:</span>孙晓聪</p>
+                                        <p><span>姓名:</span><span th:text="${staff.sname}"></span></p>
                                     </div>
                                     <div class="bio-row">
-                                        <p><span>性别:</span>男</p>
+                                        <p><span>性别:</span><span th:if="${staff.ssex}==true">男</span>
+                                            <span th:if="${staff.ssex}==false">女</span></p>
                                     </div>
                                     <div class="bio-row">
-                                        <p><span>出生日期:</span>1994年01月15日</p>
+                                        <p><span>出生日期:</span><span th:text="${toStringBirthday}"></span>
+                                        </p>
                                     </div>
                                     <div class="bio-row">
-                                        <p><span>入司时间:</span>2016年02月16日</p>
+                                        <p><span>入司时间:</span><span th:text="${toStringEnter}"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -180,13 +183,13 @@
                                 <h1>联系方式</h1>
                                 <div class="row">
                                     <div class="bio-row">
-                                        <p><span>手机号码:</span>13166956701</p>
+                                        <p><span>手机号码:</span><span th:text="${staff.sphone}"></span></p>
                                     </div>
                                     <div class="bio-row">
-                                        <p><span>电子邮件:</span>brainysoon@163.com</p>
+                                        <p><span>电子邮件:</span><span th:text="${staff.semail}"></span></p>
                                     </div>
                                     <div class="bio-row">
-                                        <p><span>详细地址:</span>四川省营山县太蓬乡八村一社</p>
+                                        <p><span>详细地址:</span><span th:text="${staff.saddress}"></span></p>
                                     </div>
                                 </div>
                             </div>

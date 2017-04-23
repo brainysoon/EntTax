@@ -1,6 +1,7 @@
 package com.enttax.service;
 
 import com.enttax.model.Staff;
+import com.enttax.vo.Profile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,11 +27,11 @@ public interface PermissService {
 
     /**
      *  更新个人信息
-     * @param staff
+     * @param profile
      * @return
      */
 
-    int updateStaffInfo(Staff staff);
+    int updateStaffInfo(Profile profile,HttpSession session);
 
     /**
      * 通过用户名查找用户是否存在
@@ -54,6 +55,16 @@ public interface PermissService {
      * @return
      */
     boolean updateToPassword(String sid,String newPassword);
+
+    /**
+     * 更新用户信息（用于更新phone和email）
+     * @param staff
+     * @return
+     */
+    int updateStaff(Staff staff);
+
+    int updateHeadImage(String realPath,HttpSession session);
+
 
     Staff selectByUserName(String username);
 

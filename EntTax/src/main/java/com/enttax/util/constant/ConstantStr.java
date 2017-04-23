@@ -26,7 +26,12 @@ public interface ConstantStr {
      */
     String SID="sid";
 
-    String  RESOURCEPATH="resources/uploadImages/";
+    String  RESOURCEPATH="/uploadImages/";
+
+    /**
+     * 图片上传路径地址
+     */
+    String IMAGEUPLOADPATH="/home/lcyanxi/uploadImage/";
     /**
      * 生成excel模板的绝对地址
      */
@@ -83,6 +88,26 @@ public interface ConstantStr {
      * phone
      */
     String PHONE="phone";
+
+    /**
+     * birthday 生日
+     */
+    String TOSTRINGBIRTHDAY="toStringBirthday";
+
+    /**
+     * enter 入职时间
+     */
+    String TOSTRINGENTER="toStringEnter";
+
+    /**
+     * 字符串男
+     */
+    String STR_SEX_MAN="男";
+
+    /**
+     * 字符串女
+     */
+    String STR_SEX_WOMAN="女";
 
     /** session失效时间 **/
     String SESSION_INVALID_TIME = "SESSION_INVALID_TIME";
