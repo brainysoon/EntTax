@@ -34,7 +34,7 @@ public interface ConstantStr {
     /**
      * 图片上传路径地址
      */
-    String IMAGEUPLOADPATH = "/tmp/avatar/";
+    String IMAGEUPLOADPATH = "/var/www/avatar/";
 
     /**
      * 生成excel模板的绝对地址
