@@ -225,7 +225,43 @@ $().ready(function () {
             e.remove();
         }
     });
+
+
+    //添加用户手机校验
+   $("#add_staff").validate({
+        submitHandler: function (form) {
+
+            //验证过后提交表单
+            form.submit();
+        },
+        rules: {
+            sphone: {
+                required: true,
+                isPhoneNum: true,
+            }
+        },
+        messages: {
+            sphone: {
+                required: "手机号码不能为空",
+                isPhoneNum: "请输入正确手机号码"
+            }
+        },
+        highlight: function (e) {
+            $(e).closest(".form-group").removeClass("has-success").addClass("has-error");
+        },
+        success: function (e) {
+            $(e).closest(".form-group").removeClass("has-error").addClass("has-success");
+            e.remove();
+        }
+    });
 });
+
+
+
+
+
+
+
 function checkPhoneNum() {      //单独校验 手机号码
 
     return phone_rest_validator.element($("#sphone"));
