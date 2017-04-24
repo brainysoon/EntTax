@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="brainy">
+    <meta name="keyword" content="EntTax">
+    <link rel="shortcut icon" th:href="@{/img/favicon.icon}" href="../../img/favicon.icon">
+
+    <title>员工信息列表</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-reset.css}" href="../../css/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+    <link th:href="@{/assets/font-awesome/css/font-awesome.css}" href="../../assets/font-awesome/css/font-awesome.css"
+          rel="stylesheet"/>
+    <link th:href="@{/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css}"
+          href="../../assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
+          media="screen"/>
+    <link th:href="@{/css/owl.carousel.css}" rel="stylesheet" href="../../css/owl.carousel.css" type="text/css">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
+    <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
+    <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<section id="container" class="">
+    <!--header start-->
+    <header class="header white-bg">
+        <div class="sidebar-toggle-box">
+            <div data-original-title="导航栏" data-placement="right" class="icon-reorder tooltips"></div>
+        </div>
+        <!--logo start-->
+        <a href="#" class="logo">发票数据<span>分析系统</span></a>
+        <!--logo end-->
+        <div class="nav notify-row" id="top_menu">
+            <!--  notification start -->
+            <ul class="nav top-menu">
+                <!-- notification dropdown start-->
+                <li id="header_notification_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                        <i class="icon-bell-alt"></i>
+                        <span class="badge bg-warning">1</span>
+                    </a>
+                    <ul class="dropdown-menu extended notification">
+                        <div class="notify-arrow notify-arrow-yellow"></div>
+                        <li>
+                            <p class="yellow">你有1个新通知</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-info"><i class="icon-envelope"></i></span>
+                                欢迎登录系统
+                                <span class="small italic">Welcome !</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">所有标记为已读</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- notification dropdown end -->
+            </ul>
+            <!--  notification end -->
+        </div>
+        <div class="top-nav ">
+            <!--search & user info start-->
+            <ul class="nav pull-right top-menu">
+                <li>
+                    <input type="text" class="form-control search" placeholder="搜索">
+                </li>
+                <!-- user login dropdown start-->
+
+                <!--th:attr="src=${staff.savator}"-->
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <img alt="" th:src="'http://localhost/'+ ${staff.savator}" width="35" height="35"  src="../../img/avatar-mini4.jpg">
+                        <span class="username" th:text="${staff.sname}"></span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu extended logout">
+                        <div class="log-arrow-up"></div>
+                        <li><a th:href="@{/user/showprofile.from}" href="#"><i class="icon-user"></i>个人资料</a></li>
+                        <li><a href="#"><i class="icon-cog"></i>个人设置</a></li>
+                        <li><a href="#"><i class="icon-bell-alt"></i>消息通知</a></li>
+                        <li><a href="login.html"><i class="icon-signout"></i>退出登录</a></li>
+                    </ul>
+                </li>
+                <!-- user login dropdown end -->
+            </ul>
+            <!--search & user info end-->
+        </div>
+    </header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar" class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu">
+                <li class="active">
+                    <a class="" href="index.html">
+                        <i class="icon-home"></i>
+                        <span>首页</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-user"></i>
+                        <span>个人中心</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="#">个人资料</a></li>
+                        <li><a class="" href="#">安全中心</a></li>
+                        <li><a class="" href="#">个人设置</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <!-- page start-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            员工信息列表展示
+                        </header>
+                        <table class="table table-striped border-top" id="sample_1">
+                            <thead>
+                            <tr>
+                                <th style="width: 6px"><input type="button" class="btn btn-default btn-sm active" value="+"></th>
+                                <th>员工编号</th>
+                                <th>用户名</th>
+                                <th class="hidden-phone">邮箱</th>
+                                <th class="hidden-phone">角色</th>
+                                <th class="hidden-phone">入职时间</th>
+                                <th class="hidden-phone">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>sumon</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>bombi</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>ABC ho</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>test</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>soa bal</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">soa bal@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">03.07.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>test</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">test@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">03.07.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>goop</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>sumon</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">01.07.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>woeri</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">09.10.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>soa bal</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">soa bal@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">9.12.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>woeri</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">test@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">14.12.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>uirer</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">13.11.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>samsu</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">17.11.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>dipsdf</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>soa bal</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">soa bal@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">03.07.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>hilor</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">test@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">03.07.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>test</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">19.12.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>botu</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">17.12.2013</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>20141702</th>
+                                <td>sumon</td>
+                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">15.11.2011</td>
+                                <td>
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+
+<!-- js placed at the end of the document so the pages load faster -->
+<script th:src="@{/js/jquery.js}" src="../../js/jquery.js"></script>
+<script th:src="@{/js/jquery-1.8.3.min.js}" src="../../js/jquery-1.8.3.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}" src="../../js/bootstrap.min.js"></script>
+<script th:src="@{/js/jquery.scrollTo.min.js}" src="../../js/jquery.scrollTo.min.js"></script>
+<script th:src="@{/js/jquery.nicescroll.js}" src="../../js/jquery.nicescroll.js" type="text/javascript"></script>
+<script th:src="@{/assets/data-tables/jquery.dataTables.js}" type="text/javascript"
+        src="../../assets/data-tables/jquery.dataTables.js"></script>
+<script th:src="@{/assets/data-tables/DT_bootstrap.js}"type="text/javascript"
+        src="../../assets/data-tables/DT_bootstrap.js"></script>
+
+
+<!--common script for all pages-->
+<script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
+
+<!--script for this page-->
+<script th:src="@{/js/sparkline-chart.js}" src="../../js/sparkline-chart.js"></script>
+<script th:src="@{/js/easy-pie-chart.js}" src="../../js/easy-pie-chart.js"></script>
+<script th:src="@{/js/dynamic-table.js}"  src="../../js/dynamic-table.js"></script>
+
+
+
+
+</body>
+</html>
