@@ -308,4 +308,15 @@ public class PermissionController extends BaseController {
         model.addAttribute(ConstantStr.STATUS, ConstantStr.str_zero);
         return "login";
     }
+
+    @RequestMapping(value = "/deletestaff",method = RequestMethod.GET)
+    @ResponseBody
+    public Map deleteStaffBySid(@RequestParam(value = "sid")String sid){
+        Map map=new HashMap();
+        map.put(ConstantStr.MESSAGE,false);
+        System.out.println("编号为"+sid +"的员工删除成功！！");
+        return map;
+
+    }
 }
+

@@ -146,7 +146,7 @@
                             <thead>
                             <tr>
                                 <th style="width: 6px">
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_staff_modal">+</button>
+                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_staff_myModal">+</button>
                                 </th>
                                 <th>员工编号</th>
                                 <th>用户名</th>
@@ -165,11 +165,74 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">05.04.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_staff_myModal" >
+                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#update_staff_myModal" >
+                                        <i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button class="btn btn-danger btn-xs"  data-toggle="modal" data-target="#delete_staff_myModal">
                                         <i class="icon-trash "></i></button>
+
                                 </td>
+                                <!-- 更新 员工模态框（Modal） -->
+                                <div class="modal fade" id="update_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                    &times;
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">
+                                                   更改员工操作
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label class="control-label col-lg-4" >员工编号：</label>
+                                                <div  class="col-lg-8">
+                                                    <p><span>20141702</span></p>
+                                                </div>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label class="control-label col-lg-4" >角色分配</label>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control m-bot15">
+                                                        <option>操作员</option>
+                                                        <option>管理员</option>
+                                                        <option>决策员</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                                </button>
+                                                <button type="button" class="btn btn-warning" onclick="update_staff('20141701','管理员')">确定</button>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal -->
+                                </div><!--跟新员工 modal 完-->
+
+                                <!-- 删除 员工模态框（Modal） -->
+                                <div class="modal fade" id="delete_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                    &times;
+                                                </button>
+                                                <h4 class="modal-title">
+                                                    删除员工操作
+                                                </h4>
+                                            </div>
+                                            <div class="modal-content">
+                                                <p>您确定要删除编号为20141702的员工吗？</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                                </button>
+                                                <button type="button" class="btn btn-warning" onclick="delete_staff ('20141702')">确定</button>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal -->
+                                </div><!--删除员工 modal 完-->
+
+
                             </tr>
                             <tr class="odd gradeX">
                                 <td></td>
@@ -179,9 +242,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">05.04.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs" data-toggle="popover" data-placement="right" ><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -192,9 +256,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">05.04.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -205,9 +270,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">05.04.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -218,9 +284,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">03.07.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -231,9 +298,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">03.07.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -244,9 +312,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">05.04.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -257,9 +326,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">01.07.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -270,9 +340,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">09.10.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -283,9 +354,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">9.12.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -296,9 +368,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">14.12.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -309,9 +382,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">13.11.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -322,9 +396,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">17.11.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -335,9 +410,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">05.04.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -348,9 +424,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">03.07.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -361,9 +438,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">03.07.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -374,9 +452,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">19.12.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -387,9 +466,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">17.12.2013</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             <tr class="odd gradeX">
@@ -400,9 +480,10 @@
                                 <td class="hidden-phone">33</td>
                                 <td class="center hidden-phone">15.11.2011</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             </tbody>
@@ -416,16 +497,21 @@
     <!--main content end-->
 </section>
 <!-- 添加员工模态框（Modal） -->
-<div class="modal fade" id="add_staff_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="add_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    添加员工操作
+                </h4>
+            </div>
             <!-- page start-->
             <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">
-                        <header class="panel-heading">
-                            添加员工
-                        </header>
                         <div class="panel-body">
                             <form role="form" id="add_staff" class="form-horizontal tasi-form">
                                 <div class="form-group has-success">
@@ -465,29 +551,7 @@
     </div><!-- /.modal -->
 </div><!--添加员工 modal完-->
 
-<!-- 删除 员工模态框（Modal） -->
-<div class="modal fade" id="delete_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                   删除警告
-                </h4>
-            </div>
-            <div class="modal-body">
-              你确定要删除	20141702员工吗？
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="button" class="btn btn-warning">确定</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div><!--删除员工 modal 完-->
+
 <!-- js placed at the end of the document so the pages load faster -->
 <script th:src="@{/js/jquery.js}" src="../../js/jquery.js"></script>
 <script th:src="@{/js/jquery-1.8.3.min.js}" src="../../js/jquery-1.8.3.min.js"></script>
@@ -503,6 +567,8 @@
 <script th:src="@{/js/jquery.validate.min.js}" src="../../js/jquery.validate.min.js"></script>
 <!--Custom Validate-->
 <script th:src="@{/js/custom-validate.js}" src="../../js/custom-validate.js"></script>
+<!--Custom function-->
+<script th:src="@{/js/custom-function.js}" src="../../js/custom-function.js"></script>
 
 
 
@@ -513,13 +579,6 @@
 <script th:src="@{/js/sparkline-chart.js}" src="../../js/sparkline-chart.js"></script>
 <script th:src="@{/js/easy-pie-chart.js}" src="../../js/easy-pie-chart.js"></script>
 <script th:src="@{/js/dynamic-table.js}"  src="../../js/dynamic-table.js"></script>
-<script>
-    $(function () { $('.popover-show').popover('show');});
-    $(function () { $('.popover-hide').popover('hide');});
-    $(function () { $('.popover-destroy').popover('destroy');});
-    $(function () { $('.popover-toggle').popover('toggle');});
-    $(function () { $(".popover-options a").popover({html : true });});
-</script>
 
 </body>
 </html>

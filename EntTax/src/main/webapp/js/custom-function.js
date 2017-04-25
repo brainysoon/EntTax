@@ -119,3 +119,30 @@ function sendEMailCode() {
 
     beginTimer();
 }
+
+//删除员工操作
+function delete_staff (sid) {
+    alert(sid);
+    $.get("user/deletestaff",{sid:sid},function(data){
+        if (data.message){
+            alert("删除成功！");
+            window.location.reload();
+        }else {
+            alert("操作失败！")
+        }
+
+    });
+}
+//更新员工操作
+function update_staff(sid,role){
+    alert(sid+role);
+    $.get("user/updatestaff",{sid:sid,role:role},function(data){
+        if (data.message){
+            alert("更新成功！");
+            window.location.reload();
+        }else {
+            alert("操作失败！")
+        }
+
+    });
+}
