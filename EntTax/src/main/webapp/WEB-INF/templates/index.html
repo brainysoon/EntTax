@@ -30,6 +30,7 @@
     <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
     <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
     <![endif]-->
+
 </head>
 
 <body>
@@ -126,12 +127,29 @@
                         <li><a class="" href="#">个人设置</a></li>
                     </ul>
                 </li>
+                <li class="sub-menu">
+                    <a class="" href="show_staffinfo.html">
+                        <i class="icon-eye-open"></i>
+                        <span>员工列表</span>
+                    </a>
+                </li>
             </ul>
             <!-- sidebar menu end-->
         </div>
     </aside>
     <!--sidebar end-->
+
+    <!--page_start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <div id="hightcharts" style="min-width:400px;height:400px"></div>
+            <div class="message"></div>
+            <p/><p/>
+            <div id="diagram" style="min-width:400px;height:400px"></div>
+        </section>
+    </section>
 </section>
+
 
 <!-- js placed at the end of the document so the pages load faster -->
 <script th:src="@{/js/jquery.js}" src="../../js/jquery.js"></script>
@@ -152,6 +170,18 @@
 <script th:src="@{/js/sparkline-chart.js}" src="../../js/sparkline-chart.js"></script>
 <script th:src="@{/js/easy-pie-chart.js}" src="../../js/easy-pie-chart.js"></script>
 
+<!--Custom function-->
+<script th:src="@{/js/custom-function.js}" src="../../js/custom-function.js"></script>
+
+<!--hightchart-->
+<script src="https://img.hcharts.cn/highstock/highstock.js"></script>
+<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+<script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+<script src="https://img.hcharts.cn/highcharts/modules/data.js"></script>
+<script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+<script src="https://img.hcharts.cn/highcharts/themes/dark-unica.js"></script>
+
+
 <script>
 
     //owl carousel
@@ -170,7 +200,6 @@
     $(function () {
         $('select.styled').customSelect();
     });
-
 </script>
 
 </body>

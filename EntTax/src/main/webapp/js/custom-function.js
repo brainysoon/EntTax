@@ -146,3 +146,127 @@ function update_staff(sid,role){
 
     });
 }
+
+
+<!--charts-->
+$(function () {
+    // 获取 CSV 数据并初始化图表
+    $.getJSON('https://data.jianshukeji.com/jsonp?filename=csv/analytics.csv&callback=?', function (csv) {
+        $('#hightcharts').highcharts({
+            data: {
+                csv: csv
+            },
+            title: {
+                text: '进销项数据分析图'
+            },
+            subtitle: {
+                text: '数据来源:企业增税DB'
+            },
+            xAxis: {
+                tickInterval: 7 * 24 * 3600 * 1000, // 坐标轴刻度间隔为一星期
+                tickWidth: 0,
+                gridLineWidth: 1,
+                labels: {
+                    align: 'left',
+                    x: 3,
+                    y: -3
+                },
+                dateTimeLabelFormats: {
+                    week: '%Y-%m-%d'
+                }
+            },
+            yAxis: [{ // 第一个 Y 轴，放置在左边（默认在坐标）
+                title: {
+                    text: null
+                },
+                labels: {
+                    align: 'left',
+                    x: 3,
+                    y: 16,
+                    format: '{value:.,0f}'
+                },
+                showFirstLabel: false
+            }, {    // 第二个坐标轴，放置在右边
+                linkedTo: 0,
+                gridLineWidth: 0,
+                opposite: true,  // 通过此参数设置坐标轴显示在对立面
+                title: {
+                    text: null
+                },
+                labels: {
+                    align: 'right',
+                    x: -3,
+                    y: 16,
+                    format: '{value:.,0f}'
+                },
+                showFirstLabel: false
+            }],
+            legend: {
+                align: 'left',
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                borderWidth: 0
+            },
+            tooltip: {
+                shared: true,
+                crosshairs: true,
+                dateTimeLabelFormats: {
+                    day: '%Y-%m-%d'
+                }
+            },
+            plotOptions: {
+                series: {
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            // 数据点点击事件
+                            // 其中 e 变量为事件对象，this 为当前数据点对象
+                            click: function (e) {
+                                $('.message').html(Highcharts.dateFormat('%Y-%m-%d', this.x) + ':<br/>  访问量：' + this.y);
+                            }
+                        }
+                    },
+                    marker: {
+                        lineWidth: 1
+                    }
+                }
+            }
+        });
+    });
+});
+//柱行图
+$(function () {
+    $.getJSON('//data.jianshukeji.com/jsonp?filename=json/aapl-v.json&callback=?', function (data) {
+        // create the chart
+        $('#diagram').highcharts('StockChart', {
+            chart: {
+                alignTicks: false
+            },
+            rangeSelector: {
+                selected: 1
+            },
+            title: {
+                text: '各项目详细数据图'
+            },
+            series: [{
+                type: 'column',
+                name: '各项目详细数据图',
+                data: data,
+                dataGrouping: {
+                    units: [[
+                        'week', // unit name
+                        [1] // allowed multiples
+                    ], [
+                        'month',
+                        [1, 2, 3, 4, 6]
+                    ]]
+                }
+            }]
+        });
+    });
+});
+
+
+
+
