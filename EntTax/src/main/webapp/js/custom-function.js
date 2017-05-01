@@ -135,7 +135,6 @@ function delete_staff (sid) {
 }
 //更新员工操作
 function update_staff(sid,role){
-    alert(sid+role);
     $.get("user/updatestaff",{sid:sid,role:role},function(data){
         if (data.message){
             alert("更新成功！");
@@ -266,6 +265,18 @@ $(function () {
         });
     });
 });
+
+function upload_excel() {
+    $.get("#",function(data){
+        if (data.message){
+            alert("更新成功！");
+            window.location.reload();
+        }else {
+            alert("操作失败！")
+        }
+
+    });
+}
 
 
 

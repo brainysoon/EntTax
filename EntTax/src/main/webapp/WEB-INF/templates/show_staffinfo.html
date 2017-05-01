@@ -139,14 +139,21 @@
             <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">
-                        <header class="panel-heading">
-                            员工信息列表展示
-                        </header>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="false">
+                                &times;
+                            </button>
+                            <h4 class="modal-title">
+                                员工信息列表
+                            </h4>
+                        </div>
                         <table class="table table-striped border-top" id="sample_1">
                             <thead>
                             <tr>
                                 <th style="width: 6px">
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_staff_myModal">+</button>
+                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_staff_myModal">
+                                        <i class="icon-plus"></i>
+                                    </button>
                                 </th>
                                 <th>员工编号</th>
                                 <th>用户名</th>
@@ -576,8 +583,6 @@
 <script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
 
 <!--script for this page-->
-<script th:src="@{/js/sparkline-chart.js}" src="../../js/sparkline-chart.js"></script>
-<script th:src="@{/js/easy-pie-chart.js}" src="../../js/easy-pie-chart.js"></script>
 <script th:src="@{/js/dynamic-table.js}"  src="../../js/dynamic-table.js"></script>
 
 </body>
