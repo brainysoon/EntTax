@@ -43,7 +43,7 @@
     UPDATE staff
     SET SName = #{sName},
       SPassword = #{sPassword},
-      SSalt=#{sSalt}
+      SSalt=#{sSalt},
       SEmail = #{sEmail},
       SPhone = #{sPhone},
       SSex = #{sSex},

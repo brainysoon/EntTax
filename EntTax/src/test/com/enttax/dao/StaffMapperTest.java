@@ -79,4 +79,26 @@ public class StaffMapperTest {
         //断言 影响一行记录
         Assert.assertEquals(resultCode, 1);
     }
+
+    /**
+     * 测试更新员工信息
+     */
+    @Test
+    public void updateByPrimaryKey() {
+
+        //查询所有的员工
+        List<Staff> staffs = staffMapper.selectAll();
+
+        //取查到的第一个员工
+        Staff staff = staffs.get(0);
+
+        //修改信息
+        staff.setSEmail(ToolRandoms.randomEmail());
+
+        //测试更新
+        int resultCode = staffMapper.updateByPrimaryKey(staff);
+
+        //断言
+        Assert.assertEquals(resultCode, 1);
+    }
 }
