@@ -83,7 +83,8 @@
 											"underline": false,
 											"text": "企业增值税数据分析系统",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": true
 										}
 									],
 									"visible": true,
@@ -138,7 +139,8 @@
 											"underline": false,
 											"text": "权限管理模块",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": true
 										}
 									],
 									"visible": true,
@@ -193,7 +195,8 @@
 											"underline": false,
 											"text": "数据输入模块",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": true
 										}
 									],
 									"visible": true,
@@ -248,7 +251,8 @@
 											"underline": false,
 											"text": "原始数据 展示模块",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": true
 										}
 									],
 									"visible": true,
@@ -303,7 +307,8 @@
 											"underline": false,
 											"text": "可视化数据 展示模块",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": true
 										}
 									],
 									"visible": true,
@@ -358,7 +363,8 @@
 											"underline": false,
 											"text": "生成报表模块",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": true
 										}
 									],
 									"visible": true,
@@ -413,7 +419,8 @@
 											"underline": false,
 											"text": "趋势预测模块",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": true
 										}
 									],
 									"visible": true,
@@ -468,7 +475,8 @@
 											"underline": false,
 											"text": "安全模块",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": true
 										}
 									],
 									"visible": true,
@@ -523,7 +531,8 @@
 											"underline": false,
 											"text": "三层管理 （决策层     管理层     操作层）",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": true
 										}
 									],
 									"visible": true,
@@ -578,7 +587,8 @@
 											"underline": false,
 											"text": "两种输入  excel  列表",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": true
 										}
 									],
 									"visible": true,
@@ -633,7 +643,8 @@
 											"underline": false,
 											"text": "日志",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": true
 										}
 									],
 									"visible": true,
@@ -696,7 +707,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -761,7 +773,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -850,7 +863,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -915,7 +929,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -980,7 +995,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -1045,7 +1061,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -1102,7 +1119,8 @@
 											"underline": false,
 											"text": "  更新    删除",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": true
 										}
 									],
 									"visible": true,
@@ -1165,7 +1183,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -1455,7 +1474,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -1480,7 +1500,8 @@
 											"underline": false,
 											"text": "操作员",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -1505,7 +1526,8 @@
 											"underline": false,
 											"text": "(from 用例图)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -1529,7 +1551,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -1739,7 +1762,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -1764,7 +1788,8 @@
 											"underline": false,
 											"text": "添加数据",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -1789,7 +1814,8 @@
 											"underline": false,
 											"text": "(from 用例图)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -1813,7 +1839,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -2049,7 +2076,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2082,7 +2110,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2115,7 +2144,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2148,7 +2178,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2181,7 +2212,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2214,7 +2246,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2247,7 +2280,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2280,7 +2314,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2313,7 +2348,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -2462,7 +2498,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -2487,7 +2524,8 @@
 											"underline": false,
 											"text": "管理员",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -2512,7 +2550,8 @@
 											"underline": false,
 											"text": "(from 用例图)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -2536,7 +2575,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -2746,7 +2786,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -2771,7 +2812,8 @@
 											"underline": false,
 											"text": "删除数据",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -2796,7 +2838,8 @@
 											"underline": false,
 											"text": "(from 用例图)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -2820,7 +2863,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -3057,7 +3101,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -3082,7 +3127,8 @@
 											"underline": false,
 											"text": "更新数据",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -3107,7 +3153,8 @@
 											"underline": false,
 											"text": "(from 用例图)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -3131,7 +3178,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -3368,7 +3416,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -3393,7 +3442,8 @@
 											"underline": false,
 											"text": "管理操作员",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -3418,7 +3468,8 @@
 											"underline": false,
 											"text": "(from 用例图)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -3442,7 +3493,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -3678,7 +3730,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3711,7 +3764,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3744,7 +3798,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3777,7 +3832,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3810,7 +3866,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3843,7 +3900,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3876,7 +3934,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3909,7 +3968,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3942,7 +4002,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -4090,7 +4151,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4123,7 +4185,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4156,7 +4219,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4189,7 +4253,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4222,7 +4287,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4255,7 +4321,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4288,7 +4355,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4321,7 +4389,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4354,7 +4423,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -4502,7 +4572,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4535,7 +4606,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4568,7 +4640,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4601,7 +4674,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4634,7 +4708,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4667,7 +4742,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4700,7 +4776,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4733,7 +4810,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4766,7 +4844,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -4915,7 +4994,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -4940,7 +5020,8 @@
 											"underline": false,
 											"text": "决策员",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -4965,7 +5046,8 @@
 											"underline": false,
 											"text": "(from 用例图)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -4989,7 +5071,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -5199,7 +5282,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -5224,7 +5308,8 @@
 											"underline": false,
 											"text": "查看数据",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -5249,7 +5334,8 @@
 											"underline": false,
 											"text": "(from 用例图)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -5273,7 +5359,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -5509,7 +5596,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5542,7 +5630,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5575,7 +5664,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5608,7 +5698,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5641,7 +5732,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5674,7 +5766,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5707,7 +5800,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5740,7 +5834,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5773,7 +5868,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -5922,7 +6018,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -5947,7 +6044,8 @@
 											"underline": false,
 											"text": "查看数据",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -5972,7 +6070,8 @@
 											"underline": false,
 											"text": "(from 用例图)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -5996,7 +6095,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -6232,7 +6332,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6265,7 +6366,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6298,7 +6400,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6331,7 +6434,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6364,7 +6468,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6397,7 +6502,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6430,7 +6536,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6463,7 +6570,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6496,7 +6604,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -6645,7 +6754,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -6670,7 +6780,8 @@
 											"underline": false,
 											"text": "查看数据",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -6695,7 +6806,8 @@
 											"underline": false,
 											"text": "(from 用例图)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -6719,7 +6831,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -6955,7 +7068,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6988,7 +7102,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7021,7 +7136,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7054,7 +7170,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7087,7 +7204,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7120,7 +7238,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7153,7 +7272,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7186,7 +7306,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7219,7 +7340,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -7368,7 +7490,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -7393,7 +7516,8 @@
 											"underline": false,
 											"text": "System",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -7418,7 +7542,8 @@
 											"underline": false,
 											"text": "(from 用例图)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -7442,7 +7567,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -7974,7 +8100,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFav+9zFVzOVQ8="
 							},
-							"name": "ERDDiagram1",
+							"name": "ERDDiagram",
 							"visible": true,
 							"defaultDiagram": false,
 							"ownedViews": [
@@ -8011,7 +8137,8 @@
 											"underline": false,
 											"text": "Staff",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "ERDColumnCompartmentView",
@@ -8097,12 +8224,12 @@
 												},
 												{
 													"_type": "ERDColumnView",
-													"_id": "AAAAAAFawCVNWGAL2kg=",
+													"_id": "AAAAAAFbrxRgctxnaQ8=",
 													"_parent": {
 														"$ref": "AAAAAAFav++4Ll0ByL0="
 													},
 													"model": {
-														"$ref": "AAAAAAFawCVNOWAI5/Q="
+														"$ref": "AAAAAAFbrxRgO9xkKFY="
 													},
 													"visible": true,
 													"enabled": true,
@@ -8145,6 +8272,30 @@
 												},
 												{
 													"_type": "ERDColumnView",
+													"_id": "AAAAAAFawCVNWGAL2kg=",
+													"_parent": {
+														"$ref": "AAAAAAFav++4Ll0ByL0="
+													},
+													"model": {
+														"$ref": "AAAAAAFawCVNOWAI5/Q="
+													},
+													"visible": true,
+													"enabled": true,
+													"lineColor": "#000000",
+													"fillColor": "#ffffff",
+													"fontColor": "#000000",
+													"font": "Arial;13;0",
+													"showShadow": true,
+													"containerChangeable": false,
+													"containerExtending": false,
+													"left": 109,
+													"top": 311,
+													"width": 206,
+													"height": 13,
+													"autoResize": false
+												},
+												{
+													"_type": "ERDColumnView",
 													"_id": "AAAAAAFawBbxCF1O+f0=",
 													"_parent": {
 														"$ref": "AAAAAAFav++4Ll0ByL0="
@@ -8162,7 +8313,7 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 109,
-													"top": 311,
+													"top": 326,
 													"width": 206,
 													"height": 13,
 													"autoResize": false
@@ -8186,7 +8337,7 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 109,
-													"top": 326,
+													"top": 341,
 													"width": 206,
 													"height": 13,
 													"autoResize": false
@@ -8210,7 +8361,7 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 109,
-													"top": 341,
+													"top": 356,
 													"width": 206,
 													"height": 13,
 													"autoResize": false
@@ -8234,7 +8385,7 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 109,
-													"top": 356,
+													"top": 371,
 													"width": 206,
 													"height": 13,
 													"autoResize": false
@@ -8258,7 +8409,7 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 109,
-													"top": 371,
+													"top": 386,
 													"width": 206,
 													"height": 13,
 													"autoResize": false
@@ -8282,7 +8433,7 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 109,
-													"top": 386,
+													"top": 401,
 													"width": 206,
 													"height": 13,
 													"autoResize": false
@@ -8300,7 +8451,7 @@
 											"left": 104,
 											"top": 231,
 											"width": 216,
-											"height": 173,
+											"height": 188,
 											"autoResize": false
 										}
 									],
@@ -8358,7 +8509,8 @@
 											"underline": false,
 											"text": "Role",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "ERDColumnCompartmentView",
@@ -8420,6 +8572,30 @@
 												},
 												{
 													"_type": "ERDColumnView",
+													"_id": "AAAAAAFbpKePyhGBEV4=",
+													"_parent": {
+														"$ref": "AAAAAAFav/FFll0P++E="
+													},
+													"model": {
+														"$ref": "AAAAAAFbpKePlxF+Jn8="
+													},
+													"visible": true,
+													"enabled": true,
+													"lineColor": "#000000",
+													"fillColor": "#ffffff",
+													"fontColor": "#000000",
+													"font": "Arial;13;0",
+													"showShadow": true,
+													"containerChangeable": false,
+													"containerExtending": false,
+													"left": 685,
+													"top": 338,
+													"width": 270,
+													"height": 13,
+													"autoResize": false
+												},
+												{
+													"_type": "ERDColumnView",
 													"_id": "AAAAAAFawC2uTmA8NXA=",
 													"_parent": {
 														"$ref": "AAAAAAFav/FFll0P++E="
@@ -8437,7 +8613,7 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 685,
-													"top": 338,
+													"top": 353,
 													"width": 270,
 													"height": 13,
 													"autoResize": false
@@ -8461,7 +8637,7 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 685,
-													"top": 353,
+													"top": 368,
 													"width": 270,
 													"height": 13,
 													"autoResize": false
@@ -8479,7 +8655,7 @@
 											"left": 680,
 											"top": 303,
 											"width": 280,
-											"height": 68,
+											"height": 83,
 											"autoResize": false
 										}
 									],
@@ -8535,9 +8711,10 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "Premission",
+											"text": "Prems",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "ERDColumnCompartmentView",
@@ -8599,6 +8776,30 @@
 												},
 												{
 													"_type": "ERDColumnView",
+													"_id": "AAAAAAFbpK7BUxGoFEE=",
+													"_parent": {
+														"$ref": "AAAAAAFawA3Lil0dKlk="
+													},
+													"model": {
+														"$ref": "AAAAAAFbpK7BCBGl4S0="
+													},
+													"visible": true,
+													"enabled": true,
+													"lineColor": "#000000",
+													"fillColor": "#ffffff",
+													"fontColor": "#000000",
+													"font": "Arial;13;0",
+													"showShadow": true,
+													"containerChangeable": false,
+													"containerExtending": false,
+													"left": 109,
+													"top": 586,
+													"width": 214,
+													"height": 13,
+													"autoResize": false
+												},
+												{
+													"_type": "ERDColumnView",
 													"_id": "AAAAAAFawDLryGBoM2s=",
 													"_parent": {
 														"$ref": "AAAAAAFawA3Lil0dKlk="
@@ -8616,7 +8817,31 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 109,
-													"top": 586,
+													"top": 601,
+													"width": 214,
+													"height": 13,
+													"autoResize": false
+												},
+												{
+													"_type": "ERDColumnView",
+													"_id": "AAAAAAFbpLIvoRG0FrY=",
+													"_parent": {
+														"$ref": "AAAAAAFawA3Lil0dKlk="
+													},
+													"model": {
+														"$ref": "AAAAAAFbpLIvWhGxyPc="
+													},
+													"visible": true,
+													"enabled": true,
+													"lineColor": "#000000",
+													"fillColor": "#ffffff",
+													"fontColor": "#000000",
+													"font": "Arial;13;0",
+													"showShadow": true,
+													"containerChangeable": false,
+													"containerExtending": false,
+													"left": 109,
+													"top": 616,
 													"width": 214,
 													"height": 13,
 													"autoResize": false
@@ -8634,7 +8859,7 @@
 											"left": 104,
 											"top": 551,
 											"width": 224,
-											"height": 53,
+											"height": 83,
 											"autoResize": false
 										}
 									],
@@ -8697,7 +8922,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -8727,7 +8953,8 @@
 											"edgePosition": 2,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -8757,7 +8984,8 @@
 											"edgePosition": 0,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -8825,7 +9053,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -8855,7 +9084,8 @@
 											"edgePosition": 2,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -8885,7 +9115,8 @@
 											"edgePosition": 0,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -8940,7 +9171,7 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 656,
+											"left": 648,
 											"top": 733,
 											"width": 328,
 											"height": 13,
@@ -8948,7 +9179,8 @@
 											"underline": false,
 											"text": "Bill",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "ERDColumnCompartmentView",
@@ -8978,7 +9210,7 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 661,
+													"left": 653,
 													"top": 756,
 													"width": 318,
 													"height": 13,
@@ -9002,8 +9234,32 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 661,
+													"left": 653,
 													"top": 771,
+													"width": 318,
+													"height": 13,
+													"autoResize": false
+												},
+												{
+													"_type": "ERDColumnView",
+													"_id": "AAAAAAFbpRDdgl2FtOc=",
+													"_parent": {
+														"$ref": "AAAAAAFawDZ3SWCdFD0="
+													},
+													"model": {
+														"$ref": "AAAAAAFbpRDdR12CDb0="
+													},
+													"visible": true,
+													"enabled": true,
+													"lineColor": "#000000",
+													"fillColor": "#ffffff",
+													"fontColor": "#000000",
+													"font": "Arial;13;0",
+													"showShadow": true,
+													"containerChangeable": false,
+													"containerExtending": false,
+													"left": 653,
+													"top": 786,
 													"width": 318,
 													"height": 13,
 													"autoResize": false
@@ -9026,31 +9282,7 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 661,
-													"top": 786,
-													"width": 318,
-													"height": 13,
-													"autoResize": false
-												},
-												{
-													"_type": "ERDColumnView",
-													"_id": "AAAAAAFawDk4imDFAoY=",
-													"_parent": {
-														"$ref": "AAAAAAFawDZ3SWCdFD0="
-													},
-													"model": {
-														"$ref": "AAAAAAFawDk4ZmDCQhg="
-													},
-													"visible": true,
-													"enabled": true,
-													"lineColor": "#000000",
-													"fillColor": "#ffffff",
-													"fontColor": "#000000",
-													"font": "Arial;13;0",
-													"showShadow": true,
-													"containerChangeable": false,
-													"containerExtending": false,
-													"left": 661,
+													"left": 653,
 													"top": 801,
 													"width": 318,
 													"height": 13,
@@ -9074,8 +9306,56 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 661,
+													"left": 653,
 													"top": 816,
+													"width": 318,
+													"height": 13,
+													"autoResize": false
+												},
+												{
+													"_type": "ERDColumnView",
+													"_id": "AAAAAAFbpRnQol2uFJY=",
+													"_parent": {
+														"$ref": "AAAAAAFawDZ3SWCdFD0="
+													},
+													"model": {
+														"$ref": "AAAAAAFbpRnQXl2rSpI="
+													},
+													"visible": true,
+													"enabled": true,
+													"lineColor": "#000000",
+													"fillColor": "#ffffff",
+													"fontColor": "#000000",
+													"font": "Arial;13;0",
+													"showShadow": true,
+													"containerChangeable": false,
+													"containerExtending": false,
+													"left": 653,
+													"top": 831,
+													"width": 318,
+													"height": 13,
+													"autoResize": false
+												},
+												{
+													"_type": "ERDColumnView",
+													"_id": "AAAAAAFbpRNbcV2XcNw=",
+													"_parent": {
+														"$ref": "AAAAAAFawDZ3SWCdFD0="
+													},
+													"model": {
+														"$ref": "AAAAAAFbpRNbPF2UkbU="
+													},
+													"visible": true,
+													"enabled": true,
+													"lineColor": "#000000",
+													"fillColor": "#ffffff",
+													"fontColor": "#000000",
+													"font": "Arial;13;0",
+													"showShadow": true,
+													"containerChangeable": false,
+													"containerExtending": false,
+													"left": 653,
+													"top": 846,
 													"width": 318,
 													"height": 13,
 													"autoResize": false
@@ -9090,10 +9370,10 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 656,
+											"left": 648,
 											"top": 751,
 											"width": 328,
-											"height": 83,
+											"height": 113,
 											"autoResize": false
 										}
 									],
@@ -9106,7 +9386,7 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 656,
+									"left": 648,
 									"top": 728,
 									"width": 328,
 									"height": 152,
@@ -9144,14 +9424,15 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 96,
-											"top": 805,
+											"top": 789,
 											"width": 264,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "Log",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "ERDColumnCompartmentView",
@@ -9182,7 +9463,7 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 101,
-													"top": 828,
+													"top": 812,
 													"width": 254,
 													"height": 13,
 													"autoResize": false
@@ -9206,7 +9487,7 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 101,
-													"top": 843,
+													"top": 827,
 													"width": 254,
 													"height": 13,
 													"autoResize": false
@@ -9230,7 +9511,7 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 101,
-													"top": 858,
+													"top": 842,
 													"width": 254,
 													"height": 13,
 													"autoResize": false
@@ -9254,7 +9535,7 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 101,
-													"top": 873,
+													"top": 857,
 													"width": 254,
 													"height": 13,
 													"autoResize": false
@@ -9278,7 +9559,7 @@
 													"containerChangeable": false,
 													"containerExtending": false,
 													"left": 101,
-													"top": 888,
+													"top": 872,
 													"width": 254,
 													"height": 13,
 													"autoResize": false
@@ -9294,7 +9575,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 96,
-											"top": 823,
+											"top": 807,
 											"width": 264,
 											"height": 83,
 											"autoResize": false
@@ -9310,7 +9591,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": 96,
-									"top": 800,
+									"top": 784,
 									"width": 264,
 									"height": 120,
 									"autoResize": false,
@@ -9399,7 +9680,35 @@
 									},
 									"name": "SPassword",
 									"type": "VARCHAR",
-									"length": "16",
+									"length": "255",
+									"primaryKey": false,
+									"foreignKey": false,
+									"nullable": true,
+									"unique": false
+								},
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAFbrxRgO9xkKFY=",
+									"_parent": {
+										"$ref": "AAAAAAFav++4LVz9vKI="
+									},
+									"name": "SSalt",
+									"type": "VARCHAR",
+									"length": "50",
+									"primaryKey": false,
+									"foreignKey": false,
+									"nullable": true,
+									"unique": false
+								},
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAFawCTWOF//jEM=",
+									"_parent": {
+										"$ref": "AAAAAAFav++4LVz9vKI="
+									},
+									"name": "SEmail",
+									"type": "VARCHAR",
+									"length": "255",
 									"primaryKey": false,
 									"foreignKey": false,
 									"nullable": true,
@@ -9414,20 +9723,6 @@
 									"name": "SPhone",
 									"type": "CHAR",
 									"length": "11",
-									"primaryKey": false,
-									"foreignKey": false,
-									"nullable": true,
-									"unique": false
-								},
-								{
-									"_type": "ERDColumn",
-									"_id": "AAAAAAFawCTWOF//jEM=",
-									"_parent": {
-										"$ref": "AAAAAAFav++4LVz9vKI="
-									},
-									"name": "SEmail",
-									"type": "VARCHAR",
-									"length": "20",
 									"primaryKey": false,
 									"foreignKey": false,
 									"nullable": true,
@@ -9509,7 +9804,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFav++4LVz9vKI="
 									},
-									"name": "SAvator",
+									"name": "SAvatar",
 									"type": "VARCHAR",
 									"length": "255",
 									"primaryKey": false,
@@ -9557,6 +9852,20 @@
 								},
 								{
 									"_type": "ERDColumn",
+									"_id": "AAAAAAFbpKePlxF+Jn8=",
+									"_parent": {
+										"$ref": "AAAAAAFav/FFlV0LOGk="
+									},
+									"name": "RLabel",
+									"type": "VARCHAR",
+									"length": "10",
+									"primaryKey": false,
+									"foreignKey": false,
+									"nullable": false,
+									"unique": false
+								},
+								{
+									"_type": "ERDColumn",
 									"_id": "AAAAAAFawC2uL2A5vmg=",
 									"_parent": {
 										"$ref": "AAAAAAFav/FFlV0LOGk="
@@ -9591,7 +9900,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFav+9zFVzOVQ8="
 							},
-							"name": "Premission",
+							"name": "Prems",
 							"ownedElements": [
 								{
 									"_type": "ERDRelationship",
@@ -9655,6 +9964,20 @@
 								},
 								{
 									"_type": "ERDColumn",
+									"_id": "AAAAAAFbpK7BCBGl4S0=",
+									"_parent": {
+										"$ref": "AAAAAAFawA3Lil0Z1fc="
+									},
+									"name": "PLabel",
+									"type": "VARCHAR",
+									"length": "10",
+									"primaryKey": false,
+									"foreignKey": false,
+									"nullable": false,
+									"unique": false
+								},
+								{
+									"_type": "ERDColumn",
 									"_id": "AAAAAAFawDLrp2Bl8lY=",
 									"_parent": {
 										"$ref": "AAAAAAFawA3Lil0Z1fc="
@@ -9665,6 +9988,19 @@
 									"primaryKey": false,
 									"foreignKey": false,
 									"nullable": true,
+									"unique": false
+								},
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAFbpLIvWhGxyPc=",
+									"_parent": {
+										"$ref": "AAAAAAFawA3Lil0Z1fc="
+									},
+									"name": "PMark",
+									"type": "SMALLINT",
+									"primaryKey": false,
+									"foreignKey": false,
+									"nullable": false,
 									"unique": false
 								}
 							]
@@ -9707,28 +10043,30 @@
 								},
 								{
 									"_type": "ERDColumn",
-									"_id": "AAAAAAFawDj1TmC7L50=",
+									"_id": "AAAAAAFbpRDdR12CDb0=",
 									"_parent": {
 										"$ref": "AAAAAAFawDZ3SGCZ9dA="
 									},
-									"name": "BNum",
-									"length": 0,
+									"name": "BName",
+									"type": "VARCHAR",
+									"length": "20",
 									"primaryKey": false,
 									"foreignKey": false,
-									"nullable": false,
+									"nullable": true,
 									"unique": false
 								},
 								{
 									"_type": "ERDColumn",
-									"_id": "AAAAAAFawDk4ZmDCQhg=",
+									"_id": "AAAAAAFawDj1TmC7L50=",
 									"_parent": {
 										"$ref": "AAAAAAFawDZ3SGCZ9dA="
 									},
-									"name": "BPrice",
+									"name": "BMonth",
+									"type": "SMALLINT",
 									"length": 0,
 									"primaryKey": false,
 									"foreignKey": false,
-									"nullable": false,
+									"nullable": true,
 									"unique": false
 								},
 								{
@@ -9737,8 +10075,35 @@
 									"_parent": {
 										"$ref": "AAAAAAFawDZ3SGCZ9dA="
 									},
-									"name": "BTax",
+									"name": "BPrice",
+									"type": "DOUBLE",
 									"length": 0,
+									"primaryKey": false,
+									"foreignKey": false,
+									"nullable": true,
+									"unique": false
+								},
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAFbpRnQXl2rSpI=",
+									"_parent": {
+										"$ref": "AAAAAAFawDZ3SGCZ9dA="
+									},
+									"name": "BUpdateTime",
+									"type": "DATETIME",
+									"primaryKey": false,
+									"foreignKey": false,
+									"nullable": false,
+									"unique": false
+								},
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAFbpRNbPF2UkbU=",
+									"_parent": {
+										"$ref": "AAAAAAFawDZ3SGCZ9dA="
+									},
+									"name": "BMark",
+									"type": "SMALLINT",
 									"primaryKey": false,
 									"foreignKey": false,
 									"nullable": false,

@@ -3,67 +3,56 @@ package com.enttax.model;
 import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
-import java.util.List;
 
 @Alias("Role")
 public class Role {
-    private String rid;
+    private String rId;
 
-    private String rname;
+    private String rName;
 
-    private Date rupdatetime;
+    private String rLabel;
 
-    private Short rmark;
+    private Date rUpdateTime;
 
-    private List<Permission> permissions;//一个角色对应多个权限
+    private Integer rMark;
 
-    private List<Staff> staffs;//一个角色对应多个用户
-
-    public String getRid() {
-        return rid;
+    public String getRId() {
+        return rId;
     }
 
-    public void setRid(String rid) {
-        this.rid = rid == null ? null : rid.trim();
+    public String getRName() {
+        return rName;
     }
 
-    public String getRname() {
-        return rname;
+    public String getRLabel() {
+        return rLabel;
     }
 
-    public void setRname(String rname) {
-        this.rname = rname == null ? null : rname.trim();
+    public Date getRUpdateTime() {
+        return rUpdateTime;
     }
 
-    public Date getRupdatetime() {
-        return rupdatetime;
+    public Integer getRMark() {
+        return rMark;
     }
 
-    public void setRupdatetime(Date rupdatetime) {
-        this.rupdatetime = rupdatetime;
+    public void setRId(String rId) {
+        this.rId = rId;
     }
 
-    public Short getRmark() {
-        return rmark;
+    public void setRName(String rName) {
+        this.rName = rName;
     }
 
-    public void setRmark(Short rmark) {
-        this.rmark = rmark;
+    public void setRLabel(String rLabel) {
+        this.rLabel = rLabel;
     }
 
-    public List<Permission> getPermissions() {
-        return permissions;
+    public void setRUpdateTime(Date rUpdateTime) {
+        this.rUpdateTime = rUpdateTime;
     }
 
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
-    }
-
-    public List<Staff> getStaffs() {
-        return staffs;
-    }
-
-    public void setStaffs(List<Staff> staffs) {
-        this.staffs = staffs;
+    public void setRMark(Integer rMark) {
+        this.rMark = rMark;
     }
 }

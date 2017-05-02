@@ -1,14 +1,13 @@
 package com.enttax.util.tools;
 
 
-import com.enttax.service.serviceImpl.PermissServiceImpl;
+import com.enttax.service.impl.StaffServiceImpl;
 import org.apache.log4j.Logger;
 
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.Properties;
 
@@ -16,7 +15,7 @@ import java.util.Properties;
  * Created by lcyanxi on 17-4-17.
  */
 public class SendEmail {
-    private static final Logger logger = Logger.getLogger(PermissServiceImpl.class);
+    private static final Logger logger = Logger.getLogger(StaffServiceImpl.class);
 
     // 发件人的 邮箱 和 密码（替换为自己的邮箱和密码）
     // PS: 某些邮箱服务器为了增加邮箱本身密码的安全性，给 SMTP 客户端设置了独立密码（有的邮箱称为“授权码”）,

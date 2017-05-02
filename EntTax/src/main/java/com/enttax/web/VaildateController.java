@@ -1,6 +1,6 @@
 package com.enttax.web;
 
-import com.enttax.service.PermissService;
+import com.enttax.service.StaffService;
 import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.SendEmail;
@@ -24,12 +24,9 @@ import java.util.Map;
 @Controller
 public class VaildateController extends BaseController {
 
-    private PermissService permissService;
-
     @Autowired
-    public void setPermissService(PermissService permissService) {
-        this.permissService = permissService;
-    }
+    private StaffService staffService;
+
 
     /**
      * 产生随机图片验证码
@@ -58,7 +55,7 @@ public class VaildateController extends BaseController {
             map.put(ConstantStr.MESSAGE, ConstantException.args_error_message);
             return map;
         }
-        boolean isExistPhone = permissService.selectByPhone(sphone, request);
+        boolean isExistPhone = staffService.selectByPhone(sphone) == null;
 
         if (isExistPhone) {
             String smsCode = ToolSendSms.sendSMS(sphone);//发送短信
@@ -79,34 +76,6 @@ public class VaildateController extends BaseController {
     }
 
     /**
-     * 只发送短信验证码，不去数据检查后台数据是否存在该电话号码
-     * @param sphone
-     * @return
-     */
-    @RequestMapping(value = "/sendsmscodetoupdate")
-    @ResponseBody
-    public Map sendByPhoneToUpdate(@RequestParam(value = "sphone") String sphone){
-
-        Map map = new HashMap();
-        if (sphone.equals("") || sphone == null) {
-            map.put(ConstantStr.STATUS, false);
-            map.put(ConstantStr.MESSAGE, ConstantException.args_error_message);
-            return map;
-        }
-            String smsCode = ToolSendSms.sendSMS(sphone);//发送短信
-            if (smsCode == null) {
-                map.put(ConstantStr.STATUS, false);
-                map.put(ConstantStr.MESSAGE, ConstantException.exception_message);
-            } else {
-                session.setAttribute(ConstantStr.SMSCODE, smsCode);
-                map.put(ConstantStr.STATUS, true);
-            }
-
-
-        return map;
-    }
-
-    /**
      * 检查 email 是否存在,存在则发送邮箱验证码
      *
      * @param semail
@@ -121,7 +90,7 @@ public class VaildateController extends BaseController {
             map.put(ConstantStr.MESSAGE, ConstantException.args_error_message);
             return map;
         }
-        if (permissService.selectByEamil(semail, session)) { //判断邮箱是否存在于数据库
+        if (staffService.selectByEamil(semail) == null) { //判断邮箱是否存在于数据库
             String eamilCode = SendEmail.sendEmail(semail);     //发送邮箱验证码
             if (eamilCode != null) {    //判断是否拿到邮箱验证码
                 session.setAttribute(ConstantStr.EMAILCODE, eamilCode);
@@ -137,32 +106,6 @@ public class VaildateController extends BaseController {
         }
 
         return map;
-    }
-
-    /**
-     * 只发送邮箱验证码，不去验证码数据是否存在
-     * @param semail
-     * @return
-     */
-    @RequestMapping(value = "/sendemailcodetoupdate")
-    @ResponseBody
-    public Map sendByEmailToUpdate(@RequestParam(value = "semail") String semail){
-        Map map = new HashMap();
-        if (semail == null || semail.equals("")) {
-            map.put(ConstantStr.STATUS, false);
-            map.put(ConstantStr.MESSAGE, ConstantException.args_error_message);
-            return map;
-        }
-        String eamilCode = SendEmail.sendEmail(semail);     //发送邮箱验证码
-        if (eamilCode != null) {    //判断是否拿到邮箱验证码
-            session.setAttribute(ConstantStr.EMAILCODE, eamilCode);
-            map.put(ConstantStr.STATUS, true);
-        } else {
-            map.put(ConstantStr.STATUS, false);
-            map.put(ConstantStr.MESSAGE, ConstantException.exception_message);
-        }
-        return map;
-
     }
 
     /**

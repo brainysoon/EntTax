@@ -1,11 +1,11 @@
 package com.enttax.config;
 
 import com.enttax.dao.BillMapper;
-import com.enttax.dao.PermissionMapper;
+import com.enttax.dao.PermsMapper;
 import com.enttax.dao.RoleMapper;
 import com.enttax.dao.StaffMapper;
 import com.enttax.model.Bill;
-import com.enttax.model.Permission;
+import com.enttax.model.Perms;
 import com.enttax.model.Role;
 import com.enttax.model.Staff;
 import com.enttax.util.tools.Encodes;
@@ -29,36 +29,36 @@ public class MybatisTest {
     public void testDemo() {
         StaffMapper staffMapper=context.getBean(StaffMapper.class);
         Staff staff=new Staff();
-        staff.setSid(ToolDates.getDate8Num());
-        staff.setSpassword(Encodes.encodeBase64("666666"));
-        staff.setSbirthday(new Date());
-        staff.setSenter(new Date());
-        staff.setSemail("2757710657@qq.com");
-        staff.setSname("卡伦");
+        staff.setSId(ToolDates.getDate8Num());
+        staff.setSPassword(Encodes.encodeBase64("666666"));
+        staff.setSBirthday(new Date());
+        staff.setSEnter(new Date());
+        staff.setSEmail("2757710657@qq.com");
+        staff.setSName("卡伦");
         staffMapper.insert(staff);
 
        RoleMapper roleMapper= context.getBean(RoleMapper.class);
         Role role= roleMapper.selectByPrimaryKey("1003");
         System.out.println("role"+role);
 
-        staffMapper.insertStaffAndRoleRelation(staff.getSid(),role.getRid());
+        staffMapper.insertStaffAndRoleRelation(staff.getSId(),role.getRId());
 
     }
 
     @Test
     public void testPerm_RoleTest(){
         RoleMapper roleMapper=context.getBean(RoleMapper.class);
-        roleMapper.insertPerm_Role("1001","1002");
+//        roleMapper.insertPerm_Role("1001","1002");
     }
 
     @Test
     public void permissionTest(){
-       PermissionMapper permissionMapper= context.getBean(PermissionMapper.class);
-        Permission permission=new Permission();
-        permission.setPid("1006");
-        permission.setPname("操作权限");
-        permission.setPtype(5);
-       permissionMapper.insert(permission);
+       PermsMapper permissionMapper= context.getBean(PermsMapper.class);
+        Perms perms =new Perms();
+        perms.setPId("1006");
+        perms.setPName("操作权限");
+        perms.setPType(5);
+       permissionMapper.insert(perms);
     }
 
     @Test
@@ -83,14 +83,14 @@ public class MybatisTest {
         List<Staff> list=staffMapper.selectAll();
         System.out.println(list.size());
         for (Staff staff:list){
-            System.out.println(staff.getSname());
+            System.out.println(staff.getSName());
         }
 
         PageHelper.startPage(1,5);
         List<Bill> bills= billMapper.selectAll();
 
         for (Bill bill:bills) {
-            System.out.println(bill.getBtitle());
+//            System.out.println(bill.getBTitle());
 
         }
     }
@@ -99,23 +99,23 @@ public class MybatisTest {
     public void MoreToMoreTest(){
         StaffMapper staffMapper=context.getBean(StaffMapper.class);
 //        List<Staff> staffs = staffMapper.selectByUserName("邓小平");
-        List<Staff> staffs=staffMapper.selectByUserName("邓小平");
+//        List<Staff> staffs=staffMapper.selectByUserName("邓小平");
 //        System.out.println(staff.getSname());
 //        System.out.println(staff.getRoles().size());
-        for (Staff staff:staffs){
-            System.out.println(staff.getSname());
-            System.out.println(staff.getSemail());
-            List<Role> roles=staff.getRoles();
-            for (Role role:roles){
-                System.out.println(role.getRname());
-                System.out.println(role.getRid());
-                System.out.println(role.getRupdatetime());
-                List<Permission> permissions=role.getPermissions();
-                for (Permission permission:permissions){
-                    System.out.println(permission.getPname());
-                }
-            }
-        }
+//        for (Staff staff:staffs){
+//            System.out.println(staff.getSname());
+//            System.out.println(staff.getSemail());
+//            List<Role> roles=staff.getRoles();
+//            for (Role role:roles){
+//                System.out.println(role.getRname());
+//                System.out.println(role.getRid());
+//                System.out.println(role.getRupdatetime());
+//                List<Perms> permses =role.getPermses();
+//                for (Perms perms : permses){
+//                    System.out.println(perms.getPname());
+//                }
+//            }
+//        }
     }
 
 }

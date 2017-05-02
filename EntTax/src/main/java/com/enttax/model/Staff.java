@@ -5,131 +5,130 @@ import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
-import java.util.List;
 
 
 @Alias("Staff")
 public class Staff {
-    private String sid;
+    private String sId;
 
     @NotNull
-    private String sname;
+    private String sName;
 
     @NotNull
-    private String spassword;
+    private String sPassword;
 
-    private String semail;
+    private String sSalt;
 
-    private String sphone;
+    private String sEmail;
 
-    private Boolean ssex;
+    private String sPhone;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date sbirthday;
+    private Boolean sSex;
 
-    private Date senter;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date sBirthday;
 
-    private Short smark;
+    private Date sEnter;
 
-    private String saddress;
+    private Integer sMark;
 
-        private String savator;
+    private String sAddress;
 
-    private List<Role> roles;
+    private String sAvatar;
 
-    public String getSid() {
-        return sid;
+    public String getSId() {
+        return sId;
     }
 
-    public void setSid(String sid) {
-        this.sid = sid == null ? null : sid.trim();
+    public String getSName() {
+        return sName;
     }
 
-    public String getSname() {
-        return sname;
+    public String getSPassword() {
+        return sPassword;
     }
 
-    public void setSname(String sname) {
-        this.sname = sname == null ? null : sname.trim();
+    public String getSSalt() {
+        return sSalt;
     }
 
-    public String getSpassword() {
-        return spassword;
+    public String getSEmail() {
+        return sEmail;
     }
 
-    public void setSpassword(String spassword) {
-        this.spassword = spassword == null ? null : spassword.trim();
+    public String getSPhone() {
+        return sPhone;
     }
 
-    public String getSemail() {
-        return semail;
+    public Boolean getSSex() {
+        return sSex;
     }
 
-    public void setSemail(String semail) {
-        this.semail = semail == null ? null : semail.trim();
+    public Date getSBirthday() {
+        return sBirthday;
     }
 
-    public String getSphone() {
-        return sphone;
+    public Date getSEnter() {
+        return sEnter;
     }
 
-    public void setSphone(String sphone) {
-        this.sphone = sphone == null ? null : sphone.trim();
+    public Integer getSMark() {
+        return sMark;
     }
 
-    public Boolean getSsex() {
-        return ssex;
+    public String getSAddress() {
+        return sAddress;
     }
 
-    public void setSsex(Boolean ssex) {
-        this.ssex = ssex;
+    public String getSAvatar() {
+        return sAvatar;
     }
 
-    public Date getSbirthday() {
-        return sbirthday;
+    public void setSId(String sId) {
+        this.sId = sId;
     }
 
-    public void setSbirthday(Date sbirthday) {
-        this.sbirthday = sbirthday;
+    public void setSName(String sName) {
+        this.sName = sName;
     }
 
-    public Date getSenter() {
-        return senter;
+    public void setSPassword(String sPassword) {
+        this.sPassword = sPassword;
     }
 
-    public void setSenter(Date senter) {
-        this.senter = senter;
+    public void setSSalt(String sSalt) {
+        this.sSalt = sSalt;
     }
 
-    public Short getSmark() {
-        return smark;
+    public void setSEmail(String sEmail) {
+        this.sEmail = sEmail;
     }
 
-    public void setSmark(Short smark) {
-        this.smark = smark;
+    public void setSPhone(String sPhone) {
+        this.sPhone = sPhone;
     }
 
-    public String getSaddress() {
-        return saddress;
+    public void setSSex(Boolean sSex) {
+        this.sSex = sSex;
     }
 
-    public void setSaddress(String saddress) {
-        this.saddress = saddress == null ? null : saddress.trim();
+    public void setSBirthday(Date sBirthday) {
+        this.sBirthday = sBirthday;
     }
 
-    public String getSavator() {
-        return savator;
+    public void setSEnter(Date sEnter) {
+        this.sEnter = sEnter;
     }
 
-    public void setSavator(String savator) {
-        this.savator = savator == null ? null : savator.trim();
+    public void setSMark(Integer sMark) {
+        this.sMark = sMark;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public void setSAddress(String sAddress) {
+        this.sAddress = sAddress;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setSAvatar(String sAvatar) {
+        this.sAvatar = sAvatar;
     }
 }

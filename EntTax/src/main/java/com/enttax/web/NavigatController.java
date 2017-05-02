@@ -1,7 +1,9 @@
 package com.enttax.web;
 
 import com.enttax.model.Staff;
+import com.enttax.service.StaffService;
 import com.enttax.util.constant.ConstantStr;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,119 +15,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class NavigatController extends BaseController {
 
-    /**
-     * 导航到重置密码页面
-     *
-     * @return
-     */
-    @RequestMapping(value = "/updatepassword")
-    public String updatepasswordPage() {
-        return "updatepassword";
-    }
+    @Autowired
+    private StaffService staffService;
 
     /**
-     * 导航到主页面
-     *
-     * @return
+     * @return 由于是分析系统  所以首页面直接返回到  登录页面 暂时没有主页面
      */
-    @RequestMapping(value = "/home")
-    public String mainPage(Model model) {
-        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
-        model.addAttribute(staff);
-        return "home";
-    }
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
+    public String toIndex(Model model) {
 
-    /**
-     * 导航到找回密码页面
-     *
-     * @return
-     */
-    @RequestMapping(value = "/findpassword")
-    public String findpasswordPage() {
-        return "findpassword";
-    }
-
-    /**
-     * 安全退出
-     *
-     * @return
-     */
-    @RequestMapping(value = "/loginOut")
-    public String loginOut() {
-        session.removeAttribute(ConstantStr.STAFFINFO);
-        session.invalidate();
-        return "redirect:/index";
-    }
-
-    /**
-     * 导航到 选择找回密码方式界面
-     *
-     * @return
-     */
-    @RequestMapping(value = "/findways", method = RequestMethod.GET)
-    public String toFindWays() {
-
-        return "findways";
-    }
-
-    /**
-     * 导航到 通过邮箱重置密码
-     *
-     * @return
-     */
-    @RequestMapping(value = "/mailreset", method = RequestMethod.GET)
-    public String toMailReset() {
-
-        return "mailreset";
-    }
-
-    /**
-     * 导航到 通过手机重置密码
-     *
-     * @return
-     */
-    @RequestMapping(value = "/phonereset", method = RequestMethod.GET)
-    public String toPhoneReset() {
-
-        return "phonereset";
-    }
-
-    /**
-     * @return 返回登录页面
-     */
-    @RequestMapping(value = "/user/login", method = RequestMethod.GET)
-    public String toLogin() {
-
-        return "login";
-    }
-
-    /**
-     * 个人安全信息页面
-     *
-     * @return
-     */
-    @RequestMapping(value = "/user/personalsecurity", method = RequestMethod.GET)
-    public String toPersoanlSecurity(Model model) {
+        //用户登录信息
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
         model.addAttribute(ConstantStr.STAFFINFO, staff);
-        return "personal_security";
+
+        return "index";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index() {
+    /**
+     * @return
+     */
+    @RequestMapping(value = "/unauthorized")
+    public String toUnauthorized() {
 
-        return "login";
-    }
-
-    @RequestMapping(value = "/user/phoneedit", method = RequestMethod.GET)
-    public String toPhoneEdit() {
-
-        return "phoneedit";
-    }
-
-    @RequestMapping(value = "/user/mailedit", method = RequestMethod.GET)
-    public String toMailEdit() {
-
-        return "mailedit";
+        return "unauthorized";
     }
 }

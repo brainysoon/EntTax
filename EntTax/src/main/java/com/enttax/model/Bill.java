@@ -3,75 +3,76 @@ package com.enttax.model;
 import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
+
 @Alias("Bill")
 public class Bill {
-    private String bid;
+    private String bId;
 
-    private String btype;
+    private String bType;
 
-    private Integer bnum;
+    private String bName;
 
-    private Double bprice;
+    private Integer bMonth;
 
-    private String bmonth;
+    private Double bPrice;
 
-    private String btitle;
+    private Date bUpdateTime;
 
-    private Date bdate;
+    private Integer bMark;
 
-    public String getBid() {
-        return bid;
+    public String getBbId() {
+        return bId;
     }
 
-    public void setBid(String bid) {
-        this.bid = bid == null ? null : bid.trim();
+    public String getBType() {
+        return bType;
     }
 
-    public String getBtype() {
-        return btype;
+    public String getBName() {
+        return bName;
     }
 
-    public void setBtype(String btype) {
-        this.btype = btype == null ? null : btype.trim();
+    public Integer getBMonth() {
+        return bMonth;
     }
 
-    public Integer getBnum() {
-        return bnum;
+    public Double getBPrice() {
+        return bPrice;
     }
 
-    public void setBnum(Integer bnum) {
-        this.bnum = bnum;
+    public Date getBUpdateTime() {
+        return bUpdateTime;
     }
 
-    public Double getBprice() {
-        return bprice;
+    public Integer getBMark() {
+        return bMark;
     }
 
-    public void setBprice(Double bprice) {
-        this.bprice = bprice;
+    public void setBId(String bId) {
+        this.bId = bId;
     }
 
-    public String getBmonth() {
-        return bmonth;
+    public void setBType(String bType) {
+        this.bType = bType;
     }
 
-    public void setBmonth(String bmonth) {
-        this.bmonth = bmonth == null ? null : bmonth.trim();
+    public void setBName(String bName) {
+        this.bName = bName;
     }
 
-    public String getBtitle() {
-        return btitle;
+    public void setBMonth(Integer bMonth) {
+        this.bMonth = bMonth;
     }
 
-    public void setBtitle(String btitle) {
-        this.btitle = btitle == null ? null : btitle.trim();
+    public void setBPrice(Double bPrice) {
+        this.bPrice = bPrice;
     }
 
-    public Date getBdate() {
-        return bdate;
+    public void setBUpdateTime(Date bUpdateTime) {
+        this.bUpdateTime = bUpdateTime;
     }
 
-    public void setBdate(Date bdate) {
-        this.bdate = bdate;
+    public void setBMark(Integer bMark) {
+        this.bMark = bMark;
     }
 }

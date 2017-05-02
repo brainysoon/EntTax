@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="brainy">
+    <meta name="keyword" content="EntTax">
+    <link rel="shortcut icon" href="../../img/favicon.icon">
+
+    <title>个人中心</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-reset.css}" href="../../../css/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+    <link th:href="@{/assets/font-awesome/css/font-awesome.css}"
+          href="../../../assets/font-awesome/css/font-awesome.css"
+          rel="stylesheet"/>
+    <link th:href="@{/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css}"
+          href="../../../assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
+          media="screen"/>
+    <link th:href="@{/css/owl.carousel.css}" rel="stylesheet" href="../../../css/owl.carousel.css" type="text/css">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/style.css}" href="../../../css/style.css" rel="stylesheet">
+    <link th:href="@{/css/style-responsive.css}" href="../../../css/style-responsive.css" rel="stylesheet"/>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
+    <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<section id="container" class="">
+    <!--header start-->
+    <header class="header white-bg">
+        <div class="sidebar-toggle-box">
+            <div data-original-title="导航栏" data-placement="right" class="icon-reorder tooltips"></div>
+        </div>
+        <!--logo start-->
+        <a href="#" class="logo">发票数据<span>分析系统</span></a>
+        <!--logo end-->
+        <div class="nav notify-row" id="top_menu">
+            <!--  notification start -->
+            <ul class="nav top-menu">
+                <!-- notification dropdown start-->
+                <li id="header_notification_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                        <i class="icon-bell-alt"></i>
+                        <span class="badge bg-warning">1</span>
+                    </a>
+                    <ul class="dropdown-menu extended notification">
+                        <div class="notify-arrow notify-arrow-yellow"></div>
+                        <li>
+                            <p class="yellow">你有1个新通知</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-info"><i class="icon-envelope"></i></span>
+                                欢迎登录系统
+                                <span class="small italic">Welcome !</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">所有标记为已读</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- notification dropdown end -->
+            </ul>
+            <!--  notification end -->
+        </div>
+        <div class="top-nav ">
+            <!--search & user info start-->
+            <ul class="nav pull-right top-menu">
+                <li>
+                    <input type="text" class="form-control search" placeholder="搜索">
+                </li>
+                <!-- user login dropdown start-->
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <img alt="" th:src="${staff.sAvatar}" id="avatarsm" width="35" height="35"
+                             src="../../../img/avatar-mini4.jpg">
+                        <span class="username" th:text="${staff.sName}"></span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu extended logout">
+                        <div class="log-arrow-up"></div>
+                        <li><a th:href="@{/staff/profile}" href="#"><i class="icon-user"></i>个人资料</a></li>
+                        <li><a th:href="@{/staff/security}" href="#"><i class="icon-warning-sign"></i>安全中心</a></li>
+                        <li><a th:href="@{/staff/message}" href="#"><i class="icon-bell-alt"></i>消息通知</a></li>
+                        <li><a th:href="@{/staff/logout}" href="#"><i class="icon-signout"></i>退出登录</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- user login dropdown end -->
+            </ul>
+            <!--search & user info end-->
+        </div>
+    </header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar" class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu">
+                <li class="active">
+                    <a class="" th:href="@{/index}" href="index.html">
+                        <i class="icon-home"></i>
+                        <span>首页</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <!-- page start-->
+            <div class="row">
+                <aside class="profile-nav col-lg-3">
+                    <section class="panel">
+                        <div class="user-heading round">
+                            <a href="#" data-toggle="modal"
+                               data-target="#cropAvatar">
+                                <img th:src="${staff.sAvatar}"
+                                     src="http://www.coolbhu.cn/lcyanxi.jpg" id="avatarlg" alt="">
+                            </a>
+                            <p id="help_avatar" class="help-block">点击更换头像</p>
+                            <h1><span th:text="${staff.sName}"></span></h1>
+                            <p th:if="${staff.sMark}==1">账户已激活</p>
+                            <p th:if="${staff.sMark}==0">账户未激活</p>
+                        </div>
+
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a th:href="@{/staff/profile}"> <i class="icon-user"></i>个人信息</a></li>
+                            <li class="active"><a> <i class="icon-edit"></i>修改信息</a></li>
+                            <li><a th:href="@{/staff/security}"> <i class="icon-warning-sign"></i>安全中心</a></li>
+                        </ul>
+
+                    </section>
+                </aside>
+                <aside class="profile-info col-lg-9">
+                    <section class="panel">
+                        <div class="bio-graph-heading">
+                            修改个人信息
+                        </div>
+                        <div class="panel-body bio-graph-info">
+                            <h1>修改基本信息</h1>
+                            <form class="form-horizontal" role="form" th:action="@{/staff/updateprofile.do}"
+                                  method="post" id="profile_edit">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">姓名</label>
+                                    <div class="col-lg-6 has-success">
+                                        <input type="text" class="form-control" name="sname" id="sname"
+                                               th:value="${staff.sName}" placeholder="姓名">
+                                        <p class="help-block"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">性别</label>
+                                    <div class="col-lg-6">
+                                        <div class="row col-xs-8" th:if="${staff.sSex}==true">
+                                            <div class="col-xs-4">
+                                                <input type="radio" name="ssex" checked="checked" class="radio-inline"
+                                                       value="男">男
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <input type="radio" name="ssex" class="radio-inline" value="女">女
+                                            </div>
+                                        </div>
+                                        <div class="row col-xs-8" th:if="${staff.sSex}==false">
+                                            <div class="col-xs-4">
+                                                <input type="radio" name="ssex" class="radio-inline" value="男">男
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <input type="radio" name="ssex" checked="checked" class="radio-inline"
+                                                       value="女">女
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="col-lg-2 control-label">出生日期</label>
+                                    <div class="col-lg-6">
+                                        <input type="date" name="sbirthday" class="dataTables_info"
+                                               th:value="${toStringBirthday}" dataformatas="yyyy-mm-dd"
+                                               value="1994-01-15">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">详细地址</label>
+                                    <div class="col-lg-6 has-success">
+                                        <input type="text" class="form-control" name="saddress"
+                                               th:value="${staff.sAddress}"
+                                               placeholder="请输入你的详细地址">
+                                        <p class="help-block"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button type="submit" class="btn btn-success">保存修改</button>
+                                        <button type="button" class="btn btn-default">取消</button>
+                                    </div>
+                                    <h4 class="help-block text-danger text-center" th:text="${message}"></h4>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </aside>
+            </div>
+
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="cropAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">剪切头像</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="imageBox col-xs-7">
+                        <div class="thumbBox"></div>
+                        <div class="spinner" style="display: none">正在加载...</div>
+                    </div>
+                    <div class="cropped col-xs-4"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="new-contentarea tc"><a href="javascript:void(0)" class="upload-img">
+                                <label for="upload-file">选择图片</label>
+                            </a>
+                                <input type="file" class="" name="upload-file" id="upload-file"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <button type="button" id="btnZoomIn" class="btn btn-primary btn-sm"><i
+                                    class="icon-zoom-in"></i>放大
+                            </button>
+                            <button type="button" id="btnZoomOut" class="btn btn-primary btn-sm"><i
+                                    class="icon-zoom-out"></i> 缩小
+                            </button>
+                            <input type="button" id="btnCrop" class="btn btn-primary" value="保存头像">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- js placed at the end of the document so the pages load faster -->
+<script th:src="@{/js/jquery.js}" src="../../../js/jquery.js"></script>
+<script th:src="@{/js/jquery-1.8.3.min.js}" src="../../../js/jquery-1.8.3.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}" src="../../../js/bootstrap.min.js"></script>
+<script th:src="@{/js/jquery.scrollTo.min.js}" src="../../../js/jquery.scrollTo.min.js"></script>
+<script th:src="@{/js/jquery.nicescroll.js}" src="../../../js/jquery.nicescroll.js" type="text/javascript"></script>
+<script th:src="@{/js/jquery.sparkline.js}" src="../../../js/jquery.sparkline.js" type="text/javascript"></script>
+<script th:src="@{/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js}"
+        src="../../../assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+<script th:src="@{/js/owl.carousel.js}" src="../../../js/owl.carousel.js"></script>
+<script th:src="@{/js/jquery.customSelect.min.js}" src="../../../js/jquery.customSelect.min.js"></script>
+
+<!--common script for all pages-->
+<script th:src="@{/js/common-scripts.js}" src="../../../js/common-scripts.js"></script>
+<!--Jquery Validate-->
+<script th:src="@{/js/jquery.validate.min.js}" src="../../../js/jquery.validate.min.js"></script>
+<!--Crop js-->
+<script th:src="@{/js/cropbox.js}" src="../../../js/cropbox.js"></script>
+
+
+<!--script for this page-->
+<script th:src="@{/js/sparkline-chart.js}" src="../../../js/sparkline-chart.js"></script>
+<script th:src="@{/js/easy-pie-chart.js}" src="../../../js/easy-pie-chart.js"></script>
+
+<script>
+
+    //owl carousel
+    $(document).ready(function () {
+        $("#owl-demo").owlCarousel({
+            navigation: true,
+            slideSpeed: 300,
+            paginationSpeed: 400,
+            singleItem: true
+
+        });
+    });
+
+    //custom select box
+
+    $(function () {
+        $('select.styled').customSelect();
+    });
+
+    //修改個人信息時候验证
+    $("#profile_edit").validate({
+
+        submitHandler: function (form) {
+
+            //验证成功后提交
+            form.submit();
+        },
+        rules: {
+            sname: {
+                required: true
+            },
+            saddress: {
+                required: true
+            }
+        },
+        messages: {
+            sname: "请输入姓名",
+            saddress: "请输入详细地址"
+        },
+        highlight: function (e) {
+            $(e).closest(".col-lg-6").removeClass("has-success").addClass("has-error");
+        },
+        success: function (e) {
+            $(e).closest(".col-lg-6").removeClass("has-error").addClass("has-success");
+            e.remove();
+        }
+    });
+
+    var cropper;
+
+    $(window).load(function () {
+        var options =
+        {
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: '../../img/avatar.jpg'
+        }
+        cropper = $('.imageBox').cropbox(options);
+        $('#upload-file').on('change', function () {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                options.imgSrc = e.target.result;
+                cropper = $('.imageBox').cropbox(options);
+
+                changeFontAvatar();
+            }
+            reader.readAsDataURL(this.files[0]);
+//            this.files = [];
+        })
+        $('#btnZoomIn').on('click', function () {
+            cropper.zoomIn();
+        })
+        $('#btnZoomOut').on('click', function () {
+            cropper.zoomOut();
+        })
+        $("#cropAvatar").on('mouseup', changeFontAvatar);
+
+    });
+
+    function changeFontAvatar() {
+
+        var img = cropper.getDataURL();
+
+        var cropped = $('.cropped').html("");
+        cropped.append('<img src="' + img + '" align="absmiddle" style="width:32px;margin-top:4px;border-radius:32px;box-shadow:0px 0px 12px #7E7E7E;" ><p>32px*32px</p>');
+        cropped.append('<img src="' + img + '" align="absmiddle" style="width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;"><p>64px*64px</p>');
+        cropped.append('<img src="' + img + '" align="absmiddle" style="width:96px;margin-top:4px;border-radius:96px;box-shadow:0px 0px 12px #7E7E7E;"><p>96px*96px</p>');
+    }
+
+    //提交剪切过后的头像
+    $('#btnCrop').click(function () {
+        //使用ajax发送
+        var fd = new FormData();
+        var img = cropper.getDataURL();
+        fd.append("uploadfile", cropper.getBlob(), "image.png");
+
+        $.ajax({
+            url: "/staff/updateavatar",
+            type: "POST",
+            data: fd,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+
+                //如果发送成功 则开启定时
+                if (data.status) {
+
+                    $("#cropAvatar").modal("hide");
+
+                    //设置属性
+                    $("#avatarsm").attr('src', img);
+                    $("#avatarlg").attr('src', img);
+
+                } else {
+
+                    alert("上传失败，稍后重试:" + data.message);
+                }
+            },
+            complete: function (XMLHttpREquest, status) {
+                //发送失败
+                if (status == "error") {
+                    alert("发送超时请重发");
+                }
+            }
+        });
+    });
+
+
+</script>
+
+</body>
+</html>
