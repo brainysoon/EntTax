@@ -6,21 +6,39 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface RoleMapper {
-    int deleteByPrimaryKey(String rid);
 
+    /**
+     * @param rId
+     * @return
+     */
+    int deleteByPrimaryKey(String rId);
+
+    /**
+     * @param record
+     * @return
+     */
     int insert(Role record);
 
-    Role selectByPrimaryKey(String rid);
+    /**
+     * @param rId
+     * @return
+     */
+    Role selectByPrimaryKey(String rId);
 
+    /**
+     * @return
+     */
     List<Role> selectAll();
 
+    /**
+     * @param record
+     * @return
+     */
     int updateByPrimaryKey(Role record);
 
     /**
-     * 插入permission 和role 的关系
-     * @param pid
-     * @param sid
+     * @param sId
      * @return
      */
-    int insertPerm_Role(@Param("pid") String pid,@Param("rid") String rid);
+    List<Role> selectBySId(@Param("sId") String sId);
 }

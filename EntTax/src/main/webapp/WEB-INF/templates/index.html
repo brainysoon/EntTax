@@ -82,19 +82,20 @@
                 </li>
                 <!-- user login dropdown start-->
 
-                <!--th:attr="src=${staff.savator}"-->
+                <!--th:attr="src=${staff.savatar}"-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" th:src="${staff.savator}" width="35" height="35" src="../../img/avatar-mini4.jpg">
-                        <span class="username" th:text="${staff.sname}"></span>
+                        <img alt="" th:src="${staff.sAvatar}" width="35" height="35" src="../../img/avatar-mini4.jpg">
+                        <span class="username" th:text="${staff.sName}"></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
-                        <li><a th:href="@{/user/showprofile.from}" href="#"><i class="icon-user"></i>个人资料</a></li>
-                        <li><a href="#"><i class="icon-cog"></i>个人设置</a></li>
-                        <li><a href="#"><i class="icon-bell-alt"></i>消息通知</a></li>
-                        <li><a href="login.html"><i class="icon-signout"></i>退出登录</a></li>
+                        <li><a th:href="@{/staff/profile}" href="#"><i class="icon-user"></i>个人资料</a></li>
+                        <li><a th:href="@{/staff/security}" href="#"><i class="icon-warning-sign"></i>安全中心</a></li>
+                        <li><a th:href="@{/staff/message}" href="#"><i class="icon-bell-alt"></i>消息通知</a></li>
+                        <li><a th:href="@{/staff/logout}" href="#"><i class="icon-signout"></i>退出登录</a>
+                        </li>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
@@ -109,22 +110,10 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
                 <li class="active">
-                    <a class="" href="index.html">
+                    <a class="" th:href="@{/index}" href="index.html">
                         <i class="icon-home"></i>
                         <span>首页</span>
                     </a>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon-user"></i>
-                        <span>个人中心</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><a class="" href="#">个人资料</a></li>
-                        <li><a class="" href="#">安全中心</a></li>
-                        <li><a class="" href="#">个人设置</a></li>
-                    </ul>
                 </li>
             </ul>
             <!-- sidebar menu end-->

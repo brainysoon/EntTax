@@ -1,117 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.enttax.dao.StaffMapper">
-  <!--<cache type="com.strive.cms.cache.RedisCache"/>-->
+    <!--<cache type="com.strive.cms.cache.RedisCache"/>-->
 
-  <resultMap id="BaseResultMap" type="Staff">
-    <id column="SId"  property="sid" />
-    <result column="SName"  property="sname" />
-    <result column="SPassword"  property="spassword" />
-    <result column="SEmail"  property="semail" />
-    <result column="SPhone"  property="sphone" />
-    <result column="SSex"  property="ssex" />
-    <result column="SBirthday" property="sbirthday" />
-    <result column="SEnter"  property="senter" />
-    <result column="SMark"  property="smark" />
-    <result column="SAddress"  property="saddress" />
-    <result column="SAvator"  property="savator" />
-    <collection property="roles" resultMap="RoleResultMap"/>
-  </resultMap>
-  
-  <resultMap id="RoleResultMap" type="Role">
-     <id column="Rid" property="rid"/>
-    <result column="Rname"  property="rname" />
-    <result column="Rupdatetime"  property="rupdatetime" />
-    <result column="Rmark"  property="rmark" />
-    <collection property="permissions" resultMap="PermissResultMap"/>
-  </resultMap>
+    <resultMap id="BaseResultMap" type="Staff">
+        <id column="SId" property="sId"/>
+        <result column="SName" property="sName"/>
+        <result column="SPassword" property="sPassword"/>
+        <result column="SSalt" property="sSalt"/>
+        <result column="SEmail" property="sEmail"/>
+        <result column="SPhone" property="sPhone"/>
+        <result column="SSex" property="sSex"/>
+        <result column="SBirthday" property="sBirthday"/>
+        <result column="SEnter" property="sEnter"/>
+        <result column="SMark" property="sMark"/>
+        <result column="SAddress" property="sAddress"/>
+        <result column="SAvatar" property="sAvatar"/>
+    </resultMap>
 
-  <resultMap id="PermissResultMap" type="Permission">
-    <id column="Pid" property="pid"/>
-    <result column="Pname"  property="pname" />
-    <result column="Ptype"  property="ptype" />
-  </resultMap>
-
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from staff
-    where SId = #{sid}
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    DELETE FROM staff
+    WHERE SId = #{sId}
   </delete>
-  
-  <!--insert-->
-  <insert id="insert" parameterType="Staff">
-    insert into staff (SId, SName, SPassword, 
-      SEmail, SPhone, SSex, SBirthday, 
-      SEnter, SMark, SAddress, 
-      SAvator)
-    values (#{sid}, #{sname}, #{spassword},
-      #{semail}, #{sphone}, #{ssex}, #{sbirthday},
-      #{senter}, #{smark}, #{saddress},
-      #{savator})
-  </insert>
-  <insert id="insertStaffAndRoleRelation" parameterType="String">
-    insert into staff_role (SId, RId) values (#{sid}, #{rid})
-  </insert>
 
-  <!--update-->
-  <update id="updateByPrimaryKey" parameterType="Staff">
-    update staff
-    set SName = #{sname},
-      SPassword = #{spassword},
-      SEmail = #{semail},
-      SPhone = #{sphone},
-      SSex = #{ssex},
-      SBirthday = #{sbirthday},
-      SEnter = #{senter},
-      SMark = #{smark},
-      SAddress = #{saddress},
-      SAvator = #{savator}
-    where SId = #{sid}
+    <!--insert-->
+    <insert id="insert" parameterType="Staff">
+    INSERT INTO staff (SId, SName, SPassword, SSalt,
+      SEmail, SPhone, SSex, SBirthday,
+      SEnter, SMark, SAddress, SAvatar)
+    VALUES (#{sId}, #{sName}, #{sPassword},#{sSalt},
+      #{sEmail}, #{sPhone}, #{sSex}, #{sBirthday},
+      #{sEnter}, #{sMark}, #{sAddress},
+      #{sAvatar})
+    </insert>
+
+    <insert id="insertStaffAndRoleRelation" parameterType="String">
+    INSERT INTO staff_role (SId, RId) VALUES (#{sId}, #{rId})
+    </insert>
+
+    <!--update-->
+    <update id="updateByPrimaryKey" parameterType="Staff">
+    UPDATE staff
+    SET SName = #{sName},
+      SPassword = #{sPassword},
+      SSalt=#{sSalt}
+      SEmail = #{sEmail},
+      SPhone = #{sPhone},
+      SSex = #{sSex},
+      SBirthday = #{sBirthday},
+      SEnter = #{sEnter},
+      SMark = #{sMark},
+      SAddress = #{sAddress},
+      SAvatar = #{sAvatar}
+    WHERE SId = #{sId}
   </update>
 
-  <update id="updateToPassword">
-    update staff set SPassword = #{newpassword}
-    where SId = #{sid}
+    <update id="updatePassword" parameterType="java.lang.String">
+    UPDATE staff SET SPassword = #{newPassword},
+    SSalt=#{sSalt}
+    WHERE SId = #{sId}
   </update>
 
-  <!--select-->
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, 
-    SAvator
-    from staff
-    where SId = #{sid}
+    <!--select-->
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT SId, SName, SPassword, SSalt, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress,
+    SAvatar
+    FROM staff
+    WHERE SId = #{sId}
   </select>
-  <select id="selectBySidAndPassword"  resultType="Staff">
-    select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress,SAvator
-    from staff
-    where SId = #{sid} AND SPassword=#{spassword}
+    <select id="selectByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT SId, SName, SPassword, SSalt, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, SAvatar
+    FROM staff
+    WHERE SEmail= #{sEmail}
   </select>
-  <select id="selectByEmailAndPassword"  resultType="Staff">
-    select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, SAvator
-    from staff
-    where SEmail= #{semail} AND SPassword=#{spassword}
+    <select id="selectByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT SId, SName, SPassword, SSalt, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress,SAvatar
+    FROM staff
+    WHERE SPhone = #{sPhone}
   </select>
-  <select id="selectByPhoneAndPassword"  resultType="Staff">
-    select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress,SAvator
-    from staff
-    where SPhone = #{sphone} AND SPassword=#{spassword}
-  </select>
-
-
-  <select id="selectByUserName" resultMap="BaseResultMap">
-     select s.*,r.*,p.*
-     from staff s left join staff_role su on s.sid=su.sid left join role r on r.rid=su.rid
-     left join perm_role pr on pr.rid=r.rid left join permission p on p.pid=pr.pid
-     where sname=#{sname};
-
-  </select>
-  <select id="selectByPhone" resultMap="BaseResultMap">
-    select SId from staff WHERE SPhone = #{sphone}
-  </select>
-  <select id="selectByEmail" resultMap="BaseResultMap">
-    select SId from staff WHERE SEmail = #{semail}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select SId, SName, SPassword, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, SAvator
-    from staff
+    <select id="selectAll" resultMap="BaseResultMap">
+    SELECT SId, SName, SPassword, SSalt, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, SAvatar
+    FROM staff
   </select>
 </mapper>

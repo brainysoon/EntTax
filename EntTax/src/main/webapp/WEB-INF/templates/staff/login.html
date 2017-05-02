@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="enttax login">
+    <meta name="author" content="brainy">
+    <meta name="keyword" content="EntTax">
+    <link rel="shortcut icon" th:href="@{/img/favicon.icon}" href="../../../img/favicon.icon">
+
+    <title>登录</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-reset.css}" href="../../../css/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+    <link th:href="@{/assets/font-awesome/css/font-awesome.css}"
+          href="../../../assets/font-awesome/css/font-awesome.css"
+          rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/style.css}" href="../../../css/style.css" rel="stylesheet">
+    <link th:href="@{/css/style-responsive.css}" href="../../../css/style-responsive.css" rel="stylesheet"/>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
+    <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="login-body">
+
+<div class="container">
+
+    <form id="loginForm" class="form-signin" th:action="@{/staff/login}" method="post">
+        <h2 class="form-signin-heading">登录</h2>
+        <div class="login-wrap">
+            <div class="form-group has-success">
+                <input type="text" name="sname" class="form-control" placeholder="员工号/手机号/邮箱" autofocus>
+                <p class="help-block"></p>
+            </div>
+            <div class="form-group has-success">
+                <input type="password" name="spassword" class="form-control" placeholder="密码">
+                <p class="help-block"></p>
+            </div>
+            <div class="form-group has-success">
+                <div class="row">
+                    <div class="col-xs-7">
+                        <input id="kcode" type="text" name="kcode" class="form-control" placeholder="验证码"/>
+                    </div>
+                    <div class="col-xs-3">
+                        <img id="captchaImage" th:src="@{/sendcaptcha}" alt="验证码" class="img-rounded" width="100"
+                             height="34"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="rememberme" value="true"><a>&nbsp;记住我</a>
+                <span class="pull-right"> <a th:href="@{/staff/chooseway}"
+                                             href="chooseway.html"> 忘记密码?</a></span>
+            </div>
+            <button class="btn btn-lg btn-login btn-block" type="submit">立即登录</button>
+            <h4 class="help-block text-danger text-center" th:text="${message}"></h4>
+        </div>
+        <!--end of login-wrap-->
+    </form>
+    <!--end of form-->
+</div>
+<!--end of container-->
+
+<!--Jquery-->
+<script th:src="@{/js/jquery-1.8.3.min.js}" src="../../../js/jquery-1.8.3.min.js"></script>
+<!--Jquery Validate-->
+<script th:src="@{/js/jquery.validate.min.js}" src="../../../js/jquery.validate.min.js"></script>
+<!--Custom Validate-->
+<script th:src="@{/js/custom-validate.js}" src="../../../js/custom-validate.js"></script>
+
+<script type="text/javascript">
+    // 更换验证码
+    $('#captchaImage').click(function () {
+        $('#captchaImage').attr("src", '/sendcaptcha?timestamp=' + (new Date()).valueOf());
+    });
+</script>
+
+</body>
+</html>

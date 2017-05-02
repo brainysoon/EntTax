@@ -1,41 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.enttax.dao.RoleMapper">
-  <!--<cache type="com.strive.cms.cache.RedisCache"/>-->
+    <!--<cache type="com.strive.cms.cache.RedisCache"/>-->
 
-  <resultMap id="BaseResultMap" type="Role">
-    <id column="RId"  property="rid" />
-    <result column="RName" property="rname" />
-    <result column="RUpdateTime"  property="rupdatetime" />
-    <result column="RMark"  property="rmark" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from role
-    where RId = #{rid}
+    <resultMap id="BaseResultMap" type="Role">
+        <id column="RId" property="rId"/>
+        <result column="RName" property="rName"/>
+        <result column="RLabel" property="rLabel"/>
+        <result column="RUpdateTime" property="rUpdateTime"/>
+        <result column="RMark" property="rMark"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    DELETE FROM role
+    WHERE RId = #{rId}
   </delete>
-  <insert id="insert" parameterType="Role">
-    insert into role (RId, RName, RUpdateTime, 
+    <insert id="insert" parameterType="Role">
+    INSERT INTO role (RId, RName, RLabel, RUpdateTime,
       RMark)
-    values (#{rid}, #{rname}, #{rupdatetime},
-      #{rmark})
+    VALUES (#{rId}, #{rName},#{rLabel}, #{rUpdateTime},
+      #{rMark})
   </insert>
-  <insert id="insertPerm_Role" parameterType="String">
-    insert into perm_role (PId, RId) values (#{pid}, #{rid})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="Role">
-    update role
-    set RName = #{rname},
-      RUpdateTime = #{rupdatetime},
-      RMark = #{rmark}
-    where RId = #{rid}
+    <update id="updateByPrimaryKey" parameterType="Role">
+    UPDATE role
+    SET RName = #{rName},
+      RLabel=#{rLabel},
+      RUpdateTime = #{rUpdateTime},
+      RMark = #{rMark}
+    WHERE RId = #{rId}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select RId, RName, RUpdateTime, RMark
-    from role
-    where RId = #{rid}
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT RId, RName, RLabel, RUpdateTime, RMark
+    FROM role
+    WHERE RId = #{rId}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select RId, RName, RUpdateTime, RMark
-    from role
+    <select id="selectAll" resultMap="BaseResultMap">
+    SELECT RId, RName, RLabel, RUpdateTime, RMark
+    FROM role
   </select>
+
+    <!--通过 sid 查询 员工对应的权限-->
+    <select id="selectBySId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT RId, RName, RLabel, RUpdateTime, RMark
+        FROM role
+        WHERE RId IN (SELECT RId FROM staff_role WHERE SId=#{sId})
+    </select>
 </mapper>

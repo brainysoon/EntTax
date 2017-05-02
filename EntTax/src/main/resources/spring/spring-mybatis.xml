@@ -10,11 +10,11 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.enttax"/>
-    <!--不加ignore-unresolvable="true"会出项Could not resolve placeholder错误-->
-    <context:property-placeholder location="classpath:properties/jdbc.properties" ignore-unresolvable="true" />
+    <!--扫描 Dao Bean-->
+    <context:component-scan base-package="com.enttax.dao"/>
 
-    <import resource="spring-shiro.xml"/>
+    <!--不加ignore-unresolvable="true"会出项Could not resolve placeholder错误-->
+    <context:property-placeholder location="classpath:properties/jdbc.properties" ignore-unresolvable="true"/>
 
     <!-- 配置Druid连接池,通常只需要修改initialSize，minIdle，maxActive的值 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
@@ -47,7 +47,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!--配置一些mybatis自己的属性，比如别名之类的-->
-        <property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
 
         <!--通过实践这个路径不行，扫描找不到要注入的类，只能把mapping文件放在resources下-->
         <!--<property name="mapperLocations" value="classpath:cn/yanxi/mapping/*Mapper.xml"/>-->

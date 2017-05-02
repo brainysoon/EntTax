@@ -1,55 +1,43 @@
 package com.enttax.vo;
 
-import java.util.Date;
-
 /**
  * Created by lcyanxi on 17-4-21.
  */
 public class Profile {
-    private String sname;
-    private String  ssex;
-    private String  sbirthday;
-    private String saddress;
+    private String sName;
+    private String sSex;
+    private String sBirthday;
+    private String sAddress;
 
-    public String getSname() {
-        return sname;
+    public String getSName() {
+        return sName;
     }
 
-    public void setSname(String sname) {
-        this.sname = sname;
+    public String getSSex() {
+        return sSex;
     }
 
-    public String getSsex() {
-        return ssex;
+    public String getSBirthday() {
+        return sBirthday;
     }
 
-    public void setSsex(String ssex) {
-        this.ssex = ssex;
+    public String getSAddress() {
+        return sAddress;
     }
 
-    public String getSbirthday() {
-        return sbirthday;
+    public void setSName(String sName) {
+        this.sName = sName;
     }
 
-    public void setSbirthday(String sbirthday) {
-        this.sbirthday = sbirthday;
+    public void setSSex(String sSex) {
+        this.sSex = sSex;
     }
 
-    public String getSaddress() {
-        return saddress;
+    public void setSBirthday(String sBirthday) {
+        this.sBirthday = sBirthday;
     }
 
-    public void setSaddress(String saddress) {
-        this.saddress = saddress;
-    }
-
-    @Override
-    public String toString() {
-        return "Profile{" +
-                "sname='" + sname + '\'' +
-                ", ssex='" + ssex + '\'' +
-                ", sbirthday='" + sbirthday + '\'' +
-                ", saddress='" + saddress + '\'' +
-                '}';
+    public void setSAddress(String sAddress) {
+        this.sAddress = sAddress;
     }
 }

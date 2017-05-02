@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.enttax.dao.LogMapper">
-  <!--<cache type="com.strive.cms.cache.RedisCache"/>-->
+    <!--<cache type="com.strive.cms.cache.RedisCache"/>-->
 
-  <resultMap id="BaseResultMap" type="Log">
-    <id column="LId"  property="lid" />
-    <result column="SId"  property="sid" />
-    <result column="BId"  property="bid" />
-    <result column="LTime"  property="ltime" />
-    <result column="LMessage" property="lmessage" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from log
-    where LId = #{lid}
+    <resultMap id="BaseResultMap" type="Log">
+        <id column="LId" property="lId"/>
+        <result column="SId" property="sId"/>
+        <result column="BId" property="bId"/>
+        <result column="LTime" property="lTime"/>
+        <result column="LMessage" property="lMessage"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    DELETE FROM log
+    WHERE LId = #{lId}
   </delete>
-  <insert id="insert" parameterType="Log">
-    insert into log (LId, SId, BId, LTime, 
+    <insert id="insert" parameterType="Log">
+    INSERT INTO log (LId, SId, BId, LTime,
       LMessage)
-    values (#{lid}, #{sid}, #{bid}, #{ltime},
-      #{lmessage})
+    VALUES (#{lId}, #{sId}, #{bId}, #{lTime},
+      #{lMessage})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="Log">
-    update log
-    set SId = #{sid},
-      BId = #{bid},
-      LTime = #{ltime},
-      LMessage = #{lmessage}
-    where LId = #{lid}
+    <update id="updateByPrimaryKey" parameterType="Log">
+    UPDATE log
+    SET SId = #{sId},
+      BId = #{bId},
+      LTime = #{lTime},
+      LMessage = #{lMessage}
+    WHERE LId = #{lId}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select LId, SId, BId, LTime, LMessage
-    from log
-    where LId = #{lid}
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT LId, SId, BId, LTime, LMessage
+    FROM log
+    WHERE LId = #{lId}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select LId, SId, BId, LTime, LMessage
-    from log
+    <select id="selectAll" resultMap="BaseResultMap">
+    SELECT LId, SId, BId, LTime, LMessage
+    FROM log
   </select>
 </mapper>

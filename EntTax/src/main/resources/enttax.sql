@@ -1,5 +1,4 @@
-
-SET FOREIGN_KEY_CHECKS=0;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table bill
@@ -7,13 +6,17 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `bill`;
 
 CREATE TABLE `bill` (
-  `BId` char(30) NOT NULL,
-  `BType` varchar(10) NOT NULL,
-  `BNum` int(11) NOT NULL,
-  `BPrice` double NOT NULL,
-  `BTax` double NOT NULL,
+  `BId`         CHAR(30)    NOT NULL,
+  `BType`       VARCHAR(10) NOT NULL,
+  `BName`       VARCHAR(20) NOT NULL,
+  `BMonth`      SMALLINT    NOT NULL,
+  `BPrice`      DOUBLE      NOT NULL,
+  `BUpdateTime` DATETIME    NOT NULL,
+  `BMark`       SMALLINT DEFAULT NULL,
   PRIMARY KEY (`BId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table log
@@ -21,43 +24,59 @@ CREATE TABLE `bill` (
 DROP TABLE IF EXISTS `log`;
 
 CREATE TABLE `log` (
-  `LId` char(20) NOT NULL,
-  `SId` char(8) NOT NULL,
-  `BId` char(30) NOT NULL,
-  `LTime` datetime NOT NULL,
-  `LMessage` varchar(255) DEFAULT NULL,
+  `LId`      CHAR(20) NOT NULL,
+  `SId`      CHAR(8)  NOT NULL,
+  `BId`      CHAR(30) NOT NULL,
+  `LTime`    DATETIME NOT NULL,
+  `LMessage` VARCHAR(255) DEFAULT NULL,
   PRIMARY KEY (`LId`),
   KEY `SId` (`SId`),
   KEY `BId` (`BId`),
-  CONSTRAINT `log_ibfk_1` FOREIGN KEY (`SId`) REFERENCES `staff` (`SId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `log_ibfk_2` FOREIGN KEY (`BId`) REFERENCES `bill` (`BId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `log_ibfk_1` FOREIGN KEY (`SId`) REFERENCES `staff` (`SId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `log_ibfk_2` FOREIGN KEY (`BId`) REFERENCES `bill` (`BId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
--- Table permission
+-- Table perms
 -- ----------------------------
-DROP TABLE IF EXISTS `permission`;
+DROP TABLE IF EXISTS `perms`;
 
-CREATE TABLE `permission` (
-  `PId` char(4) NOT NULL,
-  `PName` varchar(10) NOT NULL,
-  `PType` int(11) NOT NULL,
+CREATE TABLE `perms` (
+  `PId`    CHAR(4)     NOT NULL,
+  `PName`  VARCHAR(10) NOT NULL,
+  `PLabel` VARCHAR(10) DEFAULT NULL,
+  `PType`  INT(11)     NOT NULL,
+  `PMark`  SMALLINT(6) DEFAULT NULL,
   PRIMARY KEY (`PId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table perm_role
 -- ----------------------------
-DROP TABLE IF EXISTS `perm_role`;
+DROP TABLE IF EXISTS `role_perms`;
 
-CREATE TABLE `perm_role` (
-  `PId` char(4) NOT NULL,
-  `RId` char(4) NOT NULL,
+CREATE TABLE `role_perms` (
+  `PId` CHAR(4) NOT NULL,
+  `RId` CHAR(4) NOT NULL,
   PRIMARY KEY (`RId`),
   KEY `PId` (`PId`),
-  CONSTRAINT `perm_role_ibfk_1` FOREIGN KEY (`PId`) REFERENCES `permission` (`PId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `perm_role_ibfk_2` FOREIGN KEY (`RId`) REFERENCES `role` (`RId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `role_perms_ibfk_1` FOREIGN KEY (`PId`) REFERENCES `perms` (`PId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `role_perms_ibfk_2` FOREIGN KEY (`RId`) REFERENCES `role` (`RId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table role
@@ -65,12 +84,15 @@ CREATE TABLE `perm_role` (
 DROP TABLE IF EXISTS `role`;
 
 CREATE TABLE `role` (
-  `RId` char(4) NOT NULL,
-  `RName` varchar(10) NOT NULL,
-  `RUpdateTime` datetime DEFAULT NULL,
-  `RMark` smallint(6) DEFAULT NULL,
+  `RId`         CHAR(4)     NOT NULL,
+  `RName`       VARCHAR(10) NOT NULL,
+  `RLabel`      VARCHAR(10) DEFAULT NULL,
+  `RUpdateTime` DATETIME    DEFAULT NULL,
+  `RMark`       SMALLINT(6) DEFAULT NULL,
   PRIMARY KEY (`RId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table staff
@@ -78,19 +100,22 @@ CREATE TABLE `role` (
 DROP TABLE IF EXISTS `staff`;
 
 CREATE TABLE `staff` (
-  `SId` char(8) NOT NULL,
-  `SName` varchar(10) NOT NULL,
-  `SPassword` varchar(16) NOT NULL,
-  `SEmail` varchar(20) DEFAULT NULL,
-  `SPhone` char(11) DEFAULT NULL,
-  `SSex` tinyint(1) DEFAULT NULL,
-  `SBirthday` date DEFAULT NULL,
-  `SEnter` datetime DEFAULT NULL,
-  `SMark` smallint(6) DEFAULT NULL,
-  `SAddress` varchar(30) DEFAULT NULL,
-  `SAvator` varchar(255) DEFAULT NULL,
+  `SId`       CHAR(8)      NOT NULL,
+  `SName`     VARCHAR(10)  NOT NULL,
+  `SPassword` VARCHAR(255) NOT NULL,
+  `SSalt`     VARCHAR(50)  NOT NULL,
+  `SEmail`    VARCHAR(255)  DEFAULT NULL UNIQUE,
+  `SPhone`    CHAR(11)     DEFAULT NULL UNIQUE,
+  `SSex`      TINYINT(1)   DEFAULT NULL,
+  `SBirthday` DATE         DEFAULT NULL,
+  `SEnter`    DATETIME     DEFAULT NULL,
+  `SMark`     SMALLINT(6)  DEFAULT NULL,
+  `SAddress`  VARCHAR(30)  DEFAULT NULL,
+  `SAvatar`   VARCHAR(255) DEFAULT NULL,
   PRIMARY KEY (`SId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Table staff_role
@@ -98,10 +123,16 @@ CREATE TABLE `staff` (
 DROP TABLE IF EXISTS `staff_role`;
 
 CREATE TABLE `staff_role` (
-  `SId` char(8) NOT NULL,
-  `RId` char(4) NOT NULL,
+  `SId` CHAR(8) NOT NULL,
+  `RId` CHAR(4) NOT NULL,
   KEY `SId` (`SId`) USING BTREE,
   KEY `RId` (`RId`),
-  CONSTRAINT `staff_role_ibfk_2` FOREIGN KEY (`RId`) REFERENCES `role` (`RId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `staff_role_ibfk_1` FOREIGN KEY (`SId`) REFERENCES `staff` (`SId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `staff_role_ibfk_2` FOREIGN KEY (`RId`) REFERENCES `role` (`RId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `staff_role_ibfk_1` FOREIGN KEY (`SId`) REFERENCES `staff` (`SId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
