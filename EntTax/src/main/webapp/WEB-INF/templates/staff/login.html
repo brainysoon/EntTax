@@ -37,7 +37,7 @@
         <h2 class="form-signin-heading">登录</h2>
         <div class="login-wrap">
             <div class="form-group has-success">
-                <input type="text" name="sname" class="form-control" placeholder="员工号/手机号/邮箱" autofocus>
+                <input type="text" id="sname" name="sname" class="form-control" placeholder="员工号/手机号/邮箱" autofocus>
                 <p class="help-block"></p>
             </div>
             <div class="form-group has-success">
@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="checkbox" name="rememberme" value="true"><a>&nbsp;记住我</a>
+                <input type="checkbox" name="rememberme" value="true"><a>&nbsp;免登录一天</a>
                 <span class="pull-right"> <a th:href="@{/staff/chooseway}"
                                              href="chooseway.html"> 忘记密码?</a></span>
             </div>
@@ -75,12 +75,18 @@
 <script th:src="@{/js/jquery.validate.min.js}" src="../../../js/jquery.validate.min.js"></script>
 <!--Custom Validate-->
 <script th:src="@{/js/custom-validate.js}" src="../../../js/custom-validate.js"></script>
+<!--JQuery Cookie-->
+<script th:src="@{/js/jquery.cookie.js}" src="../../../js/jquery.cookie.js"></script>
 
 <script type="text/javascript">
     // 更换验证码
     $('#captchaImage').click(function () {
         $('#captchaImage').attr("src", '/sendcaptcha?timestamp=' + (new Date()).valueOf());
     });
+
+    //拿去Cookie
+    $('#sname').val($.cookie("sname"));
+
 </script>
 
 </body>
