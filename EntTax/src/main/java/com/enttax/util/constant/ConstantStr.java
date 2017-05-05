@@ -58,6 +58,11 @@ public interface ConstantStr {
      * 保存用户信息
      */
     String STAFFINFO = "staff";
+
+    /**
+     * 保存用户信息的集合
+     */
+    String STAFFINFOLIST="stafflist";
     /**
      * 状态
      */

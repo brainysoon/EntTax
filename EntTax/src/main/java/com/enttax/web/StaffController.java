@@ -107,6 +107,11 @@ public class StaffController extends BaseController {
 
     }
 
+    /**
+     * 更新头像
+     * @param imageFile
+     * @return
+     */
     @RequestMapping(value = "/updateavatar", method = RequestMethod.POST)
     @ResponseBody
     public Map updateAvator(@RequestParam(value = "uploadfile") MultipartFile imageFile) {
@@ -244,6 +249,7 @@ public class StaffController extends BaseController {
     }
 
     /**
+     * 退出
      * @return
      */
     @RequestMapping(value = "/logout")
@@ -360,6 +366,11 @@ public class StaffController extends BaseController {
         return "staff/resetemail";
     }
 
+    /**
+     * 删除员工
+     * @param sid
+     * @return
+     */
     @RequestMapping(value = "/deletestaff",method = RequestMethod.GET)
     @ResponseBody
     public Map deleteStaffBySid(@RequestParam(value = "sid")String sid){
@@ -368,6 +379,31 @@ public class StaffController extends BaseController {
         System.out.println("编号为"+sid +"的员工删除成功！！");
         return map;
 
+    }
+
+    /**
+     * 添加员工
+     * @param sPhone
+     * @param role
+     * @return
+     */
+    @RequestMapping(value = "/add_staff",method = RequestMethod.POST)
+    @ResponseBody
+    public Map addStaff(@RequestParam(value = "sPhone") String sPhone,
+                         @RequestParam(value = "role") String role){
+        System.out.println(sPhone+role);
+        Map map=new HashMap();
+        if (sPhone==null||sPhone==""){
+            map.put(ConstantStr.MESSAGE,"添加失败,电话号码不能为空");
+            return map;
+        }
+
+        if (staffService.addStaff(sPhone,role)>0){
+            map.put(ConstantStr.MESSAGE,"添加成功！");
+        }else {
+            map.put(ConstantStr.MESSAGE,"添加失败,该电话号码已注册！");
+        }
+        return map;
     }
 }
 

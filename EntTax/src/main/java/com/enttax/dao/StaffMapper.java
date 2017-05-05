@@ -1,6 +1,7 @@
 package com.enttax.dao;
 
 import com.enttax.model.Staff;
+import com.enttax.vo.StaffInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -23,6 +24,12 @@ public interface StaffMapper {
      * @return
      */
     List<Staff> selectAll();
+
+    /**
+     * 显示指定字段的员工信息
+     * @return
+     */
+    List<StaffInfo> selectAllStaffInfo();
 
     /**
      * @param record

@@ -2,7 +2,10 @@ package com.enttax.service;
 
 import com.enttax.model.Staff;
 import com.enttax.vo.Profile;
+import com.enttax.vo.StaffInfo;
 import org.apache.shiro.session.Session;
+
+import java.util.List;
 
 /**
  * Created by brainy on 17-4-25.
@@ -64,4 +67,18 @@ public interface StaffService {
      * @return
      */
     Staff selectByPrimaryKey(String sId);
+
+    /**
+     * 显示所有员工
+     * @return
+     */
+    List<StaffInfo>  selectAllStaffInfo();
+
+    /**
+     * 添加员工信息
+     * @param sPhone
+     * @param role
+     * @return
+     */
+    int addStaff(String sPhone,String role);
 }
