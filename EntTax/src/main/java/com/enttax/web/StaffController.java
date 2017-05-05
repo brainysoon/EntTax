@@ -4,6 +4,7 @@ import com.enttax.model.Staff;
 import com.enttax.service.StaffService;
 import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
+import com.enttax.util.tools.CookieUtil;
 import com.enttax.util.tools.FileUploadUtil;
 import com.enttax.util.tools.ToolDates;
 import com.enttax.vo.Profile;
@@ -221,6 +222,9 @@ public class StaffController extends BaseController {
                 String principal = (String) subject.getPrincipal();
                 session.setAttribute(ConstantStr.STAFFINFO, staffService.selectByIdentify(principal));
 
+                //添加  Cookie
+                CookieUtil.getInstance().addCookie(response, "sname", sname, CookieUtil.COOKIE_MAX_AGE);
+
                 return "redirect:/";
             }
         } catch (IncorrectCredentialsException e) {
@@ -360,12 +364,12 @@ public class StaffController extends BaseController {
         return "staff/resetemail";
     }
 
-    @RequestMapping(value = "/deletestaff",method = RequestMethod.GET)
+    @RequestMapping(value = "/deletestaff", method = RequestMethod.GET)
     @ResponseBody
-    public Map deleteStaffBySid(@RequestParam(value = "sid")String sid){
-        Map map=new HashMap();
-        map.put(ConstantStr.MESSAGE,false);
-        System.out.println("编号为"+sid +"的员工删除成功！！");
+    public Map deleteStaffBySid(@RequestParam(value = "sid") String sid) {
+        Map map = new HashMap();
+        map.put(ConstantStr.MESSAGE, false);
+        System.out.println("编号为" + sid + "的员工删除成功！！");
         return map;
 
     }
