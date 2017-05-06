@@ -22,6 +22,10 @@
     DELETE FROM staff
     WHERE SId = #{sId}
   </delete>
+    <delete id="deleteStaffRole"  parameterType="java.lang.String">
+        DELETE FROM staff_role
+        WHERE SId = #{sId}
+    </delete>
 
     <!--insert-->
     <insert id="insert" parameterType="Staff">
@@ -68,18 +72,31 @@
     FROM staff
     WHERE SId = #{sId}
   </select>
+
     <select id="selectByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT SId, SName, SPassword, SSalt, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, SAvatar
     FROM staff
     WHERE SEmail= #{sEmail}
   </select>
+
     <select id="selectByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT SId, SName, SPassword, SSalt, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress,SAvatar
     FROM staff
     WHERE SPhone = #{sPhone}
   </select>
+
     <select id="selectAll" resultMap="BaseResultMap">
     SELECT SId, SName, SPassword, SSalt, SEmail, SPhone, SSex, SBirthday, SEnter, SMark, SAddress, SAvatar
     FROM staff
   </select>
+
+    <select id="selectAllStaffInfo"  resultType="StaffInfo">
+    SELECT s.SId,s.SName,s.SPhone,s.SEnter,s.SAvatar,r.RName
+     FROM staff s LEFT JOIN staff_role sr ON s.sid=sr.sid LEFT JOIN role r ON r.rid=sr.rid
+     WHERE SMark >= 0
+    </select>
+
+    <select id="selectStaffRoleId" resultType="java.lang.String" parameterType="java.lang.String">
+        SELECT RId FROM staff_role WHERE SId=#{sId}
+    </select>
 </mapper>

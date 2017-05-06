@@ -183,6 +183,7 @@ public class StaffServiceImpl implements StaffService {
             staff.setSEnter(new Date());
             staff.setSMark(0);
             staff.setSPhone(sPhone);
+            staff.setSAvatar("../../img/avatar.jpg");
 
             result = staffMapper.insert(staff);
             if (result == 0) {
@@ -220,5 +221,49 @@ public class StaffServiceImpl implements StaffService {
     public List<StaffInfo> selectAllStaffInfo() {
 
         return  staffMapper.selectAllStaffInfo();
+    }
+
+    /**
+     * 通过sid删除员工的信息
+     * @param sId
+     * @return
+     */
+    @Transactional
+    @Override
+    public int deleteStaffBySid(String sId) {
+
+        try {
+            //先去中间表查出sId 对应的  rId
+            String rid = staffMapper.selectStaffRoleId(sId);
+            if (rid != null) {
+                //先删除中间表
+                staffMapper.deleteStaffRole(sId);
+                //删除role表
+                roleMapper.deleteByPrimaryKey(rid);
+                //假删除  将用户的SMark字段设置为-1
+                Staff staff=staffMapper.selectByPrimaryKey(sId);
+                staff.setSMark(-1);
+
+                return staffMapper.updateByPrimaryKey(staff);
+
+            }
+            return 0;
+        }catch (Exception e){
+            return 0;
+        }
+
+    }
+
+    /**
+     * 通过sid更新员工的角色
+     * @param sId
+     * @param rName
+     * @return
+     */
+    @Transactional
+    @Override
+    public int updateStaffForRole(String sId, String rName) {
+
+        return  roleMapper.updateStaffForRole(sId,rName);
     }
 }

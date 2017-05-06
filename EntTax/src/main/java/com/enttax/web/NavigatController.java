@@ -43,6 +43,11 @@ public class NavigatController extends BaseController {
         return "unauthorized";
     }
 
+    /**
+     * 显示staff列表
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/show_staffinfo", method = RequestMethod.GET)
     public String show_staffinfo(Model model) {
 
