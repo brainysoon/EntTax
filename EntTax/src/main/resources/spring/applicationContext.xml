@@ -13,4 +13,7 @@
     <!--Mybatis 配置导入-->
     <import resource="spring-mybatis.xml"/>
 
+    <!--分析相关组件-->
+    <context:component-scan base-package="com.enttax.ml"/>
+
 </beans>

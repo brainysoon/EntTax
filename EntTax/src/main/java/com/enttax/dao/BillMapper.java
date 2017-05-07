@@ -34,4 +34,10 @@ public interface BillMapper {
      * @return
      */
     int updateByPrimaryKey(Bill record);
+
+    /**
+     * @param bMark
+     * @return
+     */
+    List<Bill> selectByBMark(int bMark);
 }
