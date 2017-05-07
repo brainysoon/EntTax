@@ -42,8 +42,8 @@
 
         <constructor-arg value="sid"/>
         <property name="httpOnly" value="true"/>
-        <!--过期时间位一周-->
-        <property name="maxAge" value="604800"/>
+        <!--过期时间位一天-->
+        <property name="maxAge" value="86400"/>
     </bean>
 
     <!-- 会话DAO -->
@@ -74,7 +74,7 @@
     <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <constructor-arg value="rememberMe"/>
         <property name="httpOnly" value="true"/>
-        <property name="maxAge" value="604800"/><!-- 一周 -->
+        <property name="maxAge" value="86400"/><!-- 一天 -->
     </bean>
 
     <!-- rememberMe管理器 -->

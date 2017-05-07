@@ -4,6 +4,7 @@ import com.enttax.model.Staff;
 import com.enttax.service.StaffService;
 import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
+import com.enttax.util.tools.CookieUtil;
 import com.enttax.util.tools.FileUploadUtil;
 import com.enttax.util.tools.ToolDates;
 import com.enttax.vo.Profile;
@@ -226,6 +227,9 @@ public class StaffController extends BaseController {
                 String principal = (String) subject.getPrincipal();
                 session.setAttribute(ConstantStr.STAFFINFO, staffService.selectByIdentify(principal));
 
+                //添加  Cookie
+                CookieUtil.getInstance().addCookie(response, "sname", sname, CookieUtil.COOKIE_MAX_AGE);
+
                 return "redirect:/";
             }
         } catch (IncorrectCredentialsException e) {
@@ -412,7 +416,7 @@ public class StaffController extends BaseController {
         }else {
             map.put(ConstantStr.MESSAGE,"对不起,操作失败！");
         }
-
+      
         return map;
 
     }
