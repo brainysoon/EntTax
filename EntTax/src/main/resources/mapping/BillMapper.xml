@@ -41,4 +41,9 @@
     SELECT BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark
     FROM bill
   </select>
+    <select id="selectByBMark" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+         SELECT BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark
+    FROM bill
+    WHERE BMark=#{bMark}
+    </select>
 </mapper>

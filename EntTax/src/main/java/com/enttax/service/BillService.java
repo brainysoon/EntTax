@@ -22,4 +22,15 @@ public interface BillService {
      * @return
      */
     boolean insertExcelData(Map<Object, Object> map);
+
+    /**
+     * @return
+     */
+    List<Bill> selectAll();
+
+    /**
+     * @param bMark
+     * @return
+     */
+    List<Bill> selectByBMark(Integer bMark);
 }

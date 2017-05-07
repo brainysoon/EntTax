@@ -78,4 +78,14 @@ public class BillServiceImpl implements BillService {
         }
         return true;
     }
+
+    @Override
+    public List<Bill> selectAll() {
+        return billMapper.selectAll();
+    }
+
+    @Override
+    public List<Bill> selectByBMark(Integer bMark) {
+        return billMapper.selectByBMark(bMark);
+    }
 }
