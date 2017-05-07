@@ -53,6 +53,7 @@ $.validator.addMethod("isCode", function (value, element) {
 //全局变量
 var phone_rest_validator;
 var email_rest_validator;
+var add_staff_validator;
 
 $().ready(function () {
 
@@ -228,7 +229,7 @@ $().ready(function () {
 
 
     //添加用户手机校验
-   $("#add_staff").validate({
+   add_staff_validator=$("#add_staff").validate({
         submitHandler: function (form) {
 
             //验证过后提交表单
@@ -260,6 +261,12 @@ $().ready(function () {
 
 
 
+
+
+function checkPhoneNum_addStaff() {
+
+    return add_staff_validator.element($("#sphone"));
+}
 
 
 function checkPhoneNum() {      //单独校验 手机号码

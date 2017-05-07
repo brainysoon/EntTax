@@ -1,6 +1,7 @@
 package com.enttax.dao;
 
 import com.enttax.model.Staff;
+import com.enttax.vo.StaffInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -14,6 +15,13 @@ public interface StaffMapper {
     int deleteByPrimaryKey(String sId);
 
     /**
+     * 用于删除中间表staff_role
+     * @param sId
+     * @return
+     */
+    int deleteStaffRole(String sId);
+
+    /**
      * @param sId
      * @return
      */
@@ -23,6 +31,12 @@ public interface StaffMapper {
      * @return
      */
     List<Staff> selectAll();
+
+    /**
+     * 显示指定字段的员工信息
+     * @return
+     */
+    List<StaffInfo> selectAllStaffInfo();
 
     /**
      * @param record
@@ -62,6 +76,13 @@ public interface StaffMapper {
      * @return
      */
     Staff selectByEmail(@Param("sEmail") String sEmail);
+
+    /**
+     * 通过sid查找出rid
+     * @param sId
+     * @return
+     */
+     String  selectStaffRoleId(@Param("sId") String sId);
 
     /**
      * 找回密码（也就是重置密码）

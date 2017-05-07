@@ -51,6 +51,7 @@
 
     <typeAliases>
         <package name="com.enttax.model"/>
+        <package name="com.enttax.vo"/>
         <!--配置别名-->
     </typeAliases>
 

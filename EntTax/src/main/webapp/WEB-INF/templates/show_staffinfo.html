@@ -24,6 +24,7 @@
     <!-- Custom styles for this template -->
     <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
     <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/xcConfirm.css}" href="../../css/xcConfirm.css"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -46,6 +47,13 @@
         <div class="nav notify-row" id="top_menu">
             <!--  notification start -->
             <ul class="nav top-menu">
+                <!-- settings start -->
+                <li class="dropdown">
+                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="下载进销excel模板">
+                        <i class="icon-cloud-download"></i>
+                    </a>
+                </li>
+                <!-- settings end -->
                 <!-- notification dropdown start-->
                 <li id="header_notification_bar" class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -82,19 +90,20 @@
                 </li>
                 <!-- user login dropdown start-->
 
-                <!--th:attr="src=${staff.savator}"-->
+                <!--th:attr="src=${staff.savatar}"-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" th:src="'http://localhost/'+ ${staff.savator}" width="35" height="35"  src="../../img/avatar-mini4.jpg">
-                        <span class="username" th:text="${staff.sname}"></span>
+                        <img alt="" th:src="${staff.sAvatar}" width="35" height="35" src="../../img/avatar-mini4.jpg">
+                        <span class="username" th:text="${staff.sName}"></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
-                        <li><a th:href="@{/staff/showprofile.from}" href="#"><i class="icon-user"></i>个人资料</a></li>
-                        <li><a href="#"><i class="icon-cog"></i>个人设置</a></li>
-                        <li><a href="#"><i class="icon-bell-alt"></i>消息通知</a></li>
-                        <li><a href="user/login.html"><i class="icon-signout"></i>退出登录</a></li>
+                        <li><a th:href="@{/staff/profile}" href="#"><i class="icon-user"></i>个人资料</a></li>
+                        <li><a th:href="@{/staff/security}" href="#"><i class="icon-warning-sign"></i>安全中心</a></li>
+                        <li><a th:href="@{/staff/message}" href="#"><i class="icon-bell-alt"></i>消息通知</a></li>
+                        <li><a th:href="@{/staff/logout}" href="#"><i class="icon-signout"></i>退出登录</a>
+                        </li>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
@@ -109,22 +118,22 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
                 <li class="active">
-                    <a class="" href="index.html">
+                    <a class="" th:href="@{/index}" href="index.html">
                         <i class="icon-home"></i>
                         <span>首页</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon-user"></i>
-                        <span>个人中心</span>
-                        <span class="arrow"></span>
+                    <a class="" th:href="@{/show_staffinfo}" href="show_staffinfo.html">
+                        <i class="icon-eye-open"></i>
+                        <span>员工列表</span>
                     </a>
-                    <ul class="sub">
-                        <li><a class="" href="#">个人资料</a></li>
-                        <li><a class="" href="#">安全中心</a></li>
-                        <li><a class="" href="#">个人设置</a></li>
-                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a class="" th:href="@{/show_date}" href="show_date.html">
+                        <i class="icon-tasks"></i>
+                        <span>进销项数据表</span>
+                    </a>
                 </li>
             </ul>
             <!-- sidebar menu end-->
@@ -140,9 +149,7 @@
                 <div class="col-lg-12">
                     <section class="panel">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="false">
-                                &times;
-                            </button>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="false"></button>
                             <h4 class="modal-title">
                                 员工信息列表
                             </h4>
@@ -155,342 +162,29 @@
                                         <i class="icon-plus"></i>
                                     </button>
                                 </th>
+                                <th>头像</th>
                                 <th>员工编号</th>
                                 <th>用户名</th>
-                                <th class="hidden-phone">邮箱</th>
+                                <th class="hidden-phone">电话号码</th>
                                 <th class="hidden-phone">角色</th>
                                 <th class="hidden-phone">入职时间</th>
                                 <th class="hidden-phone">操作</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr class="odd gradeX">
+                            <tbody id="tbody">
+                            <tr class="odd gradeX" th:each="staffInfo,iterStat:${stafflist}">
                                 <td></td>
-                                <th>20141702</th>
-                                <td>sumon</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">05.04.2013</td>
+                                <th><img th:src="${staffInfo.sAvatar}" width="35" height="35"></th>
+                                <th th:text="${staffInfo.sId}"></th>
+                                <td th:text="${staffInfo.sName}"></td>
+                                <td th:text="${staffInfo.sPhone}"></td>
+                                <td class="hidden-phone" th:text="${staffInfo.rName}"></td>
+                                <td class="center hidden-phone" th:text="${#dates.format(staffInfo.sEnter, 'yyyy-MM-dd')}"></td>
                                 <td>
-                                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#update_staff_myModal" >
+                                    <button class="btn btn-primary btn-xs" onclick="editInfo(this)" th:id="${iterStat.index}" >
                                         <i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-danger btn-xs"  data-toggle="modal" data-target="#delete_staff_myModal">
+                                    <button class="btn btn-danger btn-xs" onclick="delete_staff(this)" th:id="${staffInfo.sId}">
                                         <i class="icon-trash "></i></button>
-
-                                </td>
-                                <!-- 更新 员工模态框（Modal） -->
-                                <div class="modal fade" id="update_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                    &times;
-                                                </button>
-                                                <h4 class="modal-title" id="myModalLabel">
-                                                   更改员工操作
-                                                </h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <label class="control-label col-lg-4" >员工编号：</label>
-                                                <div  class="col-lg-8">
-                                                    <p><span>20141702</span></p>
-                                                </div>
-                                            </div>
-                                            <div class="modal-body">
-                                                <label class="control-label col-lg-4" >角色分配</label>
-                                                <div class="col-lg-8">
-                                                    <select class="form-control m-bot15">
-                                                        <option>操作员</option>
-                                                        <option>管理员</option>
-                                                        <option>决策员</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                                                </button>
-                                                <button type="button" class="btn btn-warning" onclick="update_staff('20141701','管理员')">确定</button>
-                                            </div>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal -->
-                                </div><!--跟新员工 modal 完-->
-
-                                <!-- 删除 员工模态框（Modal） -->
-                                <div class="modal fade" id="delete_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                    &times;
-                                                </button>
-                                                <h4 class="modal-title">
-                                                    删除员工操作
-                                                </h4>
-                                            </div>
-                                            <div class="modal-content">
-                                                <p>您确定要删除编号为20141702的员工吗？</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                                                </button>
-                                                <button type="button" class="btn btn-warning" onclick="delete_staff ('20141702')">确定</button>
-                                            </div>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal -->
-                                </div><!--删除员工 modal 完-->
-
-
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>bombi</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>ABC ho</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>test</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>soa bal</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">soa bal@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">03.07.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>test</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">test@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">03.07.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>goop</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>sumon</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">01.07.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>woeri</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">09.10.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>soa bal</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">soa bal@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">9.12.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>woeri</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">test@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">14.12.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>uirer</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">13.11.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>samsu</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">17.11.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>dipsdf</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>soa bal</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">soa bal@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">03.07.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>hilor</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">test@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">03.07.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>test</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">19.12.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>botu</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">17.12.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>20141702</th>
-                                <td>sumon</td>
-                                <td class="hidden-phone"><a href="mailto:soa bal@gmail.com">lorem-ip@gmail.com</a></td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">15.11.2011</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
                                 </td>
                             </tr>
                             </tbody>
@@ -520,7 +214,7 @@
                 <div class="col-lg-12">
                     <section class="panel">
                         <div class="panel-body">
-                            <form role="form" id="add_staff" class="form-horizontal tasi-form">
+                            <form role="form" id="add_staff"  class="form-horizontal tasi-form">
                                 <div class="form-group has-success">
                                     <label class="col-lg-4 control-label">手机号</label>
                                     <div class="col-lg-8">
@@ -532,10 +226,10 @@
                                 <div class="form-group has-success">
                                     <label class="control-label col-lg-4" >角色分配</label>
                                     <div class="col-lg-8">
-                                        <select class="form-control m-bot15">
-                                            <option>操作员</option>
-                                            <option>管理员</option>
-                                            <option>决策员</option>
+                                        <select class="form-control m-bot15" id="role" name="role">
+                                            <option value="操作员">操作员</option>
+                                            <option value="管理员">管理员</option>
+                                            <option value="决策员">决策员</option>
                                         </select>
                                     </div>
                                 </div>
@@ -546,7 +240,8 @@
                                         </button>
                                     </div>
                                     <div class="col-xs-6 col-lg-6">
-                                        <button class="btn btn-primary" type="submit">添加</button>
+                                        <button id="add_staff_button"  class="btn btn-primary" type="button">添加</button>
+                                        <h4 id="message" class="help-block text-danger text-center"></h4>
                                     </div>
                                 </div>
                             </form>
@@ -557,7 +252,42 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div><!--添加员工 modal完-->
-
+<!-- 更新 员工模态框（Modal） -->
+<div class="modal fade" id="update_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    更改员工操作
+                </h4>
+            </div>
+            <div class="modal-body">
+                <label class="control-label col-lg-4" >员工编号：</label>
+                <div  class="col-lg-8">
+                    <p><span id="update_sId"></span></p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <label class="control-label col-lg-4" >角色分配</label>
+                <div class="col-lg-8">
+                    <select class="form-control m-bot15" id="update_rName">
+                        <option>操作员</option>
+                        <option>管理员</option>
+                        <option>决策员</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-warning"  onclick="update_staff()">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div><!--跟新员工 modal 完-->
 
 <!-- js placed at the end of the document so the pages load faster -->
 <script th:src="@{/js/jquery.js}" src="../../js/jquery.js"></script>
@@ -584,6 +314,7 @@
 
 <!--script for this page-->
 <script th:src="@{/js/dynamic-table.js}"  src="../../js/dynamic-table.js"></script>
+<script th:src="@{/js/xcConfirm.js}" src="../../js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
 
 </body>
 </html>

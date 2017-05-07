@@ -1,5 +1,6 @@
 package com.enttax.web;
 
+import com.enttax.model.Staff;
 import com.enttax.service.StaffService;
 import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
@@ -40,13 +41,14 @@ public class VaildateController extends BaseController {
     }
 
     /**
-     * 查找电话号码是否存在,如果存在则发送短信验证码
+     * 用于电话号码找回密码，查找电话号码是否存在,如果存在则发送短信验证码
      *
      * @param sphone
      */
     @RequestMapping(value = "/sendsmscode", method = RequestMethod.GET)
     @ResponseBody
-    public Map sendByPhone(@RequestParam(value = "sphone") String sphone) {
+    public Map sendByPhone(@RequestParam(value = "sphone") String sphone,
+                           @RequestParam(value = "ways") Boolean ways) {
 
         Map map = new HashMap();
         if (sphone.equals("") || sphone == null) {
@@ -55,7 +57,18 @@ public class VaildateController extends BaseController {
             map.put(ConstantStr.MESSAGE, ConstantException.args_error_message);
             return map;
         }
-        boolean isExistPhone = staffService.selectByPhone(sphone) == null;
+        boolean isExistPhone;
+
+        if (ways){   //用于电话号码找回密码，查找电话号码是否存在,如果存在则发送短信验证码
+
+            Staff staff=staffService.selectByPhone(sphone);
+            session.setAttribute(ConstantStr.SID,staff.getSId());
+            isExistPhone= staff!=null;
+
+        }else {      //用于重置电话号码,查找电话号码是否存在,如果不存在则发送短信验证码
+            isExistPhone=staffService.selectByPhone(sphone)==null;
+        }
+
 
         if (isExistPhone) {
             String smsCode = ToolSendSms.sendSMS(sphone);//发送短信
@@ -83,14 +96,26 @@ public class VaildateController extends BaseController {
      */
     @RequestMapping(value = "/sendemailcode", method = RequestMethod.GET)
     @ResponseBody
-    public Map sendByEmail(@RequestParam(value = "semail") String semail) {
+    public Map sendByEmail(@RequestParam(value = "semail") String semail,
+                           @RequestParam(value = "ways") Boolean ways) {
         Map map = new HashMap();
         if (semail == null || semail.equals("")) {
             map.put(ConstantStr.STATUS, false);
             map.put(ConstantStr.MESSAGE, ConstantException.args_error_message);
             return map;
         }
-        if (staffService.selectByEamil(semail) == null) { //判断邮箱是否存在于数据库
+        boolean isExistEmail;
+
+        if (ways){   //用于邮箱找回密码，查找邮箱是否存在,如果存在则发送邮箱验证码
+
+            Staff staff=staffService.selectByEamil(semail);
+            session.setAttribute(ConstantStr.SID,staff.getSId());
+            isExistEmail= staff!=null;
+
+        }else {      //用于重置邮箱,查找电话号码是否存在,如果不存在则发送邮箱验证码
+            isExistEmail=staffService.selectByPhone(semail)==null;
+        }
+        if (isExistEmail) {
             String eamilCode = SendEmail.sendEmail(semail);     //发送邮箱验证码
             if (eamilCode != null) {    //判断是否拿到邮箱验证码
                 session.setAttribute(ConstantStr.EMAILCODE, eamilCode);
@@ -107,6 +132,7 @@ public class VaildateController extends BaseController {
 
         return map;
     }
+
 
     /**
      * 判断图片验证码是否正确

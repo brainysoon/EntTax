@@ -131,6 +131,10 @@
                 /index =ssl, user
                 /unauthorized = anon
                 /staff/login = ssl, anon
+                /staff/chooseway=ssl, anon
+                /staff/phoneresetpass=ssl,anon
+                /staff/emailresetpass=ssl,anon
+                /staff/updatepassword=ssl,anon
                 /staff/logout = logout
                 /staff/security = ssl, authc
                 /staff/** = ssl, user

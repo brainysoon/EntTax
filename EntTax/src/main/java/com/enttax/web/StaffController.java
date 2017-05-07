@@ -51,7 +51,7 @@ public class StaffController extends BaseController {
         model.addAttribute(ConstantStr.STAFFINFO, staff);
         model.addAttribute(ConstantStr.TOSTRINGBIRTHDAY,   //转换日期格式
                 ToolDates.formatDate(staff.getSBirthday()));
-        return "user/editprofile";
+        return "staff/editprofile";
     }
 
     /**
@@ -67,18 +67,18 @@ public class StaffController extends BaseController {
 
         if (sphone == null || sphone == "") {
             model.addAttribute(ConstantStr.MESSAGE, "电话号码不能为空");
-            return "user/phoneresetpass";
+            return "staff/phoneresetpass";
         }
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
         staff.setSPhone(sphone);
         if (staffService.updateStaff(staff) > 0) {
             session.setAttribute(ConstantStr.STAFFINFO, staff);
             model.addAttribute(ConstantStr.STAFFINFO, staff);
-            return "user/security";
+            return "staff/security";
         }
         model.addAttribute(ConstantStr.MESSAGE, "电话号码绑定失败");
 
-        return "user/phoneresetpass";
+        return "staff/phoneresetpass";
     }
 
     /**
@@ -93,21 +93,26 @@ public class StaffController extends BaseController {
                               Model model) {
         if (semail == null || semail == "") {
             model.addAttribute(ConstantStr.MESSAGE, "邮箱不能为空");
-            return "user/resetemail";
+            return "staff/resetemail";
         }
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
         staff.setSEmail(semail);
         if (staffService.updateStaff(staff) > 0) {
             session.setAttribute(ConstantStr.STAFFINFO, staff);
             model.addAttribute(ConstantStr.STAFFINFO, staff);
-            return "user/security";
+            return "staff/security";
 
         }
         model.addAttribute(ConstantStr.MESSAGE, "邮箱绑定失败");
-        return "user/resetemail";
+        return "staff/resetemail";
 
     }
 
+    /**
+     * 更新头像
+     * @param imageFile
+     * @return
+     */
     @RequestMapping(value = "/updateavatar", method = RequestMethod.POST)
     @ResponseBody
     public Map updateAvator(@RequestParam(value = "uploadfile") MultipartFile imageFile) {
@@ -248,6 +253,7 @@ public class StaffController extends BaseController {
     }
 
     /**
+     * 退出
      * @return
      */
     @RequestMapping(value = "/logout")
@@ -364,14 +370,80 @@ public class StaffController extends BaseController {
         return "staff/resetemail";
     }
 
-    @RequestMapping(value = "/deletestaff", method = RequestMethod.GET)
+    /**
+     * 管理员通过sid更改员工角色
+     * @param sId
+     * @param rName
+     * @return
+     */
+    @RequestMapping(value = "/updatestaff",method = RequestMethod.POST)
     @ResponseBody
-    public Map deleteStaffBySid(@RequestParam(value = "sid") String sid) {
-        Map map = new HashMap();
-        map.put(ConstantStr.MESSAGE, false);
-        System.out.println("编号为" + sid + "的员工删除成功！！");
+    public Map updateStaffForRole(@RequestParam(value = "sId") String sId,
+                                  @RequestParam(value = "rName") String rName){
+        Map map=new HashMap();
+        System.out.println(sId+rName);
+        if (sId==null||sId==""){
+            map.put(ConstantStr.MESSAGE,"对不起，您输入的参数有误！");
+            return map;
+        }
+
+        if (staffService.updateStaffForRole(sId,rName)>0){
+            map.put(ConstantStr.MESSAGE,"恭喜您，操作成功！");
+        }else {
+            map.put(ConstantStr.MESSAGE,"对不起,操作失败！");
+        }
         return map;
 
     }
+
+    /**
+     * 管理员删除员工
+     * @param sid
+     * @return
+     */
+    @RequestMapping(value = "/deletestaff",method = RequestMethod.GET)
+    @ResponseBody
+    public Map deleteStaffBySid(@RequestParam(value = "sid") String sid){
+        Map map=new HashMap();
+
+        if (sid==null||sid==""){
+            map.put(ConstantStr.MESSAGE,"对不起，您输入的参数有误！");
+            return map;
+        }
+
+        if (staffService.deleteStaffBySid(sid)>0){
+            map.put(ConstantStr.MESSAGE,"恭喜您，操作成功！");
+        }else {
+            map.put(ConstantStr.MESSAGE,"对不起,操作失败！");
+        }
+      
+        return map;
+
+    }
+
+    /**
+     * 管理员添加员工
+     * @param sPhone
+     * @param role
+     * @return
+     */
+    @RequestMapping(value = "/add_staff",method = RequestMethod.POST)
+    @ResponseBody
+    public Map addStaff(@RequestParam(value = "sPhone") String sPhone,
+                        @RequestParam(value = "role") String role){
+        Map map=new HashMap();
+        if (sPhone==null||sPhone==""){
+            map.put(ConstantStr.MESSAGE,"添加失败,电话号码不能为空");
+            return map;
+        }
+
+        if (staffService.addStaff(sPhone,role)>0){
+            map.put(ConstantStr.MESSAGE,"添加成功！");
+        }else {
+            map.put(ConstantStr.MESSAGE,"添加失败,该电话号码已注册！");
+        }
+        return map;
+    }
+
 }
 
