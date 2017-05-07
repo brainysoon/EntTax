@@ -160,7 +160,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">姓名</label>
                                     <div class="col-lg-6 has-success">
-                                        <input type="text" class="form-control" name="sname" id="sname"
+                                        <input type="text" class="form-control" name="sName" id="sname"
                                                th:value="${staff.sName}" placeholder="姓名">
                                         <p class="help-block"></p>
                                     </div>
@@ -170,19 +170,19 @@
                                     <div class="col-lg-6">
                                         <div class="row col-xs-8" th:if="${staff.sSex}==true">
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex" checked="checked" class="radio-inline"
+                                                <input type="radio" name="sSex" checked="checked" class="radio-inline"
                                                        value="男">男
                                             </div>
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex" class="radio-inline" value="女">女
+                                                <input type="radio" name="sSex" class="radio-inline" value="女">女
                                             </div>
                                         </div>
                                         <div class="row col-xs-8" th:if="${staff.sSex}==false">
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex" class="radio-inline" value="男">男
+                                                <input type="radio" name="sSex" class="radio-inline" value="男">男
                                             </div>
                                             <div class="col-xs-4">
-                                                <input type="radio" name="ssex" checked="checked" class="radio-inline"
+                                                <input type="radio" name="sSex" checked="checked" class="radio-inline"
                                                        value="女">女
                                             </div>
                                         </div>
@@ -192,7 +192,7 @@
 
                                     <label class="col-lg-2 control-label">出生日期</label>
                                     <div class="col-lg-6">
-                                        <input type="date" name="sbirthday" class="dataTables_info"
+                                        <input type="date" name="sBirthday" class="dataTables_info"
                                                th:value="${toStringBirthday}" dataformatas="yyyy-mm-dd"
                                                value="1994-01-15">
                                     </div>
@@ -200,7 +200,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">详细地址</label>
                                     <div class="col-lg-6 has-success">
-                                        <input type="text" class="form-control" name="saddress"
+                                        <input type="text" class="form-control" name="sAddress"
                                                th:value="${staff.sAddress}"
                                                placeholder="请输入你的详细地址">
                                         <p class="help-block"></p>
