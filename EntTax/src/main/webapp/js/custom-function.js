@@ -7,7 +7,9 @@ var maxCount = 35;   //最大等带时间
 var InterValObj;    //定时器，用于控制时间
 
 //发送手机验证码 间隔30秒
-function sendSmsCode() {
+function sendSmsCode(obj) {
+
+    var ways = $(obj).attr("name");
 
     //首先判断手机号码格式是否正确
     if (!checkPhoneNum()) {
@@ -17,11 +19,12 @@ function sendSmsCode() {
 
     //Ajax 请求服务器发送短信验证码
     $.ajax({
-        url: "/sendsmscodetoupdate",
+        url: "/sendsmscode",
         type: "GET",
         async: true,           //关闭异步，这儿需要同步
         data: {
-            sphone: $("#sphone").val()      //传送电话号码
+            sphone: $("#sphone").val(),      //传送电话号码
+            ways:ways                        //用于区分重置电话号码和通过电话号码重置密码
         },
         timeout: 30000,       //超时时间
         dataType: "json",     //返回的数据类型
@@ -81,7 +84,9 @@ function setRemainTime() {
 }
 
 //发送邮箱验证码 无间隔
-function sendEMailCode() {
+function sendEMailCode(obj) {
+
+    var ways = $(obj).attr("name");
 
     //首先校验邮箱的正确性
     if (!checkEMail()) {
@@ -91,11 +96,12 @@ function sendEMailCode() {
 
     //Ajax 请求服务器发送邮箱验证码
     $.ajax({
-        url: "/sendemailcodetoupdate",
+        url: "/sendemailcode",
         type: "GET",
         async: true,
         data: {
-            semail: $("#semail").val()
+            semail: $("#semail").val(),
+            ways:ways
         },
         timeout: 30000,
         dataType: "json",

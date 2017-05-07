@@ -89,8 +89,6 @@
                     <input type="text" class="form-control search" placeholder="搜索">
                 </li>
                 <!-- user login dropdown start-->
-
-                <!--th:attr="src=${staff.savatar}"-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" th:src="${staff.sAvatar}" width="35" height="35" src="../../img/avatar-mini4.jpg">
@@ -124,7 +122,7 @@
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a class="" href="show_staffinfo.html">
+                    <a class="" th:href="@{/show_staffinfo}" href="show_staffinfo.html">
                         <i class="icon-eye-open"></i>
                         <span>员工列表</span>
                     </a>

@@ -50,7 +50,7 @@ public class StaffController extends BaseController {
         model.addAttribute(ConstantStr.STAFFINFO, staff);
         model.addAttribute(ConstantStr.TOSTRINGBIRTHDAY,   //转换日期格式
                 ToolDates.formatDate(staff.getSBirthday()));
-        return "user/editprofile";
+        return "staff/editprofile";
     }
 
     /**
@@ -66,18 +66,18 @@ public class StaffController extends BaseController {
 
         if (sphone == null || sphone == "") {
             model.addAttribute(ConstantStr.MESSAGE, "电话号码不能为空");
-            return "user/phoneresetpass";
+            return "staff/phoneresetpass";
         }
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
         staff.setSPhone(sphone);
         if (staffService.updateStaff(staff) > 0) {
             session.setAttribute(ConstantStr.STAFFINFO, staff);
             model.addAttribute(ConstantStr.STAFFINFO, staff);
-            return "user/security";
+            return "staff/security";
         }
         model.addAttribute(ConstantStr.MESSAGE, "电话号码绑定失败");
 
-        return "user/phoneresetpass";
+        return "staff/phoneresetpass";
     }
 
     /**
@@ -92,18 +92,18 @@ public class StaffController extends BaseController {
                               Model model) {
         if (semail == null || semail == "") {
             model.addAttribute(ConstantStr.MESSAGE, "邮箱不能为空");
-            return "user/resetemail";
+            return "staff/resetemail";
         }
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
         staff.setSEmail(semail);
         if (staffService.updateStaff(staff) > 0) {
             session.setAttribute(ConstantStr.STAFFINFO, staff);
             model.addAttribute(ConstantStr.STAFFINFO, staff);
-            return "user/security";
+            return "staff/security";
 
         }
         model.addAttribute(ConstantStr.MESSAGE, "邮箱绑定失败");
-        return "user/resetemail";
+        return "staff/resetemail";
 
     }
 

@@ -60,6 +60,5 @@
         <property name="maxUploadSize" value="10485760000"/>
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960"/>
-        <property name="uploadTempDir" value="uploadImages"/>
     </bean>
 </beans>
