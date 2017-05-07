@@ -59,4 +59,14 @@ public class NavigatController extends BaseController {
 
         return "show_staffinfo";
     }
+
+    /**
+     * 显示进销项数据列表
+     * @return
+     */
+    @RequestMapping(value = "/show_date",method = RequestMethod.GET)
+    public String show_date(Model model){
+        model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
+        return "show_date";
+    }
 }
