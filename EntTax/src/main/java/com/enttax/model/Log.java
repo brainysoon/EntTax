@@ -3,55 +3,56 @@ package com.enttax.model;
 import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
+
 @Alias("Log")
 public class Log {
-    private String lid;
+    private String lId;
 
-    private String sid;
+    private String sId;
 
-    private String bid;
+    private String bId;
 
-    private Date ltime;
+    private Date lTime;
 
-    private String lmessage;
+    private String lMessage;
 
-    public String getLid() {
-        return lid;
+    public String getLId() {
+        return lId;
     }
 
-    public void setLid(String lid) {
-        this.lid = lid == null ? null : lid.trim();
+    public String getSId() {
+        return sId;
     }
 
-    public String getSid() {
-        return sid;
+    public String getBId() {
+        return bId;
     }
 
-    public void setSid(String sid) {
-        this.sid = sid == null ? null : sid.trim();
+    public Date getLTime() {
+        return lTime;
     }
 
-    public String getBid() {
-        return bid;
+    public String getLMessage() {
+        return lMessage;
     }
 
-    public void setBid(String bid) {
-        this.bid = bid == null ? null : bid.trim();
+    public void setLId(String lId) {
+        this.lId = lId;
     }
 
-    public Date getLtime() {
-        return ltime;
+    public void setSId(String sId) {
+        this.sId = sId;
     }
 
-    public void setLtime(Date ltime) {
-        this.ltime = ltime;
+    public void setBId(String bId) {
+        this.bId = bId;
     }
 
-    public String getLmessage() {
-        return lmessage;
+    public void setLTime(Date lTime) {
+        this.lTime = lTime;
     }
 
-    public void setLmessage(String lmessage) {
-        this.lmessage = lmessage == null ? null : lmessage.trim();
+    public void setLMessage(String lMessage) {
+        this.lMessage = lMessage;
     }
 }

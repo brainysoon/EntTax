@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.enttax.dao.BillMapper">
-  <!--<cache type="com.strive.cms.cache.RedisCache"/>-->
+    <!--<cache type="com.strive.cms.cache.RedisCache"/>-->
 
-  <resultMap id="BaseResultMap" type="Bill">
-    <id column="BId" jdbcType="CHAR" property="bid" />
-    <result column="BType"  property="btype" />
-    <result column="BNum"  property="bnum" />
-    <result column="BPrice"  property="bprice" />
-    <result column="BMonth"  property="bmonth" />
-    <result column="BTitle"  property="btitle" />
-    <result column="BDate"  property="bdate" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from bill
-    where BId = #{bid}
+    <resultMap id="BaseResultMap" type="Bill">
+        <id column="BId" jdbcType="CHAR" property="bId"/>
+        <result column="BType" property="bType"/>
+        <result column="BName" property="bName"/>
+        <result column="BMonth" property="bMonth"/>
+        <result column="BPrice" property="bPrice"/>
+        <result column="BUpdateTime" property="bUpdateTime"/>
+        <result column="BMark" property="bMark"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    DELETE FROM bill
+    WHERE BId = #{bId}
   </delete>
-  <insert id="insert" parameterType="Bill">
-    insert into bill (BId, BType, BNum, 
-      BPrice, BMonth, BTitle, 
-      BDate)
-    values (#{bid}, #{btype}, #{bnum},
-      #{bprice}, #{bmonth}, #{btitle},
-      #{bdate})
+    <insert id="insert" parameterType="Bill">
+    INSERT INTO bill (BId, BType, BName,
+      BMonth,BPrice, BUpdateTime,BMark)
+    VALUES(#{bId}, #{bType}, #{bName},
+      #{bMonth},#{bPrice}, #{bUpdateTime}, #{bMark})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="Bill">
-    update bill
-    set BType = #{btype},
-      BNum = #{bnum},
-      BPrice = #{bprice},
-      BMonth = #{bmonth},
-      BTitle = #{btitle},
-      BDate = #{bdate}
-    where BId = #{bid}
+    <update id="updateByPrimaryKey" parameterType="Bill">
+    UPDATE bill
+    SET BType = #{bType},
+      BName = #{bName},
+      BMonth = #{bMonth},
+      BPrice = #{bPrice},
+      BUpdateTime = #{bUpdateTime},
+      BMark = #{bMark}
+    WHERE BId = #{bId}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select BId, BType, BNum, BPrice, BMonth, BTitle, BDate
-    from bill
-    where BId = #{bid}
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT BId, BType, BName, BMonth, BPrice,  BUpdateTime, BMark
+    FROM bill
+    WHERE BId = #{bId}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select BId, BType, BNum, BPrice, BMonth, BTitle, BDate
-    from bill
+    <select id="selectAll" resultMap="BaseResultMap">
+    SELECT BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark
+    FROM bill
   </select>
+    <select id="selectByBMark" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+         SELECT BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark
+    FROM bill
+    WHERE BMark=#{bMark}
+    </select>
 </mapper>

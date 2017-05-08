@@ -24,49 +24,103 @@ public interface ConstantStr {
     /**
      * 员工id号
      */
-    String SID="sid";
+    String SID = "sid";
 
-    String  RESOURCEPATH="resources/uploadImages/";
+    /**
+     * 图片上传的域名前缀
+     */
+    String IMAGE_UPLOAD_DOMAIN = "http://localhost/";
+
+    /**
+     * 图片上传路径地址
+     */
+    String IMAGEUPLOADPATH = "/var/www/avatar/";
+
     /**
      * 生成excel模板的绝对地址
      */
-    String EXCELRESOURCEPATH="resources/excel/";
+    String EXCELRESOURCEPATH = "resources/excel/";
     /**
      * 生成excel模板的模板名
      */
-    String EXCELMODELNAME="进销数据表.xls";
+    String EXCELMODELNAME = "进销数据表.xls";
 
     /**
      * xls类型扩展名
      */
-    String EXCELTYPEXLS=".xls";
+    String EXCELTYPEXLS = ".xls";
     /**
      * xlsx类型扩展名
      */
-    String  EXCELTYPEXLSX=".xlsx";
+    String EXCELTYPEXLSX = ".xlsx";
 
     /**
      * 保存用户信息
      */
-    String  STAFFINFO="staff";
+    String STAFFINFO = "staff";
+
+    /**
+     * 保存用户信息的集合
+     */
+    String STAFFINFOLIST="stafflist";
     /**
      * 状态
      */
-    String STATUS="status";
+    String STATUS = "status";
 
     /**
      * 消息
      */
-    String  MESSAGE="message";
+    String MESSAGE = "message";
 
     /**
-     * 系统产生随机验证码
+     * 图片验证码
      */
-    String SRAND="sRand";
+    String SRAND = "sRand";
 
-    String SMSCODE="smsCode";
+    /**
+     * 短信验证码smsCode
+     */
+    String SMSCODE = "smsCode";
 
-    /** session失效时间 **/
+    /**
+     * 邮箱验证码
+     */
+    String EMAILCODE = "emailCode";
+
+    /**
+     * email
+     */
+    String EMAIL = "email";
+
+    /**
+     * phone
+     */
+    String PHONE = "phone";
+
+    /**
+     * birthday 生日
+     */
+    String TOSTRINGBIRTHDAY = "toStringBirthday";
+
+    /**
+     * enter 入职时间
+     */
+    String TOSTRINGENTER = "toStringEnter";
+
+    /**
+     * 字符串男
+     */
+    String STR_SEX_MAN = "男";
+
+    /**
+     * 字符串女
+     */
+    String STR_SEX_WOMAN = "女";
+
+    /**
+     * session失效时间
+     **/
     String SESSION_INVALID_TIME = "SESSION_INVALID_TIME";
 
 

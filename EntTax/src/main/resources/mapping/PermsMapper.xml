@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enttax.dao.PermsMapper">
+    <!--<cache type="com.strive.cms.cache.RedisCache"/>-->
+
+    <resultMap id="BaseResultMap" type="Perms">
+        <id column="PId" property="pId"/>
+        <result column="PName" property="pName"/>
+        <result column="PLabel" property="pLabel"/>
+        <result column="PType" property="pType"/>
+        <result column="PMark" property="pMark"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    DELETE FROM perms
+    WHERE PId = #{pId}
+  </delete>
+    <insert id="insert" parameterType="Perms">
+    INSERT INTO perms (PId, PName, PLabel, PType, PMark
+      )
+    VALUES (#{pId}, #{pName}, #{pLabel}, #{pType},#{pMark}
+      )
+  </insert>
+    <update id="updateByPrimaryKey" parameterType="Perms">
+    UPDATE perms
+    SET PName = #{pName},
+      PLabel=#{pLabel},
+      PType = #{pType},
+      PMark=#{pMark}
+    WHERE PId = #{pId}
+  </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT PId, PName, PLabel, PType, PMark
+    FROM perms
+    WHERE PId = #{pId}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+    SELECT PId, PName, PLabel, PType, PMark
+    FROM perms
+  </select>
+
+    <!--通过角色RId查找 权限-->
+    <select id="selectByRId" parameterType="java.lang.String" resultMap="BaseResultMap">
+         SELECT PId, PName, PLabel, PType, PMark
+         FROM perms WHERE PId IN (SELECT PId FROM role_perms WHERE RId=#{rId})
+    </select>
+</mapper>

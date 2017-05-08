@@ -2,25 +2,52 @@ package com.enttax.dao;
 
 import com.enttax.model.Role;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 public interface RoleMapper {
-    int deleteByPrimaryKey(String rid);
 
+    /**
+     * @param rId
+     * @return
+     */
+    int deleteByPrimaryKey(String rId);
+
+    /**
+     * @param record
+     * @return
+     */
     int insert(Role record);
 
-    Role selectByPrimaryKey(String rid);
+    /**
+     * @param rId
+     * @return
+     */
+    Role selectByPrimaryKey(String rId);
 
+    /**
+     * @return
+     */
     List<Role> selectAll();
 
+    /**
+     * @param record
+     * @return
+     */
     int updateByPrimaryKey(Role record);
 
     /**
-     * 插入permission 和role 的关系
-     * @param pid
-     * @param sid
+     * @param sId
      * @return
      */
-    int insertPerm_Role(@Param("pid") String pid,@Param("rid") String rid);
+    List<Role> selectBySId(@Param("sId") String sId);
+
+    /**
+     * 更改员工的角色
+     * @param sId
+     * @param rName
+     * @return
+     */
+    int updateStaffForRole(@Param("sId") String sId,@Param("rName") String rName);
 }

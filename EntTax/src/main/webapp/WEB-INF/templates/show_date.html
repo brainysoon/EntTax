@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="brainy">
+    <meta name="keyword" content="EntTax">
+    <link rel="shortcut icon" th:href="@{/img/favicon.icon}" href="../../img/favicon.icon">
+
+    <title>企业增值税发票数据分析系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-reset.css}" href="../../css/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+    <link th:href="@{/assets/font-awesome/css/font-awesome.css}" href="../../assets/font-awesome/css/font-awesome.css"
+          rel="stylesheet"/>
+    <link th:href="@{/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css}"
+          href="../../assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
+          media="screen"/>
+    <link th:href="@{/css/owl.carousel.css}" rel="stylesheet" href="../../css/owl.carousel.css" type="text/css">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
+    <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
+    <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<section id="container" class="">
+    <!--header start-->
+    <header class="header white-bg">
+        <div class="sidebar-toggle-box">
+            <div data-original-title="导航栏" data-placement="right" class="icon-reorder tooltips"></div>
+        </div>
+        <!--logo start-->
+        <a href="#" class="logo">发票数据<span>分析系统</span></a>
+        <!--logo end-->
+        <div class="nav notify-row" id="top_menu">
+            <!--  notification start -->
+            <ul class="nav top-menu">
+                <!-- settings start -->
+                <li class="dropdown">
+                    <a href="#" data-toggle="modal" data-placement="bottom" title="下载进销excel模板">
+                        <i class="icon-cloud-download"></i>
+                    </a>
+                </li>
+                <!-- settings end -->
+                <!-- notification dropdown start-->
+                <li id="header_notification_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                        <i class="icon-bell-alt"></i>
+                        <span class="badge bg-warning">1</span>
+                    </a>
+                    <ul class="dropdown-menu extended notification">
+                        <div class="notify-arrow notify-arrow-yellow"></div>
+                        <li>
+                            <p class="yellow">你有1个新通知</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-info"><i class="icon-envelope"></i></span>
+                                欢迎登录系统
+                                <span class="small italic">Welcome !</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">所有标记为已读</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- notification dropdown end -->
+            </ul>
+            <!--  notification end -->
+        </div>
+        <div class="top-nav ">
+            <!--search & user info start-->
+            <ul class="nav pull-right top-menu">
+                <li>
+                    <input type="text" class="form-control search" placeholder="搜索">
+                </li>
+                <!-- user login dropdown start-->
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <img alt="" th:src="${staff.sAvatar}" width="35" height="35" src="../../img/avatar-mini4.jpg">
+                        <span class="username" th:text="${staff.sName}"></span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu extended logout">
+                        <div class="log-arrow-up"></div>
+                        <li><a th:href="@{/staff/profile}" href="#"><i class="icon-user"></i>个人资料</a></li>
+                        <li><a th:href="@{/staff/security}" href="#"><i class="icon-warning-sign"></i>安全中心</a></li>
+                        <li><a th:href="@{/staff/message}" href="#"><i class="icon-bell-alt"></i>消息通知</a></li>
+                        <li><a th:href="@{/staff/logout}" href="#"><i class="icon-signout"></i>退出登录</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- user login dropdown end -->
+            </ul>
+            <!--search & user info end-->
+        </div>
+    </header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar" class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu">
+                <li class="active">
+                    <a class="" th:href="@{/index}" href="index.html">
+                        <i class="icon-home"></i>
+                        <span>首页</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a class="" th:href="@{/show_staffinfo}" href="show_staffinfo.html">
+                        <i class="icon-eye-open"></i>
+                        <span>员工列表</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a class="" th:href="@{/show_date}" href="show_date.html">
+                        <i class="icon-tasks"></i>
+                        <span>进销项数据表</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+
+    <!--page_start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <!--page start-->
+            <div id="bill_list" class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title">
+                                进销项源数据列表
+                            </h4>
+                        </div>
+                        <table class="table table-striped border-top" id="sample_1">
+                            <thead>
+                            <tr>
+                                <th style="width: 6px">
+                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-placement="right"
+                                            title="上传进销项excel数据表"  data-target="#upload_excel_myModal"><i
+                                            class="icon-upload-alt"></i>
+                                    </button>
+                                </th>
+                                <th>项目名称</th>
+                                <th>类型</th>
+                                <th>价格</th>
+                                <th>数量</th>
+                                <th>月份</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>心心相印</th>
+                                <td>进项数据</td>
+                                <td class="hidden-phone">22.5</td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                            data-target="#update_staff_myModal">
+                                        <i class="icon-pencil"></i></button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                            data-target="#delete_staff_myModal">
+                                        <i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>数据结构</th>
+                                <td>进项</td>
+                                <td class="hidden-phone">88</td>
+                                <td class="hidden-phone">38</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>心心相印</th>
+                                <td>进项数据</td>
+                                <td class="hidden-phone">22.5</td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                            data-target="#update_staff_myModal">
+                                        <i class="icon-pencil"></i></button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                            data-target="#delete_staff_myModal">
+                                        <i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>数据结构</th>
+                                <td>进项</td>
+                                <td class="hidden-phone">88</td>
+                                <td class="hidden-phone">38</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>心心相印</th>
+                                <td>进项数据</td>
+                                <td class="hidden-phone">22.5</td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                            data-target="#update_staff_myModal">
+                                        <i class="icon-pencil"></i></button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                            data-target="#delete_staff_myModal">
+                                        <i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>数据结构</th>
+                                <td>进项</td>
+                                <td class="hidden-phone">88</td>
+                                <td class="hidden-phone">38</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>心心相印</th>
+                                <td>进项数据</td>
+                                <td class="hidden-phone">22.5</td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                            data-target="#update_staff_myModal">
+                                        <i class="icon-pencil"></i></button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                            data-target="#delete_staff_myModal">
+                                        <i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>数据结构</th>
+                                <td>进项</td>
+                                <td class="hidden-phone">88</td>
+                                <td class="hidden-phone">38</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>心心相印</th>
+                                <td>进项数据</td>
+                                <td class="hidden-phone">22.5</td>
+                                <td class="hidden-phone">33</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs" data-toggle="modal"
+                                            data-target="#update_staff_myModal">
+                                        <i class="icon-pencil"></i></button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                            data-target="#delete_staff_myModal">
+                                        <i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <td></td>
+                                <th>数据结构</th>
+                                <td>进项</td>
+                                <td class="hidden-phone">88</td>
+                                <td class="hidden-phone">38</td>
+                                <td class="center hidden-phone">05.04.2013</td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- upload_excel模态框（Modal） -->
+<div class="modal fade" id="upload_excel_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                   上传excel进销项数据
+                </h4>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-warning"><p class="icon-exclamation-sign"></p>注意</button>
+                <label class="btn-lg">您上传的excel形式应与提供的excel模板一致,不然会出错哟！</label>
+            </div>
+            <div class="modal-footer">
+                <div class="col-xs-6">
+                <div class="new-contentarea tc">
+                   <button class="btn btn-lg btn-info"><i class="icon-folder-open"></i>选择文件</button>
+                    <input type="file" class="" name="upload-file" id="upload-file"/>
+                </div>
+                </div>
+                <div class="col-xs-6">
+                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                 <button id="upload_excel_file"  class="btn btn-primary" type="button">添加</button>
+                </div>
+                <h4 id="message" class="help-block text-danger text-center"></h4>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div><!--upload_excel modal完-->
+
+
+<!-- js placed at the end of the document so the pages load faster -->
+<script th:src="@{/js/jquery.js}" src="../../js/jquery.js"></script>
+<script th:src="@{/js/jquery-1.8.3.min.js}" src="../../js/jquery-1.8.3.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}" src="../../js/bootstrap.min.js"></script>
+<script th:src="@{/js/jquery.scrollTo.min.js}" src="../../js/jquery.scrollTo.min.js"></script>
+<script th:src="@{/js/jquery.nicescroll.js}" src="../../js/jquery.nicescroll.js" type="text/javascript"></script>
+<script th:src="@{/assets/data-tables/jquery.dataTables.js}" type="text/javascript"
+        src="../../assets/data-tables/jquery.dataTables.js"></script>
+<script th:src="@{/assets/data-tables/DT_bootstrap.js}" type="text/javascript"
+        src="../../assets/data-tables/DT_bootstrap.js"></script>
+
+<!--Jquery Validate-->
+<script th:src="@{/js/jquery.validate.min.js}" src="../../js/jquery.validate.min.js"></script>
+<!--Custom Validate-->
+<script th:src="@{/js/custom-validate.js}" src="../../js/custom-validate.js"></script>
+<!--Custom function-->
+<script th:src="@{/js/custom-function.js}" src="../../js/custom-function.js"></script>
+
+
+<!--common script for all pages-->
+<script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
+
+<!--script for this page-->
+<script th:src="@{/js/dynamic-table.js}" src="../../js/dynamic-table.js"></script>
+
+
+<script>
+    $(function () {
+        $("[data-toggle='modal']").tooltip();
+    });
+</script>
+
+</body>
+</html>
