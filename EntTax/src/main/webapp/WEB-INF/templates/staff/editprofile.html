@@ -47,6 +47,13 @@
         <div class="nav notify-row" id="top_menu">
             <!--  notification start -->
             <ul class="nav top-menu">
+                <!-- settings start -->
+                <li class="dropdown">
+                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="下载进销excel模板">
+                        <i class="icon-cloud-download"></i>
+                    </a>
+                </li>
+                <!-- settings end -->
                 <!-- notification dropdown start-->
                 <li id="header_notification_bar" class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -113,6 +120,18 @@
                     <a class="" th:href="@{/index}" href="index.html">
                         <i class="icon-home"></i>
                         <span>首页</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a class="" th:href="@{/show_staffinfo}" href="show_staffinfo.html">
+                        <i class="icon-eye-open"></i>
+                        <span>员工列表</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a class="" th:href="@{/show_date}" href="show_date.html">
+                        <i class="icon-tasks"></i>
+                        <span>进销项数据表</span>
                     </a>
                 </li>
             </ul>
@@ -294,6 +313,11 @@
 <script th:src="@{/js/easy-pie-chart.js}" src="../../../js/easy-pie-chart.js"></script>
 
 <script>
+
+    //upload download excel tooltip
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+    });
 
     //owl carousel
     $(document).ready(function () {
