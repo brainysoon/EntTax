@@ -118,4 +118,20 @@ public class MybatisTest {
 //        }
     }
 
+    @Test
+    public void  seleteStaffRoleTest(){
+        StaffMapper staffMapper=context.getBean(StaffMapper.class);
+        String rid=staffMapper.selectStaffRoleId("20174723");
+        System.out.println(rid);
+
+    }
+
+    @Test
+    public void updateStaffForRoleTest(){
+        RoleMapper roleMapper=context.getBean(RoleMapper.class);
+        int result=roleMapper.updateStaffForRole("20177128","操作员");
+        System.out.println(result);
+
+    }
+
 }
