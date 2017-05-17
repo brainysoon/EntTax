@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="brainy">
     <meta name="keyword" content="EntTax">
-    <link rel="shortcut icon" th:href="@{/img/favicon.icon}" href="../../img/favicon.icon">
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../img/favicon.ico">
 
     <title>企业增值税发票数据分析系统</title>
 
@@ -26,7 +26,7 @@
     <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
+    <!--此处未应用 [if lt IE 9]>
     <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
     <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
     <![endif]-->
@@ -36,28 +36,30 @@
 <body>
 
 <section id="container" class="">
-    <!--header start-->
+    <!--header start 头部导航栏-->
     <header class="header white-bg">
+        <!--左侧标题-->
         <div class="sidebar-toggle-box">
             <div data-original-title="导航栏" data-placement="right" class="icon-reorder tooltips"></div>
         </div>
         <!--logo start-->
         <a href="#" class="logo">发票数据<span>分析系统</span></a>
         <!--logo end-->
+
+        <!--首页通知和模板下载-->
         <div class="nav notify-row" id="top_menu">
             <!--  notification start -->
             <ul class="nav top-menu">
                 <!-- settings start -->
                 <li class="dropdown">
-                    <a href="#" data-toggle="modal" data-placement="bottom" title="下载进销excel模板">
+                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="下载进销excel模板">
                         <i class="icon-cloud-download"></i>
                     </a>
                 </li>
                 <!-- settings end -->
-                <!-- notification dropdown start-->
+                <!-- notification dropdown start 消息提示-->
                 <li id="header_notification_bar" class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-
                         <i class="icon-bell-alt"></i>
                         <span class="badge bg-warning">1</span>
                     </a>
@@ -82,13 +84,16 @@
             </ul>
             <!--  notification end -->
         </div>
+        <!--通知下载结束-->
+
+        <!--右侧部分-->
         <div class="top-nav ">
-            <!--search & user info start-->
+            <!--search & user info start 右部搜索-->
             <ul class="nav pull-right top-menu">
                 <li>
                     <input type="text" class="form-control search" placeholder="搜索">
                 </li>
-                <!-- user login dropdown start-->
+                <!-- user login dropdown start 个人信息等(在头像按钮下)-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" th:src="${staff.sAvatar}" width="35" height="35" src="../../img/avatar-mini4.jpg">
@@ -97,8 +102,8 @@
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
-                        <li><a th:href="@{/staff/profile}" href="#"><i class="icon-user"></i>个人资料</a></li>
-                        <li><a th:href="@{/staff/security}" href="#"><i class="icon-warning-sign"></i>安全中心</a></li>
+                        <li><a th:href="@{/staff/profile}" href="staff/profile.html"><i class="icon-user"></i>个人资料</a></li>
+                        <li><a th:href="@{/staff/security}" href="staff/security.html"><i class="icon-warning-sign"></i>安全中心</a></li>
                         <li><a th:href="@{/staff/message}" href="#"><i class="icon-bell-alt"></i>消息通知</a></li>
                         <li><a th:href="@{/staff/logout}" href="#"><i class="icon-signout"></i>退出登录</a>
                         </li>
@@ -108,9 +113,12 @@
             </ul>
             <!--search & user info end-->
         </div>
+        <!--右侧部分结束-->
+
     </header>
-    <!--header end-->
-    <!--sidebar start-->
+    <!--header end 头部导航栏结束-->
+
+    <!--sidebar start 左侧导航栏-->
     <aside>
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
@@ -137,22 +145,26 @@
             <!-- sidebar menu end-->
         </div>
     </aside>
-    <!--sidebar end-->
+    <!--sidebar end 左侧导航栏结束-->
 
-    <!--page_start-->
+    <!--page_start 主要内容部分-->
     <section id="main-content">
         <section class="wrapper">
             <!--page start-->
             <div id="bill_list" class="row">
                 <div class="col-lg-12">
                     <section class="panel">
+                        <!--头部 位置显示栏-->
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                             <h4 class="modal-title">
                                 进销项源数据列表
                             </h4>
                         </div>
+                        <!--头部 位置显示栏结束-->
+
                         <table class="table table-striped border-top" id="sample_1">
+                            <!--头部显示的所有包含的内容-->
                             <thead>
                             <tr>
                                 <th style="width: 6px">
@@ -169,6 +181,9 @@
                                 <th>操作</th>
                             </tr>
                             </thead>
+                            <!--头部显示的所有包含的内容 结束-->
+
+                            <!--数据显示部分-->
                             <tbody>
                             <tr class="odd gradeX">
                                 <td></td>
@@ -331,6 +346,8 @@
                                 </td>
                             </tr>
                             </tbody>
+                            <!--数据显示部分 结束-->
+
                         </table>
                     </section>
                 </div>
@@ -338,12 +355,13 @@
             <!-- page end-->
         </section>
     </section>
-    <!--main content end-->
+    <!--main content end 主要内容部分结束-->
 </section>
 <!-- upload_excel模态框（Modal） -->
 <div class="modal fade" id="upload_excel_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <!--上传图标和悬浮显示的内容-->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     &times;
@@ -352,10 +370,16 @@
                    上传excel进销项数据
                 </h4>
             </div>
+            <!--上传图标和悬浮显示的内容 结束-->
+
+            <!--显示的模态框 中间内容-->
             <div class="modal-body">
                 <button class="btn btn-warning"><p class="icon-exclamation-sign"></p>注意</button>
                 <label class="btn-lg">您上传的excel形式应与提供的excel模板一致,不然会出错哟！</label>
             </div>
+            <!--显示的模态框 中间内容 结束-->
+
+            <!--显示的模态框 底部-->
             <div class="modal-footer">
                 <div class="col-xs-6">
                 <div class="new-contentarea tc">
@@ -369,6 +393,8 @@
                 </div>
                 <h4 id="message" class="help-block text-danger text-center"></h4>
             </div>
+            <!--显示的模态框 底部 结束-->
+
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div><!--upload_excel modal完-->
