@@ -21,12 +21,12 @@
           href="../../assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
           media="screen"/>
     <link th:href="@{/css/owl.carousel.css}" rel="stylesheet" href="../../css/owl.carousel.css" type="text/css">
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this template //css 模板样式-->
     <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
     <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
+    <!--此处未应用 [if lt IE 9]>
     <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
     <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
     <![endif]-->
@@ -36,14 +36,17 @@
 <body>
 
 <section id="container" class="">
-    <!--header start-->
+    <!--header start 头部导航栏-->
     <header class="header white-bg">
+        <!--左侧标题-->
         <div class="sidebar-toggle-box">
             <div data-original-title="导航栏" data-placement="right" class="icon-reorder tooltips"></div>
         </div>
         <!--logo start-->
         <a href="#" class="logo">发票数据<span>分析系统</span></a>
         <!--logo end-->
+
+        <!--首页通知和模板下载-->
         <div class="nav notify-row" id="top_menu">
             <!--  notification start -->
             <ul class="nav top-menu">
@@ -54,10 +57,9 @@
                     </a>
                 </li>
                 <!-- settings end -->
-                <!-- notification dropdown start-->
+                <!-- notification dropdown start 消息提示-->
                 <li id="header_notification_bar" class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-
                         <i class="icon-bell-alt"></i>
                         <span class="badge bg-warning">1</span>
                     </a>
@@ -82,13 +84,16 @@
             </ul>
             <!--  notification end -->
         </div>
+        <!--通知下载结束-->
+
+        <!--右侧部分-->
         <div class="top-nav ">
-            <!--search & user info start-->
+            <!--search & user info start 右部搜索-->
             <ul class="nav pull-right top-menu">
                 <li>
                     <input type="text" class="form-control search" placeholder="搜索">
                 </li>
-                <!-- user login dropdown start-->
+                <!-- user login dropdown start 个人信息等(在头像按钮下)-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" th:src="${staff.sAvatar}" width="35" height="35" src="../../img/avatar-mini4.jpg">
@@ -97,8 +102,8 @@
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
-                        <li><a th:href="@{/staff/profile}" href="#"><i class="icon-user"></i>个人资料</a></li>
-                        <li><a th:href="@{/staff/security}" href="#"><i class="icon-warning-sign"></i>安全中心</a></li>
+                        <li><a th:href="@{/staff/profile}" href="staff/profile.html"><i class="icon-user"></i>个人资料</a></li>
+                        <li><a th:href="@{/staff/security}" href="staff/security.html"><i class="icon-warning-sign"></i>安全中心</a></li>
                         <li><a th:href="@{/staff/message}" href="#"><i class="icon-bell-alt"></i>消息通知</a></li>
                         <li><a th:href="@{/staff/logout}" href="#"><i class="icon-signout"></i>退出登录</a>
                         </li>
@@ -108,9 +113,12 @@
             </ul>
             <!--search & user info end-->
         </div>
+        <!--右侧部分结束-->
+
     </header>
-    <!--header end-->
-    <!--sidebar start-->
+    <!--header end 头部导航栏结束-->
+
+    <!--sidebar start 左侧导航栏-->
     <aside>
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
@@ -137,9 +145,9 @@
             <!-- sidebar menu end-->
         </div>
     </aside>
-    <!--sidebar end-->
+    <!--sidebar end 左侧导航栏结束-->
 
-    <!--page_start-->
+    <!--page_start 每个页面的模板样式-->
     <section id="main-content">
         <section class="wrapper">
             <div id="hightcharts" style="min-width:400px;height:400px"></div>
