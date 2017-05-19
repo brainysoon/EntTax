@@ -83,6 +83,7 @@ a, a:hover, a:focus {
     font-size: 16px;
     height: auto;
     padding: 10px;
+    color: #666;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -460,7 +461,6 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.176) !important;
     }
 
-;
 }
 
 .dropdown-menu.extended li p {
@@ -1455,8 +1455,6 @@ h3.timeline-title {
     .panel-footer.revenue-foot {
         margin-bottom: -4px;
     }
-
-;
 }
 
 .panel-footer.revenue-foot ul {
@@ -3764,9 +3762,10 @@ table.sliders tr td {
 
 .cke_top, .cke_bottom {
     background: #F5F5F5 !important;
-    background: -moz-linear-gradient(center top, #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
+    /*background: -moz-linear-gradient(center top, #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
     background: -webkit-linear-gradient(center top, #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
     background: -o-linear-gradient(center top, #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
+    */
     box-shadow: none;
     padding: 6px 8px 2px;
 }
