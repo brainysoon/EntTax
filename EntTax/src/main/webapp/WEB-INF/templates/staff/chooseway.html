@@ -42,6 +42,7 @@
     <form id="loginForm" class="form-signin">
         <h2 class="form-signin-heading">选择验证方式</h2>
         <div class="login-wrap">
+            <!--手机验证-->
             <div class="form-group">
                 <a th:href="@{/staff/phoneresetpass}" href="phoneresetpass.htmlphonereset.html">
                     <button type="button" class="btn btn-info btn-lg btn-block">
@@ -49,6 +50,9 @@
                     </button>
                 </a>
             </div>
+            <!--手机验证 结束-->
+
+            <!--邮箱验证-->
             <div class="form-group">
                 <a th:href="@{/staff/emailresetpass}" href="mailresetpass.htmlmailreset.html">
                     <button type="button" class="btn btn-info btn-lg btn-block" href="login.html">
@@ -56,10 +60,12 @@
                     </button>
                 </a>
             </div>
+            <!--邮箱验证 结束-->
+
         </div>
         <!--end of findways-wrap-->
     </form>
-    <!--end of form-->
+    <!--end of form  弹出选择验证的方式 结束-->
 </div>
 <!--end of container-->
 </body>
