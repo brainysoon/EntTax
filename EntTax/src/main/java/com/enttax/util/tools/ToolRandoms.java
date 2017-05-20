@@ -94,4 +94,21 @@ public class ToolRandoms {
 
         return codeStr4.toString();
     }
+
+    /**
+     * 为测试 生成 Id  20 位字符串
+     *
+     * @return
+     */
+    public static String randomId20() {
+
+        String idStr = longDateFormat.format(new Date());
+
+        for (int i = 0; i < 3; i++) {
+
+            idStr += Math.abs(random.nextInt()) % 10;
+        }
+
+        return idStr;
+    }
 }

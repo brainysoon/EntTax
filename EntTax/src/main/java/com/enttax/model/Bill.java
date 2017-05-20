@@ -2,10 +2,11 @@ package com.enttax.model;
 
 import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Alias("Bill")
-public class Bill {
+public class Bill implements Serializable {
     private String bId;
 
     private String bType;
@@ -20,7 +21,7 @@ public class Bill {
 
     private Integer bMark;
 
-    public String getBbId() {
+    public String getBId() {
         return bId;
     }
 

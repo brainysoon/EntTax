@@ -7,7 +7,7 @@
     <meta name="description" content="enttax">
     <meta name="author" content="brainy">
     <meta name="keyword" content="EntTax">
-    <link rel="shortcut icon" th:href="@{/img/favicon.html}" href="../../../img/favicon.html">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
 
     <title>找回密码</title>
 
@@ -30,16 +30,19 @@
     <script th:src="@{/js/custom-validate.js}" src="../../../js/custom-validate.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
+    <!-- 此处未应用[if lt IE 9]>
     <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
     <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
     <![endif]-->
 </head>
 <body class="login-body">
 <div class="container">
+
+    <!--弹出选择验证的方式-->
     <form id="loginForm" class="form-signin">
         <h2 class="form-signin-heading">选择验证方式</h2>
         <div class="login-wrap">
+            <!--手机验证-->
             <div class="form-group">
                 <a th:href="@{/staff/phoneresetpass}" href="phoneresetpass.htmlphonereset.html">
                     <button type="button" class="btn btn-info btn-lg btn-block">
@@ -47,6 +50,9 @@
                     </button>
                 </a>
             </div>
+            <!--手机验证 结束-->
+
+            <!--邮箱验证-->
             <div class="form-group">
                 <a th:href="@{/staff/emailresetpass}" href="mailresetpass.htmlmailreset.html">
                     <button type="button" class="btn btn-info btn-lg btn-block" href="login.html">
@@ -54,10 +60,12 @@
                     </button>
                 </a>
             </div>
+            <!--邮箱验证 结束-->
+
         </div>
         <!--end of findways-wrap-->
     </form>
-    <!--end of form-->
+    <!--end of form  弹出选择验证的方式 结束-->
 </div>
 <!--end of container-->
 </body>

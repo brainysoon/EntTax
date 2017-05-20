@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -43,30 +42,4 @@ public class NavigatController extends BaseController {
         return "unauthorized";
     }
 
-    /**
-     * 显示staff列表
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/show_staffinfo", method = RequestMethod.GET)
-    public String show_staffinfo(Model model) {
-
-        List staffInfoList=staffService.selectAllStaffInfo();
-
-        System.out.println(staffInfoList);
-        model.addAttribute(ConstantStr.STAFFINFOLIST,staffInfoList);
-        model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
-
-        return "show_staffinfo";
-    }
-
-    /**
-     * 显示进销项数据列表
-     * @return
-     */
-    @RequestMapping(value = "/show_date",method = RequestMethod.GET)
-    public String show_date(Model model){
-        model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
-        return "show_date";
-    }
 }

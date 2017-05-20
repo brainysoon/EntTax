@@ -5,10 +5,11 @@ package com.enttax.ml;
  */
 public interface PrepareData {
 
-    /**
-     * 默认数据存放位置
-     */
-    String DEFAULT_ML_DATA_DIR = "/var/ml/default.txt";
+    String DEFAULT_TAX_IN_FILE_NAME = "/var/ml/tax_in.txt";
+    String DEFAULT_TAX_OUT_FILE_NAME = "/var/ml/tax_out.txt";
+    String DEFAULT_TAX_DIFF_FILE_NAME = "/var/ml/tax_diff.txt";
+    String DEFAULT_TAX_OUT_AND_MONTH_FILE_NAME = "/var/ml/tax_out_month.txt";
+
 
     /**
      * @param fileName
@@ -18,8 +19,10 @@ public interface PrepareData {
     int writeDataToDisk(String fileName, int bMark);
 
     /**
-     * @param bMark
+     * @param fileName
      * @return
      */
-    int writeDataToDisk(int bMark);
+    int writeDataToDiskAboutDiff(String fileName);
+
+    int writeDataToDiskTaxOutAndMonth(String fileName);
 }

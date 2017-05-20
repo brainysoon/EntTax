@@ -33,4 +33,16 @@ public interface BillService {
      * @return
      */
     List<Bill> selectByBMark(Integer bMark);
+
+    /**
+     * @param bName
+     * @return
+     */
+    List<Bill> selectByBName(String bName);
+
+    /**
+     * @param bills
+     * @return
+     */
+    int insertAll(List<Bill> bills);
 }
