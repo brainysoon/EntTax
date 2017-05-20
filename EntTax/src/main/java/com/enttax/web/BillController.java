@@ -23,9 +23,9 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/bill")
-public class ExcelController extends BaseController {
+public class BillController extends BaseController {
 
-    private static final Logger logger = Logger.getLogger(ExcelController.class);
+    private static final Logger logger = Logger.getLogger(BillController.class);
 
     @Autowired
     private ExcelService excelService;
@@ -143,6 +143,17 @@ public class ExcelController extends BaseController {
         }
 
         return "bill/uploadexcel";
+    }
+
+    /**
+     * 显示进销项数据列表
+     *
+     * @return
+     */
+    @RequestMapping(value = "/managedata", method = RequestMethod.GET)
+    public String toManageData(Model model) {
+        model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
+        return "bill/managedata";
     }
 
 }

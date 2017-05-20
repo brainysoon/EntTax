@@ -42,30 +42,4 @@ public class NavigatController extends BaseController {
         return "unauthorized";
     }
 
-    /**
-     * 显示staff列表
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/show_staffinfo", method = RequestMethod.GET)
-    public String show_staffinfo(Model model) {
-
-        List staffInfoList=staffService.selectAllStaffInfo();
-
-        System.out.println(staffInfoList);
-        model.addAttribute(ConstantStr.STAFFINFOLIST,staffInfoList);
-        model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
-
-        return "staffs/managestaff";
-    }
-
-    /**
-     * 显示进销项数据列表
-     * @return
-     */
-    @RequestMapping(value = "/show_date",method = RequestMethod.GET)
-    public String show_date(Model model){
-        model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
-        return "bill/managedata";
-    }
 }
