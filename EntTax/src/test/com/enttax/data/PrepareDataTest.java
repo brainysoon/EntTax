@@ -19,16 +19,21 @@ public class PrepareDataTest {
     @Autowired
     private PrepareData prepareData;
 
-    private static final String TAX_IN_DIR = "/var/ml/tax_in.txt";
-    private static final String TAX_OUT_DIR = "/var/ml/tax_out.txt";
-
     /**
      *
      */
     @Test
     public void writeDataToDistTest() {
 
-        prepareData.writeDataToDisk(TAX_IN_DIR, 1);
-        prepareData.writeDataToDisk(TAX_OUT_DIR, 2);
+        //将进项和销项数据 写入文件
+        prepareData.writeDataToDisk(PrepareData.DEFAULT_TAX_IN_FILE_NAME, 1);
+        prepareData.writeDataToDisk(PrepareData.DEFAULT_TAX_OUT_FILE_NAME, 2);
+
+        //写入销项和进项的差值 以及月份
+        prepareData.writeDataToDiskAboutDiff(PrepareData.DEFAULT_TAX_DIFF_FILE_NAME);
+
+        //写入销项数据 和 月份
+        int result = prepareData.writeDataToDiskTaxOutAndMonth(PrepareData.DEFAULT_TAX_OUT_AND_MONTH_FILE_NAME);
+        System.out.println(result);
     }
 }

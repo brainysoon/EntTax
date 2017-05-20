@@ -24,7 +24,7 @@ public class RandomUtil {
     /**
      * 每个月的最大项目数  100000
      */
-    public static final int MAX_PROJECT = 100;
+    public static final int MAX_PROJECT = 1;
     public static final int MAX_MONTH = 8;
 
     private static final Random random = new Random();

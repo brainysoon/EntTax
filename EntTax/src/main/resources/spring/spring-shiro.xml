@@ -138,6 +138,7 @@
                 /staff/logout = logout
                 /staff/security = ssl, authc
                 /staff/** = ssl, user
+                /bill/**=ssl, authc
             </value>
         </property>
     </bean>

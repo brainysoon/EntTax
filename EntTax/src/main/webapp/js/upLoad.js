@@ -53,41 +53,34 @@ function dis() {
 
 /*文件上传按钮,上传文件*/
 function uploadFile() {
+
+    //检查有没有勾选
+    dis();
+
     var fd = new FormData();
-    fd.append("upload-file", document.getElementById('upload-file').files[0]);
+    fd.append("excelFile", document.getElementById('upload-file').files[0]);
+    var intax = document.getElementById('inTax');
+    var outtax = document.getElementById('outTax');
+    if (intax.checked) fd.append("bmark", $("#inTax").val());
+    if (outtax.checked) fd.append("bmark", $("#outTax").val());
     var xhr = new XMLHttpRequest();
     if (mark === 1 && mark1 === 1) {
-        if (mark1 === 1) {
-            /*alert(mark1);*/
-            xhr.upload.addEventListener("progress", uploadProgress, false);
-            mark = 0;
-            mark1 = 0;
-        }
 
+        xhr.upload.onprogress = function (ev) {
+
+            if (ev.lengthComputable) {
+
+                var per = 100 * ev.loaded / ev.total;
+                setPro(per);
+            }
+        };
+
+        xhr.addEventListener("load", uploadComplete, false);
+        xhr.addEventListener("error", uploadFailed, false);
+        xhr.addEventListener("abort", uploadCanceled, false);
+        xhr.open("POST", "/bill/uploadexcel");
+        xhr.send(fd);
     }
-    xhr.addEventListener("load", uploadComplete, false);
-    xhr.addEventListener("error", uploadFailed, false);
-    xhr.addEventListener("abort", uploadCanceled, false);
-    xhr.open("POST", "UploadMinimal.aspx");
-    xhr.send(fd);
-}
-
-/*显示上传进度条*/
-function uploadProgress(evt) {
-    mark = 0;
-    /*if (evt.lengthComputable) {
-     var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-
-     if (percentComplete.toString() == "100") {
-     document.getElementById('processbar').innerHTML = '上传完成' + percentComplete.toString() + '%';
-     } else {
-     document.getElementById('processbar').innerHTML = '正在上传' + percentComplete.toString() + '%';
-     }
-
-     } else {
-     document.getElementById('processbar').innerHTML = '无法计算';
-     }*/
-    setPro();
 }
 
 /*用户确认信息 然后清空上传列表*/
@@ -95,34 +88,29 @@ function confirmFile() {
     document.getElementById('fileName').innerHTML = '';
     document.getElementById('fileSize').innerHTML = '';
     document.getElementById('fileType').innerHTML = '';
+    var file = document.getElementById('upload-file');
+    file.value = "";
     document.getElementById('processbar').style.width = '0%';
     document.getElementById('processbar').innerHTML = '';
     document.getElementById('fileSelect').style.display = "block"
 }
 
 /*进度条函数*/
-function setPro() {
-    function setProcess() {
-        var processbar = document.getElementById("processbar");
-        processbar.style.width = parseInt(processbar.style.width) + 1 + "%";
-        processbar.innerHTML = processbar.style.width;
-        if (processbar.style.width == "100%") {
-            window.clearInterval(bartimer);
-        }
-    }
-
-    var bartimer = window.setInterval(function () {
-        setProcess();
-    }, 100);
-    window.onload = function () {
-        bartimer;
-    }
-
+function setPro(per) {
+    var processbar = document.getElementById("processbar");
+    processbar.style.width = parseInt(per) + "%";
+    processbar.innerHTML = processbar.style.width;
 }
 
 function uploadComplete(evt) {
     /* 当服务器响应后，这个事件就会被触发 */
-    /*alert(evt.target.responseText);*/
+    var data=JSON.parse(evt.target.responseText);
+
+    if (data.status > 0) {
+
+        alert("上传文件成功!");
+        window.location.href = "/bill/uploadexcel?key=" + data.key;
+    }
 }
 
 function uploadFailed(evt) {

@@ -8,7 +8,7 @@
     <name>EntTax Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <spring.version>4.2.2.RELEASE</spring.version>
+        <spring.version>4.2.9.RELEASE</spring.version>
         <spring-data.version>1.2.0.RELEASE</spring-data.version>
     </properties>
     <dependencies>

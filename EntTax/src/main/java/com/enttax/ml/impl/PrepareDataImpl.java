@@ -55,8 +55,82 @@ public class PrepareDataImpl implements PrepareData {
     }
 
     @Override
-    public int writeDataToDisk(int bMark) {
+    public int writeDataToDiskAboutDiff(String fileName) {
 
-        return writeDataToDisk(DEFAULT_ML_DATA_DIR, bMark);
+        List<Bill> billList = billService.selectByBMark(1);
+
+        try {
+
+            File file = new File(fileName);
+
+            if (!file.exists()) {
+
+                file.createNewFile();
+            }
+
+            FileOutputStream fos = new FileOutputStream(file);
+
+            PrintWriter pw = new PrintWriter(fos);
+
+            for (Bill bill : billList) {
+
+                List<Bill> bills = billService.selectByBName(bill.getBName());
+
+                if (bills.size() < 2) {
+
+                    return -1;
+                }
+
+                Bill billIn = bills.get(0);
+                Bill billOut = bills.get(1);
+
+                Double diff = billOut.getBPrice() - billIn.getBPrice();
+
+
+                pw.printf("%.6f %d\n", diff, billIn.getBMonth());
+            }
+
+            pw.close();
+
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return billList.size();
+    }
+
+    @Override
+    public int writeDataToDiskTaxOutAndMonth(String fileName) {
+
+        List<Bill> billList = billService.selectByBMark(2);
+
+        try {
+
+
+            File file = new File(fileName);
+
+            if (!file.exists()) {
+
+                file.createNewFile();
+            }
+
+            FileOutputStream fos = new FileOutputStream(file);
+
+            PrintWriter pw = new PrintWriter(fos);
+
+            for (Bill bill : billList) {
+
+                pw.printf("%.6f %d\n", bill.getBPrice(), bill.getBMonth());
+            }
+
+            pw.close();
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+        }
+
+        return billList.size();
     }
 }

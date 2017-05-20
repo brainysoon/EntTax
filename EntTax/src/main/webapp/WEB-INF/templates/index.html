@@ -102,8 +102,10 @@
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
-                        <li><a th:href="@{/staff/profile}" href="staff/profile.html"><i class="icon-user"></i>个人资料</a></li>
-                        <li><a th:href="@{/staff/security}" href="staff/security.html"><i class="icon-warning-sign"></i>安全中心</a></li>
+                        <li><a th:href="@{/staff/profile}" href="staff/profile.html"><i class="icon-user"></i>个人资料</a>
+                        </li>
+                        <li><a th:href="@{/staff/security}" href="staff/security.html"><i class="icon-warning-sign"></i>安全中心</a>
+                        </li>
                         <li><a th:href="@{/staff/message}" href="#"><i class="icon-bell-alt"></i>消息通知</a></li>
                         <li><a th:href="@{/staff/logout}" href="#"><i class="icon-signout"></i>退出登录</a>
                         </li>
@@ -127,6 +129,12 @@
                     <a class="" th:href="@{/index}" href="index.html">
                         <i class="icon-home"></i>
                         <span>首页</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a class="" th:href="@{/bill/uploadexcel}" href="uploadexcel.html">
+                        <i class="icon-upload"></i>
+                        <span>导入数据</span>
                     </a>
                 </li>
                 <li class="sub-menu">
