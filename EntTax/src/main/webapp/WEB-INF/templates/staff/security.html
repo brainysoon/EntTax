@@ -49,7 +49,8 @@
             <ul class="nav top-menu">
                 <!-- settings start -->
                 <li class="dropdown">
-                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="下载进销excel模板">
+                    <a th:href="@{/resources/data_template.xlsx}" href="../../../resources/data_template.xlsx"
+                       data-toggle="tooltip" data-placement="bottom" title="进销excel模板">
                         <i class="icon-cloud-download"></i>
                     </a>
                 </li>
@@ -111,34 +112,71 @@
         </div>
     </header>
     <!--header end-->
-    <!--sidebar start-->
+    <!--sidebar start 左侧导航栏-->
     <aside>
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
-                <li class="active">
-                    <a class="" th:href="@{/index}" href="index.html">
+                <li class="">
+                    <a class="" th:href="@{/index}" href="../index.html">
                         <i class="icon-home"></i>
                         <span>首页</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a class="" th:href="@{/show_staffinfo}" href="show_staffinfo.html">
-                        <i class="icon-eye-open"></i>
-                        <span>员工列表</span>
+                    <a href="javascript:;" class="">
+                        <i class="icon-edit-sign"></i>
+                        <span>数据管理</span>
+                        <span class="arrow"></span>
                     </a>
+                    <ul class="sub">
+                        <li class="active"><a class="" th:href="@{/bill/uploadexcel}" href="../bill/uploadexcel.html">导入数据</a>
+                        </li>
+                        <li class=""><a class="" th:href="@{/bill/managedata}" href="../bill/managedata.html">操作数据</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="sub-menu">
-                    <a class="" th:href="@{/show_date}" href="show_date.html">
-                        <i class="icon-tasks"></i>
-                        <span>进销项数据表</span>
+                    <a href="javascript:;" class="">
+                        <i class="icon-user-md"></i>
+                        <span>员工管理</span>
+                        <span class="arrow"></span>
                     </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/staffs/showstaff}" href="../staffs/showstaff.html">查看员工</a></li>
+                        <li><a class="" th:href="@{/staffs/managestaff}" href="../staffs/managestaff.html">员工管理</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-bar-chart"></i>
+                        <span>数据分析</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/analysis/monthcount}" href="#">月度统计</a></li>
+                        <li><a class="" th:href="@{/analysis/yearcount}" href="#">年度统计</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu active">
+                    <a href="javascript:;" class="">
+                        <i class="icon-male"></i>
+                        <span>个人中心</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/staff/profile}" href="profile.html">个人资料</a></li>
+                        <li><a class="" th:href="@{/staff/editprofile}" href="editprofile.html">修改信息</a>
+                        </li>
+                        <li class="active"><a class="" th:href="@{/staff/security}" href="security.html">安全中心</a></li>
+                    </ul>
                 </li>
             </ul>
             <!-- sidebar menu end-->
         </div>
     </aside>
-    <!--sidebar end-->
+    <!--sidebar end 左侧导航栏结束-->
 
     <!--main content start-->
     <section id="main-content">

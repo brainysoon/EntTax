@@ -110,6 +110,7 @@ public class StaffController extends BaseController {
 
     /**
      * 更新头像
+     *
      * @param imageFile
      * @return
      */
@@ -254,6 +255,7 @@ public class StaffController extends BaseController {
 
     /**
      * 退出
+     *
      * @return
      */
     @RequestMapping(value = "/logout")
@@ -368,81 +370,6 @@ public class StaffController extends BaseController {
     public String toResetMail() {
 
         return "staff/resetemail";
-    }
-
-    /**
-     * 管理员通过sid更改员工角色
-     * @param sId
-     * @param rName
-     * @return
-     */
-    @RequestMapping(value = "/updatestaff",method = RequestMethod.POST)
-    @ResponseBody
-    public Map updateStaffForRole(@RequestParam(value = "sId") String sId,
-                                  @RequestParam(value = "rName") String rName){
-        Map map=new HashMap();
-        System.out.println(sId+rName);
-        if (sId==null||sId==""){
-            map.put(ConstantStr.MESSAGE,"对不起，您输入的参数有误！");
-            return map;
-        }
-
-        if (staffService.updateStaffForRole(sId,rName)>0){
-            map.put(ConstantStr.MESSAGE,"恭喜您，操作成功！");
-        }else {
-            map.put(ConstantStr.MESSAGE,"对不起,操作失败！");
-        }
-        return map;
-
-    }
-
-    /**
-     * 管理员删除员工
-     * @param sid
-     * @return
-     */
-    @RequestMapping(value = "/deletestaff",method = RequestMethod.GET)
-    @ResponseBody
-    public Map deleteStaffBySid(@RequestParam(value = "sid") String sid){
-        Map map=new HashMap();
-
-        if (sid==null||sid==""){
-            map.put(ConstantStr.MESSAGE,"对不起，您输入的参数有误！");
-            return map;
-        }
-
-        if (staffService.deleteStaffBySid(sid)>0){
-            map.put(ConstantStr.MESSAGE,"恭喜您，操作成功！");
-        }else {
-            map.put(ConstantStr.MESSAGE,"对不起,操作失败！");
-        }
-      
-        return map;
-
-    }
-
-    /**
-     * 管理员添加员工
-     * @param sPhone
-     * @param role
-     * @return
-     */
-    @RequestMapping(value = "/add_staff",method = RequestMethod.POST)
-    @ResponseBody
-    public Map addStaff(@RequestParam(value = "sPhone") String sPhone,
-                        @RequestParam(value = "role") String role){
-        Map map=new HashMap();
-        if (sPhone==null||sPhone==""){
-            map.put(ConstantStr.MESSAGE,"添加失败,电话号码不能为空");
-            return map;
-        }
-
-        if (staffService.addStaff(sPhone,role)>0){
-            map.put(ConstantStr.MESSAGE,"添加成功！");
-        }else {
-            map.put(ConstantStr.MESSAGE,"添加失败,该电话号码已注册！");
-        }
-        return map;
     }
 
 }
