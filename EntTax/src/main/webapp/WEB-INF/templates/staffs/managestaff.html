@@ -7,29 +7,30 @@
     <meta name="description" content="">
     <meta name="author" content="brainy">
     <meta name="keyword" content="EntTax">
-    <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../img/favicon.ico">
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../../img/favicon.ico">
 
     <title>员工信息列表</title>
 
     <!-- Bootstrap core CSS -->
-    <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link th:href="@{/css/bootstrap-reset.css}" href="../../css/bootstrap-reset.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-reset.css}" href="../../../css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
-    <link th:href="@{/assets/font-awesome/css/font-awesome.css}" href="../../assets/font-awesome/css/font-awesome.css"
+    <link th:href="@{/assets/font-awesome/css/font-awesome.css}"
+          href="../../../assets/font-awesome/css/font-awesome.css"
           rel="stylesheet"/>
     <link th:href="@{/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css}"
-          href="../../assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
+          href="../../../assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
           media="screen"/>
-    <link th:href="@{/css/owl.carousel.css}" rel="stylesheet" href="../../css/owl.carousel.css" type="text/css">
+    <link th:href="@{/css/owl.carousel.css}" rel="stylesheet" href="../../../css/owl.carousel.css" type="text/css">
     <!-- Custom styles for this template -->
-    <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
-    <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/xcConfirm.css}" href="../../css/xcConfirm.css"/>
+    <link th:href="@{/css/style.css}" href="../../../css/style.css" rel="stylesheet">
+    <link th:href="@{/css/style-responsive.css}" href="../../../css/style-responsive.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/xcConfirm.css}" href="../../../css/xcConfirm.css"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--此处未使用 [if lt IE 9]>
-    <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
-    <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
+    <script th:src="@{/js/html5shiv.js}" src="../../../js/html5shiv.js"></script>
+    <script th:src="@{/js/respond.min.js}" src="../../../js/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -97,14 +98,17 @@
                 <!-- user login dropdown start 个人信息等(在头像按钮下)-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" th:src="${staff.sAvatar}" width="35" height="35" src="../../img/avatar-mini4.jpg">
+                        <img alt="" th:src="${staff.sAvatar}" width="35" height="35"
+                             src="../../../img/avatar-mini4.jpg">
                         <span class="username" th:text="${staff.sName}"></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
-                        <li><a th:href="@{/staff/profile}" href="staff/profile.html"><i class="icon-user"></i>个人资料</a></li>
-                        <li><a th:href="@{/staff/security}" href="staff/security.html"><i class="icon-warning-sign"></i>安全中心</a></li>
+                        <li><a th:href="@{/staff/profile}" href="../staff/profile.html"><i
+                                class="icon-user"></i>个人资料</a></li>
+                        <li><a th:href="@{/staff/security}" href="../staff/security.html"><i
+                                class="icon-warning-sign"></i>安全中心</a></li>
                         <li><a th:href="@{/staff/message}" href="#"><i class="icon-bell-alt"></i>消息通知</a></li>
                         <li><a th:href="@{/staff/logout}" href="#"><i class="icon-signout"></i>退出登录</a>
                         </li>
@@ -124,23 +128,59 @@
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
-                <li class="active">
-                    <a class="" th:href="@{/index}" href="index.html">
+                <li class="">
+                    <a class="" th:href="@{/index}" href="../index.html">
                         <i class="icon-home"></i>
                         <span>首页</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a class="" th:href="@{/show_staffinfo}" href="show_staffinfo.html">
-                        <i class="icon-eye-open"></i>
-                        <span>员工列表</span>
+                    <a href="javascript:;" class="">
+                        <i class="icon-edit-sign"></i>
+                        <span>数据管理</span>
+                        <span class="arrow"></span>
                     </a>
+                    <ul class="sub">
+                        <li class="active"><a class="" th:href="@{/bill/uploadexcel}" href="../bill/uploadexcel.html">导入数据</a>
+                        </li>
+                        <li class=""><a class="" th:href="@{/bill/managedata}" href="../bill/managedata.html">操作数据</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-menu active">
+                    <a href="javascript:;" class="">
+                        <i class="icon-user-md"></i>
+                        <span>员工管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/staffs/showstaff}" href="showstaff.html">查看员工</a></li>
+                        <li class="active"><a class="" th:href="@{/staffs/mamagestaff}" href="managestaff.html">员工管理</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="sub-menu">
-                    <a class="" th:href="@{/show_date}" href="show_date.html">
-                        <i class="icon-tasks"></i>
-                        <span>进销项数据表</span>
+                    <a href="javascript:;" class="">
+                        <i class="icon-bar-chart"></i>
+                        <span>数据分析</span>
+                        <span class="arrow"></span>
                     </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/analysis/monthcount}" href="#">月度统计</a></li>
+                        <li><a class="" th:href="@{/analysis/yearcount}" href="#">年度统计</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-male"></i>
+                        <span>个人中心</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/staff/profile}" href="../staff/profile.html">个人资料</a></li>
+                        <li><a class="" th:href="@{/staff/editprofile}" href="../staff/editprofile.html">修改信息</a></li>
+                        <li><a class="" th:href="@{/staff/security}" href="../staff/security.html">安全中心</a></li>
+                    </ul>
                 </li>
             </ul>
             <!-- sidebar menu end-->
@@ -169,7 +209,8 @@
                             <thead>
                             <tr>
                                 <th style="width: 6px">
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_staff_myModal">
+                                    <button class="btn btn-primary btn-sm" data-toggle="modal"
+                                            data-target="#add_staff_myModal">
                                         <i class="icon-plus"></i>
                                     </button>
                                 </th>
@@ -193,11 +234,15 @@
                                 <td th:text="${staffInfo.sName}"></td>
                                 <td th:text="${staffInfo.sPhone}"></td>
                                 <td class="hidden-phone" th:text="${staffInfo.rName}"></td>
-                                <td class="center hidden-phone" th:text="${#dates.format(staffInfo.sEnter, 'yyyy-MM-dd')}"></td>
+                                <td class="center hidden-phone"
+                                    th:text="${#dates.format(staffInfo.sEnter, 'yyyy-MM-dd')}"></td>
                                 <td>
-                                    <button class="btn btn-primary btn-xs" onclick="editInfo(this)" th:id="${iterStat.index}" >
-                                        <i class="icon-pencil"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-danger btn-xs" onclick="delete_staff(this)" th:id="${staffInfo.sId}">
+                                    <button class="btn btn-primary btn-xs" onclick="editInfo(this)"
+                                            th:id="${iterStat.index}">
+                                        <i class="icon-pencil"></i></button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button class="btn btn-danger btn-xs" onclick="delete_staff(this)"
+                                            th:id="${staffInfo.sId}">
                                         <i class="icon-trash "></i></button>
                                 </td>
                             </tr>
@@ -214,7 +259,8 @@
     <!--main content end-->
 </section>
 <!-- 添加员工模态框（Modal） -->
-<div class="modal fade" id="add_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="add_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <!--添加员工和悬浮显示的内容-->
@@ -234,17 +280,18 @@
 
                     <section class="panel">
                         <div class="panel-body">
-                            <form role="form" id="add_staff"  class="form-horizontal tasi-form">
+                            <form role="form" id="add_staff" class="form-horizontal tasi-form">
                                 <div class="form-group has-success">
                                     <label class="col-lg-4 control-label">手机号</label>
                                     <div class="col-lg-8">
-                                        <input type="text" placeholder="" id="sphone" name="sphone" class="form-control" autofocus>
+                                        <input type="text" placeholder="" id="sphone" name="sphone" class="form-control"
+                                               autofocus>
                                         <p class="help-block"></p>
                                     </div>
                                 </div>
 
                                 <div class="form-group has-success">
-                                    <label class="control-label col-lg-4" >角色分配</label>
+                                    <label class="control-label col-lg-4">角色分配</label>
                                     <div class="col-lg-8">
                                         <select class="form-control m-bot15" id="role" name="role">
                                             <option value="操作员">操作员</option>
@@ -260,7 +307,7 @@
                                         </button>
                                     </div>
                                     <div class="col-xs-6 col-lg-6">
-                                        <button id="add_staff_button"  class="btn btn-primary" type="button">添加</button>
+                                        <button id="add_staff_button" class="btn btn-primary" type="button">添加</button>
                                         <h4 id="message" class="help-block text-danger text-center"></h4>
                                     </div>
                                 </div>
@@ -276,7 +323,8 @@
     </div><!-- /.modal -->
 </div><!--添加员工 modal完-->
 <!-- 更新 员工模态框（Modal） -->
-<div class="modal fade" id="update_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="update_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <!--更新员工头部-->
@@ -292,8 +340,8 @@
 
             <!--显示的员工编号-->
             <div class="modal-body">
-                <label class="control-label col-lg-4" >员工编号：</label>
-                <div  class="col-lg-8">
+                <label class="control-label col-lg-4">员工编号：</label>
+                <div class="col-lg-8">
                     <p><span id="update_sId"></span></p>
                 </div>
             </div>
@@ -301,7 +349,7 @@
 
             <!--员工的角色分配-->
             <div class="modal-body">
-                <label class="control-label col-lg-4" >角色分配</label>
+                <label class="control-label col-lg-4">角色分配</label>
                 <div class="col-lg-8">
                     <select class="form-control m-bot15" id="update_rName">
                         <option>操作员</option>
@@ -316,7 +364,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-                <button type="button" class="btn btn-warning"  onclick="update_staff()">确定</button>
+                <button type="button" class="btn btn-warning" onclick="update_staff()">确定</button>
             </div>
             <!--底部按钮结束-->
 
@@ -325,31 +373,30 @@
 </div><!--跟新员工 modal 完-->
 
 <!-- js placed at the end of the document so the pages load faster -->
-<script th:src="@{/js/jquery.js}" src="../../js/jquery.js"></script>
-<script th:src="@{/js/jquery-1.8.3.min.js}" src="../../js/jquery-1.8.3.min.js"></script>
-<script th:src="@{/js/bootstrap.min.js}" src="../../js/bootstrap.min.js"></script>
-<script th:src="@{/js/jquery.scrollTo.min.js}" src="../../js/jquery.scrollTo.min.js"></script>
-<script th:src="@{/js/jquery.nicescroll.js}" src="../../js/jquery.nicescroll.js" type="text/javascript"></script>
+<script th:src="@{/js/jquery.js}" src="../../../js/jquery.js"></script>
+<script th:src="@{/js/jquery-1.8.3.min.js}" src="../../../js/jquery-1.8.3.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}" src="../../../js/bootstrap.min.js"></script>
+<script th:src="@{/js/jquery.scrollTo.min.js}" src="../../../js/jquery.scrollTo.min.js"></script>
+<script th:src="@{/js/jquery.nicescroll.js}" src="../../../js/jquery.nicescroll.js" type="text/javascript"></script>
 <script th:src="@{/assets/data-tables/jquery.dataTables.js}" type="text/javascript"
-        src="../../assets/data-tables/jquery.dataTables.js"></script>
-<script th:src="@{/assets/data-tables/DT_bootstrap.js}"type="text/javascript"
-        src="../../assets/data-tables/DT_bootstrap.js"></script>
+        src="../../../assets/data-tables/jquery.dataTables.js"></script>
+<script th:src="@{/assets/data-tables/DT_bootstrap.js}" type="text/javascript"
+        src="../../../assets/data-tables/DT_bootstrap.js"></script>
 
 <!--Jquery Validate-->
-<script th:src="@{/js/jquery.validate.min.js}" src="../../js/jquery.validate.min.js"></script>
+<script th:src="@{/js/jquery.validate.min.js}" src="../../../js/jquery.validate.min.js"></script>
 <!--Custom Validate-->
-<script th:src="@{/js/custom-validate.js}" src="../../js/custom-validate.js"></script>
+<script th:src="@{/js/custom-validate.js}" src="../../../js/custom-validate.js"></script>
 <!--Custom function-->
-<script th:src="@{/js/custom-function.js}" src="../../js/custom-function.js"></script>
-
+<script th:src="@{/js/custom-function.js}" src="../../../js/custom-function.js"></script>
 
 
 <!--common script for all pages-->
-<script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
+<script th:src="@{/js/common-scripts.js}" src="../../../js/common-scripts.js"></script>
 
 <!--script for this page-->
-<script th:src="@{/js/dynamic-table.js}"  src="../../js/dynamic-table.js"></script>
-<script th:src="@{/js/xcConfirm.js}" src="../../js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/js/dynamic-table.js}" src="../../../js/dynamic-table.js"></script>
+<script th:src="@{/js/xcConfirm.js}" src="../../../js/xcConfirm.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
     //upload download excel tooltip
