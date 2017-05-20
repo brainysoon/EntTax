@@ -39,7 +39,7 @@ public interface ConstantStr {
     /**
      * 生成excel模板的绝对地址
      */
-    String EXCELRESOURCEPATH = "resources/excel/";
+    String EXCEL_UPLOAD_PATH = "/var/excel/";
     /**
      * 生成excel模板的模板名
      */
@@ -62,7 +62,7 @@ public interface ConstantStr {
     /**
      * 保存用户信息的集合
      */
-    String STAFFINFOLIST="stafflist";
+    String STAFFINFOLIST = "stafflist";
     /**
      * 状态
      */
@@ -122,6 +122,12 @@ public interface ConstantStr {
      * session失效时间
      **/
     String SESSION_INVALID_TIME = "SESSION_INVALID_TIME";
+
+
+    /**
+     *
+     */
+    String REDIS_CACHE_KEY = "key";
 
 
 }

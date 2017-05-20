@@ -22,6 +22,15 @@
     VALUES(#{bId}, #{bType}, #{bName},
       #{bMonth},#{bPrice}, #{bUpdateTime}, #{bMark})
   </insert>
+    <insert id="insertAll" parameterType="java.util.List">
+        INSERT INTO bill (BId, BType, BName,
+        BMonth,BPrice, BUpdateTime,BMark)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.bId}, #{item.bType}, #{item.bName},
+            #{item.bMonth},#{item.bPrice}, #{item.bUpdateTime}, #{item.bMark})
+        </foreach>
+    </insert>
     <update id="updateByPrimaryKey" parameterType="Bill">
     UPDATE bill
     SET BType = #{bType},
@@ -45,5 +54,10 @@
          SELECT BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark
     FROM bill
     WHERE BMark=#{bMark}
+    </select>
+    <select id="selectByBName" parameterType="java.lang.String" resultMap="BaseResultMap">
+         SELECT BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark
+    FROM bill
+    WHERE BName=#{bName}
     </select>
 </mapper>

@@ -1,32 +1,34 @@
 package com.enttax.web;
 
-import com.enttax.service.BillService;
+import com.enttax.model.Bill;
+import com.enttax.model.Staff;
+import com.enttax.service.ExcelService;
+import com.enttax.util.constant.ConstantCode;
 import com.enttax.util.constant.ConstantStr;
-import com.enttax.util.tools.ExcelUtil;
-import com.enttax.util.tools.FiledownUtil;
+import com.enttax.util.tools.ToolRandoms;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-import static com.enttax.util.tools.FileUploadUtil.rename;
 
 /**
  * Created by lcyanxi on 17-3-27.
  */
 @Controller
+@RequestMapping("/bill")
 public class ExcelController extends BaseController {
 
     private static final Logger logger = Logger.getLogger(ExcelController.class);
 
     @Autowired
-    private BillService excelService;
+    private ExcelService excelService;
 
     /**
      * excel模板下载
@@ -51,42 +53,96 @@ public class ExcelController extends BaseController {
      *
      * @param excelFile
      */
-    @RequestMapping(value = "/uploadExcelDate", method = RequestMethod.POST)
-    public void uploadExcelData(@RequestParam(value = "excelFile") MultipartFile excelFile) {
+    @RequestMapping(value = "/uploadexcel", method = RequestMethod.POST)
+    @ResponseBody
+    public Map uploadExcelData(@RequestParam(value = "excelFile") MultipartFile excelFile,
+                               @RequestParam(value = "bmark") Integer[] bmark) {
 
-//        // 判断文件是否为空
-//        if (!excelFile.isEmpty()) {
-//            System.out.println("excelFile类型：" + excelFile.getContentType());
-//            try {
-//                // 文件保存路径
-//                String filePath = session.getServletContext().getRealPath("/") + ConstantStr.EXCELRESOURCEPATH;
-//                String fileName = rename(excelFile.getOriginalFilename());
-//                // 转存文件
-//                File dir = new File(filePath);
-//                if (!dir.exists()) {
-//                    dir.mkdirs();
-//                }
-//                File file = new File(dir, fileName);
-//                excelFile.transferTo(file);
-//
-//                Map<Object, Object> map = ExcelUtil.readExcelFile(0, filePath + fileName);
-//                if (map != null) {
-//                    //将上传的数据保存到数据库
-//                    if (excelService.insertExcelData(map)) {
-//                        System.out.println("-------数据保存成功！！-----------");
-//                    } else {
-//                        System.out.println("-------数据保存失败！！-----------");
-//                    }
-//                    System.out.println("-------文件上传成功！！-----------");
-//                } else {
-//                    System.out.println("-------文件上传失败！！-----------");
-//                }
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                logger.info("-------ExcelController的uploadExcelData方法文件上传出错！！---------");
-//            }
-//        }
+        Map map = new HashMap();
+
+        // 判断文件是否为空
+        if (!excelFile.isEmpty()) {
+
+            try {
+
+                //获取文件的后缀名
+                String fileName = excelFile.getOriginalFilename();
+                int lastIndex = fileName.lastIndexOf(".");
+                String extName = fileName.substring(lastIndex);
+
+                // 从文件流中读取
+                List<Bill> bills = new ArrayList<>();
+                for (int i = 0; i < bmark.length; i++) {
+
+                    bills.addAll(excelService.readExcelFromInputStream(bmark[i], bmark[i], excelFile.getInputStream(), extName));
+                }
+
+                //随机生成一个id
+                String key = ToolRandoms.randomId20();
+
+                //放入 redis 缓存
+                excelService.pushExcelToCache(key, bills);
+
+                //放入model 方便渲染
+                map.put(ConstantStr.REDIS_CACHE_KEY, key);
+                map.put(ConstantStr.STATUS, ConstantCode.CODE_SUCCESSED);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                map.put(ConstantStr.STATUS, ConstantCode.CODE_FAILED);
+                map.put(ConstantStr.MESSAGE, e.getMessage());
+            }
+        }
+
+        return map;
+    }
+
+    @RequestMapping(value = "/uploadexcel", method = RequestMethod.GET)
+    private String toUploadExcel(Model model,
+                                 @RequestParam(value = "key", required = false) String key) {
+
+        //用户登录信息
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        model.addAttribute(ConstantStr.STAFFINFO, staff);
+
+        //查找缓存
+        if (!(key == null || key.equals("null"))) {
+
+            List<Bill> bills = excelService.readExcelFromRedis(key);
+
+            model.addAttribute("bills", bills);
+            model.addAttribute("key", key);
+        }
+
+        return "bill/uploadexcel";
+    }
+
+    @RequestMapping(value = "/confirmupload/{key}", method = RequestMethod.GET)
+    private String confirmUpload(Model model,
+                                 @PathVariable(value = "key") String key) {
+
+        //用户登录信息
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        model.addAttribute(ConstantStr.STAFFINFO, staff);
+
+        //查找缓存 并且存入MySql 数据库
+        if (!(key == null || key.equals("null"))) {
+
+            try {
+                int result = excelService.moveCacheToDataBase(key);
+                model.addAttribute(ConstantStr.STATUS, result > 0 ? ConstantCode.CODE_SUCCESSED : ConstantCode.CODE_FAILED);
+                model.addAttribute(ConstantStr.MESSAGE,
+                        result > 0 ? Constant.UPLOAD_EXCEL_AND_CONFIRM_SUCCESSED : Constant.UPLOAD_EXCEL_AND_CONFIRM_FAILED);
+            } catch (Exception ex) {
+
+                model.addAttribute(ConstantStr.STATUS, ConstantCode.CODE_FAILED);
+                model.addAttribute(ConstantStr.MESSAGE, ex.getLocalizedMessage());
+            }
+
+
+        }
+
+        return "bill/uploadexcel";
     }
 
 }

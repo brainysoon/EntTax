@@ -1,98 +1,80 @@
 package com.enttax.util.tools;
 
 import com.enttax.util.constant.ConstantStr;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lcyanxi on 17-3-26.
  */
 public class ExcelUtil {
-    private  static final Logger logger=Logger.getLogger(ExcelUtil.class);
+    private static final Logger logger = Logger.getLogger(ExcelUtil.class);
 
     private static int type;
-    private static  Map<Object, Object> map = new HashMap<Object, Object>();
 
-    /**
-     * @throws Exception
-     *
-     * @功能:Excel存放数据
-     */
-//    public static List<ExcelModel> getExcelModel() throws Exception{
-//
-//        List<ExcelModel> list= new ArrayList<ExcelModel>();
-//
-//        SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-//
-//        ExcelModel user1= new ExcelModel(1,"one",16,df.parse("2015-12-1"));
-//        ExcelModel user2= new ExcelModel(1,"two",16,df.parse("2015-12-2"));
-//        ExcelModel user3= new ExcelModel(1,"three",16,df.parse("2015-12-3"));
-//
-//        list.add(user1);
-//        list.add(user2);
-//        list.add(user3);
-//
-//        return list;
-//    }
+
     /**
      * 创建Excel模板
      *
      * @return
      * @throws Exception
      */
-    public static void   CreateExcel(String filePath) throws Exception {
+    public static void CreateExcel(String filePath) throws Exception {
         //1.创建一个workbook,对应一个Excel文件
-        HSSFWorkbook wb= new HSSFWorkbook();
+        HSSFWorkbook wb = new HSSFWorkbook();
         //2.在workbook中添加一个sheet,对应Excel文件中的sheet
-        HSSFSheet sheet=wb.createSheet("进销项数据表");
+        HSSFSheet sheet = wb.createSheet("进销项数据表");
         //3.在sheet中添加表头第0行
-        HSSFRow row= sheet.createRow((int)0);
+        HSSFRow row = sheet.createRow((int) 0);
         //4.创建单元格,并且设置表头,设置表头居中
-        HSSFCellStyle style=wb.createCellStyle();
+        HSSFCellStyle style = wb.createCellStyle();
         //4.1格式居中
         style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
         //4.2单元格信息设置
-        HSSFCell cell=row.createCell((short)0);
+        HSSFCell cell = row.createCell((short) 0);
         cell.setCellValue("项目名称");
         cell.setCellStyle(style);
-        cell=row.createCell((short)1);
+        cell = row.createCell((short) 1);
         cell.setCellValue("类型");
         cell.setCellStyle(style);
-        cell = row.createCell((short)2);
+        cell = row.createCell((short) 2);
         cell.setCellValue("数量");
         cell.setCellStyle(style);
-        cell = row.createCell((short)3);
+        cell = row.createCell((short) 3);
         cell.setCellValue("金额");
         cell.setCellStyle(style);
-        cell = row.createCell((short)4);
+        cell = row.createCell((short) 4);
         cell.setCellValue("月份");
         cell.setCellStyle(style);
 
-        for(int i=0;i<5;i++){
-            row=sheet.createRow((int)i+1);
+        for (int i = 0; i < 5; i++) {
+            row = sheet.createRow((int) i + 1);
             //4.3单元格信息值填写
-            row.createCell((short)0).setCellValue(("猪肉罐头"));
-            row.createCell((short)1).setCellValue("进项数据");
-            row.createCell((short)2).setCellValue(("54.7"));
-            row.createCell((short)3).setCellValue("8.25");
-            row.createCell((short)4).setCellValue(("3月"));
+            row.createCell((short) 0).setCellValue(("猪肉罐头"));
+            row.createCell((short) 1).setCellValue("进项数据");
+            row.createCell((short) 2).setCellValue(("54.7"));
+            row.createCell((short) 3).setCellValue("8.25");
+            row.createCell((short) 4).setCellValue(("3月"));
         }
 
 
         //将文件保存到指定位置
-        FileOutputStream fous= new FileOutputStream(filePath);
+        FileOutputStream fous = new FileOutputStream(filePath);
         //将设置的内容写入到Excel文件中
         wb.write(fous);
         //关闭输出流
@@ -119,14 +101,18 @@ public class ExcelUtil {
 
     /**
      * 读取excel的数据
+     *
      * @param sheetAt
      * @param fileAddress
      * @return
      */
-    public static  Map readExcelFile(int sheetAt,String fileAddress){
+    public static Map readExcelFile(int sheetAt, String fileAddress) {
         long begain = System.currentTimeMillis();
+
+        Map<Object, Object> map = new HashedMap();
+
         try {
-            if(fileAddress == null || "".equals(fileAddress)){
+            if (fileAddress == null || "".equals(fileAddress)) {
                 return map;
             }
             fileAddress.replace("/", File.separator);
@@ -136,30 +122,30 @@ public class ExcelUtil {
             int star = fileAddress.lastIndexOf(".");
             String extName = fileAddress.substring(star, fileAddress.length());
 
-            Workbook wb ;
+            Workbook wb;
             //判断excel的类型（xls、xlsx、或者其他）
-                if (ConstantStr.EXCELTYPEXLS.equals(extName)) {
-                    wb = new HSSFWorkbook(new FileInputStream(file));
-                } else if (ConstantStr.EXCELTYPEXLSX.equals(extName)) {
-                    wb = new XSSFWorkbook(new FileInputStream(file));
-                } else {
-                    throw new Exception("当前文件不是excel文件");
-                }
+            if (ConstantStr.EXCELTYPEXLS.equals(extName)) {
+                wb = new HSSFWorkbook(new FileInputStream(file));
+            } else if (ConstantStr.EXCELTYPEXLSX.equals(extName)) {
+                wb = new XSSFWorkbook(new FileInputStream(file));
+            } else {
+                throw new Exception("当前文件不是excel文件");
+            }
 
             Sheet sheet = wb.getSheetAt(sheetAt);
             int numRows = sheet.getLastRowNum();
-            System.out.println("行："+numRows);
-            for(int i = 1; i<=numRows;i++){
+            System.out.println("行：" + numRows);
+            for (int i = 1; i <= numRows; i++) {
                 //当前行的集合
                 List rowList = new ArrayList();
                 //获取当前行
                 Row row = sheet.getRow(i);
                 //获取当前行的单元格数量
                 int rowCount = row.getLastCellNum();
-                for(int j = 0; j < rowCount;j++){
+                for (int j = 0; j < rowCount; j++) {
                     //获取元素
                     Cell cell = row.getCell(j);
-                    if(cell==null){
+                    if (cell == null) {
                         System.out.println("-----------表格中有为空的数据！！--------");
                         return null;
                     }
@@ -169,7 +155,7 @@ public class ExcelUtil {
                         case Cell.CELL_TYPE_NUMERIC:
                             result = cell.getNumericCellValue();
                             //自定义日期格式
-                            if(HSSFDateUtil.isCellDateFormatted(cell)){
+                            if (HSSFDateUtil.isCellDateFormatted(cell)) {
                                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy:MM:dd");
                                 Date date = cell.getDateCellValue();
                                 result = simpleDateFormat.format(date);
@@ -192,16 +178,16 @@ public class ExcelUtil {
                     }
                     rowList.add(result);
                 }
-                map.put(i+1, rowList);
+                map.put(i + 1, rowList);
 
             }
 
         } catch (Exception e) {
-            System.out.println("readExcelFile执行异常："+e);
-            logger.info("ExcelUtil的readExcelFile执行异常："+e);
+            System.out.println("readExcelFile执行异常：" + e);
+            logger.info("ExcelUtil的readExcelFile执行异常：" + e);
         }
         long end = System.currentTimeMillis();
-        System.out.println("use time :"+(end-begain));
+        System.out.println("use time :" + (end - begain));
         return map;
     }
 }

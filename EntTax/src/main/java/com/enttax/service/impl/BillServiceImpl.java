@@ -88,4 +88,15 @@ public class BillServiceImpl implements BillService {
     public List<Bill> selectByBMark(Integer bMark) {
         return billMapper.selectByBMark(bMark);
     }
+
+    @Override
+    public List<Bill> selectByBName(String bName) {
+        return billMapper.selectByBName(bName);
+    }
+
+    @Override
+    public int insertAll(List<Bill> bills) {
+
+        return billMapper.insertAll(bills);
+    }
 }

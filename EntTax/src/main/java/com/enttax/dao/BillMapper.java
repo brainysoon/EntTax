@@ -40,4 +40,16 @@ public interface BillMapper {
      * @return
      */
     List<Bill> selectByBMark(int bMark);
+
+    /**
+     * @param bName
+     * @return
+     */
+    List<Bill> selectByBName(String bName);
+
+    /**
+     * @param list
+     * @return
+     */
+    int insertAll(List<Bill> list);
 }
