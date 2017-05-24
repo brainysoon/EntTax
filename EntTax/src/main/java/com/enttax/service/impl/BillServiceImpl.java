@@ -99,4 +99,19 @@ public class BillServiceImpl implements BillService {
 
         return billMapper.insertAll(bills);
     }
+
+    @Override
+    public int deleteBillById(String bId) {
+        Bill bill=billMapper.selectByPrimaryKey(bId);
+        //假删除，将Mark置为-1
+        bill.setBMark(-1);
+        return billMapper.updateByPrimaryKey(bill);
+    }
+
+    @Override
+    public int updateBill(Bill bill) {
+        bill.setBUpdateTime(new Date());
+        bill.setBMark(0);
+        return billMapper.updateByPrimaryKey(bill);
+    }
 }

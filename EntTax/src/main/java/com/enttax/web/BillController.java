@@ -2,6 +2,7 @@ package com.enttax.web;
 
 import com.enttax.model.Bill;
 import com.enttax.model.Staff;
+import com.enttax.service.BillService;
 import com.enttax.service.ExcelService;
 import com.enttax.util.constant.ConstantCode;
 import com.enttax.util.constant.ConstantStr;
@@ -29,6 +30,9 @@ public class BillController extends BaseController {
 
     @Autowired
     private ExcelService excelService;
+
+    @Autowired
+    private BillService billService;
 
     /**
      * excel模板下载
@@ -153,9 +157,64 @@ public class BillController extends BaseController {
     @RequestMapping(value = "/managedata", method = RequestMethod.GET)
     public String toManageData(Model model) {
         List<Bill> dataList=excelService.showData();
+        System.out.println(dataList);
         model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
         model.addAttribute(ConstantStr.DATALIST,dataList);
         return "bill/managedata";
     }
+
+    /**
+     * 删除bill数据
+     * @param bId
+     * @return
+     */
+    @RequestMapping(value = "/deletebill", method = RequestMethod.GET)
+    @ResponseBody
+    public Map deleteBill(@RequestParam(value = "bId") String bId){
+        Map map=new HashMap();
+        System.out.println(bId);
+
+        if (bId == null || bId == ""){
+            map.put(ConstantStr.STATUS,ConstantStr.str_zero);
+            map.put(ConstantStr.MESSAGE,"对不起你输入的员工序号为空！");
+            return map;
+        }
+
+        if (billService.deleteBillById(bId)>0){
+            map.put(ConstantStr.STATUS,ConstantStr.str_one);
+            map.put(ConstantStr.MESSAGE,"恭喜你，操作成功！");
+        }else {
+            map.put(ConstantStr.STATUS,ConstantStr.str_zero);
+            map.put(ConstantStr.MESSAGE,"对不起，操作失败！");
+        }
+
+        return map;
+    }
+
+    /**
+     * 更新bill数据
+     * @param bill
+     * @return
+     */
+    @RequestMapping(value = "/updatebill",method = RequestMethod.POST)
+    @ResponseBody
+    public Map updateBill(Bill bill){
+        System.out.println(bill);
+        Map map=new HashMap();
+
+        if (bill.getBId() == null || bill.getBId() == ""){
+            map.put(ConstantStr.MESSAGE,"对不起项目序号不能为空！");
+            return map;
+        }
+       if (billService.updateBill(bill)>0){
+            map.put(ConstantStr.STATUS,ConstantStr.str_one);
+            map.put(ConstantStr.MESSAGE,"恭喜你，操作成功！");
+        }else {
+            map.put(ConstantStr.MESSAGE,"对不起，操作失败！");
+        }
+        return map;
+
+    }
+
 
 }

@@ -221,126 +221,202 @@ function update_staff(){
     });
 
 }
+//删除bill数据
+function deletebill(obj) {
+    var group = $(obj).attr("id");
+    var txt=  "您确定要删除项目序号为"+group+"的数据吗？";
+    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.confirm,{onOk:function(){
+
+        $.get("/bill/deletebill",{bId:group},function(data){
+            window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info,{onOk:function () {
+                if (data.status==1){
+                    location.reload();
+                }
+            }});
+
+        });
+
+    }});
+}
 
 
-<!--charts-->
-$(function () {
-    // 获取 CSV 数据并初始化图表
-    $.getJSON('https://data.jianshukeji.com/jsonp?filename=csv/analytics.csv&callback=?', function (csv) {
-        $('#hightcharts').highcharts({
-            data: {
-                csv: csv
-            },
-            title: {
-                text: '进销项数据分析图'
-            },
-            subtitle: {
-                text: '数据来源:企业增税DB'
-            },
-            xAxis: {
-                tickInterval: 7 * 24 * 3600 * 1000, // 坐标轴刻度间隔为一星期
-                tickWidth: 0,
-                gridLineWidth: 1,
-                labels: {
-                    align: 'left',
-                    x: 3,
-                    y: -3
-                },
-                dateTimeLabelFormats: {
-                    week: '%Y-%m-%d'
+//触发更新bill模态框的同时调用此方法  -----用于模态框传值
+function editbill(obj) {
+    var id = $(obj).attr("id");
+    //获取表格中的一行数据
+    var bId = document.getElementById("tbody").rows[id].cells[0].innerText;
+    var bName = document.getElementById("tbody").rows[id].cells[1].innerText;
+    var bType = document.getElementById("tbody").rows[id].cells[2].innerText;
+    var bPrice = document.getElementById("tbody").rows[id].cells[3].innerText;
+    var bMonth = document.getElementById("tbody").rows[id].cells[4].innerText;
+    //向模态框中传值
+    $('#bId').html(bId);
+    $('#bName').val(bName);
+
+    if (bType=="进项数据"){
+        $('#bType1').val(bType);
+    }else {
+        $('#bType2').val(bType);
+    }
+
+    $('#bPrice').val(bPrice);
+    $('#bMonth').val(bMonth);
+    $('#update_bill_myModal').modal('show');
+}
+//更新 bill 数据
+function updatebill() {
+    //获取模态框数据
+    var bId = $('#bId').html();
+    var bName =$('#bName').val();
+    var bType =$('input[name="bType"]').filter(':checked').val();
+    var bPrice =$('#bPrice').val();
+    var bMonth =$('#bMonth').val();
+
+
+    $.ajax({
+        type: "POST",
+        url: "/bill/updatebill",
+        data: {
+            bId:bId,
+            bName:bName,
+            bType:bType,
+            bPrice:bPrice,
+            bMonth:bMonth
+        },
+        dataType: 'json',
+        success: function(data) {
+            window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info,{onOk:function () {
+                if (data.status==1){
+                    location.reload();
                 }
-            },
-            yAxis: [{ // 第一个 Y 轴，放置在左边（默认在坐标）
-                title: {
-                    text: null
-                },
-                labels: {
-                    align: 'left',
-                    x: 3,
-                    y: 16,
-                    format: '{value:.,0f}'
-                },
-                showFirstLabel: false
-            }, {    // 第二个坐标轴，放置在右边
-                linkedTo: 0,
-                gridLineWidth: 0,
-                opposite: true,  // 通过此参数设置坐标轴显示在对立面
-                title: {
-                    text: null
-                },
-                labels: {
-                    align: 'right',
-                    x: -3,
-                    y: 16,
-                    format: '{value:.,0f}'
-                },
-                showFirstLabel: false
-            }],
-            legend: {
-                align: 'left',
-                verticalAlign: 'top',
-                y: 20,
-                floating: true,
-                borderWidth: 0
-            },
-            tooltip: {
-                shared: true,
-                crosshairs: true,
-                dateTimeLabelFormats: {
-                    day: '%Y-%m-%d'
-                }
-            },
-            plotOptions: {
-                series: {
-                    cursor: 'pointer',
-                    point: {
-                        events: {
-                            // 数据点点击事件
-                            // 其中 e 变量为事件对象，this 为当前数据点对象
-                            click: function (e) {
-                                $('.message').html(Highcharts.dateFormat('%Y-%m-%d', this.x) + ':<br/>  访问量：' + this.y);
-                            }
-                        }
-                    },
-                    marker: {
-                        lineWidth: 1
-                    }
-                }
-            }
-        });
+
+            }});
+        }
     });
-});
-//柱行图
-$(function () {
-    $.getJSON('//data.jianshukeji.com/jsonp?filename=json/aapl-v.json&callback=?', function (data) {
-        // create the chart
-        $('#diagram').highcharts('StockChart', {
-            chart: {
-                alignTicks: false
-            },
-            rangeSelector: {
-                selected: 1
-            },
-            title: {
-                text: '各项目详细数据图'
-            },
-            series: [{
-                type: 'column',
-                name: '各项目详细数据图',
-                data: data,
-                dataGrouping: {
-                    units: [[
-                        'week', // unit name
-                        [1] // allowed multiples
-                    ], [
-                        'month',
-                        [1, 2, 3, 4, 6]
-                    ]]
-                }
-            }]
-        });
-    });
-});
+
+}
+
+
+
+
+// <!--charts-->
+// $(function () {
+//     // 获取 CSV 数据并初始化图表
+//     $.getJSON('https://data.jianshukeji.com/jsonp?filename=csv/analytics.csv&callback=?', function (csv) {
+//         $('#hightcharts').highcharts({
+//             data: {
+//                 csv: csv
+//             },
+//             title: {
+//                 text: '进销项数据分析图'
+//             },
+//             subtitle: {
+//                 text: '数据来源:企业增税DB'
+//             },
+//             xAxis: {
+//                 tickInterval: 7 * 24 * 3600 * 1000, // 坐标轴刻度间隔为一星期
+//                 tickWidth: 0,
+//                 gridLineWidth: 1,
+//                 labels: {
+//                     align: 'left',
+//                     x: 3,
+//                     y: -3
+//                 },
+//                 dateTimeLabelFormats: {
+//                     week: '%Y-%m-%d'
+//                 }
+//             },
+//             yAxis: [{ // 第一个 Y 轴，放置在左边（默认在坐标）
+//                 title: {
+//                     text: null
+//                 },
+//                 labels: {
+//                     align: 'left',
+//                     x: 3,
+//                     y: 16,
+//                     format: '{value:.,0f}'
+//                 },
+//                 showFirstLabel: false
+//             }, {    // 第二个坐标轴，放置在右边
+//                 linkedTo: 0,
+//                 gridLineWidth: 0,
+//                 opposite: true,  // 通过此参数设置坐标轴显示在对立面
+//                 title: {
+//                     text: null
+//                 },
+//                 labels: {
+//                     align: 'right',
+//                     x: -3,
+//                     y: 16,
+//                     format: '{value:.,0f}'
+//                 },
+//                 showFirstLabel: false
+//             }],
+//             legend: {
+//                 align: 'left',
+//                 verticalAlign: 'top',
+//                 y: 20,
+//                 floating: true,
+//                 borderWidth: 0
+//             },
+//             tooltip: {
+//                 shared: true,
+//                 crosshairs: true,
+//                 dateTimeLabelFormats: {
+//                     day: '%Y-%m-%d'
+//                 }
+//             },
+//             plotOptions: {
+//                 series: {
+//                     cursor: 'pointer',
+//                     point: {
+//                         events: {
+//                             // 数据点点击事件
+//                             // 其中 e 变量为事件对象，this 为当前数据点对象
+//                             click: function (e) {
+//                                 $('.message').html(Highcharts.dateFormat('%Y-%m-%d', this.x) + ':<br/>  访问量：' + this.y);
+//                             }
+//                         }
+//                     },
+//                     marker: {
+//                         lineWidth: 1
+//                     }
+//                 }
+//             }
+//         });
+//     });
+// });
+// //柱行图
+// $(function () {
+//     $.getJSON('//data.jianshukeji.com/jsonp?filename=json/aapl-v.json&callback=?', function (data) {
+//         // create the chart
+//         $('#diagram').highcharts('StockChart', {
+//             chart: {
+//                 alignTicks: false
+//             },
+//             rangeSelector: {
+//                 selected: 1
+//             },
+//             title: {
+//                 text: '各项目详细数据图'
+//             },
+//             series: [{
+//                 type: 'column',
+//                 name: '各项目详细数据图',
+//                 data: data,
+//                 dataGrouping: {
+//                     units: [[
+//                         'week', // unit name
+//                         [1] // allowed multiples
+//                     ], [
+//                         'month',
+//                         [1, 2, 3, 4, 6]
+//                     ]]
+//                 }
+//             }]
+//         });
+//     });
+// });
 
 //上传excel数据
 function upload_excel() {
