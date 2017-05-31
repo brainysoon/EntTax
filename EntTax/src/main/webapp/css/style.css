@@ -2923,6 +2923,9 @@ ul.amounts li {
 .border-top {
     border-top: 1px solid #ddd;
 }
+.border-bottom{
+    border-bottom: 1px solid #ddd;
+}
 
 .dataTables_paginate.paging_bootstrap.pagination li {
     float: left;
@@ -3101,6 +3104,12 @@ ul.amounts li {
 
 .tab-bg-dark-navy-blue {
     background: #7087A3;
+    border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-bottom: none;
+}
+.tab-bg-dark-navy-white{
+    background: #e0e0e0;
     border-radius: 5px 5px 0 0;
     -webkit-border-radius: 5px 5px 0 0;
     border-bottom: none;
