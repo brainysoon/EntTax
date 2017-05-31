@@ -152,7 +152,9 @@ public class BillController extends BaseController {
      */
     @RequestMapping(value = "/managedata", method = RequestMethod.GET)
     public String toManageData(Model model) {
+        List<Bill> dataList=excelService.showData();
         model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
+        model.addAttribute(ConstantStr.DATALIST,dataList);
         return "bill/managedata";
     }
 

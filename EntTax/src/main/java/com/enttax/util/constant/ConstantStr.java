@@ -64,6 +64,10 @@ public interface ConstantStr {
      */
     String STAFFINFOLIST = "stafflist";
     /**
+     * 保存进销项数据集合
+     */
+    String DATALIST="datalist";
+    /**
      * 状态
      */
     String STATUS = "status";
