@@ -201,7 +201,7 @@
                     </div>
 
                     <section class="panel">
-                        <header class="panel-heading tab-bg-dark-navy-white ">
+                        <header class="panel-heading tab-bg-dark-navy-blue ">
 
                             <ul class="nav nav-tabs">
                                 <li class="active" onclick="sampleAll()">
@@ -214,21 +214,22 @@
                                     <a data-toggle="tab" href="#profile">已读消息</a>
                                 </li>
 
-                                <button type="button" id="clear-infor"
+
+                                <button type="button" class="tab-bg-dark-navy-blue" id="clear-infor"
                                         style="display: block">
                                     <i class="icon-trash"></i>
                                     清空消息列表
                                 </button>
 
-                                <button type="button" id="mark-read"
+                                <button type="button" class="tab-bg-dark-navy-blue" id="mark-read"
                                         style="display: none">
-                                        <i class="icon-pencil"></i>
+                                    <i class="icon-pencil"></i>
                                     标记为已读
                                 </button>
 
-                                <button type="button" id="all-read"
+                                <button type="button" class="tab-bg-dark-navy-blue" id="all-read"
                                         style="display: none">
-                                        <i class="icon-trash"></i>
+                                    <i class="icon-trash"></i>
                                     清空消息列表
                                 </button>
 
@@ -242,7 +243,8 @@
                                         <!--头部显示的所有包含的内容-->
                                         <thead>
                                         <tr>
-                                            <th style="width:8px;"><input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" /></th>
+                                            <th style="width:8px;"><input type="checkbox" class="group-checkable"
+                                                                          data-set="#sample_1 .checkboxes"/></th>
                                             <th>简要内容</th>
                                             <th class="hidden-phone">详细内容</th>
                                             <th class="hidden-phone"></th>
@@ -256,27 +258,26 @@
                                         <tbody>
 
                                         <tr class="odd gradeX">
-                                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
+                                            <td><input type="checkbox" class="checkboxes" value="1"/></td>
                                             <td>登录</td>
                                             <td class="hidden-phone"><a href="#">您已经成功登录</a></td>
                                             <td class="hidden-phone"></td>
                                             <td class="center hidden-phone">2013-09-9</td>
                                             <td class="hidden-phone">
-                                                <button type="button" class="btn-danger" >
-                                                    <i class="icon-remove"></i>
-                                                </button>
+
+                                                <button class="btn btn-danger btn-xs">
+                                                    <i class="icon-trash "></i></button>
                                             </td>
                                         </tr>
                                         <tr class="odd gradeX">
-                                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
+                                            <td><input type="checkbox" class="checkboxes" value="1"/></td>
                                             <td>登录</td>
                                             <td class="hidden-phone"><a href="#">您已经成功登录</a></td>
                                             <td class="hidden-phone"></td>
                                             <td class="center hidden-phone">2013-09-9</td>
                                             <td class="hidden-phone">
-                                                <button type="button" class="btn-danger" >
-                                                    <i class="icon-remove"></i>
-                                                </button>
+                                                <button class="btn btn-danger btn-xs">
+                                                    <i class="icon-trash "></i></button>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -284,12 +285,13 @@
 
                                     </table>
                                 </div>
-                                <div id="about" class="tab-pane" >
-                                    <table class="table table-striped border-top" id="sample_2" >
+                                <div id="about" class="tab-pane">
+                                    <table class="table table-striped border-top" id="sample_2">
                                         <!--头部显示的所有包含的内容-->
                                         <thead>
                                         <tr>
-                                            <th style="width:8px;"><input type="checkbox" class="group-checkable" data-set="#sample_2 .checkboxes" /></th>
+                                            <th style="width:8px;"><input type="checkbox" class="group-checkable"
+                                                                          data-set="#sample_2 .checkboxes"/></th>
                                             <th>简要内容</th>
                                             <th class="hidden-phone">详细内容</th>
                                             <th class="hidden-phone"></th>
@@ -303,27 +305,25 @@
                                         <tbody>
 
                                         <tr class="odd gradeX">
-                                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
+                                            <td><input type="checkbox" class="checkboxes" value="1"/></td>
                                             <td>登录</td>
                                             <td class="hidden-phone"><a href="#">您已经成功登录</a></td>
                                             <td class="hidden-phone"></td>
                                             <td class="center hidden-phone">2013-09-9</td>
                                             <td class="hidden-phone">
-                                                <button type="button" class="btn-danger" >
-                                                    <i class="icon-remove"></i>
-                                                </button>
+                                                <button class="btn btn-danger btn-xs">
+                                                    <i class="icon-trash "></i></button>
                                             </td>
                                         </tr>
                                         <tr class="odd gradeX">
-                                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
+                                            <td><input type="checkbox" class="checkboxes" value="1"/></td>
                                             <td>登录</td>
                                             <td class="hidden-phone"><a href="#">您已经成功登录</a></td>
                                             <td class="hidden-phone"></td>
                                             <td class="center hidden-phone">2013-09-9</td>
                                             <td class="hidden-phone">
-                                                <button type="button" class="btn-danger" >
-                                                    <i class="icon-remove"></i>
-                                                </button>
+                                                <button class="btn btn-danger btn-xs">
+                                                    <i class="icon-trash "></i></button>
                                             </td>
                                         </tr>
 
@@ -339,7 +339,8 @@
                                         <!--头部显示的所有包含的内容-->
                                         <thead>
                                         <tr>
-                                            <th style="width:8px;"><input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes" /></th>
+                                            <th style="width:8px;"><input type="checkbox" class="group-checkable"
+                                                                          data-set="#sample_3 .checkboxes"/></th>
                                             <th>简要内容</th>
                                             <th class="hidden-phone">详细内容</th>
                                             <th class="hidden-phone"></th>
@@ -353,27 +354,25 @@
                                         <tbody>
 
                                         <tr class="odd gradeX">
-                                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
+                                            <td><input type="checkbox" class="checkboxes" value="1"/></td>
                                             <td>登录</td>
                                             <td class="hidden-phone"><a href="#">您已经成功登录</a></td>
                                             <td class="hidden-phone"></td>
                                             <td class="center hidden-phone">2013-09-9</td>
                                             <td class="hidden-phone">
-                                                <button type="button" class="btn-danger" >
-                                                    <i class="icon-remove"></i>
-                                                </button>
+                                                <button class="btn btn-danger btn-xs">
+                                                    <i class="icon-trash "></i></button>
                                             </td>
                                         </tr>
                                         <tr class="odd gradeX">
-                                            <td><input type="checkbox" class="checkboxes" value="1" /></td>
+                                            <td><input type="checkbox" class="checkboxes" value="1"/></td>
                                             <td>登录</td>
                                             <td class="hidden-phone"><a href="#">您已经成功登录</a></td>
                                             <td class="hidden-phone"></td>
                                             <td class="center hidden-phone">2013-09-9</td>
                                             <td class="hidden-phone">
-                                                <button type="button" class="btn-danger" >
-                                                    <i class="icon-remove"></i>
-                                                </button>
+                                                <button class="btn btn-danger btn-xs">
+                                                    <i class="icon-trash "></i></button>
                                             </td>
                                         </tr>
                                         </tbody>
