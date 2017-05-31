@@ -206,16 +206,10 @@
                             <!--头部显示的所有包含的内容-->
                             <thead>
                             <tr>
-                                <th style="width: 6px">
-                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-placement="right"
-                                            title="上传进销项excel数据表" data-target="#upload_excel_myModal"><i
-                                            class="icon-upload-alt"></i>
-                                    </button>
-                                </th>
+                                <th>项目序号</th>
                                 <th>项目名称</th>
                                 <th>类型</th>
                                 <th>价格</th>
-                                <th>数量</th>
                                 <th>月份</th>
                                 <th>操作</th>
                             </tr>
@@ -223,165 +217,22 @@
                             <!--头部显示的所有包含的内容 结束-->
 
                             <!--数据显示部分-->
-                            <tbody>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>心心相印</th>
-                                <td>进项数据</td>
-                                <td class="hidden-phone">22.5</td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">05.04.2013</td>
+                            <tbody id="tbody">
+                            <tr class="odd gradeX" th:each="bill,iterStat:${datalist}">
+                                <th th:text="${bill.bId}"></th>
+                                <th th:text="${bill.bName}"></th>
+                                <td th:text="${bill.bType}"></td>
+                                <td th:text="${bill.bPrice}"></td>
+                                <td class="center hidden-phone"
+                                    th:text="${#dates.format(bill.bMonth, 'yyyy-MM-dd')}"></td>
                                 <td>
-                                    <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                            data-target="#update_staff_myModal">
+                                    <button class="btn btn-primary btn-xs" onclick="editInfo(this)"
+                                            th:id="${iterStat.index}">
                                         <i class="icon-pencil"></i></button>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                            data-target="#delete_staff_myModal">
+                                    <button class="btn btn-danger btn-xs" onclick="delete_staff(this)"
+                                            th:id="${bill.bId}">
                                         <i class="icon-trash "></i></button>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>数据结构</th>
-                                <td>进项</td>
-                                <td class="hidden-phone">88</td>
-                                <td class="hidden-phone">38</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>心心相印</th>
-                                <td>进项数据</td>
-                                <td class="hidden-phone">22.5</td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                            data-target="#update_staff_myModal">
-                                        <i class="icon-pencil"></i></button>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                            data-target="#delete_staff_myModal">
-                                        <i class="icon-trash "></i></button>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>数据结构</th>
-                                <td>进项</td>
-                                <td class="hidden-phone">88</td>
-                                <td class="hidden-phone">38</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>心心相印</th>
-                                <td>进项数据</td>
-                                <td class="hidden-phone">22.5</td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                            data-target="#update_staff_myModal">
-                                        <i class="icon-pencil"></i></button>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                            data-target="#delete_staff_myModal">
-                                        <i class="icon-trash "></i></button>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>数据结构</th>
-                                <td>进项</td>
-                                <td class="hidden-phone">88</td>
-                                <td class="hidden-phone">38</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>心心相印</th>
-                                <td>进项数据</td>
-                                <td class="hidden-phone">22.5</td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                            data-target="#update_staff_myModal">
-                                        <i class="icon-pencil"></i></button>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                            data-target="#delete_staff_myModal">
-                                        <i class="icon-trash "></i></button>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>数据结构</th>
-                                <td>进项</td>
-                                <td class="hidden-phone">88</td>
-                                <td class="hidden-phone">38</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>心心相印</th>
-                                <td>进项数据</td>
-                                <td class="hidden-phone">22.5</td>
-                                <td class="hidden-phone">33</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs" data-toggle="modal"
-                                            data-target="#update_staff_myModal">
-                                        <i class="icon-pencil"></i></button>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                            data-target="#delete_staff_myModal">
-                                        <i class="icon-trash "></i></button>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td></td>
-                                <th>数据结构</th>
-                                <td>进项</td>
-                                <td class="hidden-phone">88</td>
-                                <td class="hidden-phone">38</td>
-                                <td class="center hidden-phone">05.04.2013</td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="javascript:if(confirm('确实要删除吗?'))location='/deletestaff'">
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                    </a>
                                 </td>
                             </tr>
                             </tbody>
@@ -396,49 +247,6 @@
     </section>
     <!--main content end 主要内容部分结束-->
 </section>
-<!-- upload_excel模态框（Modal） -->
-<div class="modal fade" id="upload_excel_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!--上传图标和悬浮显示的内容-->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title">
-                    上传excel进销项数据
-                </h4>
-            </div>
-            <!--上传图标和悬浮显示的内容 结束-->
-
-            <!--显示的模态框 中间内容-->
-            <div class="modal-body">
-                <button class="btn btn-warning"><p class="icon-exclamation-sign"></p>注意</button>
-                <label class="btn-lg">您上传的excel形式应与提供的excel模板一致,不然会出错哟！</label>
-            </div>
-            <!--显示的模态框 中间内容 结束-->
-
-            <!--显示的模态框 底部-->
-            <div class="modal-footer">
-                <div class="col-xs-6">
-                    <div class="new-contentarea tc">
-                        <button class="btn btn-lg btn-info"><i class="icon-folder-open"></i>选择文件</button>
-                        <input type="file" class="" name="upload-file" id="upload-file"/>
-                    </div>
-                </div>
-                <div class="col-xs-6">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button id="upload_excel_file" class="btn btn-primary" type="button">添加</button>
-                </div>
-                <h4 id="message" class="help-block text-danger text-center"></h4>
-            </div>
-            <!--显示的模态框 底部 结束-->
-
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div><!--upload_excel modal完-->
-
 
 <!-- js placed at the end of the document so the pages load faster -->
 <script th:src="@{/js/jquery.js}" src="../../../js/jquery.js"></script>

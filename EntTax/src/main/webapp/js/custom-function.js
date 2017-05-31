@@ -134,7 +134,7 @@ $('#add_staff_button').click(function(){
     }
 
     $.ajax({
-        url: "/staff/add_staff",
+        url: "/staffs/addstaff",
         type: "POST",
         async: false,
         data: {
@@ -146,7 +146,9 @@ $('#add_staff_button').click(function(){
         success: function (data) {
 
             window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info,{onOk:function () {
-                location.reload();
+                if(data.status==1){
+                    location.reload();
+                }
             }});
         },
         complete: function (XMLHttpRequest, status) {
@@ -167,7 +169,7 @@ function delete_staff (obj) {
     var txt=  "您确定要删除编号为"+group+"的员工？";
     window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.confirm,{onOk:function(){
 
-        $.get("/staff/deletestaff",{sid:group},function(data){
+        $.get("/staffs/deletestaff",{sid:group},function(data){
 
             window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info,{onOk:function () {
                 location.reload();
@@ -202,7 +204,7 @@ function update_staff(){
 
     $.ajax({
         type: "POST",
-        url: "/staff/updatestaff",
+        url: "/staffs/updatestaff",
         data: {
             sId:sId,
             rName:rName
