@@ -5,6 +5,7 @@ import com.enttax.model.Msg;
 import com.enttax.service.Constant;
 import com.enttax.service.MsgService;
 import com.enttax.util.tools.ToolRandoms;
+import com.enttax.vo.MsgInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,12 @@ public class MsgServiceImpl implements MsgService {
     private MsgMapper msgMapper;
 
     @Override
-    public List<Msg> getMsgByToSId(String toSId) {
+    public List<MsgInfo> getMsgByToSIdAndMRead(String toSId, Integer mRead) {
+        return msgMapper.selectByToSIdAndMRead(toSId, mRead);
+    }
+
+    @Override
+    public List<MsgInfo> getMsgByToSId(String toSId) {
         return msgMapper.selectByToSId(toSId);
     }
 
@@ -65,5 +71,10 @@ public class MsgServiceImpl implements MsgService {
         msg.setMContent(mContent);
 
         return msgMapper.insert(msg);
+    }
+
+    @Override
+    public int deleteByToSId(String toSId) {
+        return msgMapper.deleteByToSId(toSId);
     }
 }

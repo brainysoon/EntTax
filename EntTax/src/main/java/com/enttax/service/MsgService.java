@@ -1,6 +1,6 @@
 package com.enttax.service;
 
-import com.enttax.model.Msg;
+import com.enttax.vo.MsgInfo;
 
 import java.util.List;
 
@@ -10,12 +10,17 @@ import java.util.List;
 public interface MsgService {
 
     /**
-     * 通过员工id 找到这个员工 对应的消息
-     *
+     * @param toSId
+     * @param mRead
+     * @return
+     */
+    List<MsgInfo> getMsgByToSIdAndMRead(String toSId, Integer mRead);
+
+    /**
      * @param toSId
      * @return
      */
-    List<Msg> getMsgByToSId(String toSId);
+    List<MsgInfo> getMsgByToSId(String toSId);
 
     /**
      * @param mIds
@@ -35,4 +40,10 @@ public interface MsgService {
      * @return
      */
     int sendMsg(String toSId, String mContent, String fromSId);
+
+    /**
+     * @param toSId
+     * @return
+     */
+    int deleteByToSId(String toSId);
 }

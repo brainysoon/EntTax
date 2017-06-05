@@ -3,6 +3,7 @@ package com.enttax.dao;
 import com.enttax.model.Msg;
 import com.enttax.model.Staff;
 import com.enttax.util.tools.ToolRandoms;
+import com.enttax.vo.MsgInfo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -56,5 +57,15 @@ public class MsgMapperTest {
         int result = msgMapper.insert(msg);
 
         Assert.assertEquals(result, 1);
+    }
+
+    @Test
+    public void selectByToSIdAndMReadTest() {
+
+        List<MsgInfo> msgs = msgMapper.selectByToSId("20179146");
+
+        String name = msgs.get(0).getFromName();
+
+        Assert.assertNotNull(msgs);
     }
 }

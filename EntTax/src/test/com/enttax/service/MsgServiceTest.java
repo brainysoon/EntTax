@@ -1,9 +1,9 @@
 package com.enttax.service;
 
 import com.enttax.dao.StaffMapper;
-import com.enttax.model.Msg;
 import com.enttax.model.Staff;
 import com.enttax.util.tools.ToolRandoms;
+import com.enttax.vo.MsgInfo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -65,7 +65,7 @@ public class MsgServiceTest {
     public void getMsgByToSIdTest() {
 
         //查询对应用户的消息
-        List<Msg> msgs = msgService.getMsgByToSId(toStaff.getSId());
+        List<MsgInfo> msgs = msgService.getMsgByToSId(toStaff.getSId());
 
         //断言
         Assert.assertNotNull(msgs);
@@ -99,7 +99,7 @@ public class MsgServiceTest {
 
     private String[] getmIds() {
         //查询对应用户的消息
-        List<Msg> msgs = msgService.getMsgByToSId(toStaff.getSId());
+        List<MsgInfo> msgs = msgService.getMsgByToSId(toStaff.getSId());
 
         //准备数据
         String[] mIds = new String[msgs.size()];

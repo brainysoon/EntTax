@@ -16,6 +16,10 @@
     DELETE FROM msg
     WHERE MId = #{mId}
   </delete>
+    <delete id="deleteByToSId" parameterType="java.lang.String">
+    DELETE FROM msg
+    WHERE ToSId = #{toSId}
+    </delete>
     <update id="phonyDeleteByPrimaryKey" parameterType="java.lang.String">
         UPDATE msg
         SET MMark=-1
@@ -47,23 +51,23 @@
       MRead,MContent, MDate,MMark
     FROM msg WHERE MMark>0
   </select>
-    <select id="selectByToSId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <select id="selectByToSId" parameterType="java.lang.String" resultType="MsgInfo">
          SELECT MId, ToSId, FromSId,
-      MRead,MContent, MDate,MMark
-    FROM msg
+      MRead,MContent, MDate,MMark,SName AS FromName
+    FROM msg m INNER JOIN staff s ON m.ToSId = s.SId
     WHERE ToSId=#{toSId} AND MMark>0
     </select>
-    <select id="selectByFromSId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <select id="selectByFromSId" parameterType="java.lang.String" resultType="MsgInfo">
      SELECT MId, ToSId, FromSId,
-      MRead,MContent, MDate,MMark
-    FROM msg
+      MRead,MContent, MDate,MMark,SName AS FromName
+    FROM  msg m INNER JOIN staff s ON m.ToSId = s.SId
     WHERE FromSId=#{fromSId} AND MMark>0
 </select>
-    <select id="selectByToSIdAndMRead" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <select id="selectByToSIdAndMRead" resultType="MsgInfo">
         SELECT MId, ToSId, FromSId,
-        MRead,MContent, MDate,MMark
-        FROM msg
-        WHERE ToSId=#{toSId} AND MRead=#{mRead} AND MMark>0
+        MRead,MContent, MDate,MMark,SName AS FromName
+        FROM msg m INNER JOIN staff s ON m.ToSId = s.SId
+        WHERE ToSId=#{toSId,jdbcType=CHAR} AND MRead=#{mRead,jdbcType=INTEGER} AND MMark>0
     </select>
     <update id="markReadByMId" parameterType="java.lang.String">
         UPDATE msg
@@ -73,6 +77,6 @@
     <update id="markUnReadByMId" parameterType="java.lang.String">
         UPDATE msg
         SET MRead=-1
-        WHERE MId=#{mId}
+        WHERE MId=#{mId} AND MMark>0
     </update>
 </mapper>

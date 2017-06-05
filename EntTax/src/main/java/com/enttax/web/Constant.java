@@ -19,4 +19,29 @@ public interface Constant {
      * 当前登录用户在  session中的  key
      */
     String CURRENT_LOGIN_STAFF_KEY = "staff";
+
+    /**
+     * 所有消息
+     */
+    String MODEL_KEY_ALL_MESSAGE = "allmessage";
+
+    /**
+     * 已读消息
+     */
+    String MODEL_KEY_READ_MESSAGE = "readmessage";
+
+    /**
+     * 未读消息
+     */
+    String MODEL_KEY_UNREAD_MESSAGE = "unreadmessage";
+
+    /**
+     * 已读
+     */
+    int MARK_READ = 1;
+
+    /**
+     * 未读
+     */
+    int MARK_UNREAD = -1;
 }

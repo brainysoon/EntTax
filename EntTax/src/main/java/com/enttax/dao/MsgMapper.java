@@ -1,6 +1,7 @@
 package com.enttax.dao;
 
 import com.enttax.model.Msg;
+import com.enttax.vo.MsgInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public interface MsgMapper {
      * @param toSId
      * @return
      */
-    List<Msg> selectByToSId(String toSId);
+    List<MsgInfo> selectByToSId(String toSId);
 
     /**
      * @param fromSId
@@ -56,7 +57,7 @@ public interface MsgMapper {
      * @param mRead
      * @return
      */
-    List<Msg> selectByToSIdAndMRead(@Param("toSId") String toSId, @Param("mRead") String mRead);
+    List<MsgInfo> selectByToSIdAndMRead(@Param("toSId") String toSId, @Param("mRead") Integer mRead);
 
     /**
      * @param mId
@@ -77,4 +78,10 @@ public interface MsgMapper {
      * @return
      */
     int phonyDeleteByPrimaryKey(String mId);
+
+    /**
+     * @param toSId
+     * @return
+     */
+    int deleteByToSId(String toSId);
 }
