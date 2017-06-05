@@ -178,6 +178,17 @@
                         <li><a class="" th:href="@{/staff/security}" href="staff/security.html">安全中心</a></li>
                     </ul>
                 </li>
+                <li class="sub-menu active">
+                    <a href="javascript:;" class="">
+                        <i class="icon-envelope"></i>
+                        <span>消息管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li class="active"><a class="" th:href="@{/staff/message}" href="inform.html">我的消息</a></li>
+                        <li><a class="" th:href="@{/staff/sendmessage}" href="inform.html">发送消息</a></li>
+                    </ul>
+                </li>
             </ul>
             <!-- sidebar menu end-->
         </div>
@@ -200,189 +211,170 @@
                         <!--头部 位置显示栏结束-->
                     </div>
 
-                    <section class="panel">
-                        <header class="panel-heading tab-bg-dark-navy-blue ">
+                    <form th:action="@{/staff/message/markread}" method="post">
+                        <section class="panel">
+                            <header class="panel-heading tab-bg-dark-navy-blue ">
 
-                            <ul class="nav nav-tabs">
-                                <li class="active" onclick="sampleAll()">
-                                    <a data-toggle="tab" href="#home">全部消息</a>
-                                </li>
-                                <li class="" onclick="sampleNone()">
-                                    <a data-toggle="tab" href="#about">未读消息</a>
-                                </li>
-                                <li class="" onclick="sampleRead() ">
-                                    <a data-toggle="tab" href="#profile">已读消息</a>
-                                </li>
-
-
-                                <button type="button" class="tab-bg-dark-navy-blue" id="clear-infor"
-                                        style="display: block">
-                                    <i class="icon-trash"></i>
-                                    清空消息列表
-                                </button>
-
-                                <button type="button" class="tab-bg-dark-navy-blue" id="mark-read"
-                                        style="display: none">
-                                    <i class="icon-pencil"></i>
-                                    标记为已读
-                                </button>
-
-                                <button type="button" class="tab-bg-dark-navy-blue" id="all-read"
-                                        style="display: none">
-                                    <i class="icon-trash"></i>
-                                    清空消息列表
-                                </button>
+                                <ul class="nav nav-tabs">
+                                    <li class="active" onclick="sampleAll()">
+                                        <a data-toggle="tab" href="#home">全部消息</a>
+                                    </li>
+                                    <li class="" onclick="sampleNone()">
+                                        <a data-toggle="tab" href="#about">未读消息</a>
+                                    </li>
+                                    <li class="" onclick="sampleRead() ">
+                                        <a data-toggle="tab" href="#profile">已读消息</a>
+                                    </li>
 
 
-                            </ul>
-                        </header>
-                        <div class="panel-body">
-                            <div class="tab-content">
-                                <div id="home" class="tab-pane active">
-                                    <table class="table table-striped border-top" id="sample_1">
-                                        <!--头部显示的所有包含的内容-->
-                                        <thead>
-                                        <tr>
-                                            <th style="width:8px;"><input type="checkbox" class="group-checkable"
-                                                                          data-set="#sample_1 .checkboxes"/></th>
-                                            <th>简要内容</th>
-                                            <th class="hidden-phone">详细内容</th>
-                                            <th class="hidden-phone"></th>
-                                            <th class="hidden-phone">时间</th>
-                                            <th class="hidden-phone">删除</th>
-                                        </tr>
-                                        </thead>
-                                        <!--头部显示的所有包含的内容 结束-->
+                                    <a th:href="@{/staff/message/delete/all}">
+                                        <button type="button" class="tab-bg-dark-navy-blue" id="clear-infor"
+                                                style="display: block">
+                                            <i class="icon-trash"></i>
+                                            清空消息列表
+                                        </button>
+                                    </a>
 
-                                        <!--数据显示部分-->
-                                        <tbody>
+                                    <button type="submit" class="tab-bg-dark-navy-blue" id="mark-read"
+                                            style="display: none">
+                                        <i class="icon-pencil"></i>
+                                        标记为已读
+                                    </button>
 
-                                        <tr class="odd gradeX">
-                                            <td><input type="checkbox" class="checkboxes" value="1"/></td>
-                                            <td>登录</td>
-                                            <td class="hidden-phone"><a href="#">您已经成功登录</a></td>
-                                            <td class="hidden-phone"></td>
-                                            <td class="center hidden-phone">2013-09-9</td>
-                                            <td class="hidden-phone">
+                                    <a th:href="@{/staff/message/delete/all}">
+                                        <button type="button" class="tab-bg-dark-navy-blue" id="all-read"
+                                                style="display: none">
+                                            <i class="icon-trash"></i>
+                                            清空消息列表
+                                        </button>
+                                    </a>
 
-                                                <button class="btn btn-danger btn-xs">
-                                                    <i class="icon-trash "></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td><input type="checkbox" class="checkboxes" value="1"/></td>
-                                            <td>登录</td>
-                                            <td class="hidden-phone"><a href="#">您已经成功登录</a></td>
-                                            <td class="hidden-phone"></td>
-                                            <td class="center hidden-phone">2013-09-9</td>
-                                            <td class="hidden-phone">
-                                                <button class="btn btn-danger btn-xs">
-                                                    <i class="icon-trash "></i></button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                        <!--数据显示部分 结束-->
+                                </ul>
+                            </header>
+                            <div class="panel-body">
+                                <div class="tab-content">
+                                    <div id="home" class="tab-pane active">
+                                        <table class="table table-striped border-top" id="sample_1">
+                                            <!--头部显示的所有包含的内容-->
+                                            <thead>
+                                            <tr>
+                                                <th>发件人</th>
+                                                <th class="hidden-phone">内容</th>
+                                                <th class="hidden-phone"></th>
+                                                <th class="hidden-phone">时间</th>
+                                                <th class="hidden-phone">删除</th>
+                                            </tr>
+                                            </thead>
+                                            <!--头部显示的所有包含的内容 结束-->
 
-                                    </table>
-                                </div>
-                                <div id="about" class="tab-pane">
-                                    <table class="table table-striped border-top" id="sample_2">
-                                        <!--头部显示的所有包含的内容-->
-                                        <thead>
-                                        <tr>
-                                            <th style="width:8px;"><input type="checkbox" class="group-checkable"
-                                                                          data-set="#sample_2 .checkboxes"/></th>
-                                            <th>简要内容</th>
-                                            <th class="hidden-phone">详细内容</th>
-                                            <th class="hidden-phone"></th>
-                                            <th class="hidden-phone">时间</th>
-                                            <th class="hidden-phone">删除</th>
-                                        </tr>
-                                        </thead>
-                                        <!--头部显示的所有包含的内容 结束-->
+                                            <!--数据显示部分-->
+                                            <tbody>
 
-                                        <!--数据显示部分-->
-                                        <tbody>
+                                            <tr class="odd gradeX" th:each="msg_all,allmsgStat:${allmessage}">
+                                                <td th:text="${msg_all.fromName}">系统</td>
+                                                <td class="hidden-phone" th:text="${msg_all.mContent}">内容</td>
+                                                <td class="hidden-phone"></td>
+                                                <td class="center hidden-phone"
+                                                    th:text="${#dates.format(msg_all.mDate, 'yyyy-MM-dd')}">2013-09-9
+                                                </td>
+                                                <td class="hidden-phone">
 
-                                        <tr class="odd gradeX">
-                                            <td><input type="checkbox" class="checkboxes" value="1"/></td>
-                                            <td>登录</td>
-                                            <td class="hidden-phone"><a href="#">您已经成功登录</a></td>
-                                            <td class="hidden-phone"></td>
-                                            <td class="center hidden-phone">2013-09-9</td>
-                                            <td class="hidden-phone">
-                                                <button class="btn btn-danger btn-xs">
-                                                    <i class="icon-trash "></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td><input type="checkbox" class="checkboxes" value="1"/></td>
-                                            <td>登录</td>
-                                            <td class="hidden-phone"><a href="#">您已经成功登录</a></td>
-                                            <td class="hidden-phone"></td>
-                                            <td class="center hidden-phone">2013-09-9</td>
-                                            <td class="hidden-phone">
-                                                <button class="btn btn-danger btn-xs">
-                                                    <i class="icon-trash "></i></button>
-                                            </td>
-                                        </tr>
+                                                    <a th:href="@{'/staff/deletemsg/'+${msg_all.mId}}">
+                                                        <button type="button" class="btn btn-danger btn-xs">
+                                                            <i class="icon-trash "></i></button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            <!--数据显示部分 结束-->
 
+                                        </table>
+                                    </div>
+                                    <div id="about" class="tab-pane">
+                                        <table class="table table-striped border-top" id="sample_2">
+                                            <!--头部显示的所有包含的内容-->
+                                            <thead>
+                                            <tr>
+                                                <th style="width:8px;"><input type="checkbox" class="group-checkable"
+                                                                              data-set="#sample_2 .checkboxes"/></th>
+                                                <th>发件人</th>
+                                                <th class="hidden-phone">内容</th>
+                                                <th class="hidden-phone"></th>
+                                                <th class="hidden-phone">时间</th>
+                                                <th class="hidden-phone">删除</th>
+                                            </tr>
+                                            </thead>
+                                            <!--头部显示的所有包含的内容 结束-->
 
-                                        </tbody>
+                                            <!--数据显示部分-->
+                                            <tbody>
 
-                                        <!--数据显示部分 结束-->
+                                            <tr class="odd gradeX" th:each="msg_unread,unreadmsgStat:${unreadmessage}">
+                                                <td><input type="checkbox" class="checkboxes" value="1"
+                                                           th:value="${msg_unread.mId}" name="mid"/></td>
+                                                <td th:text="${msg_unread.fromName}">系统</td>
+                                                <td class="hidden-phone" th:text="${msg_unread.mContent}">内容</td>
+                                                <td class="hidden-phone"></td>
+                                                <td class="center hidden-phone"
+                                                    th:text="${#dates.format(msg_unread.mDate, 'yyyy-MM-dd')}">2013-09-9
+                                                </td>
+                                                <td class="hidden-phone">
 
-                                    </table>
-                                </div>
-                                <div id="profile" class="tab-pane">
-                                    <table class="table table-striped border-top" id="sample_3">
-                                        <!--头部显示的所有包含的内容-->
-                                        <thead>
-                                        <tr>
-                                            <th style="width:8px;"><input type="checkbox" class="group-checkable"
-                                                                          data-set="#sample_3 .checkboxes"/></th>
-                                            <th>简要内容</th>
-                                            <th class="hidden-phone">详细内容</th>
-                                            <th class="hidden-phone"></th>
-                                            <th class="hidden-phone">时间</th>
-                                            <th class="hidden-phone">删除</th>
-                                        </tr>
-                                        </thead>
-                                        <!--头部显示的所有包含的内容 结束-->
+                                                    <a th:href="@{'/staff/deletemsg/'+${msg_unread.mId}}">
+                                                        <button type="button" class="btn btn-danger btn-xs">
+                                                            <i class="icon-trash "></i></button>
+                                                    </a>
+                                                </td>
+                                            </tr>
 
-                                        <!--数据显示部分-->
-                                        <tbody>
+                                            </tbody>
 
-                                        <tr class="odd gradeX">
-                                            <td><input type="checkbox" class="checkboxes" value="1"/></td>
-                                            <td>登录</td>
-                                            <td class="hidden-phone"><a href="#">您已经成功登录</a></td>
-                                            <td class="hidden-phone"></td>
-                                            <td class="center hidden-phone">2013-09-9</td>
-                                            <td class="hidden-phone">
-                                                <button class="btn btn-danger btn-xs">
-                                                    <i class="icon-trash "></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td><input type="checkbox" class="checkboxes" value="1"/></td>
-                                            <td>登录</td>
-                                            <td class="hidden-phone"><a href="#">您已经成功登录</a></td>
-                                            <td class="hidden-phone"></td>
-                                            <td class="center hidden-phone">2013-09-9</td>
-                                            <td class="hidden-phone">
-                                                <button class="btn btn-danger btn-xs">
-                                                    <i class="icon-trash "></i></button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                        <!--数据显示部分 结束-->
+                                            <!--数据显示部分 结束-->
 
-                                    </table>
+                                        </table>
+                                    </div>
+                                    <div id="profile" class="tab-pane">
+                                        <table class="table table-striped border-top" id="sample_3">
+                                            <!--头部显示的所有包含的内容-->
+                                            <thead>
+                                            <tr>
+                                                <th>发件人</th>
+                                                <th class="hidden-phone">内容</th>
+                                                <th class="hidden-phone"></th>
+                                                <th class="hidden-phone">时间</th>
+                                                <th class="hidden-phone">删除</th>
+                                            </tr>
+                                            </thead>
+                                            <!--头部显示的所有包含的内容 结束-->
+
+                                            <!--数据显示部分-->
+                                            <tbody>
+
+                                            <tr class="odd gradeX" th:each="msg_read,readmsgStat:${readmessage}">
+                                                <td th:text="${msg_read.fromName}">系统</td>
+                                                <td class="hidden-phone" th:text="${msg_read.mContent}">内容</td>
+                                                <td class="hidden-phone"></td>
+                                                <td class="center hidden-phone"
+                                                    th:text="${#dates.format(msg_read.mDate, 'yyyy-MM-dd')}">2013-09-9
+                                                </td>
+                                                <td class="hidden-phone">
+
+                                                    <a th:href="@{'/staff/deletemsg/'+${msg_read.mId}}">
+                                                        <button type="button" class="btn btn-danger btn-xs">
+                                                            <i class="icon-trash "></i></button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                            </tbody>
+                                            <!--数据显示部分 结束-->
+
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    </form>
                 </div>
             </div>
             <!-- page end-->
