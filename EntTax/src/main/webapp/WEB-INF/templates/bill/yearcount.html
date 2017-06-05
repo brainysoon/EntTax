@@ -9,7 +9,7 @@
     <meta name="keyword" content="EntTax">
     <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../img/favicon.ico">
 
-    <title>企业增值税发票数据分析系统</title>
+    <title>年度统计</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -150,7 +150,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/staffs/showstaff}" href="staffs/showstaff.html">查看员工</a></li>
+                        <li><a class=""  href="#">查看员工</a></li>
                         <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
                     </ul>
                 </li>
@@ -193,18 +193,19 @@
         </div>
     </aside>
     <!--sidebar end 左侧导航栏结束-->
+
     <!--page_start-->
     <section id="main-content">
         <section class="wrapper">
-            <div id="diagram" style="min-width:400px;height:400px"></div>
-            <br><br>
+            <div id="showdata" style="min-width:400px;height:600px"></div>
         </section>
     </section>
     <!--main content end-->
+
 </section>
 
 
-</div>
+
 <!-- js placed at the end of the document so the pages load faster -->
 <script th:src="@{/js/jquery.js}" src="../../js/jquery.js"></script>
 <script th:src="@{/js/jquery-1.8.3.min.js}" src="../../js/jquery-1.8.3.min.js"></script>
@@ -221,21 +222,77 @@
 <script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
 
 
-
 <!--hightchart-->
-<!--<script src="https://img.hcharts.cn/highstock/highstock.js"></script>-->
-<!--<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>-->
-<!--<script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>-->
-<!--<script src="https://img.hcharts.cn/highcharts/modules/data.js"></script>-->
-<!--<script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>-->
-<!--<script src="https://img.hcharts.cn/highcharts/themes/dark-unica.js"></script>-->
-
+<script th:src="@{/js/highcharts/highcharts.js}" src="../../js/highcharts/highcharts.js"></script>
+<script th:src="@{/js/highcharts/exporting.js}" src="../../js/highcharts/exporting.js"></script>
+<script th:src="@{/js/highcharts/dark-unica.js}" src="../../js/highcharts/dark-unica.js"></script>
 
 <script>
     //upload download excel tooltip
     $(function () {
         $("[data-toggle='tooltip']").tooltip();
     });
+
+
+    $(function () {
+        $('#showdata').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: '进销项数据年度统计'
+            },
+            subtitle: {
+                text: '数据来源:企业增值税DB'
+            },
+            xAxis: {
+                categories: [
+                    '2010',
+                    '2011',
+                    '2012',
+                    '2013',
+                    '2014',
+                    '2015',
+                    '2016',
+                    '2017',
+                    '2018',
+                    '2019',
+                    '2020',
+                    '2021',
+
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '金额 (万元)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} 万元</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: '进项数据',
+                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+            }, {
+                name: '销项数据',
+                data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+            }]
+        });
+    });
+
 </script>
 
 </body>

@@ -216,5 +216,18 @@ public class BillController extends BaseController {
 
     }
 
+    @RequestMapping(value = "/yearcount",method = RequestMethod.GET)
+    public String yearCount(Model model){
+        model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
+        return "bill/monthcount";
+    }
+
+    @RequestMapping(value = "/monthcount",method = RequestMethod.GET)
+    public String monthCount(Model model){
+        model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
+        return "bill/yearcount";
+    }
+
+
 
 }
