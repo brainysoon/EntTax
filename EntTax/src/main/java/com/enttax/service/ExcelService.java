@@ -39,4 +39,10 @@ public interface ExcelService {
     List<Bill> readExcelFromRedis(String key);
 
     int moveCacheToDataBase(String key);
+
+    /**
+     * 显示进销项数据
+     * @return
+     */
+    List<Bill> showData();
 }

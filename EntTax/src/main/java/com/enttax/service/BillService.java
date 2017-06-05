@@ -45,4 +45,18 @@ public interface BillService {
      * @return
      */
     int insertAll(List<Bill> bills);
+
+    /**
+     * 通过id删除bill数据
+     * @param bId
+     * @return
+     */
+    int deleteBillById(String bId);
+
+    /**
+     * 更新bill数据
+     * @param bill
+     * @return
+     */
+    int updateBill(Bill bill);
 }
