@@ -244,11 +244,11 @@ function deletebill(obj) {
 function editbill(obj) {
     var id = $(obj).attr("id");
     //获取表格中的一行数据
-    var bId = document.getElementById("tbody").rows[id].cells[0].innerText;
-    var bName = document.getElementById("tbody").rows[id].cells[1].innerText;
-    var bType = document.getElementById("tbody").rows[id].cells[2].innerText;
-    var bPrice = document.getElementById("tbody").rows[id].cells[3].innerText;
-    var bMonth = document.getElementById("tbody").rows[id].cells[4].innerText;
+    var bId = document.getElementById("tbody").rows[id].cells[1].innerText;
+    var bName = document.getElementById("tbody").rows[id].cells[2].innerText;
+    var bType = document.getElementById("tbody").rows[id].cells[3].innerText;
+    var bPrice = document.getElementById("tbody").rows[id].cells[4].innerText;
+    var bMonth = document.getElementById("tbody").rows[id].cells[5].innerText;
     //向模态框中传值
     $('#bId').html(bId);
     $('#bName').val(bName);

@@ -42,7 +42,7 @@ public class ExcelServiceTest {
 
         listOps.leftPush("123", bills);
 
-        List<Bill> list = listOps.leftPop("20170519221104795468");
+        List<Bill> list = listOps.leftPop("123");
 
         list.size();
     }

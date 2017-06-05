@@ -26,7 +26,6 @@
     <link th:href="@{/css/style.css}" href="../../../css/style.css" rel="stylesheet">
     <link th:href="@{/css/style-responsive.css}" href="../../../css/style-responsive.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/xcConfirm.css}" href="../../../css/xcConfirm.css"/>
-
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--此处未应用 [if lt IE 9]>
     <script th:src="@{/js/html5shiv.js}" src="../../../js/html5shiv.js"></script>
@@ -207,6 +206,7 @@
                             <!--头部显示的所有包含的内容-->
                             <thead>
                             <tr>
+                                <td hidden></td>
                                 <th>项目序号</th>
                                 <th>项目名称</th>
                                 <th>类型</th>
@@ -220,13 +220,14 @@
                             <!--数据显示部分-->
                             <tbody id="tbody">
                             <tr class="odd gradeX" th:each="bill,iterStat:${datalist}">
+                                <td hidden th:text="${bill.bMark}"></td>
                                 <th th:text="${bill.bId}"></th>
                                 <th th:text="${bill.bName}"></th>
-                                <td th:text="${bill.bType}"></td>
-                                <td th:text="${bill.bPrice}"></td>
-                                <td class="center hiddezn-phone"
-                                    th:text="${bill.bMonth}"></td>
-                                <td>
+                                <th th:text="${bill.bType}"></th>
+                                <th th:text="${bill.bPrice}"></th>
+                                <th class="center hiddezn-phone"
+                                    th:text="${bill.bMonth}"></th>
+                                <th>
                                     <button class="btn btn-primary btn-xs" onclick="editbill(this)"
                                             th:id="${iterStat.index}">
                                         <i class="icon-pencil"></i></button>
@@ -234,7 +235,7 @@
                                     <button class="btn btn-danger btn-xs" onclick="deletebill(this)"
                                             th:id="${bill.bId}">
                                         <i class="icon-trash "></i></button>
-                                </td>
+                                </th>
 
                             </tr>
                             </tbody>
@@ -362,11 +363,13 @@
 <script th:src="@{/js/xcConfirm.js}" src="../../../js/xcConfirm.js"></script>
 
 
-
 <script>
     $(function () {
         $("[data-toggle='modal']").tooltip();
     });
+
+//    $("#sample_1 td:contains('0')").parent().css("background","#9ACD32");
+//    $("#sample_1 td:contains('1')").parent().css("background","#CD00CD");
 </script>
 
 </body>
