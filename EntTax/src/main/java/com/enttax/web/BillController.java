@@ -9,6 +9,7 @@ import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.ToolRandoms;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -219,13 +220,24 @@ public class BillController extends BaseController {
     @RequestMapping(value = "/yearcount",method = RequestMethod.GET)
     public String yearCount(Model model){
         model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
-        return "bill/monthcount";
+        return "bill/yearcount";
     }
 
     @RequestMapping(value = "/monthcount",method = RequestMethod.GET)
     public String monthCount(Model model){
         model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
-        return "bill/yearcount";
+        return "bill/monthcount";
+    }
+
+
+    @RequestMapping(value = "/showmonthbill",method = RequestMethod.GET)
+    @ResponseBody
+    public Map showMonthBill(@RequestParam(value = "year") String year){
+
+        Map map =billService.showMonthBill(year);
+
+        System.out.println(map);
+        return  map;
     }
 
 

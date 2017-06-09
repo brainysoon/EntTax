@@ -1,7 +1,9 @@
 package com.enttax.dao;
 
 import com.enttax.model.Bill;
+import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.ToolRandoms;
+import com.enttax.vo.BillInfo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,8 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by brainy on 17-4-27.
@@ -58,5 +59,59 @@ public class BillMapperTest {
 
         //断言 影响一行记录
         Assert.assertEquals(resultCode, 1);
+    }
+
+    @Test
+    public void showMonthBillTest(){
+       List<BillInfo> list= billMapper.selectMonthBill("2017");
+
+        List inputList = new ArrayList();
+        List outputList = new ArrayList();
+        Map<Integer ,Double> inputMap=new HashMap();
+        Map<Integer,Double>  outputMap=new HashMap();
+
+        int inputindex=1;
+        int outputindex=1;
+
+        for (BillInfo billInfo : list) {
+            if (billInfo.getbType().equals(ConstantStr.INPUTDATA)) {
+                inputMap.put(billInfo.getbMonth(),billInfo.getTotalPrice());
+
+            } else {
+                outputMap.put(billInfo.getbMonth(),billInfo.getTotalPrice());
+            }
+
+        }
+
+
+            for (Integer key : inputMap.keySet()) {
+                if (key==inputindex){
+                    inputList.add(inputMap.get(key));
+                    inputindex++;
+                }else {
+                    inputList.add(0);
+                    inputindex++;
+                }
+            }
+            for (;inputindex<=12; inputindex++){
+                inputList.add(0);
+            }
+
+
+            for (Integer key : outputMap.keySet()) {
+                if (key==outputindex){
+                    outputList.add(outputMap.get(key));
+                    outputindex++;
+                }else {
+                    outputList.add(0);
+                    outputindex++;
+                }
+            }
+        for (;outputindex<=12; outputindex++){
+            outputList.add(0);
+        }
+
+        System.out.println(inputList);
+        System.out.println(outputList);
     }
 }
