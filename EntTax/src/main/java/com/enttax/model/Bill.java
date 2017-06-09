@@ -76,4 +76,17 @@ public class Bill implements Serializable {
     public void setBMark(Integer bMark) {
         this.bMark = bMark;
     }
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "bId='" + bId + '\'' +
+                ", bType='" + bType + '\'' +
+                ", bName='" + bName + '\'' +
+                ", bMonth=" + bMonth +
+                ", bPrice=" + bPrice +
+                ", bUpdateTime=" + bUpdateTime +
+                ", bMark=" + bMark +
+                '}';
+    }
 }

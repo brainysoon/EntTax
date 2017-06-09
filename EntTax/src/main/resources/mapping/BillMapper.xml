@@ -60,4 +60,13 @@
     FROM bill
     WHERE BName=#{bName}
     </select>
+
+    <select id="selectMonthBill" parameterType="java.lang.String" resultType="BillInfo">
+        SELECT BType, BMonth, sum(BPrice) AS totalPrice
+        FROM bill
+        WHERE  BMark >=0 AND year(BUpdateTime) =#{year}
+        GROUP BY BType, BMonth ;
+    </select>
+
+
 </mapper>

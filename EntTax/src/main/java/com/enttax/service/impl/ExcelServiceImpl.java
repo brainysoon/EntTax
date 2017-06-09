@@ -125,4 +125,9 @@ public class ExcelServiceImpl implements ExcelService {
         //存入MySql数据库
         return billService.insertAll(bills);
     }
+
+    @Override
+    public List<Bill> showData() {
+        return  billService.selectAll();
+    }
 }
