@@ -59,4 +59,11 @@ public interface BillService {
      * @return
      */
     int updateBill(Bill bill);
+
+
+    /**
+     * 显示月度统计
+     * @return
+     */
+    Map showMonthBill(String year);
 }

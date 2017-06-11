@@ -9,7 +9,7 @@
     <meta name="keyword" content="EntTax">
     <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../img/favicon.ico">
 
-    <title>年度统计</title>
+    <title>度统计</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -197,6 +197,24 @@
     <!--page_start-->
     <section id="main-content">
         <section class="wrapper">
+            <div class="modal-body">
+                <div class="col-lg-2">
+                    <select class="form-control m-bot15">
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                    </select>
+                </div>
+            </div>
             <div id="showdata" style="min-width:400px;height:600px"></div>
         </section>
     </section>
@@ -227,71 +245,12 @@
 <script th:src="@{/js/highcharts/exporting.js}" src="/js/highcharts/exporting.js"></script>
 <script th:src="@{/js/highcharts/dark-unica.js}" src="/js/highcharts/dark-unica.js"></script>
 
+<script th:src="@{/js/showbill-data.js}"></script>
+
 <script>
     //upload download excel tooltip
     $(function () {
         $("[data-toggle='tooltip']").tooltip();
-    });
-
-
-    var myDate = new Date();
-
-    $(function () {
-        $('#showdata').highcharts({
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: myDate.getFullYear()+'进销项数据月度统计'
-            },
-            subtitle: {
-                text: '数据来源:企业增值税DB'
-            },
-            xAxis: {
-                categories: [
-                    '一月',
-                    '二月',
-                    '三月',
-                    '四月',
-                    '五月',
-                    '六月',
-                    '七月',
-                    '八月',
-                    '九月',
-                    '十月',
-                    '十一月',
-                    '十二月'
-                ],
-                crosshair: true
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: '金额 (万元)'
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} 万元</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: '进项数据',
-                data: [4.9, 7.5, 10.4, 12.2, 14.0, 16.0, 15.6, 18.5,0,0,0,0]
-            }, {
-                name: '销项数据',
-                data: [3.6, 8.8, 8.5, 3.4, 6.0, 4.5, 15.0, 14.3,0,0,0,0]
-            }]
-        });
     });
 
 </script>

@@ -134,4 +134,15 @@ public interface ConstantStr {
     String REDIS_CACHE_KEY = "key";
 
 
+    /**
+     *
+     */
+    String INPUTDATA="进项数据";
+
+    /**
+     *
+     */
+    String OUTPUTDATA="销项数据";
+
+
 }
