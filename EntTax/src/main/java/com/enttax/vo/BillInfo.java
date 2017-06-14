@@ -8,7 +8,10 @@ import org.apache.ibatis.type.Alias;
 @Alias("BillInfo")
 public class BillInfo {
     private String bType;
+    //用于月度统计月份
     private Integer bMonth;
+    //用于年度统计年份
+    private String bYear;
     private Double totalPrice;
 
     public String getbType() {
@@ -21,6 +24,10 @@ public class BillInfo {
 
     public Double getTotalPrice() {
         return totalPrice;
+    }
+
+    public String getbYear() {
+        return bYear;
     }
 
     @Override

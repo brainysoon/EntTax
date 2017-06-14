@@ -1,9 +1,9 @@
 package com.enttax.util.tools;
 
+import com.enttax.model.Bill;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.log4j.Logger;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,6 +18,7 @@ public class ToolDates {
 
     /**
      * 将date日期转换为字符串的日期
+     *
      * @param date
      * @param pattern
      * @return
@@ -38,6 +39,7 @@ public class ToolDates {
 
     /**
      * 将字符串的日期转换为date类型的日期
+     *
      * @param date 当前日期
      * @return date
      */
@@ -46,32 +48,64 @@ public class ToolDates {
         try {
             return format.parse(date);
         } catch (ParseException e) {
-            logger.info("ToolDateTime.parse异常：date值" + date );
+            logger.info("ToolDateTime.parse异常：date值" + date);
             return null;
         }
     }
 
     /**
      * 用分，秒，毫秒时间戳产生８位随机数
+     *
      * @return
      * @throws ParseException
      */
     public static String getDate8Num() {
         Date d = new Date();//获取时间
-        SimpleDateFormat sdf=new SimpleDateFormat("mmssSSS");
-        String ymd = sdf.format(d)+new Random().nextInt(10);
-        return ymd ;
+        SimpleDateFormat sdf = new SimpleDateFormat("mmssSSS");
+        String ymd = sdf.format(d) + new Random().nextInt(10);
+        return ymd;
     }
 
     /**
      * 产生15为随机数
+     *
      * @return
      */
     public static String getDate15Num() {
         Date d = new Date();//获取时间
-        SimpleDateFormat sdf=new SimpleDateFormat("ddHHmmssSSS");
-        String ymd = sdf.format(d)+new Random().nextInt(10000);
-        return ymd ;
+        SimpleDateFormat sdf = new SimpleDateFormat("ddHHmmssSSS");
+        String ymd = sdf.format(d) + new Random().nextInt(10000);
+        return ymd;
     }
 
+    public static Bill fixDateBaseMonth(Bill bill) {
+
+        //未经折算
+        int month = bill.getBMonth();
+
+
+        //折算后的月份
+        int sub_month = month % 12;
+
+        //折算的年份
+        int year = month / 12;
+
+
+        if (sub_month == 0) {
+
+            year--;
+            sub_month = 12;
+        }
+
+        int sub_year = bill.getBUpdateTime().getYear() - year;
+
+        //更新
+        bill.setBMonth(sub_month);
+
+        Date date = bill.getBUpdateTime();
+        date.setYear(sub_year);
+        bill.setBUpdateTime(date);
+
+        return bill;
+    }
 }

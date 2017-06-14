@@ -66,4 +66,10 @@ public interface BillService {
      * @return
      */
     Map showMonthBill(String year);
+
+    /**
+     * 显示年度统计
+     * @return
+     */
+    Map showYearBill();
 }

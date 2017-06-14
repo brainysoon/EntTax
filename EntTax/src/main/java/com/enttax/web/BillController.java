@@ -103,7 +103,7 @@ public class BillController extends BaseController {
     }
 
     @RequestMapping(value = "/uploadexcel", method = RequestMethod.GET)
-    private String toUploadExcel(Model model,
+    public  String toUploadExcel(Model model,
                                  @RequestParam(value = "key", required = false) String key) {
 
         //用户登录信息
@@ -123,7 +123,7 @@ public class BillController extends BaseController {
     }
 
     @RequestMapping(value = "/confirmupload/{key}", method = RequestMethod.GET)
-    private String confirmUpload(Model model,
+    public String confirmUpload(Model model,
                                  @PathVariable(value = "key") String key) {
 
         //用户登录信息
@@ -240,6 +240,11 @@ public class BillController extends BaseController {
         return  map;
     }
 
+    @RequestMapping(value = "/showyearbill",method = RequestMethod.GET)
+    @ResponseBody
+    public Map showYearBill(){
+        return billService.showYearBill();
+    }
 
 
 }

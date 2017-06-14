@@ -4,6 +4,7 @@ import com.enttax.model.Bill;
 import com.enttax.service.BillService;
 import com.enttax.service.ExcelService;
 import com.enttax.util.constant.ConstantStr;
+import com.enttax.util.tools.ToolDates;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -90,8 +91,11 @@ public class ExcelServiceImpl implements ExcelService {
             }
 
             bill.setBMark(bMark);
-            bill.setBType(bMark == 2 ? TAX_OUT : TAX_IN);
+            bill.setBType(bMark == 1 ? TAX_OUT : TAX_IN);
             bill.setBUpdateTime(new Date());
+
+            //为了模拟数据，折算月份成年份
+            ToolDates.fixDateBaseMonth(bill);
 
             bills.add(bill);
         }
@@ -128,6 +132,6 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public List<Bill> showData() {
-        return  billService.selectAll();
+        return billService.selectAll();
     }
 }
