@@ -11,6 +11,7 @@ $().ready(function () {
 
 });
 
+//下拉选择年份按钮
 $(document).ready(function(){
     $("select").change(function(){
         var a = $(this).val();
@@ -26,7 +27,7 @@ function showbill (year){
                 type: 'column'
             },
             title: {
-                text: myDate.getFullYear()+'进销项数据月度统计'
+                text: year+'进销项数据月度统计'
             },
             subtitle: {
                 text: '数据来源:企业增值税DB'
@@ -70,10 +71,10 @@ function showbill (year){
             },
             series: [{
                 name: '进项数据',
-                data: data.input
+                data: data.inputdata
             }, {
                 name: '销项数据',
-                data: data.output
+                data: data.outputdata
             }]
         });
 

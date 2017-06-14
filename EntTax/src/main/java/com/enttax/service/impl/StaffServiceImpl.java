@@ -170,7 +170,7 @@ public class StaffServiceImpl implements StaffService {
         String sId = ToolRandoms.randomCode8();
 
         //拿到加密后的密码和摘要
-        Map map = securityService.encodePassword("666666", sId);
+        Map map = securityService.encodePassword("dbroom1411", sId);
         String sPassword = (String) map.get(SecurityService.ENCODE_RESULT_KEY_PASSWORD);
         String Ssalt = (String) map.get(SecurityService.ENCODE_RESULT_KEY_SALT);
 

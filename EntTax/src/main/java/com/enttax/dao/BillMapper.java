@@ -56,9 +56,15 @@ public interface BillMapper {
     int insertAll(List<Bill> list);
 
     /**
-     * 显示月度统计
+     * 显示月度统计数据
      * @param year
      * @return
      */
     List<BillInfo> selectMonthBill(@Param("year") String year);
+
+    /**
+     * 显示年度统计数据
+     * @return
+     */
+    List<BillInfo> selectYearBill();
 }
