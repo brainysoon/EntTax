@@ -7,28 +7,28 @@
     <meta name="description" content="">
     <meta name="author" content="brainy">
     <meta name="keyword" content="EntTax">
-    <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../../img/favicon.ico">
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../img/favicon.ico">
 
-    <title>度统计</title>
+    <title>分类统计</title>
 
     <!-- Bootstrap core CSS -->
-    <link th:href="@{/css/bootstrap.min.css}" href="../../../css/bootstrap.min.css" rel="stylesheet">
-    <link th:href="@{/css/bootstrap-reset.css}" href="../../../css/bootstrap-reset.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-reset.css}" href="../../css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
-    <link th:href="@{/assets/font-awesome/css/font-awesome.css}" href="../../../assets/font-awesome/css/font-awesome.css"
+    <link th:href="@{/assets/font-awesome/css/font-awesome.css}" href="../../assets/font-awesome/css/font-awesome.css"
           rel="stylesheet"/>
     <link th:href="@{/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css}"
-          href="../../../assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
+          href="../../assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
           media="screen"/>
-    <link th:href="@{/css/owl.carousel.css}" rel="stylesheet" href="../../../css/owl.carousel.css" type="text/css">
+    <link th:href="@{/css/owl.carousel.css}" rel="stylesheet" href="../../css/owl.carousel.css" type="text/css">
     <!-- Custom styles for this template //css 模板样式-->
-    <link th:href="@{/css/style.css}" href="../../../css/style.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
     <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--此处未应用 [if lt IE 9]>
-    <script th:src="@{/js/html5shiv.js}" src="../../../js/html5shiv.js"></script>
-    <script th:src="@{/js/respond.min.js}" src="../../../js/respond.min.js"></script>
+    <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
+    <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
     <![endif]-->
 
 </head>
@@ -161,9 +161,9 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="active" th:href="@{/bill/monthcount}" href="#">月度统计</a></li>
+                        <li><a class="" th:href="@{/bill/monthcount}" href="#">月度统计</a></li>
                         <li><a class="" th:href="@{/bill/yearcount}" href="#">年度统计</a></li>
-                        <li><a class="" th:href="@{/bill/categorycount}" href="#">分类统计</a></li>
+                        <li><a class="active" th:href="@{/bill/categorycount}" href="#">分类统计</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -198,22 +198,35 @@
     <!--page_start-->
     <section id="main-content">
         <section class="wrapper">
-                <div class="col-lg-2">
-                    <select class="form-control m-bot15">
-                        <option value="2013">2013</option>
-                        <option value="2014">2014</option>
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                    </select>
-                </div>
+            <div class="col-lg-2">
+
+            </div>
+            <div class="panel-body">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputPassword2">bName</label>
+                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="项目名称">
+                    </div>
+                    <button type="submit" class="btn btn-success">查找</button>
+                </form>
+
+            </div>
             <div id="showdata" style="min-width:400px;height:600px"></div>
         </section>
     </section>
@@ -240,17 +253,56 @@
 
 
 <!--hightchart-->
-<script th:src="@{/js/highcharts/highcharts.js}" src="/js/highcharts/highcharts.js"></script>
-<script th:src="@{/js/highcharts/exporting.js}" src="/js/highcharts/exporting.js"></script>
-<script th:src="@{/js/highcharts/dark-unica.js}" src="/js/highcharts/dark-unica.js"></script>
-
-<script th:src="@{/js/showbill-monthdata.js}"></script>
-
+<script th:src="@{/js/highcharts/highcharts.js}" src="../../js/highcharts/highcharts.js"></script>
+<script th:src="@{/js/highcharts/exporting.js}" src="../../js/highcharts/exporting.js"></script>
+<script th:src="@{/js/highcharts/dark-unica.js}" src="../../js/highcharts/dark-unica.js"></script>
 <script>
     //upload download excel tooltip
     $(function () {
         $("[data-toggle='tooltip']").tooltip();
     });
+
+
+    var chart = new Highcharts.Chart('showdata', {
+        title: {
+            text: '进销项数据分类统计',
+            x: -20
+        },
+        subtitle: {
+            text: '数据来源: 企业增值税DB',
+            x: -20
+        },
+        xAxis: {
+            categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+        },
+        yAxis: {
+            title: {
+                text: '金额 (万元)'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '万元'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: '进项数据',
+            data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+        }, {
+            name: '销项数据',
+            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+        }]
+    });
+
 
 </script>
 
