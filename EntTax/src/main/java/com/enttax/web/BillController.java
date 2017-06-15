@@ -229,6 +229,12 @@ public class BillController extends BaseController {
         return "bill/monthcount";
     }
 
+    @RequestMapping(value = "/categorycount",method = RequestMethod.GET)
+    public String categoryCount(Model model){
+        model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
+        return "bill/categorycount";
+    }
+
 
     @RequestMapping(value = "/showmonthbill",method = RequestMethod.GET)
     @ResponseBody
