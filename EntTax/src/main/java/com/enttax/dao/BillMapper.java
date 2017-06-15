@@ -1,6 +1,8 @@
 package com.enttax.dao;
 
 import com.enttax.model.Bill;
+import com.enttax.vo.BillInfo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -52,4 +54,17 @@ public interface BillMapper {
      * @return
      */
     int insertAll(List<Bill> list);
+
+    /**
+     * 显示月度统计数据
+     * @param year
+     * @return
+     */
+    List<BillInfo> selectMonthBill(@Param("year") String year);
+
+    /**
+     * 显示年度统计数据
+     * @return
+     */
+    List<BillInfo> selectYearBill();
 }

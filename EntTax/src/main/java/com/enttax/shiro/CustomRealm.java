@@ -71,7 +71,7 @@ public class CustomRealm extends AuthorizingRealm implements Authorizer {
         }
 
         //判断该账号是否被激活
-        if (paperStaff.getSMark() <= 0) {
+        if (paperStaff.getSMark() < 0) {
 
             throw new LockedAccountException();
         }

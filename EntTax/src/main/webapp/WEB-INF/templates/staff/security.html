@@ -9,7 +9,7 @@
     <meta name="keyword" content="EntTax">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>个人中心</title>
+    <title>个人安全中心</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/bootstrap.min.css}" href="../../../css/bootstrap.min.css" rel="stylesheet">
@@ -28,8 +28,8 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
-    <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
-    <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
+    <script th:src="@{/js/html5shiv.js}" src="../../../js/html5shiv.js"></script>
+    <script th:src="@{/js/respond.min.js}" src="../../../js/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -143,7 +143,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/staffs/showstaff}" href="../staffs/showstaff.html">查看员工</a></li>
+                        <li><a class=""  href="#">查看员工</a></li>
                         <li><a class="" th:href="@{/staffs/managestaff}" href="../staffs/managestaff.html">员工管理</a>
                         </li>
                     </ul>
@@ -155,8 +155,8 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/analysis/monthcount}" href="#">月度统计</a></li>
-                        <li><a class="" th:href="@{/analysis/yearcount}" href="#">年度统计</a></li>
+                        <li><a class="" th:href="@{/bill/monthcount}" href="#">月度统计</a></li>
+                        <li><a class="" th:href="@{/bill/yearcount}" href="#">年度统计</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu active">
@@ -170,6 +170,17 @@
                         <li><a class="" th:href="@{/staff/editprofile}" href="editprofile.html">修改信息</a>
                         </li>
                         <li class="active"><a class="" th:href="@{/staff/security}" href="security.html">安全中心</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-envelope"></i>
+                        <span>消息管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/staff/message}" href="inform.html">我的消息</a></li>
+                        <li><a class="" th:href="@{/staff/sendmessage}" href="inform.html">发送消息</a></li>
                     </ul>
                 </li>
             </ul>

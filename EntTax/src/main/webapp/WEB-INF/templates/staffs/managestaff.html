@@ -9,7 +9,7 @@
     <meta name="keyword" content="EntTax">
     <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../../img/favicon.ico">
 
-    <title>员工信息列表</title>
+    <title>员工管理</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/bootstrap.min.css}" href="../../../css/bootstrap.min.css" rel="stylesheet">
@@ -154,7 +154,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/staffs/showstaff}" href="showstaff.html">查看员工</a></li>
+                        <li><a class=""  href="#">查看员工</a></li>
                         <li class="active"><a class="" th:href="@{/staffs/managestaff}" href="managestaff.html">员工管理</a>
                         </li>
                     </ul>
@@ -166,8 +166,8 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/analysis/monthcount}" href="#">月度统计</a></li>
-                        <li><a class="" th:href="@{/analysis/yearcount}" href="#">年度统计</a></li>
+                        <li><a class="" th:href="@{/bill/monthcount}" href="#">月度统计</a></li>
+                        <li><a class="" th:href="@{/bill/yearcount}" href="#">年度统计</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -180,6 +180,17 @@
                         <li><a class="" th:href="@{/staff/profile}" href="../staff/profile.html">个人资料</a></li>
                         <li><a class="" th:href="@{/staff/editprofile}" href="../staff/editprofile.html">修改信息</a></li>
                         <li><a class="" th:href="@{/staff/security}" href="../staff/security.html">安全中心</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-envelope"></i>
+                        <span>消息管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/staff/message}" href="inform.html">我的消息</a></li>
+                        <li><a class="" th:href="@{/staff/sendmessage}" href="inform.html">发送消息</a></li>
                     </ul>
                 </li>
             </ul>
