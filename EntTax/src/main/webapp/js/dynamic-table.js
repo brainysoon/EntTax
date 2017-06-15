@@ -5,10 +5,14 @@ var Script = function () {
             "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
             "sPaginationType": "bootstrap",
             "oLanguage": {
-                "sLengthMenu": "_MENU_ records per page",
+                "sLengthMenu": "每页 _MENU_ 项",
+                "sSearch": "搜索:",
+                "sInfo": "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
+                "sInfoEmpty": "当前显示第 0 至 0 项，共 0 项",
                 "oPaginate": {
-                    "sPrevious": "Prev",
-                    "sNext": "Next"
+                    "sPrevious": "上一页",
+                    "sNext": "下一页"
+
                 }
             },
             "aoColumnDefs": [{
@@ -38,10 +42,14 @@ var Script = function () {
             "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
             "sPaginationType": "bootstrap",
             "oLanguage": {
-                "sLengthMenu": "_MENU_ per page",
+                "sLengthMenu": "每页 _MENU_ 项",
+                "sSearch": "搜索:",
+                "sInfo": "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
+                "sInfoEmpty": "当前显示第 0 至 0 项，共 0 项",
                 "oPaginate": {
-                    "sPrevious": "Prev",
-                    "sNext": "Next"
+                    "sPrevious": "上一页",
+                    "sNext": "下一页"
+
                 }
             },
             "aoColumnDefs": [{
@@ -71,10 +79,14 @@ var Script = function () {
             "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
             "sPaginationType": "bootstrap",
             "oLanguage": {
-                "sLengthMenu": "_MENU_ per page",
+                "sLengthMenu": "每页 _MENU_ 项",
+                "sSearch": "搜索:",
+                "sInfo": "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
+                "sInfoEmpty": "当前显示第 0 至 0 项，共 0 项",
                 "oPaginate": {
-                    "sPrevious": "Prev",
-                    "sNext": "Next"
+                    "sPrevious": "上一页",
+                    "sNext": "下一页"
+
                 }
             },
             "aoColumnDefs": [{
