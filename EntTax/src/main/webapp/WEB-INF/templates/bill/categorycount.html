@@ -25,6 +25,9 @@
     <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
     <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
 
+    <!--日期插件-->
+    <link th:href="@{/css/datepicker.css}" href="../../../css/datepicker.css">
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--此处未应用 [if lt IE 9]>
     <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
@@ -198,26 +201,10 @@
     <!--page_start-->
     <section id="main-content">
         <section class="wrapper">
-            <div class="col-lg-2">
-
-            </div>
             <div class="panel-body">
                 <form class="form-inline" role="form">
                     <div class="form-group">
-                        <select class="form-control">
-                            <option value="2013">2013</option>
-                            <option value="2014">2014</option>
-                            <option value="2015">2015</option>
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                            <option value="2023">2023</option>
-                            <option value="2024">2024</option>
-                        </select>
+                        <input type="text" class="form-control" value="2012" id="datetimepicker">
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="exampleInputPassword2">bName</label>
@@ -225,7 +212,6 @@
                     </div>
                     <button type="submit" class="btn btn-success">查找</button>
                 </form>
-
             </div>
             <div id="showdata" style="min-width:400px;height:600px"></div>
         </section>
@@ -250,6 +236,7 @@
 
 <!--common script for all pages-->
 <script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
+<script th:src="@{/js/bootstrap-datepicker.js}" src="../../../js/bootstrap-datepicker.js"></script>
 
 
 <!--hightchart-->
@@ -260,6 +247,11 @@
     //upload download excel tooltip
     $(function () {
         $("[data-toggle='tooltip']").tooltip();
+    });
+
+
+    $('#datetimepicker').datetimepicker({
+        format: 'yyyy'
     });
 
 
