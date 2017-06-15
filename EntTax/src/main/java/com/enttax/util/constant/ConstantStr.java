@@ -64,6 +64,10 @@ public interface ConstantStr {
      */
     String STAFFINFOLIST = "stafflist";
     /**
+     * 保存进销项数据集合
+     */
+    String DATALIST="datalist";
+    /**
      * 状态
      */
     String STATUS = "status";
@@ -128,6 +132,17 @@ public interface ConstantStr {
      *
      */
     String REDIS_CACHE_KEY = "key";
+
+
+    /**
+     *
+     */
+    String INPUTDATA="进项数据";
+
+    /**
+     *
+     */
+    String OUTPUTDATA="销项数据";
 
 
 }

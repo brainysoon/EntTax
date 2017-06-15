@@ -19,3 +19,13 @@
     height: 10px;
     line-height: 10px;
 }
+
+#clear-infor,#mark-read,#all-read {
+    border: 0;
+    float: right;
+    font-size: 18px;
+    margin: auto 0;
+    line-height: 30px;
+    color: #246;
+
+}

@@ -72,5 +72,12 @@
                selectByExampleQueryId="false">
 
         </table>
+
+        <table tableName="msg" domainObjectName="Msg"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+
+        </table>
     </context>
 </generatorConfiguration>

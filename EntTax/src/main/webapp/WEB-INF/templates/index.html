@@ -150,7 +150,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/staffs/showstaff}" href="staffs/showstaff.html">查看员工</a></li>
+                        <li><a class="" href="#">查看员工</a></li>
                         <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
                     </ul>
                 </li>
@@ -161,8 +161,8 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/analysis/monthcount}" href="#">月度统计</a></li>
-                        <li><a class="" th:href="@{/analysis/yearcount}" href="#">年度统计</a></li>
+                        <li><a class="" th:href="@{/bill/monthcount}" href="#">月度统计</a></li>
+                        <li><a class="" th:href="@{/bill/yearcount}" href="#">年度统计</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -177,14 +177,34 @@
                         <li><a class="" th:href="@{/staff/security}" href="staff/security.html">安全中心</a></li>
                     </ul>
                 </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-envelope"></i>
+                        <span>消息管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/staff/message}" href="inform.html">我的消息</a></li>
+                        <li><a class="" th:href="@{/staff/sendmessage}" href="inform.html">发送消息</a></li>
+                    </ul>
+                </li>
             </ul>
             <!-- sidebar menu end-->
         </div>
     </aside>
     <!--sidebar end 左侧导航栏结束-->
+    <!--page_start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <div id="diagram" style="min-width:400px;height:400px"></div>
+            <br><br>
+        </section>
+    </section>
+    <!--main content end-->
 </section>
 
 
+</div>
 <!-- js placed at the end of the document so the pages load faster -->
 <script th:src="@{/js/jquery.js}" src="../../js/jquery.js"></script>
 <script th:src="@{/js/jquery-1.8.3.min.js}" src="../../js/jquery-1.8.3.min.js"></script>
@@ -196,27 +216,12 @@
 <script th:src="@{/assets/data-tables/DT_bootstrap.js}" type="text/javascript"
         src="../../assets/data-tables/DT_bootstrap.js"></script>
 
-<!--Jquery Validate-->
-<script th:src="@{/js/jquery.validate.min.js}" src="../../js/jquery.validate.min.js"></script>
-<!--Custom Validate-->
-<script th:src="@{/js/custom-validate.js}" src="../../js/custom-validate.js"></script>
-<!--Custom function-->
-<script th:src="@{/js/custom-function.js}" src="../../js/custom-function.js"></script>
-
 
 <!--common script for all pages-->
 <script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
 
-<!--script for this page-->
-<script th:src="@{/js/dynamic-table.js}" src="../../js/dynamic-table.js"></script>
 
-<!--hightchart-->
-<script src="https://img.hcharts.cn/highstock/highstock.js"></script>
-<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
-<script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
-<script src="https://img.hcharts.cn/highcharts/modules/data.js"></script>
-<script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
-<script src="https://img.hcharts.cn/highcharts/themes/dark-unica.js"></script>
+
 
 
 <script>

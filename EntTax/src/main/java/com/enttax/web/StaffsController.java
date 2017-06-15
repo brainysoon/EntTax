@@ -113,6 +113,7 @@ public class StaffsController extends BaseController {
         }
 
         if (staffService.addStaff(sPhone, role) > 0) {
+            map.put(ConstantStr.STATUS,ConstantStr.str_one);
             map.put(ConstantStr.MESSAGE, "添加成功！");
         } else {
             map.put(ConstantStr.MESSAGE, "添加失败,该电话号码已注册！");

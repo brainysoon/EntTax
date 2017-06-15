@@ -1,5 +1,6 @@
 package com.enttax.util;
 
+import com.enttax.model.Bill;
 import com.enttax.util.tools.ToolDates;
 import com.enttax.util.tools.ToolRandoms;
 import com.enttax.util.tools.ToolString;
@@ -40,4 +41,12 @@ public class Encodes {
 
 
 
+    @Test
+    public void fixDateBaseMonthTest(){
+        Bill bill =new Bill();
+        bill.setBMonth(1);
+        bill.setBUpdateTime(new Date());
+        ToolDates.fixDateBaseMonth(bill);
+        System.out.println("月份"+bill.getBMonth()+":年份"+bill.getBUpdateTime());
+    }
 }
