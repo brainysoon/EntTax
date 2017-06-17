@@ -19,9 +19,12 @@ import java.util.*;
 @Service
 public class BillServiceImpl implements BillService {
 
-    private  static final String  INPUTDATA="inputdata";
-    private  static final String  OUTPUTDATA="outputdata";
-    private  static final String  YEAR="year";
+    private static final String INPUTDATA = "inputdata";
+    private static final String OUTPUTDATA = "outputdata";
+    private static final String INPUTNAMES = "inputnames";
+    private static final String OUTPUTNAMES = "outputnames";
+    private static final String YEAR = "year";
+    private static final String BNAMES = "bnames";
 
     @Autowired
     private BillMapper billMapper;
@@ -123,14 +126,11 @@ public class BillServiceImpl implements BillService {
     public Map showMonthBill(String year) {
 
         List<BillInfo> billInfos = billMapper.selectMonthBill(year);
-        List inputList = new ArrayList();
-        List outputList = new ArrayList();
+
         Map map = new HashMap<>();
         Map<Integer, Double> inputMap = new HashMap();
         Map<Integer, Double> outputMap = new HashMap();
 
-        int inputindex = 1;
-        int outputindex = 1;
 
         for (BillInfo billInfo : billInfos) {
             //将查出的进销项数据分开
@@ -143,35 +143,9 @@ public class BillServiceImpl implements BillService {
 
         }
 
-        //将进项list填充月份的金额值，没有月份的填充0
-        for (Integer key : inputMap.keySet()) {
-            if (key == inputindex) {
-                inputList.add(inputMap.get(key));
-                inputindex++;
-            } else {
-                inputList.add(0);
-                inputindex++;
-            }
-        }
-        //将进项数据遍历完的其他月份填充0
-        for (; inputindex <= 12; inputindex++) {
-            inputList.add(0);
-        }
+        List inputList = dataConver(inputMap);
+        List outputList =dataConver(outputMap);
 
-        //将进项list填充月份的金额值，没有月份的填充0
-        for (Integer key : outputMap.keySet()) {
-            if (key == outputindex) {
-                outputList.add(outputMap.get(key));
-                outputindex++;
-            } else {
-                outputList.add(0);
-                outputindex++;
-            }
-        }
-        //将销项数据遍历完的其他月份填充0
-        for (; outputindex <= 12; outputindex++) {
-            outputList.add(0);
-        }
 
         map.put(INPUTDATA, inputList);
         map.put(OUTPUTDATA, outputList);
@@ -184,22 +158,106 @@ public class BillServiceImpl implements BillService {
     public Map showYearBill() {
 
         List<BillInfo> billInfos = billMapper.selectYearBill();
-        Map map=new HashMap();
-        List inputList=new ArrayList();
-        List outputList=new ArrayList();
-        List year=new ArrayList();
-        for (BillInfo billInfo:billInfos){
-            if (billInfo.getbType().equals(ConstantStr.INPUTDATA)){
+        Map map = new HashMap();
+        List inputList = new ArrayList();
+        List outputList = new ArrayList();
+        List year = new ArrayList();
+        for (BillInfo billInfo : billInfos) {
+            if (billInfo.getbType().equals(ConstantStr.INPUTDATA)) {
                 inputList.add(billInfo.getTotalPrice());
                 year.add(billInfo.getbYear());
-            }else {
+            } else {
                 outputList.add(billInfo.getTotalPrice());
             }
         }
-        map.put(YEAR,year);
-        map.put(INPUTDATA,inputList);
-        map.put(OUTPUTDATA,outputList);
+        map.put(YEAR, year);
+        map.put(INPUTDATA, inputList);
+        map.put(OUTPUTDATA, outputList);
 
         return map;
+    }
+
+    @Override
+    public Map showCategoryName() {
+
+        List inputlist = billMapper.selectAllbName(ConstantStr.INPUTDATA);
+        List outputlist = billMapper.selectAllbName(ConstantStr.OUTPUTDATA);
+        Map map = new HashMap();
+        map.put(INPUTNAMES, inputlist);
+        map.put(OUTPUTNAMES, outputlist);
+        return map;
+    }
+
+    @Override
+    public Map showCategoryBill(String year, String inputbName, String outputbName) {
+
+
+        List<BillInfo> inputlist = billMapper.selectCategoryBill(year, inputbName, ConstantStr.INPUTDATA);
+        List<BillInfo> outputlist = billMapper.selectCategoryBill(year, outputbName, ConstantStr.OUTPUTDATA);
+
+        List transfInput = dataTransf(inputlist);
+        List transfOutput = dataTransf(outputlist);
+        Map map = new HashMap();
+        map.put(INPUTDATA, transfInput);
+        map.put(OUTPUTDATA, transfOutput);
+        return map;
+    }
+
+
+    /**
+     * 转换成页面需要格式的数据————categorycountbill
+     * @param list
+     * @return
+     */
+    private List dataTransf(List<BillInfo> list) {
+
+        List arrayList = new ArrayList();
+
+        int index = 1;
+
+
+        for (BillInfo billInfo : list) {
+            if (billInfo.getbMonth() == index) {
+                arrayList.add(billInfo.getTotalPrice());
+                index++;
+            } else {
+                do {
+                    index++;
+                    arrayList.add(0);
+
+                }while (index==billInfo.getbMonth());
+
+                arrayList.add(billInfo.getTotalPrice());
+            }
+        }
+
+        for (; index <= 12; index++) {
+            arrayList.add(0);
+        }
+        return arrayList;
+    }
+
+    /**
+     * 转换成页面需要的格式数据————monthcountbill
+     * @param map
+     * @return
+     */
+    private List dataConver(Map<Integer,Double> map){
+        List arrayList = new ArrayList();
+        int index = 1;
+        //将进项list填充月份的金额值，没有月份的填充0
+        for (Integer key : map.keySet()) {
+            if (key == index) {
+                arrayList.add(map.get(key));
+            } else {
+                arrayList.add(0);
+            }
+            index++;
+        }
+        //将进项数据遍历完的其他月份填充0
+        for (; index <= 12; index++) {
+            arrayList.add(0);
+        }
+        return arrayList;
     }
 }

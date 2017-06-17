@@ -72,4 +72,19 @@ public interface BillService {
      * @return
      */
     Map showYearBill();
+
+    /**
+     * 显示所有类型项目名称
+     * @return
+     */
+    Map showCategoryName();
+
+    /**
+     * 显示分类统计数据
+     * @param year
+     * @param inputbName
+     * @param outputbName
+     * @return
+     */
+    Map showCategoryBill(String year,String inputbName,String outputbName);
 }

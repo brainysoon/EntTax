@@ -217,18 +217,33 @@ public class BillController extends BaseController {
 
     }
 
+    /**
+     * 跳转到年度统计页面
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/yearcount",method = RequestMethod.GET)
     public String yearCount(Model model){
         model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
         return "bill/yearcount";
     }
 
+    /**
+     * 跳转到月度统计页面
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/monthcount",method = RequestMethod.GET)
     public String monthCount(Model model){
         model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
         return "bill/monthcount";
     }
 
+    /**
+     * 跳转到分类统计页面
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/categorycount",method = RequestMethod.GET)
     public String categoryCount(Model model){
         model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
@@ -236,21 +251,57 @@ public class BillController extends BaseController {
     }
 
 
+    /**
+     * 显示月度统计数据
+     * @param year
+     * @return
+     */
     @RequestMapping(value = "/showmonthbill",method = RequestMethod.GET)
     @ResponseBody
     public Map showMonthBill(@RequestParam(value = "year") String year){
 
         Map map =billService.showMonthBill(year);
 
-        System.out.println(map);
         return  map;
     }
 
+    /**
+     * 显示年度统计数据
+     * @return
+     */
     @RequestMapping(value = "/showyearbill",method = RequestMethod.GET)
     @ResponseBody
     public Map showYearBill(){
         return billService.showYearBill();
     }
 
+    /**
+     * 显示进销项名称下拉列表
+     * @return
+     */
+    @RequestMapping(value = "/showbnames",method = RequestMethod.GET)
+    @ResponseBody
+    public Map showCategoryName(){
+        return billService.showCategoryName();
+    }
+
+    /**
+     * 分类统计数据展示
+     * @param year
+     * @param inputbName
+     * @param outputbName
+     * @return
+     */
+    @RequestMapping(value = "/showcategorybill",method = RequestMethod.POST)
+    @ResponseBody
+    public Map showCategoryBill(@RequestParam(value = "year") String year,
+                                @RequestParam(value = "inputbName") String inputbName,
+                                @RequestParam(value = "outputbName") String outputbName){
+
+        System.out.println("---------"+year+inputbName+outputbName);
+        Map map=billService.showCategoryBill(year,inputbName,outputbName);
+        System.out.println(map);
+        return map;
+    }
 
 }

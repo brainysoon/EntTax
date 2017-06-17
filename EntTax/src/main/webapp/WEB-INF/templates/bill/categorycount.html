@@ -201,15 +201,16 @@
         <section class="wrapper">
             <div class="panel-body">
                 <form class="form-inline" role="form">
-                    <div class="input-append date form_datetime">
-                        <input size="16" type="text" value="2012" readonly>
-                        <span class="add-on"><i class="icon-th"></i></span>
+                    <div class="form-group">
+                        <select class="form-control" name="year" id="year"></select>
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" for="exampleInputPassword2">bName</label>
-                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="项目名称">
+                        <select class="form-control" name="bNameinput" id="bNameinput" placeholder="选择进项数据"></select>
                     </div>
-                    <button type="submit" class="btn btn-success">查找</button>
+                    <div class="form-group">
+                        <select class="form-control" name="bNameoutput" id="bNameoutput" placeholder="选择销项数据"></select>
+                    </div>
+                    <button id="categorybutton" type="button" class="btn btn-success">查找</button>
                 </form>
             </div>
             <div id="showdata" style="min-width:400px;height:600px"></div>
@@ -236,56 +237,19 @@
 <!--common script for all pages-->
 <script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
 
+
 <!--hightchart-->
 <script th:src="@{/js/highcharts/highcharts.js}" src="../../js/highcharts/highcharts.js"></script>
 <script th:src="@{/js/highcharts/exporting.js}" src="../../js/highcharts/exporting.js"></script>
 <script th:src="@{/js/highcharts/dark-unica.js}" src="../../js/highcharts/dark-unica.js"></script>
+
+<!--extra.js-->
+<script th:src="@{/js/categorycount.js}" src="../../../js/categorycount.js"></script>
+
 <script type="text/javascript">
     //upload download excel tooltip
     $(function () {
         $("[data-toggle='tooltip']").tooltip();
-    });
-
-
-
-    var chart = new Highcharts.Chart('showdata', {
-        title: {
-            text: '进销项数据分类统计',
-            x: -20
-        },
-        subtitle: {
-            text: '数据来源: 企业增值税DB',
-            x: -20
-        },
-        xAxis: {
-            categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
-        },
-        yAxis: {
-            title: {
-                text: '金额 (万元)'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        tooltip: {
-            valueSuffix: '万元'
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
-        },
-        series: [{
-            name: '进项数据',
-            data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-        }, {
-            name: '销项数据',
-            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-        }]
     });
 
 
