@@ -62,56 +62,44 @@ public class BillMapperTest {
     }
 
     @Test
-    public void showMonthBillTest(){
-       List<BillInfo> list= billMapper.selectMonthBill("2017");
+    public void showMonthBillTest() {
+        List<BillInfo> list = billMapper.selectMonthBill("2017");
 
-        List inputList = new ArrayList();
-        List outputList = new ArrayList();
-        Map<Integer ,Double> inputMap=new HashMap();
-        Map<Integer,Double>  outputMap=new HashMap();
-
-        int inputindex=1;
-        int outputindex=1;
-
-        for (BillInfo billInfo : list) {
-            if (billInfo.getbType().equals(ConstantStr.INPUTDATA)) {
-                inputMap.put(billInfo.getbMonth(),billInfo.getTotalPrice());
-
-            } else {
-                outputMap.put(billInfo.getbMonth(),billInfo.getTotalPrice());
-            }
-
-        }
-
-
-            for (Integer key : inputMap.keySet()) {
-                if (key==inputindex){
-                    inputList.add(inputMap.get(key));
-                    inputindex++;
-                }else {
-                    inputList.add(0);
-                    inputindex++;
-                }
-            }
-            for (;inputindex<=12; inputindex++){
-                inputList.add(0);
-            }
-
-
-            for (Integer key : outputMap.keySet()) {
-                if (key==outputindex){
-                    outputList.add(outputMap.get(key));
-                    outputindex++;
-                }else {
-                    outputList.add(0);
-                    outputindex++;
-                }
-            }
-        for (;outputindex<=12; outputindex++){
-            outputList.add(0);
-        }
-
-        System.out.println(inputList);
-        System.out.println(outputList);
+        System.out.println(list);
     }
+
+    @Test
+    public void showAllbNameTest() {
+        System.out.println(billMapper.selectAllbName("进项数据"));
+    }
+
+    @Test
+    public void showCategoryBillTest() {
+        List<BillInfo> list = billMapper.selectCategoryBill("2016", "鸡肉", "进项数据");
+        System.out.println(list);
+    }
+
+    @Test
+    public void showRateCountBillTest(){
+        List<BillInfo> inputlist = billMapper.selectRateCountBill("2016", ConstantStr.INPUTDATA);
+        List<BillInfo> outputlist = billMapper.selectRateCountBill("2016", ConstantStr.OUTPUTDATA);
+        Map map=new HashMap();
+        map.put("input",dataToList(inputlist));
+        map.put("output",dataToList(outputlist));
+        System.out.println(map);
+
+
+    }
+
+    private List dataToList(List<BillInfo> billInfos){
+        List  list2=new ArrayList();
+        for (BillInfo billInfo :billInfos) {
+            List  list1=new ArrayList();
+            list1.add("\'"+billInfo.getbName()+"\'");
+            list1.add(billInfo.getTotalPrice());
+            list2.add(list1);
+        }
+        return list2;
+    }
+
 }
