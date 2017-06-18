@@ -144,7 +144,7 @@ public class BillServiceImpl implements BillService {
         }
 
         List inputList = dataConver(inputMap);
-        List outputList =dataConver(outputMap);
+        List outputList = dataConver(outputMap);
 
 
         map.put(INPUTDATA, inputList);
@@ -206,6 +206,7 @@ public class BillServiceImpl implements BillService {
 
     /**
      * 转换成页面需要格式的数据————categorycountbill
+     *
      * @param list
      * @return
      */
@@ -217,17 +218,19 @@ public class BillServiceImpl implements BillService {
 
 
         for (BillInfo billInfo : list) {
+            //将月份的金额数据填充到list集合里
             if (billInfo.getbMonth() == index) {
                 arrayList.add(billInfo.getTotalPrice());
                 index++;
             } else {
-                do {
-                    index++;
+                //没有月份的数据填充0
+                while (index != billInfo.getbMonth()) {
                     arrayList.add(0);
-
-                }while (index==billInfo.getbMonth());
+                    index++;
+                }
 
                 arrayList.add(billInfo.getTotalPrice());
+                index++;
             }
         }
 
@@ -239,16 +242,19 @@ public class BillServiceImpl implements BillService {
 
     /**
      * 转换成页面需要的格式数据————monthcountbill
+     *
      * @param map
      * @return
      */
-    private List dataConver(Map<Integer,Double> map){
+    private List dataConver(Map<Integer, Double> map) {
         List arrayList = new ArrayList();
         int index = 1;
         //将进项list填充月份的金额值，没有月份的填充0
         for (Integer key : map.keySet()) {
             if (key == index) {
-                arrayList.add(map.get(key));
+                //保留小数点两位
+                String result = String.format("%.2f", map.get(key));
+                arrayList.add(result);
             } else {
                 arrayList.add(0);
             }

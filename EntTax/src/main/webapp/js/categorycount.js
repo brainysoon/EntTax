@@ -18,6 +18,7 @@ function years() {
 
 //填充项目名称下拉列表
 bNames();
+
 function bNames() {
 
     var bNameinput = document.getElementById('bNameinput');
@@ -34,6 +35,8 @@ function bNames() {
             bNameoutput.innerHTML +=str;
         });
     });
+
+
 }
 
 
@@ -51,7 +54,7 @@ function categoryCountBill() {
         type: "POST",
         async: false,
         data: {
-            year: $("#year").val(),      //传送电话号码
+            year: $("#year").val(),
             inputbName:$("#bNameinput").val(),
             outputbName:$("#bNameoutput").val()
         },

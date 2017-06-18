@@ -9,7 +9,7 @@
     <meta name="keyword" content="EntTax">
     <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../img/favicon.ico">
 
-    <title>分类统计</title>
+    <title>比率统计</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -243,13 +243,59 @@
 <script th:src="@{/js/highcharts/exporting.js}" src="../../js/highcharts/exporting.js"></script>
 <script th:src="@{/js/highcharts/dark-unica.js}" src="../../js/highcharts/dark-unica.js"></script>
 
-<!--extra.js-->
-<script th:src="@{/js/categorycount.js}" src="../../../js/categorycount.js"></script>
+
 
 <script type="text/javascript">
     //upload download excel tooltip
     $(function () {
         $("[data-toggle='tooltip']").tooltip();
+    });
+
+    $(function () {
+        $('#showdata').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '2014 某网站各浏览器浏览量占比'
+            },
+            tooltip: {
+                headerFormat: '{series.name}<br>',
+                pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '浏览器访问量占比',
+                data: [
+                    ['Firefox',   45.0],
+                    ['IE',       26.8],
+                    {
+                        name: 'Chrome',
+                        y: 12.8,
+                        sliced: true,
+                        selected: true
+                    },
+                    ['Safari',    8.5],
+                    ['Opera',     6.2],
+                    ['其他',   0.7]
+                ]
+            }]
+        });
     });
 
 
