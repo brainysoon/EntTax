@@ -10,8 +10,8 @@ function years() {
     var nowYear = dates.getFullYear();
     for (i = nowYear; i >= 1995; i--) {
         //用于打印输出年的范围，以下类同
-        var str = "<option value=\"" + i + "\">" + i + "年"+"</option>";
-        y.innerHTML +=str;
+        var str = "<option value=\"" + i + "\">" + i + "年" + "</option>";
+        y.innerHTML += str;
     }
 }
 
@@ -19,44 +19,54 @@ function years() {
 //填充项目名称下拉列表
 bNames();
 
+
+var inName;
+var outName;
 function bNames() {
 
     var bNameinput = document.getElementById('bNameinput');
     var bNameoutput = document.getElementById('bNameoutput');
-    $.get("/bill/showbnames",function(data){
+    $.get("/bill/showbnames", function (data) {
         //进项数据名称
-        $.each(data.inputnames, function(index,item){
-            var str = "<option value=\"" + item + "\">"+ "进项："+item+"</option>";
-            bNameinput.innerHTML +=str;
+        $.each(data.inputnames, function (index, item) {
+            //解决select默认选中值为空的问题
+            if (index == 0) {
+                inName = item;
+            }
+            var str = "<option value=\"" + item + "\">" + "进项：" + item + "</option>";
+            bNameinput.innerHTML += str;
         });
         //销项数据名称
-        $.each(data.outputnames, function(index,item){
-            var str = "<option value=\"" + item + "\">"+ "销项："+item+"</option>";
-            bNameoutput.innerHTML +=str;
+        $.each(data.outputnames, function (index, item) {
+            if (index == 0) {
+                outName = item;
+            }
+            var str = "<option value=\"" + item + "\">" + "销项：" + item + "</option>";
+            bNameoutput.innerHTML += str;
         });
     });
-
-
 }
 
-
-
-$('#categorybutton').click(function(){
-       categoryCountBill();
+//下拉列表选择查询提交表单值
+$('#categorybutton').click(function () {
+    var inName = $('#bNameinput').val();
+    var outName = $('#bNameoutput').val();
+    categoryCountBill(inName, outName);
 });
 
-$(document).ready(function(){
-    categoryCountBill();
+$(function () {
+    alert("aaaa");
+    categoryCountBill(inName,outName);
 });
-function categoryCountBill() {
+function categoryCountBill(inname, outname) {
     $.ajax({
         url: "/bill/showcategorybill",
         type: "POST",
         async: false,
         data: {
-            year: $("#year").val(),
-            inputbName:$("#bNameinput").val(),
-            outputbName:$("#bNameoutput").val()
+            year: $('#year').val(),
+            inputbName: inname,
+            outputbName: outname
         },
         timeout: 30000,       //超时时间
         dataType: "json",     //返回的数据类型
@@ -97,7 +107,7 @@ function categoryCountBill() {
                     data: data.inputdata
                 }, {
                     name: '销项数据',
-                    data:data.outputdata
+                    data: data.outputdata
                 }]
             });
 

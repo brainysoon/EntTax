@@ -35,4 +35,9 @@ public class BillServiceTest {
     public void showCategoryBillTest(){
         System.out.println(billService.showCategoryBill("2016","鸡肉","铁皮"));
     }
+
+    @Test
+    public void showRateCountBillTest(){
+        System.out.println(billService.showRateCountBill("2016"));
+    }
 }

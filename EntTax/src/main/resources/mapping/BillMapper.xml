@@ -84,4 +84,10 @@
        GROUP BY BMonth;
     </select>
 
+    <select id="selectRateCountBill" parameterType="String" resultType="BillInfo">
+        SELECT BName, sum(BPrice) AS totalprice
+        FROM bill WHERE  BType=#{bType} AND year(BUpdateTime)=#{year}
+        GROUP BY BName;
+    </select>
+
 </mapper>

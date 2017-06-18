@@ -83,4 +83,14 @@ public interface BillMapper {
      */
      List<BillInfo>  selectCategoryBill(@Param("year") String year,
                                            @Param("bName") String bName,@Param("bType") String bType);
+
+
+    /**
+     * 通过年份和项目名称查找数据
+     * @param year
+     * @param bType
+     * @return
+     */
+     List<BillInfo>  selectRateCountBill(@Param("year") String year,@Param("bType") String bType);
+
 }

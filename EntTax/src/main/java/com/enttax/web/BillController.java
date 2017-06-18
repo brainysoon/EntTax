@@ -250,6 +250,17 @@ public class BillController extends BaseController {
         return "bill/categorycount";
     }
 
+    /**
+     * 跳转到比率统计页面
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/ratecount",method = RequestMethod.GET)
+    public String rateCount(Model model){
+        model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
+        return "bill/ratecount";
+    }
+
 
     /**
      * 显示月度统计数据
@@ -300,6 +311,16 @@ public class BillController extends BaseController {
 
         System.out.println("---------"+year+inputbName+outputbName);
         Map map=billService.showCategoryBill(year,inputbName,outputbName);
+        System.out.println(map);
+        return map;
+    }
+
+    @RequestMapping(value = "/showratebill",method = RequestMethod.GET)
+    @ResponseBody
+    public Map showRateCountBill(@RequestParam("year") String year){
+
+        System.out.println(year+"---------------------");
+        Map map=billService.showRateCountBill(year);
         System.out.println(map);
         return map;
     }

@@ -7,10 +7,12 @@ import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.ToolDates;
 import com.enttax.util.tools.ToolString;
 import com.enttax.vo.BillInfo;
+import com.enttax.web.Constant;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -203,6 +205,43 @@ public class BillServiceImpl implements BillService {
         return map;
     }
 
+    @Override
+    public Map showRateCountBill(String year) {
+
+        List<BillInfo> inputlist = billMapper.selectRateCountBill(year, ConstantStr.INPUTDATA);
+        List<BillInfo> outputlist = billMapper.selectRateCountBill(year, ConstantStr.OUTPUTDATA);
+
+        Map map = new HashMap();
+        map.put(INPUTDATA,dataToList(inputlist));
+        map.put(OUTPUTDATA,dataToList(outputlist));
+        return map;
+    }
+
+    /**
+     * 将list转换为map
+     *
+     * @param list
+     * @return
+     */
+    private Map dataToMap(List<BillInfo> list) {
+
+        Map map = new HashMap();
+        for (BillInfo billInfo : list) {
+            map.put(billInfo.getbName(), billInfo.getTotalPrice());
+        }
+        return map;
+    }
+
+    private List dataToList(List<BillInfo> billInfos){
+        List  list2=new ArrayList();
+        for (BillInfo billInfo :billInfos) {
+            List  list1=new ArrayList();
+            list1.add(billInfo.getbName());
+            list1.add(billInfo.getTotalPrice());
+            list2.add(list1);
+        }
+        return list2;
+    }
 
     /**
      * 转换成页面需要格式的数据————categorycountbill
@@ -213,14 +252,15 @@ public class BillServiceImpl implements BillService {
     private List dataTransf(List<BillInfo> list) {
 
         List arrayList = new ArrayList();
-
         int index = 1;
 
-
         for (BillInfo billInfo : list) {
+            //保留小数点2位
+            BigDecimal bg = new BigDecimal(billInfo.getTotalPrice());
+            double result = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
             //将月份的金额数据填充到list集合里
             if (billInfo.getbMonth() == index) {
-                arrayList.add(billInfo.getTotalPrice());
+                arrayList.add(result);
                 index++;
             } else {
                 //没有月份的数据填充0
@@ -228,8 +268,7 @@ public class BillServiceImpl implements BillService {
                     arrayList.add(0);
                     index++;
                 }
-
-                arrayList.add(billInfo.getTotalPrice());
+                arrayList.add(result);
                 index++;
             }
         }
@@ -253,8 +292,7 @@ public class BillServiceImpl implements BillService {
         for (Integer key : map.keySet()) {
             if (key == index) {
                 //保留小数点两位
-                String result = String.format("%.2f", map.get(key));
-                arrayList.add(result);
+                arrayList.add(map.get(key));
             } else {
                 arrayList.add(0);
             }

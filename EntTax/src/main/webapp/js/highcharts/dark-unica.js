@@ -66,6 +66,12 @@
                     textTransform: 'uppercase'
                 }
             },
+            subtitle2: {
+                style: {
+                    color: '#E0E0E3',
+                    textTransform: 'uppercase'
+                }
+            },
             xAxis: {
                 gridLineColor: '#707073',
                 labels: {

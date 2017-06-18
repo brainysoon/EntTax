@@ -164,7 +164,8 @@
                     <ul class="sub">
                         <li><a class="" th:href="@{/bill/monthcount}" href="#">月度统计</a></li>
                         <li><a class="" th:href="@{/bill/yearcount}" href="#">年度统计</a></li>
-                        <li class="active"><a  th:href="@{/bill/categorycount}" href="#">分类统计</a></li>
+                        <li class=""><a  th:href="@{/bill/categorycount}" href="#">分类统计</a></li>
+                        <li class="active"><a th:href="@{/bill/ratecount}" href="#">比率统计</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -199,19 +200,8 @@
     <!--page_start-->
     <section id="main-content">
         <section class="wrapper">
-            <div class="panel-body">
-                <form class="form-inline" role="form">
-                    <div class="form-group">
-                        <select class="form-control" name="year" id="year"></select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" name="bNameinput" id="bNameinput"></select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" name="bNameoutput" id="bNameoutput"></select>
-                    </div>
-                    <button id="categorybutton" type="button" class="btn btn-success">查找</button>
-                </form>
+            <div class="col-lg-2">
+                <select class="form-control m-bot15" name="year" id="year"></select>
             </div>
             <div id="showdata" style="min-width:400px;height:600px"></div>
         </section>
@@ -243,59 +233,13 @@
 <script th:src="@{/js/highcharts/exporting.js}" src="../../js/highcharts/exporting.js"></script>
 <script th:src="@{/js/highcharts/dark-unica.js}" src="../../js/highcharts/dark-unica.js"></script>
 
+<script th:src="@{/js/rate-count.js}"></script>
 
 
 <script type="text/javascript">
     //upload download excel tooltip
     $(function () {
         $("[data-toggle='tooltip']").tooltip();
-    });
-
-    $(function () {
-        $('#showdata').highcharts({
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false
-            },
-            title: {
-                text: '2014 某网站各浏览器浏览量占比'
-            },
-            tooltip: {
-                headerFormat: '{series.name}<br>',
-                pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                        style: {
-                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                        }
-                    }
-                }
-            },
-            series: [{
-                type: 'pie',
-                name: '浏览器访问量占比',
-                data: [
-                    ['Firefox',   45.0],
-                    ['IE',       26.8],
-                    {
-                        name: 'Chrome',
-                        y: 12.8,
-                        sliced: true,
-                        selected: true
-                    },
-                    ['Safari',    8.5],
-                    ['Opera',     6.2],
-                    ['其他',   0.7]
-                ]
-            }]
-        });
     });
 
 

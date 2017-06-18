@@ -87,4 +87,12 @@ public interface BillService {
      * @return
      */
     Map showCategoryBill(String year,String inputbName,String outputbName);
+
+
+    /**
+     * 显示比率统计数据
+     * @param year
+     * @return
+     */
+    Map showRateCountBill(String year);
 }

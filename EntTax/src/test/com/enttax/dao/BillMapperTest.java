@@ -78,4 +78,28 @@ public class BillMapperTest {
         List<BillInfo> list = billMapper.selectCategoryBill("2016", "鸡肉", "进项数据");
         System.out.println(list);
     }
+
+    @Test
+    public void showRateCountBillTest(){
+        List<BillInfo> inputlist = billMapper.selectRateCountBill("2016", ConstantStr.INPUTDATA);
+        List<BillInfo> outputlist = billMapper.selectRateCountBill("2016", ConstantStr.OUTPUTDATA);
+        Map map=new HashMap();
+        map.put("input",dataToList(inputlist));
+        map.put("output",dataToList(outputlist));
+        System.out.println(map);
+
+
+    }
+
+    private List dataToList(List<BillInfo> billInfos){
+        List  list2=new ArrayList();
+        for (BillInfo billInfo :billInfos) {
+            List  list1=new ArrayList();
+            list1.add("\'"+billInfo.getbName()+"\'");
+            list1.add(billInfo.getTotalPrice());
+            list2.add(list1);
+        }
+        return list2;
+    }
+
 }
