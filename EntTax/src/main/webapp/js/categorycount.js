@@ -19,10 +19,10 @@ function years() {
 //填充项目名称下拉列表
 bNames();
 
-
-var inName;
-var outName;
 function bNames() {
+    //记录each遍历的第一个值作为select的默认选中值
+    var inNames;
+    var outName;
 
     var bNameinput = document.getElementById('bNameinput');
     var bNameoutput = document.getElementById('bNameoutput');
@@ -31,7 +31,7 @@ function bNames() {
         $.each(data.inputnames, function (index, item) {
             //解决select默认选中值为空的问题
             if (index == 0) {
-                inName = item;
+                inNames = item;
             }
             var str = "<option value=\"" + item + "\">" + "进项：" + item + "</option>";
             bNameinput.innerHTML += str;
@@ -44,7 +44,11 @@ function bNames() {
             var str = "<option value=\"" + item + "\">" + "销项：" + item + "</option>";
             bNameoutput.innerHTML += str;
         });
+
+        //解决select默认选中值为空的问题
+        categoryCountBill(inNames,outName);
     });
+
 }
 
 //下拉列表选择查询提交表单值
@@ -54,16 +58,15 @@ $('#categorybutton').click(function () {
     categoryCountBill(inName, outName);
 });
 
-$(function () {
-    categoryCountBill(inName,outName);
-});
+//分类统计加载数据
 function categoryCountBill(inname, outname) {
+    var year=$('#year').val();
     $.ajax({
         url: "/bill/showcategorybill",
         type: "POST",
         async: false,
         data: {
-            year: $('#year').val(),
+            year: year,
             inputbName: inname,
             outputbName: outname
         },
@@ -72,7 +75,7 @@ function categoryCountBill(inname, outname) {
         success: function (data) {
             $('#showdata').highcharts({
                 title: {
-                    text: '进销项数据分类统计',
+                    text: year+'进销项数据分类统计',
                     x: -20
                 },
                 subtitle: {
@@ -102,10 +105,10 @@ function categoryCountBill(inname, outname) {
                     borderWidth: 0
                 },
                 series: [{
-                    name: '进项数据',
+                    name: '进项:'+inname,
                     data: data.inputdata
                 }, {
-                    name: '销项数据',
+                    name: '销项:'+outname,
                     data: data.outputdata
                 }]
             });
