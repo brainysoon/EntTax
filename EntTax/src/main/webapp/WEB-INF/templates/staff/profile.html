@@ -232,11 +232,11 @@
                                             <span th:if="${staff.sSex}==false">女</span></p>
                                     </div>
                                     <div class="bio-row">
-                                        <p><span>出生日期:</span><span th:text="${toStringBirthday}"></span>
+                                        <p><span>出生日期:</span><span th:text="${#dates.format(staff.sBirthday, 'yyyy-MM-dd')}"></span>
                                         </p>
                                     </div>
                                     <div class="bio-row">
-                                        <p><span>入司时间:</span><span th:text="${toStringEnter}"></span></p>
+                                        <p><span>入司时间:</span><span th:text="${#dates.format(staff.sEnter, 'yyyy-MM-dd')}"></span></p>
                                     </div>
                                 </div>
                             </div>

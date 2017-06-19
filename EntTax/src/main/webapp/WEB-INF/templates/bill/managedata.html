@@ -219,7 +219,6 @@
                             <!--头部显示的所有包含的内容-->
                             <thead>
                             <tr>
-                                <td hidden></td>
                                 <th>项目序号</th>
                                 <th>项目名称</th>
                                 <th>类型</th>
@@ -233,7 +232,6 @@
                             <!--数据显示部分-->
                             <tbody id="tbody">
                             <tr class="odd gradeX" th:each="bill,iterStat:${datalist}">
-                                <td hidden th:text="${bill.bMark}"></td>
                                 <th th:text="${bill.bId}"></th>
                                 <th th:text="${bill.bName}"></th>
                                 <th th:text="${bill.bType}"></th>

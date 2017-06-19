@@ -55,7 +55,6 @@ $('#categorybutton').click(function () {
 });
 
 $(function () {
-    alert("aaaa");
     categoryCountBill(inName,outName);
 });
 function categoryCountBill(inname, outname) {
