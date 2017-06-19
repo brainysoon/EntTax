@@ -14,6 +14,8 @@ public class BillInfo {
     private String bYear;
     private Double totalPrice;
 
+    private String bName;
+
     public String getbType() {
         return bType;
     }
@@ -30,12 +32,18 @@ public class BillInfo {
         return bYear;
     }
 
+    public String getbName() {
+        return bName;
+    }
+
     @Override
     public String toString() {
         return "BillInfo{" +
                 "bType='" + bType + '\'' +
                 ", bMonth=" + bMonth +
+                ", bYear='" + bYear + '\'' +
                 ", totalPrice=" + totalPrice +
+                ", bName='" + bName + '\'' +
                 '}';
     }
 }

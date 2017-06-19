@@ -164,6 +164,7 @@
                         <li class="active"><a class="" th:href="@{/bill/monthcount}" href="#">月度统计</a></li>
                         <li><a class="" th:href="@{/bill/yearcount}" href="#">年度统计</a></li>
                         <li><a class="" th:href="@{/bill/categorycount}" href="#">分类统计</a></li>
+                        <li class=""><a th:href="@{/bill/ratecount}" href="#">比率统计</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -199,8 +200,7 @@
     <section id="main-content">
         <section class="wrapper">
             <div class="col-lg-2">
-                <select class="form-control m-bot15" name="year" id="year">
-                </select>
+                <select class="form-control m-bot15" name="year" id="year"></select>
             </div>
             <div id="showdata" style="min-width:400px;height:600px"></div>
         </section>
@@ -234,7 +234,7 @@
 <script th:src="@{/js/showbill-monthdata.js}"></script>
 
 <!--extra.js-->
-<script src="../../../js/extra.js"></script>
+<script th:src="@{/js/extra.js}" src="../../../js/extra.js"></script>
 
 
 <script>

@@ -49,6 +49,7 @@
     <select id="selectAll" resultMap="BaseResultMap">
     SELECT BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark
     FROM bill
+    WHERE BMark>=0;
   </select>
     <select id="selectByBMark" parameterType="java.lang.Integer" resultMap="BaseResultMap">
          SELECT BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark
@@ -64,7 +65,7 @@
     <select id="selectMonthBill" parameterType="java.lang.String" resultType="BillInfo">
         SELECT BType, BMonth, sum(BPrice) AS totalPrice
         FROM bill
-        WHERE  BMark >=0 AND year(BUpdateTime) =#{year}
+        WHERE  BMark >=0 AND year(BUpdateTime) =#{year} AND BMark>=0
         GROUP BY BType, BMonth ;
     </select>
 
@@ -72,6 +73,22 @@
         SELECT BType, YEAR(BUpdateTime) AS bYear, sum(BPrice) AS totalPrice
         FROM bill WHERE  BMark >=0
         GROUP BY BType, YEAR(BUpdateTime) ;
+    </select>
+
+    <select id="selectAllbName" parameterType="String" resultType="String">
+       SELECT BName FROM bill WHERE BType=#{bType} GROUP BY BName;
+    </select>
+
+    <select id="selectCategoryBill" parameterType="String" resultType="BillInfo">
+       SELECT BMonth, sum(BPrice) AS totalPrice
+       FROM bill WHERE BName=#{bName} AND BType=#{bType} AND year(BUpdateTime)=#{year} AND BMark>=0
+       GROUP BY BMonth;
+    </select>
+
+    <select id="selectRateCountBill" parameterType="String" resultType="BillInfo">
+        SELECT BName, sum(BPrice) AS totalprice
+        FROM bill WHERE  BType=#{bType} AND year(BUpdateTime)=#{year} AND BMark>=0
+        GROUP BY BName;
     </select>
 
 </mapper>

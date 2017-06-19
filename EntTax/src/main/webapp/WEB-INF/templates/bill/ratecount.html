@@ -9,7 +9,7 @@
     <meta name="keyword" content="EntTax">
     <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../img/favicon.ico">
 
-    <title>年度统计</title>
+    <title>比率统计</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -25,10 +25,11 @@
     <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
     <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
 
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--此处未应用 [if lt IE 9]>
-    <script th:src="@{/js/html5shiv.js}" src="../../../js/html5shiv.js"></script>
-    <script th:src="@{/js/respond.min.js}" src="../../../js/respond.min.js"></script>
+    <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
+    <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
     <![endif]-->
 
 </head>
@@ -150,7 +151,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="#">查看员工</a></li>
+                        <li><a class=""  href="#">查看员工</a></li>
                         <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
                     </ul>
                 </li>
@@ -162,9 +163,9 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" th:href="@{/bill/monthcount}" href="#">月度统计</a></li>
-                        <li class="active"><a class="" th:href="@{/bill/yearcount}" href="#">年度统计</a></li>
-                        <li><a class="" th:href="@{/bill/categorycount}" href="#">分类统计</a></li>
-                        <li class=""><a th:href="@{/bill/ratecount}" href="#">比率统计</a></li>
+                        <li><a class="" th:href="@{/bill/yearcount}" href="#">年度统计</a></li>
+                        <li class=""><a  th:href="@{/bill/categorycount}" href="#">分类统计</a></li>
+                        <li class="active"><a th:href="@{/bill/ratecount}" href="#">比率统计</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -199,12 +200,16 @@
     <!--page_start-->
     <section id="main-content">
         <section class="wrapper">
+            <div class="col-lg-2">
+                <select class="form-control m-bot15" name="year" id="year"></select>
+            </div>
             <div id="showdata" style="min-width:400px;height:600px"></div>
         </section>
     </section>
     <!--main content end-->
 
 </section>
+
 
 
 <!-- js placed at the end of the document so the pages load faster -->
@@ -227,12 +232,16 @@
 <script th:src="@{/js/highcharts/highcharts.js}" src="../../js/highcharts/highcharts.js"></script>
 <script th:src="@{/js/highcharts/exporting.js}" src="../../js/highcharts/exporting.js"></script>
 <script th:src="@{/js/highcharts/dark-unica.js}" src="../../js/highcharts/dark-unica.js"></script>
-<script th:src="@{/js/showbill-yeardata.js}"></script>
-<script>
+
+<script th:src="@{/js/rate-count.js}"></script>
+
+
+<script type="text/javascript">
     //upload download excel tooltip
     $(function () {
         $("[data-toggle='tooltip']").tooltip();
     });
+
 
 </script>
 
