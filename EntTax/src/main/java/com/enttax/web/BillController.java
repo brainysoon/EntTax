@@ -158,7 +158,6 @@ public class BillController extends BaseController {
     @RequestMapping(value = "/managedata", method = RequestMethod.GET)
     public String toManageData(Model model) {
         List<Bill> dataList=excelService.showData();
-        System.out.println(dataList);
         model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
         model.addAttribute(ConstantStr.DATALIST,dataList);
         return "bill/managedata";
@@ -309,9 +308,7 @@ public class BillController extends BaseController {
                                 @RequestParam(value = "inputbName") String inputbName,
                                 @RequestParam(value = "outputbName") String outputbName){
 
-        System.out.println("---------"+year+inputbName+outputbName);
         Map map=billService.showCategoryBill(year,inputbName,outputbName);
-        System.out.println(map);
         return map;
     }
 
@@ -319,9 +316,7 @@ public class BillController extends BaseController {
     @ResponseBody
     public Map showRateCountBill(@RequestParam("year") String year){
 
-        System.out.println(year+"---------------------");
         Map map=billService.showRateCountBill(year);
-        System.out.println(map);
         return map;
     }
 
