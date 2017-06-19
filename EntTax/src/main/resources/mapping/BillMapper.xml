@@ -68,7 +68,13 @@
         GROUP BY BType, BMonth ;
     </select>
 
-    <select id="selectYearBill"  resultType="BillInfo">
+    <select id="selectYearMonthAndBMarkBill" resultMap="BaseResultMap">
+        SELECT BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark
+        FROM bill
+        WHERE  BMark =#{bmark} AND year(BUpdateTime) =#{year} AND BMonth=#{month} ;
+    </select>
+
+    <select id="selectYearBill" resultType="BillInfo">
         SELECT BType, YEAR(BUpdateTime) AS bYear, sum(BPrice) AS totalPrice
         FROM bill WHERE  BMark >=0
         GROUP BY BType, YEAR(BUpdateTime) ;

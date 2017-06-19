@@ -48,6 +48,7 @@ public interface BillService {
 
     /**
      * 通过id删除bill数据
+     *
      * @param bId
      * @return
      */
@@ -55,6 +56,7 @@ public interface BillService {
 
     /**
      * 更新bill数据
+     *
      * @param bill
      * @return
      */
@@ -63,36 +65,43 @@ public interface BillService {
 
     /**
      * 显示月度统计
+     *
      * @return
      */
     Map showMonthBill(String year);
 
     /**
      * 显示年度统计
+     *
      * @return
      */
     Map showYearBill();
 
     /**
      * 显示所有类型项目名称
+     *
      * @return
      */
     Map showCategoryName();
 
     /**
      * 显示分类统计数据
+     *
      * @param year
      * @param inputbName
      * @param outputbName
      * @return
      */
-    Map showCategoryBill(String year,String inputbName,String outputbName);
+    Map showCategoryBill(String year, String inputbName, String outputbName);
 
 
     /**
      * 显示比率统计数据
+     *
      * @param year
      * @return
      */
     Map showRateCountBill(String year);
+
+    List<Bill> getBillByYearAndMonth(String year, String month);
 }

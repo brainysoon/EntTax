@@ -209,10 +209,28 @@
     <!--page_start-->
     <section id="main-content">
         <section class="wrapper">
+            <div class="row">
+                <div class="col-xs-2">
+                    <select class="form-control m-bot15" name="key" id="taxout_key"
+                            th:remove="all-but-first">
+                        <option th:each="bill:${bills}"
+                                th:value="${bill.bId}" th:text="${bill.bName}">
+                        </option>
+                        <option>2014</option>
+                    </select>
+                </div>
+                <div class="col-xs-2">
+                    <select class="form-control m-bot15" name="month"
+                            id="taxout_month">
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                    </select>
+                </div>
+            </div>
             <div id="diagram" style="min-width:400px;height:400px">
-                <script>
-
-                </script>
             </div>
             <br><br>
         </section>

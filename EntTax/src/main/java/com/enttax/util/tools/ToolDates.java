@@ -108,4 +108,18 @@ public class ToolDates {
 
         return bill;
     }
+
+    /**
+     * @param month
+     * @return
+     */
+    public static int[] getPreSixMonth(int month) {
+
+        int[] months = new int[6];
+
+        for (int i = months.length; i >= 0; i--) {
+
+
+        }
+    }
 }
