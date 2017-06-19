@@ -24,7 +24,7 @@ function sendSmsCode(obj) {
         async: true,           //关闭异步，这儿需要同步
         data: {
             sphone: $("#sphone").val(),      //传送电话号码
-            ways:ways                        //用于区分重置电话号码和通过电话号码重置密码
+            ways: ways                        //用于区分重置电话号码和通过电话号码重置密码
         },
         timeout: 30000,       //超时时间
         dataType: "json",     //返回的数据类型
@@ -101,7 +101,7 @@ function sendEMailCode(obj) {
         async: true,
         data: {
             semail: $("#semail").val(),
-            ways:ways
+            ways: ways
         },
         timeout: 30000,
         dataType: "json",
@@ -127,9 +127,9 @@ function sendEMailCode(obj) {
 }
 
 //添加员工
-$('#add_staff_button').click(function(){
+$('#add_staff_button').click(function () {
 
-    if (!checkPhoneNum_addStaff()){
+    if (!checkPhoneNum_addStaff()) {
         return false;
     }
 
@@ -139,17 +139,19 @@ $('#add_staff_button').click(function(){
         async: false,
         data: {
             sPhone: $("#sphone").val(),      //传送电话号码
-            role:$("#role").val()         //传送角色
+            role: $("#role").val()         //传送角色
         },
         timeout: 30000,       //超时时间
         dataType: "json",     //返回的数据类型
         success: function (data) {
 
-            window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info,{onOk:function () {
-                if(data.status==1){
-                    location.reload();
+            window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info, {
+                onOk: function () {
+                    if (data.status == 1) {
+                        location.reload();
+                    }
                 }
-            }});
+            });
         },
         complete: function (XMLHttpRequest, status) {
 
@@ -162,22 +164,26 @@ $('#add_staff_button').click(function(){
 });
 
 //删除员工操作
-function delete_staff (obj) {
+function delete_staff(obj) {
 
     var group = $(obj).attr("id");
 
-    var txt=  "您确定要删除编号为"+group+"的员工？";
-    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.confirm,{onOk:function(){
+    var txt = "您确定要删除编号为" + group + "的员工？";
+    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.confirm, {
+        onOk: function () {
 
-        $.get("/staffs/deletestaff",{sid:group},function(data){
+            $.get("/staffs/deletestaff", {sid: group}, function (data) {
 
-            window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info,{onOk:function () {
-                location.reload();
-            }});
+                window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info, {
+                    onOk: function () {
+                        location.reload();
+                    }
+                });
 
-        });
+            });
 
-    }});
+        }
+    });
 
 
 }
@@ -196,25 +202,27 @@ function editInfo(obj) {
 
 
 //更新员工操作
-function update_staff(){
+function update_staff() {
     //获取模态框数据
     var sId = $('#update_sId').html();
-    var rName =$('#update_rName').val();
+    var rName = $('#update_rName').val();
 
     $.ajax({
         type: "POST",
         url: "/staffs/updatestaff",
         data: {
-            sId:sId,
-            rName:rName
+            sId: sId,
+            rName: rName
         },
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
 
-            window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info,{onOk:function () {
-                location.reload();
+            window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info, {
+                onOk: function () {
+                    location.reload();
 
-            }});
+                }
+            });
 
         }
     });
@@ -223,19 +231,23 @@ function update_staff(){
 //删除bill数据
 function deletebill(obj) {
     var group = $(obj).attr("id");
-    var txt=  "您确定要删除项目序号为"+group+"的数据吗？";
-    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.confirm,{onOk:function(){
+    var txt = "您确定要删除项目序号为" + group + "的数据吗？";
+    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.confirm, {
+        onOk: function () {
 
-        $.get("/bill/deletebill",{bId:group},function(data){
-            window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info,{onOk:function () {
-                if (data.status==1){
-                    location.reload();
-                }
-            }});
+            $.get("/bill/deletebill", {bId: group}, function (data) {
+                window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info, {
+                    onOk: function () {
+                        if (data.status == 1) {
+                            location.reload();
+                        }
+                    }
+                });
 
-        });
+            });
 
-    }});
+        }
+    });
 }
 
 
@@ -252,9 +264,9 @@ function editbill(obj) {
     $('#bId').html(bId);
     $('#bName').val(bName);
 
-    if (bType=="进项数据"){
+    if (bType == "进项数据") {
         $('#bType1').val(bType);
-    }else {
+    } else {
         $('#bType2').val(bType);
     }
 
@@ -266,33 +278,39 @@ function editbill(obj) {
 function updatebill() {
     //获取模态框数据
     var bId = $('#bId').html();
-    var bName =$('#bName').val();
-    var bType =$('input[name="bType"]').filter(':checked').val();
-    var bPrice =$('#bPrice').val();
-    var bMonth =$('#bMonth').val();
+    var bName = $('#bName').val();
+    var bType = $('input[name="bType"]').filter(':checked').val();
+    var bPrice = $('#bPrice').val();
+    var bMonth = $('#bMonth').val();
 
+    //首先校验邮箱的正确性
+    if (bName == null || bName == "") {
+        window.wxc.xcConfirm("不能有空数据", window.wxc.xcConfirm.typeEnum.error);
+    } else {
 
-    $.ajax({
-        type: "POST",
-        url: "/bill/updatebill",
-        data: {
-            bId:bId,
-            bName:bName,
-            bType:bType,
-            bPrice:bPrice,
-            bMonth:bMonth
-        },
-        dataType: 'json',
-        success: function(data) {
-            window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info,{onOk:function () {
-                if (data.status==1){
-                    location.reload();
-                }
+        $.ajax({
+            type: "POST",
+            url: "/bill/updatebill",
+            data: {
+                bId: bId,
+                bName: bName,
+                bType: bType,
+                bPrice: bPrice,
+                bMonth: bMonth
+            },
+            dataType: 'json',
+            success: function (data) {
+                window.wxc.xcConfirm(data.message, window.wxc.xcConfirm.typeEnum.info, {
+                    onOk: function () {
+                        if (data.status == 1) {
+                            location.reload();
+                        }
 
-            }});
-        }
-    });
-
+                    }
+                });
+            }
+        });
+    }
 }
 
 
