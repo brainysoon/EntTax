@@ -221,7 +221,7 @@ public class StaffServiceImpl implements StaffService{
 
             //生成系统日志
             String message=":添加一位新员工,身份："+role+",电话号码"+sPhone;
-            logMapper.insert(createLogMessage(message,session));
+            logMapper.insert(CommonLog.createLogMessage(message,session));
 
             return result;
 
@@ -264,7 +264,7 @@ public class StaffServiceImpl implements StaffService{
                 staffMapper.updateByPrimaryKey(staff);
                 //生成系统日志
                 String message=":将员工编号为"+sId+"的员工删除";
-                logMapper.insert(createLogMessage(message,session));
+                logMapper.insert(CommonLog.createLogMessage(message,session));
 
                 return 1;
 
@@ -291,7 +291,7 @@ public class StaffServiceImpl implements StaffService{
 
             //生成系统日志
             String message=":将员工编号为"+sId+"的身份改为"+rName;
-            logMapper.insert(createLogMessage(message,session));
+            logMapper.insert(CommonLog.createLogMessage(message,session));
             return 1;
         }catch (Exception e){
             e.printStackTrace();
@@ -299,18 +299,4 @@ public class StaffServiceImpl implements StaffService{
         }
     }
 
-    /**
-     *
-     * @param message
-     * @return
-     */
-    private com.enttax.model.Log createLogMessage(String message ,Session session){
-
-        Staff currentStaff=(Staff) session.getAttribute(ConstantStr.STAFFINFO);
-        com.enttax.model.Log log=new com.enttax.model.Log();
-        log.setLId(ToolRandoms.randomId20());
-        log.setLTime(new Date());
-        log.setLMessage(currentStaff.getSName()+message);
-        return log;
-    }
 }

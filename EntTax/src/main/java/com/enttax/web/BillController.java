@@ -134,7 +134,7 @@ public class BillController extends BaseController {
         if (!(key == null || key.equals("null"))) {
 
             try {
-                int result = excelService.moveCacheToDataBase(key);
+                int result = excelService.moveCacheToDataBase(key,session);
                 model.addAttribute(ConstantStr.STATUS, result > 0 ? ConstantCode.CODE_SUCCESSED : ConstantCode.CODE_FAILED);
                 model.addAttribute(ConstantStr.MESSAGE,
                         result > 0 ? Constant.UPLOAD_EXCEL_AND_CONFIRM_SUCCESSED : Constant.UPLOAD_EXCEL_AND_CONFIRM_FAILED);
@@ -180,7 +180,7 @@ public class BillController extends BaseController {
             return map;
         }
 
-        if (billService.deleteBillById(bId)>0){
+        if (billService.deleteBillById(bId,session)>0){
             map.put(ConstantStr.STATUS,ConstantStr.str_one);
             map.put(ConstantStr.MESSAGE,"恭喜你，操作成功！");
         }else {
@@ -199,14 +199,13 @@ public class BillController extends BaseController {
     @RequestMapping(value = "/updatebill",method = RequestMethod.POST)
     @ResponseBody
     public Map updateBill(Bill bill){
-        System.out.println(bill);
         Map map=new HashMap();
 
         if (bill.getBId() == null || bill.getBId() == ""){
             map.put(ConstantStr.MESSAGE,"对不起项目序号不能为空！");
             return map;
         }
-       if (billService.updateBill(bill)>0){
+       if (billService.updateBill(bill,session)>0){
             map.put(ConstantStr.STATUS,ConstantStr.str_one);
             map.put(ConstantStr.MESSAGE,"恭喜你，操作成功！");
         }else {

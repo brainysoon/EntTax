@@ -1,6 +1,7 @@
 package com.enttax.service;
 
 import com.enttax.model.Bill;
+import org.apache.shiro.session.Session;
 
 import java.util.List;
 import java.util.Map;
@@ -51,14 +52,14 @@ public interface BillService {
      * @param bId
      * @return
      */
-    int deleteBillById(String bId);
+    int deleteBillById(String bId, Session session);
 
     /**
      * 更新bill数据
      * @param bill
      * @return
      */
-    int updateBill(Bill bill);
+    int updateBill(Bill bill,Session session);
 
 
     /**
