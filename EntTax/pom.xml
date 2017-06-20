@@ -287,6 +287,14 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.8.9</version>
         </dependency>
+
+        <!-- 矩阵算算-->
+        <dependency>
+            <groupId>org.ujmp</groupId>
+            <artifactId>ujmp-core</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>EntTax</finalName>

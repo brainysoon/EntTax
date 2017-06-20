@@ -163,3 +163,43 @@ CREATE TABLE `msg` (
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
+
+-- ------------------
+-- 趋势预测测试数据
+-- ------------------
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123216', '销项数据', '铁皮', 2, 1.4, '2017-06-20 16:07:15', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123217', '销项数据', '罐头', 2, 5.6, '2017-06-20 16:07:15', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123218', '销项数据', '猪肉', 2, 0.3, '2017-06-20 16:07:15', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123226', '销项数据', '铁皮', 3, 1.9, '2017-06-20 16:06:29', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123227', '销项数据', '罐头', 3, 5.2, '2017-06-20 16:06:29', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123228', '销项数据', '猪肉', 3, 0.5, '2017-06-20 16:06:29', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123236', '销项数据', '铁皮', 4, 2.2, '2017-06-20 16:05:44', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123237', '销项数据', '罐头', 4, 5.1, '2017-06-20 16:05:44', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123238', '销项数据', '猪肉', 4, 0.6, '2017-06-20 16:05:44', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123246', '销项数据', '铁皮', 1, 0.9, '2017-06-20 16:07:56', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123247', '销项数据', '罐头', 1, 6.1, '2017-06-20 16:07:56', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123248', '销项数据', '猪肉', 1, 0.1, '2017-06-20 16:07:56', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123256', '销项数据', '铁皮', 5, 2.7, '2017-06-20 16:04:40', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123257', '销项数据', '罐头', 5, 4.4, '2017-06-20 16:04:40', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123258', '销项数据', '猪肉', 5, 1.3, '2017-06-20 16:04:40', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123266', '销项数据', '铁皮', 6, 3.1, '2017-06-20 16:03:15', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123267', '销项数据', '罐头', 6, 4.1, '2017-06-20 16:03:15', 1);
+INSERT INTO enttax.bill (BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark)
+VALUES ('20170517201923123268', '销项数据', '猪肉', 6, 1.6, '2017-06-20 16:03:15', 1);
