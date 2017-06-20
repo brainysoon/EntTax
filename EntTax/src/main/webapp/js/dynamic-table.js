@@ -9,6 +9,12 @@ var Script = function () {
                 "sSearch": "搜索:",
                 "sInfo": "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
                 "sInfoEmpty": "当前显示第 0 至 0 项，共 0 项",
+                "sEmptyTable": "表中数据为空",
+                "sZeroRecords": "没有匹配结果",
+                "sProcessing": "处理中...",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sLoadingRecords": "载入中...",
                 "oPaginate": {
                     "sPrevious": "上一页",
                     "sNext": "下一页"
@@ -18,7 +24,12 @@ var Script = function () {
             "aoColumnDefs": [{
                 'bSortable': false,
                 'aTargets': [0]
-            }]
+            }],
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+
         });
 
         jQuery('#sample_1 .group-checkable').change(function () {
@@ -46,6 +57,12 @@ var Script = function () {
                 "sSearch": "搜索:",
                 "sInfo": "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
                 "sInfoEmpty": "当前显示第 0 至 0 项，共 0 项",
+                "sEmptyTable": "表中数据为空",
+                "sZeroRecords": "没有匹配结果",
+                "sProcessing": "处理中...",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sLoadingRecords": "载入中...",
                 "oPaginate": {
                     "sPrevious": "上一页",
                     "sNext": "下一页"
@@ -55,10 +72,16 @@ var Script = function () {
             "aoColumnDefs": [{
                 'bSortable': false,
                 'aTargets': [0]
-            }]
+            }],
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+
         });
 
-        jQuery('#sample_2 .group-checkable').change(function () {
+
+    jQuery('#sample_2 .group-checkable').change(function () {
             var set = jQuery(this).attr("data-set");
             var checked = jQuery(this).is(":checked");
             jQuery(set).each(function () {
@@ -83,6 +106,12 @@ var Script = function () {
                 "sSearch": "搜索:",
                 "sInfo": "当前显示第 _START_ 至 _END_ 项，共 _TOTAL_ 项。",
                 "sInfoEmpty": "当前显示第 0 至 0 项，共 0 项",
+                "sEmptyTable": "表中数据为空",
+                "sZeroRecords": "没有匹配结果",
+                "sProcessing": "处理中...",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sLoadingRecords": "载入中...",
                 "oPaginate": {
                     "sPrevious": "上一页",
                     "sNext": "下一页"
@@ -92,10 +121,16 @@ var Script = function () {
             "aoColumnDefs": [{
                 'bSortable': false,
                 'aTargets': [0]
-            }]
+            }],
+            "oAria": {
+                "sSortAscending": ": 以升序排列此列",
+                "sSortDescending": ": 以降序排列此列"
+            }
+
         });
 
-        jQuery('#sample_3 .group-checkable').change(function () {
+
+    jQuery('#sample_3 .group-checkable').change(function () {
             var set = jQuery(this).attr("data-set");
             var checked = jQuery(this).is(":checked");
             jQuery(set).each(function () {
