@@ -219,7 +219,6 @@
                             <!--头部显示的所有包含的内容-->
                             <thead>
                             <tr>
-                                <td hidden></td>
                                 <th>项目序号</th>
                                 <th>项目名称</th>
                                 <th>类型</th>
@@ -233,7 +232,6 @@
                             <!--数据显示部分-->
                             <tbody id="tbody">
                             <tr class="odd gradeX" th:each="bill,iterStat:${datalist}">
-                                <td hidden th:text="${bill.bMark}"></td>
                                 <th th:text="${bill.bId}"></th>
                                 <th th:text="${bill.bName}"></th>
                                 <th th:text="${bill.bType}"></th>
@@ -242,7 +240,7 @@
                                     th:text="${bill.bMonth}"></th>
                                 <th>
                                     <button class="btn btn-primary btn-xs" onclick="editbill(this)"
-                                            th:id="${iterStat.index}">
+                                            th:id="${iterStat.index}" data-toggle="modal" data-target="#update_bill_myModal">
                                         <i class="icon-pencil"></i></button>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <button class="btn btn-danger btn-xs" onclick="deletebill(this)"
@@ -291,7 +289,7 @@
                 <label class="control-label col-lg-4">项目名称：</label>
                 <div class="col-lg-8">
                     <input type="text" placeholder="" id="bName" name="bName" class="form-control"
-                           autofocus maxlength="16">
+                           autofocus maxlength="10">
                     <p class="help-block"></p>
                 </div>
             </div>
@@ -310,10 +308,10 @@
             </div>
 
             <div class="modal-body has-success">
-                <label class="control-label col-lg-4">价格：</label>
+                <label class="control-label col-lg-4">金额：</label>
                 <div class="col-lg-8">
                     <input type="text" placeholder="" id="bPrice" name="bPrice" class="form-control"
-                           autofocus maxlength="10">
+                           autofocus maxlength="5">
                     <p class="help-block"></p>
                 </div>
             </div>
@@ -322,18 +320,18 @@
                 <label class="control-label col-lg-4">月份：</label>
                 <div class="col-lg-8">
                     <select class="form-control m-bot15" id="bMonth" name="bMonth">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
+                        <option value="1">1月份</option>
+                        <option value="2">2月份</option>
+                        <option value="3">3月份</option>
+                        <option value="4">4月份</option>
+                        <option value="5">5月份</option>
+                        <option value="6">6月份</option>
+                        <option value="7">7月份</option>
+                        <option value="8">8月份</option>
+                        <option value="9">9月份</option>
+                        <option value="10">10月份</option>
+                        <option value="11">11月份</option>
+                        <option value="12">12月份</option>
                     </select>
                 </div>
             </div>

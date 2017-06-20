@@ -118,7 +118,6 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public int updateBill(Bill bill) {
-        bill.setBUpdateTime(new Date());
         bill.setBMark(0);
         return billMapper.updateByPrimaryKey(bill);
     }
@@ -216,21 +215,13 @@ public class BillServiceImpl implements BillService {
         return map;
     }
 
+
     /**
-     * 将list转换为map
+     * 转换为list对值
      *
-     * @param list
+     * @param billInfos
      * @return
      */
-    private Map dataToMap(List<BillInfo> list) {
-
-        Map map = new HashMap();
-        for (BillInfo billInfo : list) {
-            map.put(billInfo.getbName(), billInfo.getTotalPrice());
-        }
-        return map;
-    }
-
     private List dataToList(List<BillInfo> billInfos) {
         List list2 = new ArrayList();
         for (BillInfo billInfo : billInfos) {

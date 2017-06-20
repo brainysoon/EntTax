@@ -154,7 +154,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class=""  href="#">查看员工</a></li>
+                        <li><a class="" href="#">查看员工</a></li>
                         <li class="active"><a class="" th:href="@{/staffs/managestaff}" href="managestaff.html">员工管理</a>
                         </li>
                     </ul>
@@ -217,11 +217,12 @@
                         </div>
                         <!--头部位置显示栏 结束-->
 
+
                         <table class="table table-striped border-top" id="sample_1">
                             <!--头部显示所包含的内容-->
                             <thead>
                             <tr>
-                                <th style="width: 6px">
+                                <th style="width: 10px">
                                     <button class="btn btn-primary btn-sm" data-toggle="modal"
                                             data-target="#add_staff_myModal">
                                         <i class="icon-plus"></i>
@@ -251,8 +252,10 @@
                                     th:text="${#dates.format(staffInfo.sEnter, 'yyyy-MM-dd')}"></td>
                                 <td>
                                     <button class="btn btn-primary btn-xs" onclick="editInfo(this)"
-                                            th:id="${iterStat.index}">
+                                            th:id="${iterStat.index}" data-toggle="modal"
+                                            data-target="#update_staff_myModal">
                                         <i class="icon-pencil"></i></button>
+
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <button class="btn btn-danger btn-xs" onclick="delete_staff(this)"
                                             th:id="${staffInfo.sId}">
@@ -335,6 +338,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div><!--添加员工 modal完-->
+
 <!-- 更新 员工模态框（Modal） -->
 <div class="modal fade" id="update_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">

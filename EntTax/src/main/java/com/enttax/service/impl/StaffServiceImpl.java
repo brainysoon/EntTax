@@ -48,6 +48,11 @@ public class StaffServiceImpl implements StaffService {
         //拿到session的staff对象
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
 
+        //激活账户
+        if (staff.getSMark()==0){
+            staff.setSMark(1);
+        }
+
         // 将profile要更改的信息填充到staff对象里
         String sName = profile.getSName();
         if (sName != null || sName != "") {
@@ -71,6 +76,7 @@ public class StaffServiceImpl implements StaffService {
                 staff.setSBirthday(birthday);
             }
         }
+
 
         if (staffMapper.updateByPrimaryKey(staff) > 0) {
             session.setAttribute(ConstantStr.STAFFINFO, staff);
@@ -181,6 +187,7 @@ public class StaffServiceImpl implements StaffService {
             staff.setSPassword(sPassword);
             staff.setSSalt(Ssalt);
             staff.setSEnter(new Date());
+            staff.setSSex(true);
             staff.setSMark(0);
             staff.setSPhone(sPhone);
             staff.setSAvatar("../../img/avatar.jpg");
