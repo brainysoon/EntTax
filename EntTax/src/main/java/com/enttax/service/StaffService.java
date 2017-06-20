@@ -55,7 +55,7 @@ public interface StaffService {
      * @param rName
      * @return
      */
-    int updateStaffForRole(String sId,String rName);
+    int updateStaffForRole(String sId,String rName,Session session);
 
     /**
      * @param realPath
@@ -88,12 +88,12 @@ public interface StaffService {
      * @param role
      * @return
      */
-    int addStaff(String sPhone,String role);
+    int addStaff(String sPhone,String role, Session session);
 
     /**
      * 通过sid号删除员工
      * @param sId
      * @return
      */
-    int deleteStaffBySid(String sId);
+    int deleteStaffBySid(String sId , Session session);
 }
