@@ -76,28 +76,36 @@ public class AIServiceImpl implements AIService {
             Y.setAsDouble(series[i][1], i, 0);
         }
 
-        //转置矩阵
+        //迭代的次数
+        int iterations = 1500;
+
+        //速率
+        double alpha = 0.02;
+
+        //theta
+        Matrix theta = Matrix.Factory.zeros(2, 1);
+
+        //
         Matrix transX = X.transpose();
 
-        //矩阵相乘
-        Matrix mtimesX = transX.mtimes(X);
+        //开始
+        for (int i = 0; i < iterations; i++) {
 
-        //逆矩阵
-        Matrix invX = mtimesX.inv();
+            Matrix tmp = (X.mtimes(theta).minus(Y));
 
-        //再运算
-        Matrix theta = invX.mtimes(transX).mtimes(Y);
+            theta = theta.minus((transX.mtimes(tmp)).times(alpha).times(1.0 / series.length));
+        }
 
         //预测数据
         double[][] point = new double[1][2];
         point[0][0] = 6;
-        point[0][1] = theta.getAsDouble(1, 0) * 7 + theta.getAsDouble(0, 0);
+        point[0][1] = theta.getAsDouble(1, 0) * 6 + theta.getAsDouble(0, 0);
 
         double[][] line = new double[2][2];
         line[1][0] = 0;
-        line[1][1] = theta.getAsDouble(1, 0) * 1 + theta.getAsDouble(0, 0);
+        line[1][1] = theta.getAsDouble(1, 0) * 0 + theta.getAsDouble(0, 0);
         line[0][0] = 6;
-        line[0][1] = theta.getAsDouble(1, 0) * 7 + theta.getAsDouble(0, 0);
+        line[0][1] = theta.getAsDouble(1, 0) * 6 + theta.getAsDouble(0, 0);
 
         Map map = new HashMap();
 
