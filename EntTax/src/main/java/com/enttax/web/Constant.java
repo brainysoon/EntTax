@@ -36,6 +36,11 @@ public interface Constant {
     String MODEL_KEY_UNREAD_MESSAGE = "unreadmessage";
 
     /**
+     * 多条销项数据
+     */
+    String MODEL_KEY_BILLS = "bills";
+
+    /**
      * 已读
      */
     int MARK_READ = 1;

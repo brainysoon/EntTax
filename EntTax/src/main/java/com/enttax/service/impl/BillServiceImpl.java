@@ -7,7 +7,6 @@ import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.ToolDates;
 import com.enttax.util.tools.ToolString;
 import com.enttax.vo.BillInfo;
-import com.enttax.web.Constant;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -211,21 +210,22 @@ public class BillServiceImpl implements BillService {
         List<BillInfo> outputlist = billMapper.selectRateCountBill(year, ConstantStr.OUTPUTDATA);
 
         Map map = new HashMap();
-        map.put(INPUTDATA,dataToList(inputlist));
-        map.put(OUTPUTDATA,dataToList(outputlist));
+        map.put(INPUTDATA, dataToList(inputlist));
+        map.put(OUTPUTDATA, dataToList(outputlist));
         return map;
     }
 
 
     /**
      * 转换为list对值
+     *
      * @param billInfos
      * @return
      */
-    private List dataToList(List<BillInfo> billInfos){
-        List  list2=new ArrayList();
-        for (BillInfo billInfo :billInfos) {
-            List  list1=new ArrayList();
+    private List dataToList(List<BillInfo> billInfos) {
+        List list2 = new ArrayList();
+        for (BillInfo billInfo : billInfos) {
+            List list1 = new ArrayList();
             list1.add(billInfo.getbName());
             list1.add(billInfo.getTotalPrice());
             list2.add(list1);
@@ -293,5 +293,11 @@ public class BillServiceImpl implements BillService {
             arrayList.add(0);
         }
         return arrayList;
+    }
+
+    @Override
+    public List<Bill> getBillByYearAndMonth(String year, String month) {
+
+        return billMapper.selectYearMonthAndBMarkBill(year, month, 1);
     }
 }
