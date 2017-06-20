@@ -113,13 +113,19 @@ public class ToolDates {
      * @param month
      * @return
      */
-    public static int[] getPreSixMonth(int month) {
+    public static int[] getPreSixMonth(int month, int count) {
 
-        int[] months = new int[6];
+        int[] months = new int[count];
 
-        for (int i = months.length; i >= 0; i--) {
+        for (int i = count - 1; i >= 0; i--) {
 
-
+            months[i] = month;
+            month--;
+            if (month == 0) {
+                month = 12;
+            }
         }
+
+        return months;
     }
 }

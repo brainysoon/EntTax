@@ -74,6 +74,12 @@
         WHERE  BMark =#{bmark} AND year(BUpdateTime) =#{year} AND BMonth=#{month} ;
     </select>
 
+    <select id="selectMonthAndBName" resultMap="BaseResultMap">
+        SELECT BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark
+        FROM bill
+        WHERE  BMark =#{bmark} AND BName=#{bname} AND BMonth=#{month} ;
+    </select>
+
     <select id="selectYearBill" resultType="BillInfo">
         SELECT BType, YEAR(BUpdateTime) AS bYear, sum(BPrice) AS totalPrice
         FROM bill WHERE  BMark >=0

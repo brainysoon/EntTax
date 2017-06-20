@@ -7,5 +7,17 @@ import java.util.Map;
  */
 public interface AIService {
 
-    Map doLinearRegByTaxOutKey(String key);
+    /**
+     * 前几个月
+     */
+    String PRE_MONTHS = "months";
+
+    String SERIES = "series";
+
+    String LINE = "line";
+    String POINT = "point";
+
+    Map doLinearRegByKeyAndCount(String key, Integer count);
+
+    Map getLinearLine(double[][] series);
 }

@@ -3,37 +3,35 @@
  */
 
 $().ready(function () {
-    showlinear(0);
+    var a = $("#taxout_key").val();
+    var b = $("#taxout_month").val();
+    showlinear(a, b);
 });
 
 //下拉选择年份按钮
 $(document).ready(function () {
     $("select").change(function () {
-        var a = $(this).val();
-        showbill(a);
+        var a = $("#taxout_key").val();
+        var b = $("#taxout_month").val();
+        showlinear(a, b);
     });
 });
 
-function showlinear(key) {
+function showlinear(key, count) {
 
     //异步加载
-    $.get("/ai/linearreg", {key: key}, function () {
+    $.get("/ai/linearreg", {key: key, count: count}, function (data) {
 
         $('#diagram').highcharts({
             xAxis: {
                 categories: [
-                    '一月',
-                    '二月',
-                    '三月',
-                    '四月',
-                    '五月',
-                    '六月',
-                    '七月',
-                    '八月',
-                    '九月',
-                    '十月',
-                    '十一月',
-                    '十二月'
+                    '前五月',
+                    '前四月',
+                    '前三月',
+                    '前二月',
+                    '前一月',
+                    '当前月',
+                    '预测月'
                 ]
             },
             yAxis: {
@@ -65,7 +63,7 @@ function showlinear(key) {
             series: [{
                 type: 'line',
                 name: '线性回归线',
-                data: [[0, 1.11], [5, 4.51]],
+                data: data.line,
                 marker: {
                     enabled: false
                 },
@@ -78,15 +76,14 @@ function showlinear(key) {
             }, {
                 type: 'scatter',
                 name: '销项数据',
-                data: [1, 1.5, 2.8, 3.5, 3.9, 4.2],
+                data: data.series,
                 marker: {
                     radius: 4
                 }
             }, {
                 type: 'scatter',
                 name: '预测数据',
-                chart: [2],
-                data: [[3, 2]],
+                data: data.point,
                 marker: {
                     radius: 5
                 }

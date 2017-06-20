@@ -2,6 +2,7 @@ package com.enttax.web;
 
 import com.enttax.model.Bill;
 import com.enttax.model.Staff;
+import com.enttax.service.AIService;
 import com.enttax.service.BillService;
 import com.enttax.util.constant.ConstantStr;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +31,9 @@ public class AIController extends BaseController {
 
     @Autowired
     private BillService billService;
+
+    @Autowired
+    private AIService aiService;
 
     @RequestMapping(value = "/linear", method = RequestMethod.GET)
     public String linearRegression(Model model) {
@@ -47,8 +52,14 @@ public class AIController extends BaseController {
 
     @RequestMapping(value = "/linearreg", method = RequestMethod.GET)
     @ResponseBody
-    public Map doLinearReg(@RequestParam(value = "key") String key) {
+    public Map doLinearReg(@RequestParam(value = "key") String key,
+                           @RequestParam(value = "count") Integer count) {
+
+        Map map = new HashMap();
 
         //拿到所需要的东西
+        map = aiService.doLinearRegByKeyAndCount(key, count);
+
+        return map;
     }
 }
