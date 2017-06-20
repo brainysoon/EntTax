@@ -76,25 +76,17 @@ public class AIServiceImpl implements AIService {
             Y.setAsDouble(series[i][1], i, 0);
         }
 
-        //迭代的次数
-        int iterations = 1500;
-
-        //速率
-        double alpha = 0.02;
-
-        //theta
-        Matrix theta = Matrix.Factory.zeros(2, 1);
-
-        //
+        //转置矩阵
         Matrix transX = X.transpose();
 
-        //开始
-        for (int i = 0; i < iterations; i++) {
+        //矩阵相乘
+        Matrix mtimesX = transX.mtimes(X);
 
-            Matrix tmp = (X.mtimes(theta).minus(Y));
+        //逆矩阵
+        Matrix invX = mtimesX.inv();
 
-            theta = theta.minus((transX.mtimes(tmp)).times(alpha).times(1.0 / series.length));
-        }
+        //再运算
+        Matrix theta = invX.mtimes(transX).mtimes(Y);
 
         //预测数据
         double[][] point = new double[1][2];
@@ -106,7 +98,6 @@ public class AIServiceImpl implements AIService {
         line[1][1] = theta.getAsDouble(1, 0) * 0 + theta.getAsDouble(0, 0);
         line[0][0] = 6;
         line[0][1] = theta.getAsDouble(1, 0) * 6 + theta.getAsDouble(0, 0);
-
         Map map = new HashMap();
 
         map.put(LINE, line);
