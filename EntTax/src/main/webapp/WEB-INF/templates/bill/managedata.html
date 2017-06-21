@@ -191,6 +191,7 @@
                     <ul class="sub">
                         <li><a class="" th:href="@{/staff/message}" href="inform.html">我的消息</a></li>
                         <li><a class="" th:href="@{/staff/sendmessage}" href="inform.html">发送消息</a></li>
+                        <li><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
                     </ul>
                 </li>
             </ul>
@@ -240,7 +241,7 @@
                                     th:text="${bill.bMonth}"></th>
                                 <th>
                                     <button class="btn btn-primary btn-xs" onclick="editbill(this)"
-                                            th:id="${iterStat.index}" data-toggle="modal" data-target="#update_bill_myModal">
+                                            th:id="${iterStat.index}">
                                         <i class="icon-pencil"></i></button>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <button class="btn btn-danger btn-xs" onclick="deletebill(this)"

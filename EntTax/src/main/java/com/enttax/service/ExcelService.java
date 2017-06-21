@@ -1,6 +1,7 @@
 package com.enttax.service;
 
 import com.enttax.model.Bill;
+import org.apache.shiro.session.Session;
 
 import java.io.InputStream;
 import java.util.List;
@@ -38,7 +39,7 @@ public interface ExcelService {
      */
     List<Bill> readExcelFromRedis(String key);
 
-    int moveCacheToDataBase(String key);
+    int moveCacheToDataBase(String key, Session session);
 
     /**
      * 显示进销项数据

@@ -9,7 +9,7 @@
     <meta name="keyword" content="EntTax">
     <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../img/favicon.ico">
 
-    <title>分类统计</title>
+    <title>系统日志</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
     <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
 
-
+    <link rel="stylesheet" href="../../css/extra.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--此处未应用 [if lt IE 9]>
     <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
@@ -155,7 +155,7 @@
                         <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu active">
+                <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="icon-bar-chart"></i>
                         <span>数据分析</span>
@@ -164,7 +164,7 @@
                     <ul class="sub">
                         <li><a class="" th:href="@{/bill/monthcount}" href="#">月度统计</a></li>
                         <li><a class="" th:href="@{/bill/yearcount}" href="#">年度统计</a></li>
-                        <li class="active"><a  th:href="@{/bill/categorycount}" href="#">分类统计</a></li>
+                        <li><a class="" th:href="@{/bill/categorycount}" href="#">分类统计</a></li>
                         <li><a class="" th:href="@{/bill/ratecount}" href="#">比率统计</a></li>
                     </ul>
                 </li>
@@ -180,16 +180,17 @@
                         <li><a class="" th:href="@{/staff/security}" href="staff/security.html">安全中心</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu">
+                <li class="sub-menu active">
                     <a href="javascript:;" class="">
                         <i class="icon-envelope"></i>
                         <span>消息管理</span>
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/staff/message}" href="inform.html">我的消息</a></li>
-                        <li><a class="" th:href="@{/staff/sendmessage}" href="inform.html">发送消息</a></li>
-                        <li><a  th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
+                        <li><a  th:href="@{/staff/message}" href="inform.html">我的消息</a></li>
+                        <li><a  th:href="@{/staff/sendmessage}" href="inform.html">发送消息</a></li>
+                        <li class="active"><a  th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
+
                     </ul>
                 </li>
             </ul>
@@ -197,31 +198,58 @@
         </div>
     </aside>
     <!--sidebar end 左侧导航栏结束-->
-
-    <!--page_start-->
     <section id="main-content">
         <section class="wrapper">
-            <div class="panel-body">
-                <form class="form-inline" role="form">
-                    <div class="form-group">
-                        <select class="form-control" name="year" id="year"></select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" name="bNameinput" id="bNameinput"></select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" name="bNameoutput" id="bNameoutput"></select>
-                    </div>
-                    <button id="categorybutton" type="button" class="btn btn-success">查找</button>
-                </form>
+            <!--page start-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--timeline start-->
+                    <section class="panel">
+                        <div class="panel-body">
+                            <div class="text-center mbot30">
+                                <h3 class="timeline-title">系统日志</h3>
+                                <p class="t-info">对所有数据操作事件的记录</p>
+                            </div>
+
+                            <div class="timeline" th:each="log,iterStat:${logmessage}">
+                                <article th:if="${iterStat.index}%2==0" class="timeline-item">
+                                    <div class="timeline-desk">
+                                        <div class="panel">
+                                            <div class="panel-body">
+                                                <span class="arrow"></span>
+                                                <span class="timeline-icon red"></span>
+                                                <span class="timeline-date" th:text="${#dates.format(log.lTime, 'HH:mm:ss')}">08:25 am</span>
+                                                <h1 class="red" th:text="${#dates.format(log.lTime, 'yyyy-MM-dd')}">12 July | Sunday</h1>
+                                                <p th:text="${log.lMessage}">Lorem ipsum dolor sit amet consiquest dio</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article th:if="${iterStat.index}%2==1" class="timeline-item alt">
+                                    <div class="timeline-desk">
+                                        <div class="panel">
+                                            <div class="panel-body">
+                                                <span class="arrow-alt"></span>
+                                                <span class="timeline-icon green"></span>
+                                                <span class="timeline-date" th:text="${#dates.format(log.lTime, 'HH:mm:ss')}">10:00 am</span>
+                                                <h1 class="green" th:text="${#dates.format(log.lTime, 'yyyy-MM-dd')}">10 July | Wednesday</h1>
+                                                <p  th:text="${log.lMessage}">Lorem ipsum dolor sit amet consiquest dio</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+
+                            <div class="clearfix">&nbsp;</div>
+                        </div>
+                    </section>
+                    <!--timeline end-->
+                </div>
             </div>
-            <div id="showdata" style="min-width:400px;height:600px"></div>
+            <!-- page end-->
         </section>
     </section>
-    <!--main content end-->
-
 </section>
-
 
 
 <!-- js placed at the end of the document so the pages load faster -->
@@ -235,25 +263,15 @@
 <script th:src="@{/assets/data-tables/DT_bootstrap.js}" type="text/javascript"
         src="../../assets/data-tables/DT_bootstrap.js"></script>
 
-
 <!--common script for all pages-->
 <script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
 
 
-<!--hightchart-->
-<script th:src="@{/js/highcharts/highcharts.js}" src="../../js/highcharts/highcharts.js"></script>
-<script th:src="@{/js/highcharts/exporting.js}" src="../../js/highcharts/exporting.js"></script>
-<script th:src="@{/js/highcharts/dark-unica.js}" src="../../js/highcharts/dark-unica.js"></script>
-
-<!--extra.js-->
-<script th:src="@{/js/categorycount.js}" src="../../../js/categorycount.js"></script>
-
-<script type="text/javascript">
+<script>
     //upload download excel tooltip
     $(function () {
         $("[data-toggle='tooltip']").tooltip();
     });
-
 </script>
 
 </body>

@@ -1,40 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.enttax.dao.LogMapper">
-    <!--<cache type="com.strive.cms.cache.RedisCache"/>-->
 
     <resultMap id="BaseResultMap" type="Log">
         <id column="LId" property="lId"/>
-        <result column="SId" property="sId"/>
-        <result column="BId" property="bId"/>
         <result column="LTime" property="lTime"/>
         <result column="LMessage" property="lMessage"/>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    DELETE FROM log
+    DELETE FROM loginfo
     WHERE LId = #{lId}
   </delete>
     <insert id="insert" parameterType="Log">
-    INSERT INTO log (LId, SId, BId, LTime,
+    INSERT INTO loginfo (LId, LTime,
       LMessage)
-    VALUES (#{lId}, #{sId}, #{bId}, #{lTime},
+    VALUES (#{lId}, #{lTime},
       #{lMessage})
   </insert>
     <update id="updateByPrimaryKey" parameterType="Log">
-    UPDATE log
-    SET SId = #{sId},
-      BId = #{bId},
-      LTime = #{lTime},
+    UPDATE loginfo
+    SET LTime = #{lTime},
       LMessage = #{lMessage}
     WHERE LId = #{lId}
   </update>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    SELECT LId, SId, BId, LTime, LMessage
-    FROM log
+    SELECT LId, LTime, LMessage
+    FROM loginfo
     WHERE LId = #{lId}
   </select>
     <select id="selectAll" resultMap="BaseResultMap">
-    SELECT LId, SId, BId, LTime, LMessage
-    FROM log
+    SELECT LId, LTime, LMessage
+    FROM loginfo
+    order by LTime  desc limit 0,30;
   </select>
 </mapper>

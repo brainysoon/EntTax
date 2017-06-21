@@ -19,25 +19,15 @@ CREATE TABLE `bill` (
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
--- Table log
+-- Table loginfo
 -- ----------------------------
-DROP TABLE IF EXISTS `log`;
+DROP TABLE IF EXISTS `loginfo`;
 
-CREATE TABLE `log` (
+CREATE TABLE `loginfo` (
   `LId`      CHAR(20) NOT NULL,
-  `SId`      CHAR(8)  NOT NULL,
-  `BId`      CHAR(30) NOT NULL,
   `LTime`    DATETIME NOT NULL,
   `LMessage` VARCHAR(255) DEFAULT NULL,
-  PRIMARY KEY (`LId`),
-  KEY `SId` (`SId`),
-  KEY `BId` (`BId`),
-  CONSTRAINT `log_ibfk_1` FOREIGN KEY (`SId`) REFERENCES `staff` (`SId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `log_ibfk_2` FOREIGN KEY (`BId`) REFERENCES `bill` (`BId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+  PRIMARY KEY (`LId`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

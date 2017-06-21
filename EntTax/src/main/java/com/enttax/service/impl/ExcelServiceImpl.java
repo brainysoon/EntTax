@@ -1,5 +1,6 @@
 package com.enttax.service.impl;
 
+import com.enttax.dao.LogMapper;
 import com.enttax.model.Bill;
 import com.enttax.service.BillService;
 import com.enttax.service.ExcelService;
@@ -11,10 +12,12 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.InputStream;
@@ -37,6 +40,11 @@ public class ExcelServiceImpl implements ExcelService {
     @Autowired
     private BillService billService;
 
+    @Autowired
+    private LogMapper logMapper;
+
+    private int outputNumber;
+    private int inputNumber;
     @Override
     public List<Bill> readExcelFromInputStream(int bMark, int sheetAt, InputStream is, String extName) throws Exception {
 
@@ -54,6 +62,13 @@ public class ExcelServiceImpl implements ExcelService {
         Sheet sheet = wb.getSheetAt(sheetAt);
         int numRows = sheet.getLastRowNum();
         System.out.println("行：" + numRows);
+
+        //记录记录数
+        if (bMark==1){
+            outputNumber=numRows;
+        }else {
+            inputNumber=numRows;
+        }
 
         List<Bill> bills = new ArrayList<>();
 
@@ -115,8 +130,9 @@ public class ExcelServiceImpl implements ExcelService {
         return listOps.rightPopAndLeftPush(key, key);
     }
 
+    @Transactional
     @Override
-    public int moveCacheToDataBase(String key) {
+    public int moveCacheToDataBase(String key ,Session session) {
 
         //先从缓存取出
         List<Bill> bills = listOps.leftPop(key);
@@ -125,6 +141,10 @@ public class ExcelServiceImpl implements ExcelService {
 
             return -1;
         }
+
+        //生成系统日志
+        String message=":导入进项数据"+inputNumber+"条,销项数据"+outputNumber+"条";
+        logMapper.insert(CommonLog.createLogMessage(message,session));
 
         //存入MySql数据库
         return billService.insertAll(bills);
@@ -135,3 +155,4 @@ public class ExcelServiceImpl implements ExcelService {
         return billService.selectAll();
     }
 }
+

@@ -102,15 +102,6 @@ public interface ConstantStr {
      */
     String PHONE = "phone";
 
-    /**
-     * birthday 生日
-     */
-    String TOSTRINGBIRTHDAY = "toStringBirthday";
-
-    /**
-     * enter 入职时间
-     */
-    String TOSTRINGENTER = "toStringEnter";
 
     /**
      * 字符串男
@@ -143,6 +134,11 @@ public interface ConstantStr {
      *
      */
     String OUTPUTDATA="销项数据";
+
+    /**
+     * 系统消息
+     */
+    String LOGMESSAGE="logmessage";
 
 
 }

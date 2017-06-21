@@ -1,6 +1,7 @@
 package com.enttax.service.impl;
 
 import com.enttax.dao.BillMapper;
+import com.enttax.dao.LogMapper;
 import com.enttax.model.Bill;
 import com.enttax.service.BillService;
 import com.enttax.util.constant.ConstantStr;
@@ -8,8 +9,10 @@ import com.enttax.util.tools.ToolDates;
 import com.enttax.util.tools.ToolString;
 import com.enttax.vo.BillInfo;
 import com.github.pagehelper.PageHelper;
+import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -25,10 +28,12 @@ public class BillServiceImpl implements BillService {
     private static final String INPUTNAMES = "inputnames";
     private static final String OUTPUTNAMES = "outputnames";
     private static final String YEAR = "year";
-    private static final String BNAMES = "bnames";
 
     @Autowired
     private BillMapper billMapper;
+
+    @Autowired
+    private LogMapper logMapper;
 
     public List<Bill> select(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
@@ -108,16 +113,42 @@ public class BillServiceImpl implements BillService {
         return billMapper.insertAll(bills);
     }
 
+    @Transactional
     @Override
-    public int deleteBillById(String bId) {
+    public int deleteBillById(String bId,Session session) {
         Bill bill = billMapper.selectByPrimaryKey(bId);
         //假删除，将Mark置为-1
         bill.setBMark(-1);
+
+        //生成系统日志
+        String message=":将项目编号为"+bId+"的数据删除";
+        logMapper.insert(CommonLog.createLogMessage(message, session));
         return billMapper.updateByPrimaryKey(bill);
     }
 
+    @Transactional
     @Override
-    public int updateBill(Bill bill) {
+    public int updateBill(Bill bill,Session session) {
+        Bill preBill= billMapper.selectByPrimaryKey(bill.getBId());
+
+        String message=":将项目编号为"+bill.getBId()+"的";
+
+        if (preBill.getBName()!=bill.getBName()){
+            message+="项目名称更改为"+bill.getBName()+",";
+        }
+        if (preBill.getBMonth()!=bill.getBMonth()){
+            message+="月份改为"+bill.getBMonth()+",";
+        }
+        if (preBill.getBPrice()!=bill.getBPrice()){
+            message+="金额改为"+bill.getBPrice()+",";
+        }
+        if (preBill.getBType()!=bill.getBType()){
+            message+="项目类型改为"+bill.getBType()+",";
+        }
+
+        //生成系统日志
+        logMapper.insert(CommonLog.createLogMessage(message,session));
+
         bill.setBMark(0);
         return billMapper.updateByPrimaryKey(bill);
     }

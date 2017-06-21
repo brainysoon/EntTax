@@ -1,5 +1,6 @@
 package com.enttax.web;
 
+import com.enttax.model.Staff;
 import com.enttax.service.StaffService;
 import com.enttax.util.constant.ConstantStr;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,14 +54,14 @@ public class StaffsController extends BaseController {
     @ResponseBody
     public Map updateStaffForRole(@RequestParam(value = "sId") String sId,
                                   @RequestParam(value = "rName") String rName) {
+
         Map map = new HashMap();
-        System.out.println(sId + rName);
         if (sId == null || sId == "") {
             map.put(ConstantStr.MESSAGE, "对不起，您输入的参数有误！");
             return map;
         }
 
-        if (staffService.updateStaffForRole(sId, rName) > 0) {
+        if (staffService.updateStaffForRole(sId, rName,session) > 0) {
             map.put(ConstantStr.MESSAGE, "恭喜您，操作成功！");
         } else {
             map.put(ConstantStr.MESSAGE, "对不起,操作失败！");
@@ -85,7 +86,7 @@ public class StaffsController extends BaseController {
             return map;
         }
 
-        if (staffService.deleteStaffBySid(sid) > 0) {
+        if (staffService.deleteStaffBySid(sid,session) > 0) {
             map.put(ConstantStr.MESSAGE, "恭喜您，操作成功！");
         } else {
             map.put(ConstantStr.MESSAGE, "对不起,操作失败！");
@@ -112,7 +113,7 @@ public class StaffsController extends BaseController {
             return map;
         }
 
-        if (staffService.addStaff(sPhone, role) > 0) {
+        if (staffService.addStaff(sPhone, role,session) > 0) {
             map.put(ConstantStr.STATUS,ConstantStr.str_one);
             map.put(ConstantStr.MESSAGE, "添加成功！");
         } else {
