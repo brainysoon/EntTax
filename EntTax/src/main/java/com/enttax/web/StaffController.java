@@ -344,9 +344,6 @@ public class StaffController extends BaseController {
     public String toEditProfile(Model model) {
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
         model.addAttribute(ConstantStr.STAFFINFO, staff);
-//        //转换日期格式
-//        model.addAttribute(ConstantStr.TOSTRINGBIRTHDAY,
-//                ToolDates.formatDate(staff.getSBirthday()));
         return "staff/editprofile";
     }
 

@@ -135,7 +135,10 @@ public interface ConstantStr {
      */
     String OUTPUTDATA="销项数据";
 
-    String ADDStaffLOGMESSAGE="添加一个新员工";
+    /**
+     * 系统消息
+     */
+    String LOGMESSAGE="logmessage";
 
 
 }

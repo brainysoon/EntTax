@@ -30,6 +30,9 @@ public class MsgServiceTest {
     private StaffMapper staffMapper;
 
     @Autowired
+    private LogService logService;
+
+    @Autowired
     private MsgService msgService;
 
     private Staff toStaff;
@@ -109,5 +112,10 @@ public class MsgServiceTest {
         }
 
         return mIds;
+    }
+
+    @Test
+    public void logMessageTest(){
+        System.out.println(logService.showLogInfo());
     }
 }

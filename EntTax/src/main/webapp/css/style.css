@@ -1149,15 +1149,15 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 h3.timeline-title {
     margin: 0;
-    color: #C8CCD7;
-    font-size: 20px;
+    color: #56C9F5;
+    font-size: 40px;
     font-weight: 400;
     margin: 0 0 5px;
     text-transform: uppercase;
 }
 
 .t-info {
-    color: #C8CCD7;
+    color: #56C9F5;
 }
 
 .timeline-item:before, .timeline-item.alt:after {
