@@ -64,30 +64,6 @@
                     </a>
                 </li>
                 <!-- settings end -->
-                <!-- notification dropdown start 消息提示-->
-                <li id="header_notification_bar" class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="icon-bell-alt"></i>
-                        <span class="badge bg-warning">1</span>
-                    </a>
-                    <ul class="dropdown-menu extended notification">
-                        <div class="notify-arrow notify-arrow-yellow"></div>
-                        <li>
-                            <p class="yellow">你有1个新通知</p>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="label label-info"><i class="icon-envelope"></i></span>
-                                欢迎登录系统
-                                <span class="small italic">Welcome !</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">所有标记为已读</a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- notification dropdown end -->
             </ul>
             <!--  notification end -->
         </div>
@@ -97,9 +73,6 @@
         <div class="top-nav ">
             <!--search & user info start 右部搜索-->
             <ul class="nav pull-right top-menu">
-                <li>
-                    <input type="text" class="form-control search" placeholder="搜索">
-                </li>
                 <!-- user login dropdown start 个人信息等(在头像按钮下)-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -151,24 +124,36 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="icon-user-md"></i>
-                        <span>员工管理</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><a class="" th:href="@{/staffs/showstaff}" href="staffs/showstaff.html">查看员工</a></li>
-                        <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
                         <i class="icon-bar-chart"></i>
                         <span>数据分析</span>
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/bill/monthcount}" href="#">月度统计</a></li>
-                        <li><a class="" th:href="@{/bill/yearcount}" href="#">年度统计</a></li>
+                        <li><a class="" th:href="@{/bill/monthcount}" href="monthcount.html">月度统计</a></li>
+                        <li><a class="" th:href="@{/bill/yearcount}" href="yearcount.html">年度统计</a></li>
+                        <li><a class="" th:href="@{/bill/categorycount}" href="categorycount.html">分类统计</a></li>
+                        <li><a class="" th:href="@{/bill/ratecount}" href="ratecount.html">比率统计</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-code-fork"></i>
+                        <span>趋势预测</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/ai/linear}" href="ai/linear.html">线性预测</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-user-md"></i>
+                        <span>员工管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="#">查看员工</a></li>
+                        <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -191,7 +176,28 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" th:href="@{/staff/message}" href="inform.html">我的消息</a></li>
-                        <li><a class="" th:href="@{/staff/sendmessage}" href="inform.html">发送消息</a></li>
+                        <li><a class="" th:href="@{/staff/sendmessage}" href="sendmsg.html">发送消息</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-shield"></i>
+                        <span>系统安全</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-info"></i>
+                        <span>关于</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a th:href="@{/aboutus}" href="aboutus.html">关于我们</a></li>
+                        <li><a th:href="@{/aboutsystem}" href="aboutsystem.html">关于系统</a></li>
                     </ul>
                 </li>
             </ul>
