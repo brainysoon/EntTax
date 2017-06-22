@@ -2515,6 +2515,7 @@ ul.inbox-pagination li {
 
 ul.summary-list {
     display: inline-block;
+    text-align: center;/*此处添加*/
     padding-left: 0;
     width: 100%;
     margin-bottom: 0;
@@ -2522,7 +2523,7 @@ ul.summary-list {
 
 ul.summary-list > li {
     display: inline-block;
-    width: 19.5%;
+    width: 18%;/*此处修改原来19.5*/
     text-align: center;
 }
 
