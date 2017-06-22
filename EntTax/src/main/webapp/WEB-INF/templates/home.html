@@ -64,6 +64,27 @@
                     </a>
                 </li>
                 <!-- settings end -->
+                <!-- notification dropdown start 消息提示-->
+                <li id="header_notification_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="icon-bell-alt"></i>
+                        <span th:if="${unreadcount}>0" class="badge bg-warning" th:text="${unreadcount}">0</span>
+                    </a>
+                    <ul class="dropdown-menu extended notification">
+                        <div class="notify-arrow notify-arrow-yellow"></div>
+                        <li>
+                            <p class="yellow" th:text="'你有'+${unreadcount}+'个新通知'"></p>
+                        </li>
+                        <li th:each="msg,msgStat:${unreadmessage}" style="margin: 4px;">
+                            <span class="label label-info"><i class="icon-envelope"></i></span>
+                            <span th:text="${msg.mContent}">Welcome !</span>
+                        </li>
+                        <li>
+                            <a href="#" th:href="@{/staff/message/markread/all}">所有标记为已读</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- notification dropdown end -->
             </ul>
             <!--  notification end -->
         </div>
