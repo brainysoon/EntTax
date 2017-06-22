@@ -28,7 +28,7 @@ public class NavigatController extends BaseController {
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
         model.addAttribute(ConstantStr.STAFFINFO, staff);
 
-        return "index";
+        return "home";
     }
 
     /**
