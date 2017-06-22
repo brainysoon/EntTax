@@ -39,21 +39,21 @@ var Script = function () {
       Morris.Area({
         element: 'hero-area',
         data: [
-          {period: '2010 Q1', iphone: 2666, ipad: null, itouch: 2647},
-          {period: '2010 Q2', iphone: 2778, ipad: 2294, itouch: 2441},
-          {period: '2010 Q3', iphone: 4912, ipad: 1969, itouch: 2501},
-          {period: '2010 Q4', iphone: 3767, ipad: 3597, itouch: 5689},
-          {period: '2011 Q1', iphone: 6810, ipad: 1914, itouch: 2293},
-          {period: '2011 Q2', iphone: 5670, ipad: 4293, itouch: 1881},
-          {period: '2011 Q3', iphone: 4820, ipad: 3795, itouch: 1588},
-          {period: '2011 Q4', iphone: 15073, ipad: 5967, itouch: 5175},
-          {period: '2012 Q1', iphone: 10687, ipad: 4460, itouch: 2028},
-          {period: '2012 Q2', iphone: 8432, ipad: 5713, itouch: 1791}
+          {period: '2010 Q1', one: 2666, two: null, three: 2647},
+          {period: '2010 Q2', one: 2778, two: 2294, three: 2441},
+          {period: '2010 Q3', one: 4912, two: 1969, three: 2501},
+          {period: '2010 Q4', one: 3767, two: 3597, three: 5689},
+          {period: '2011 Q1', one: 6810, two: 1914, three: 2293},
+          {period: '2011 Q2', one: 5670, two: 4293, three: 1881},
+          {period: '2011 Q3', one: 4820, two: 3795, three: 1588},
+          {period: '2011 Q4', one: 15073, two: 5967, three: 5175},
+          {period: '2012 Q1', one: 10687, two: 4460, three: 2028},
+          {period: '2012 Q2', one: 8432, two: 5713, three: 1791}
         ],
 
           xkey: 'period',
-          ykeys: ['iphone', 'ipad', 'itouch'],
-          labels: ['iPhone', 'iPad', 'iPod Touch'],
+          ykeys: ['one', 'two', 'three'],
+          labels: ['one', 'two', 'three'],
           hideHover: 'auto',
           lineWidth: 1,
           pointSize: 5,
@@ -65,12 +65,12 @@ var Script = function () {
       Morris.Bar({
         element: 'hero-bar',
         data: [
-          {device: 'iPhone', geekbench: 136},
-          {device: 'iPhone 3G', geekbench: 137},
-          {device: 'iPhone 3GS', geekbench: 275},
-          {device: 'iPhone 4', geekbench: 380},
-          {device: 'iPhone 4S', geekbench: 655},
-          {device: 'iPhone 5', geekbench: 1571}
+          {device: 'one', geekbench: 136},
+          {device: 'one 1', geekbench: 137},
+          {device: 'one 2', geekbench: 275},
+          {device: 'one 3', geekbench: 380},
+          {device: 'one 4', geekbench: 655},
+          {device: 'one 5', geekbench: 1571}
         ],
         xkey: 'device',
         ykeys: ['geekbench'],
