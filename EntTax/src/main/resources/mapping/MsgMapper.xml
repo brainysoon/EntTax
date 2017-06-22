@@ -79,4 +79,9 @@
         SET MRead=-1
         WHERE MId=#{mId} AND MMark>0
     </update>
+    <update id="markReadAllByToSId" parameterType="java.lang.String">
+        UPDATE msg
+        SET MRead=1
+        WHERE ToSId=#{toSId} AND MMark>0
+    </update>
 </mapper>
