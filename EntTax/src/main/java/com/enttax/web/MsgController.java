@@ -67,7 +67,9 @@ public class MsgController extends BaseController {
                           @RequestParam(value = "content") String mContent) {
 
         //拿到登录用户的信息
-        Staff staff = (Staff) session.getAttribute(Constant.CURRENT_LOGIN_STAFF_KEY);
+        //用户登录信息
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        model.addAttribute(ConstantStr.STAFFINFO, staff);
 
         //发送信息
         int resutlt = msgService.sendMsg(toSId, mContent, staff.getSId());

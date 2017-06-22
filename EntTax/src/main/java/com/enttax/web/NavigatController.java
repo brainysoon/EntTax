@@ -9,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
-
 /**
  * Created by lcyanxi on 17-3-19.
  */
@@ -42,4 +40,23 @@ public class NavigatController extends BaseController {
         return "unauthorized";
     }
 
+    @RequestMapping(value = "/aboutus")
+    public String toAboutUs(Model model) {
+
+        //用户登录信息
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        model.addAttribute(ConstantStr.STAFFINFO, staff);
+
+        return "aboutus";
+    }
+
+    @RequestMapping(value = "/aboutsystem")
+    public String toAboutSystem(Model model) {
+
+        //用户登录信息
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        model.addAttribute(ConstantStr.STAFFINFO, staff);
+
+        return "aboutsystem";
+    }
 }

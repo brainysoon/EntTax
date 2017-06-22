@@ -58,30 +58,6 @@
                     </a>
                 </li>
                 <!-- settings end -->
-                <!-- notification dropdown start 消息提示-->
-                <li id="header_notification_bar" class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="icon-bell-alt"></i>
-                        <span class="badge bg-warning">1</span>
-                    </a>
-                    <ul class="dropdown-menu extended notification">
-                        <div class="notify-arrow notify-arrow-yellow"></div>
-                        <li>
-                            <p class="yellow">你有1个新通知</p>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="label label-info"><i class="icon-envelope"></i></span>
-                                欢迎登录系统
-                                <span class="small italic">Welcome !</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">所有标记为已读</a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- notification dropdown end -->
             </ul>
             <!--  notification end -->
         </div>
@@ -91,13 +67,11 @@
         <div class="top-nav ">
             <!--search & user info start 右部搜索-->
             <ul class="nav pull-right top-menu">
-                <li>
-                    <input type="text" class="form-control search" placeholder="搜索">
-                </li>
                 <!-- user login dropdown start 个人信息等(在头像按钮下)-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" th:src="${staff.sAvatar}" id="avatarsm" width="35" height="35" src="../../img/avatar-mini4.jpg">
+                        <img alt="" th:src="${staff.sAvatar}" id="avatarsm" width="35" height="35"
+                             src="../../img/avatar-mini4.jpg">
                         <span class="username" th:text="${staff.sName}"></span>
                         <b class="caret"></b>
                     </a>
@@ -127,7 +101,7 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
                 <li class="">
-                    <a class="" th:href="@{/index}" href="../index.html">
+                    <a class="" th:href="@{/index}" href="index.html">
                         <i class="icon-home"></i>
                         <span>首页</span>
                     </a>
@@ -139,22 +113,8 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li class="active"><a class="" th:href="@{/bill/uploadexcel}" href="../bill/uploadexcel.html">导入数据</a>
-                        </li>
-                        <li class=""><a class="" th:href="@{/bill/managedata}" href="../bill/managedata.html">操作数据</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon-user-md"></i>
-                        <span>员工管理</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><a class=""  href="#">查看员工</a></li>
-                        <li><a class="" th:href="@{/staffs/managestaff}" href="../staffs/managestaff.html">员工管理</a>
-                        </li>
+                        <li><a class="" th:href="@{/bill/uploadexcel}" href="bill/uploadexcel.html">导入数据</a></li>
+                        <li><a class="" th:href="@{/bill/managedata}" href="bill/managedata.html">操作数据</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -164,10 +124,31 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/bill/monthcount}" href="#">月度统计</a></li>
-                        <li><a class="" th:href="@{/bill/yearcount}" href="#">年度统计</a></li>
-                        <li><a class="" th:href="@{/bill/categorycount}" href="#">分类统计</a></li>
-                        <li><a class="" th:href="@{/bill/ratecount}" href="#">比率统计</a></li>
+                        <li><a class="" th:href="@{/bill/monthcount}" href="monthcount.html">月度统计</a></li>
+                        <li><a class="" th:href="@{/bill/yearcount}" href="yearcount.html">年度统计</a></li>
+                        <li><a class="" th:href="@{/bill/categorycount}" href="categorycount.html">分类统计</a></li>
+                        <li><a class="" th:href="@{/bill/ratecount}" href="ratecount.html">比率统计</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-code-fork"></i>
+                        <span>趋势预测</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/ai/linear}" href="ai/linear.html">线性预测</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-user-md"></i>
+                        <span>员工管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="#">查看员工</a></li>
+                        <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu active">
@@ -177,10 +158,10 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/staff/profile}" href="profile.html">个人资料</a></li>
-                        <li class="active"><a class="" th:href="@{/staff/editprofile}" href="editprofile.html">修改信息</a>
+                        <li><a class="" th:href="@{/staff/profile}" href="staff/profile.html">个人资料</a></li>
+                        <li class="active"><a class="" th:href="@{/staff/editprofile}" href="staff/editprofile.html">修改信息</a>
                         </li>
-                        <li><a class="" th:href="@{/staff/security}" href="security.html">安全中心</a></li>
+                        <li><a class="" th:href="@{/staff/security}" href="staff/security.html">安全中心</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -191,8 +172,28 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" th:href="@{/staff/message}" href="inform.html">我的消息</a></li>
-                        <li><a class="" th:href="@{/staff/sendmessage}" href="inform.html">发送消息</a></li>
+                        <li><a class="" th:href="@{/staff/sendmessage}" href="sendmsg.html">发送消息</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-shield"></i>
+                        <span>系统安全</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
                         <li><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-info"></i>
+                        <span>关于</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a th:href="@{/aboutus}" href="aboutus.html">关于我们</a></li>
+                        <li><a th:href="@{/aboutsystem}" href="aboutsystem.html">关于系统</a></li>
                     </ul>
                 </li>
             </ul>
@@ -278,7 +279,7 @@
                                     <label class="col-lg-2 control-label">出生日期</label>
                                     <div class="col-lg-6" th:if="${staff.sBirthday==null}">
                                         <input type="date" name="sBirthday" class="dataTables_info"
-                                               th:value="${null}"  value="1994-01-15">
+                                               th:value="${null}" value="1994-01-15">
                                     </div>
                                     <div class="col-lg-6" th:if="${staff.sBirthday!=null}">
                                         <input type="date" name="sBirthday" class="dataTables_info"
