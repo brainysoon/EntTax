@@ -1149,15 +1149,15 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 h3.timeline-title {
     margin: 0;
-    color: #C8CCD7;
-    font-size: 20px;
+    color: #56C9F5;
+    font-size: 40px;
     font-weight: 400;
     margin: 0 0 5px;
     text-transform: uppercase;
 }
 
 .t-info {
-    color: #C8CCD7;
+    color: #56C9F5;
 }
 
 .timeline-item:before, .timeline-item.alt:after {
@@ -2515,6 +2515,7 @@ ul.inbox-pagination li {
 
 ul.summary-list {
     display: inline-block;
+    text-align: center;/*此处添加*/
     padding-left: 0;
     width: 100%;
     margin-bottom: 0;
@@ -2522,7 +2523,7 @@ ul.summary-list {
 
 ul.summary-list > li {
     display: inline-block;
-    width: 19.5%;
+    width: 18%;/*此处修改原来19.5*/
     text-align: center;
 }
 
@@ -2923,6 +2924,9 @@ ul.amounts li {
 .border-top {
     border-top: 1px solid #ddd;
 }
+.border-bottom{
+    border-bottom: 1px solid #ddd;
+}
 
 .dataTables_paginate.paging_bootstrap.pagination li {
     float: left;
@@ -3105,6 +3109,13 @@ ul.amounts li {
     -webkit-border-radius: 5px 5px 0 0;
     border-bottom: none;
 }
+.tab-bg-dark-navy-white{
+    background: #e0e0e0;
+    border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-bottom: none;
+}
+.tab-bg-dark-navy-blue
 
 .panel-heading .nav > li > a,
 .panel-heading .nav > li.active > a, .panel-heading .nav > li.active > a:hover, .panel-heading .nav > li.active > a:focus {

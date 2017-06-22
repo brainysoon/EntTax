@@ -8,10 +8,6 @@ import java.util.Date;
 public class Log {
     private String lId;
 
-    private String sId;
-
-    private String bId;
-
     private Date lTime;
 
     private String lMessage;
@@ -20,13 +16,6 @@ public class Log {
         return lId;
     }
 
-    public String getSId() {
-        return sId;
-    }
-
-    public String getBId() {
-        return bId;
-    }
 
     public Date getLTime() {
         return lTime;
@@ -40,19 +29,21 @@ public class Log {
         this.lId = lId;
     }
 
-    public void setSId(String sId) {
-        this.sId = sId;
-    }
-
-    public void setBId(String bId) {
-        this.bId = bId;
-    }
-
     public void setLTime(Date lTime) {
         this.lTime = lTime;
     }
 
     public void setLMessage(String lMessage) {
         this.lMessage = lMessage;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Log{" +
+                "lId='" + lId + '\'' +
+                ", lTime=" + lTime +
+                ", lMessage='" + lMessage + '\'' +
+                '}';
     }
 }

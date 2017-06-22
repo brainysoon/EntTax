@@ -1,6 +1,7 @@
 package com.enttax.service;
 
 import com.enttax.model.Bill;
+import org.apache.shiro.session.Session;
 
 import java.util.List;
 import java.util.Map;
@@ -45,4 +46,63 @@ public interface BillService {
      * @return
      */
     int insertAll(List<Bill> bills);
+
+    /**
+     * 通过id删除bill数据
+     *
+     * @param bId
+     * @return
+     */
+    int deleteBillById(String bId, Session session);
+
+    /**
+     * 更新bill数据
+     *
+     * @param bill
+     * @return
+     */
+    int updateBill(Bill bill,Session session);
+
+
+    /**
+     * 显示月度统计
+     *
+     * @return
+     */
+    Map showMonthBill(String year);
+
+    /**
+     * 显示年度统计
+     *
+     * @return
+     */
+    Map showYearBill();
+
+    /**
+     * 显示所有类型项目名称
+     *
+     * @return
+     */
+    Map showCategoryName();
+
+    /**
+     * 显示分类统计数据
+     *
+     * @param year
+     * @param inputbName
+     * @param outputbName
+     * @return
+     */
+    Map showCategoryBill(String year, String inputbName, String outputbName);
+
+
+    /**
+     * 显示比率统计数据
+     *
+     * @param year
+     * @return
+     */
+    Map showRateCountBill(String year);
+
+    List<Bill> getBillByYearAndMonth(String year, String month);
 }

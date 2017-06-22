@@ -1,5 +1,6 @@
 package com.enttax.service.impl;
 
+import com.enttax.dao.LogMapper;
 import com.enttax.dao.RoleMapper;
 import com.enttax.dao.StaffMapper;
 import com.enttax.model.Role;
@@ -13,6 +14,8 @@ import com.enttax.util.tools.ToolRandoms;
 import com.enttax.util.tools.ToolString;
 import com.enttax.vo.Profile;
 import com.enttax.vo.StaffInfo;
+import com.enttax.web.BaseController;
+import org.apache.commons.logging.Log;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +30,7 @@ import java.util.Random;
  * Created by brainy on 17-4-26.
  */
 @Service
-public class StaffServiceImpl implements StaffService {
+public class StaffServiceImpl implements StaffService{
 
     @Autowired
     private StaffMapper staffMapper;
@@ -38,6 +41,9 @@ public class StaffServiceImpl implements StaffService {
     @Autowired
     private RoleMapper roleMapper;
 
+    @Autowired
+    private LogMapper logMapper;
+
     /**
      * 更新用户信息
      *
@@ -47,6 +53,11 @@ public class StaffServiceImpl implements StaffService {
     public int updateStaffInfo(Profile profile, Session session) {
         //拿到session的staff对象
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+
+        //激活账户
+        if (staff.getSMark()==0){
+            staff.setSMark(1);
+        }
 
         // 将profile要更改的信息填充到staff对象里
         String sName = profile.getSName();
@@ -71,6 +82,7 @@ public class StaffServiceImpl implements StaffService {
                 staff.setSBirthday(birthday);
             }
         }
+
 
         if (staffMapper.updateByPrimaryKey(staff) > 0) {
             session.setAttribute(ConstantStr.STAFFINFO, staff);
@@ -163,14 +175,14 @@ public class StaffServiceImpl implements StaffService {
      */
     @Transactional
     @Override
-    public int addStaff(String sPhone, String role) {
+    public int addStaff(String sPhone, String role,Session session) {
         int result;
         //添加员工
         Staff staff = new Staff();
         String sId = ToolRandoms.randomCode8();
 
         //拿到加密后的密码和摘要
-        Map map = securityService.encodePassword("666666", sId);
+        Map map = securityService.encodePassword("dbroom1411", sId);
         String sPassword = (String) map.get(SecurityService.ENCODE_RESULT_KEY_PASSWORD);
         String Ssalt = (String) map.get(SecurityService.ENCODE_RESULT_KEY_SALT);
 
@@ -181,6 +193,7 @@ public class StaffServiceImpl implements StaffService {
             staff.setSPassword(sPassword);
             staff.setSSalt(Ssalt);
             staff.setSEnter(new Date());
+            staff.setSSex(true);
             staff.setSMark(0);
             staff.setSPhone(sPhone);
             staff.setSAvatar("../../img/avatar.jpg");
@@ -206,6 +219,10 @@ public class StaffServiceImpl implements StaffService {
             //添加员工与角之间的关系
             result = staffMapper.insertStaffAndRoleRelation(sId, rId);
 
+            //生成系统日志
+            String message=":添加一位新员工,身份："+role+",电话号码"+sPhone;
+            logMapper.insert(CommonLog.createLogMessage(message,session));
+
             return result;
 
         }catch (Exception e){
@@ -230,7 +247,7 @@ public class StaffServiceImpl implements StaffService {
      */
     @Transactional
     @Override
-    public int deleteStaffBySid(String sId) {
+    public int deleteStaffBySid(String sId,Session session) {
 
         try {
             //先去中间表查出sId 对应的  rId
@@ -244,7 +261,12 @@ public class StaffServiceImpl implements StaffService {
                 Staff staff=staffMapper.selectByPrimaryKey(sId);
                 staff.setSMark(-1);
 
-                return staffMapper.updateByPrimaryKey(staff);
+                staffMapper.updateByPrimaryKey(staff);
+                //生成系统日志
+                String message=":将员工编号为"+sId+"的员工删除";
+                logMapper.insert(CommonLog.createLogMessage(message,session));
+
+                return 1;
 
             }
             return 0;
@@ -262,8 +284,19 @@ public class StaffServiceImpl implements StaffService {
      */
     @Transactional
     @Override
-    public int updateStaffForRole(String sId, String rName) {
+    public int updateStaffForRole(String sId, String rName,Session session) {
 
-        return  roleMapper.updateStaffForRole(sId,rName);
+        try {
+            roleMapper.updateStaffForRole(sId,rName);
+
+            //生成系统日志
+            String message=":将员工编号为"+sId+"的身份改为"+rName;
+            logMapper.insert(CommonLog.createLogMessage(message,session));
+            return 1;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
     }
+
 }

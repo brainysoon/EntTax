@@ -29,7 +29,7 @@ public interface ConstantStr {
     /**
      * 图片上传的域名前缀
      */
-    String IMAGE_UPLOAD_DOMAIN = "http://localhost/";
+    String IMAGE_UPLOAD_DOMAIN = "http://192.168.0.104/";
 
     /**
      * 图片上传路径地址
@@ -63,6 +63,10 @@ public interface ConstantStr {
      * 保存用户信息的集合
      */
     String STAFFINFOLIST = "stafflist";
+    /**
+     * 保存进销项数据集合
+     */
+    String DATALIST="datalist";
     /**
      * 状态
      */
@@ -98,15 +102,6 @@ public interface ConstantStr {
      */
     String PHONE = "phone";
 
-    /**
-     * birthday 生日
-     */
-    String TOSTRINGBIRTHDAY = "toStringBirthday";
-
-    /**
-     * enter 入职时间
-     */
-    String TOSTRINGENTER = "toStringEnter";
 
     /**
      * 字符串男
@@ -128,6 +123,22 @@ public interface ConstantStr {
      *
      */
     String REDIS_CACHE_KEY = "key";
+
+
+    /**
+     *
+     */
+    String INPUTDATA="进项数据";
+
+    /**
+     *
+     */
+    String OUTPUTDATA="销项数据";
+
+    /**
+     * 系统消息
+     */
+    String LOGMESSAGE="logmessage";
 
 
 }

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="brainy">
+    <meta name="keyword" content="EntTax">
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../img/favicon.ico">
+
+    <title>企业增值税发票数据分析系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-reset.css}" href="../../css/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+    <link th:href="@{/assets/font-awesome/css/font-awesome.css}" href="../../assets/font-awesome/css/font-awesome.css"
+          rel="stylesheet"/>
+    <link th:href="@{/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css}"
+          href="../../assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
+          media="screen"/>
+    <link th:href="@{/css/owl.carousel.css}" rel="stylesheet" href="../../css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/morris.js-0.4.3/morris.css">
+
+    <!-- Custom styles for this template //css 模板样式-->
+    <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
+    <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="../../css/extra.css">
+    <link rel="stylesheet" href="../../assets/morris.js-0.4.3/morris.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!-- [if lt IE 9]>
+    <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
+    <script th:src="@{/js/respond.min.js}" src="../../js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<section id="container" class="">
+    <!--header start 头部导航栏-->
+    <header class="header white-bg">
+        <!--左侧标题-->
+        <div class="sidebar-toggle-box">
+            <div data-original-title="导航栏" data-placement="right" class="icon-reorder tooltips"></div>
+        </div>
+        <!--logo start-->
+        <a href="#" class="logo">发票数据<span>分析系统</span></a>
+        <!--logo end-->
+
+        <!--首页通知和模板下载-->
+        <div class="nav notify-row" id="top_menu">
+            <!--  notification start -->
+            <ul class="nav top-menu">
+                <!-- settings start -->
+                <li class="dropdown">
+                    <a th:href="@{/resources/data_template.xlsx}" href="../../resources/data_template.xlsx"
+                       data-toggle="tooltip" data-placement="bottom" title="进销excel模板">
+                        <i class="icon-cloud-download"></i>
+                    </a>
+                </li>
+                <!-- settings end -->
+            </ul>
+            <!--  notification end -->
+        </div>
+        <!--通知下载结束-->
+
+        <!--右侧部分-->
+        <div class="top-nav ">
+            <!--search & user info start 右部搜索-->
+            <ul class="nav pull-right top-menu">
+                <!-- user login dropdown start 个人信息等(在头像按钮下)-->
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <img alt="" th:src="${staff.sAvatar}" width="35" height="35" src="../../img/avatar-mini4.jpg">
+                        <span class="username" th:text="${staff.sName}"></span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu extended logout">
+                        <div class="log-arrow-up"></div>
+                        <li><a th:href="@{/staff/profile}" href="staff/profile.html"><i class="icon-user"></i>个人资料</a>
+                        </li>
+                        <li><a th:href="@{/staff/security}" href="staff/security.html"><i class="icon-warning-sign"></i>安全中心</a>
+                        </li>
+                        <li><a th:href="@{/staff/message}" href="#"><i class="icon-bell-alt"></i>消息通知</a></li>
+                        <li><a th:href="@{/staff/logout}" href="#"><i class="icon-signout"></i>退出登录</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- user login dropdown end -->
+            </ul>
+            <!--search & user info end-->
+        </div>
+        <!--右侧部分结束-->
+
+    </header>
+    <!--header end 头部导航栏结束-->
+
+    <!--sidebar start 左侧导航栏-->
+    <aside>
+        <div id="sidebar" class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu">
+                <li class="active">
+                    <a class="" th:href="@{/index}" href="index.html">
+                        <i class="icon-home"></i>
+                        <span>首页</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-edit-sign"></i>
+                        <span>数据管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/bill/uploadexcel}" href="bill/uploadexcel.html">导入数据</a></li>
+                        <li><a class="" th:href="@{/bill/managedata}" href="bill/managedata.html">操作数据</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-bar-chart"></i>
+                        <span>数据分析</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/bill/monthcount}" href="monthcount.html">月度统计</a></li>
+                        <li><a class="" th:href="@{/bill/yearcount}" href="yearcount.html">年度统计</a></li>
+                        <li><a class="" th:href="@{/bill/categorycount}" href="categorycount.html">分类统计</a></li>
+                        <li><a class="" th:href="@{/bill/ratecount}" href="ratecount.html">比率统计</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-code-fork"></i>
+                        <span>趋势预测</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/ai/linear}" href="ai/linear.html">线性预测</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-user-md"></i>
+                        <span>员工管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="#">查看员工</a></li>
+                        <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-male"></i>
+                        <span>个人中心</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/staff/profile}" href="staff/profile.html">个人资料</a></li>
+                        <li><a class="" th:href="@{/staff/editprofile}" href="staff/editprofile.html">修改信息</a></li>
+                        <li><a class="" th:href="@{/staff/security}" href="staff/security.html">安全中心</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-envelope"></i>
+                        <span>消息管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/staff/message}" href="inform.html">我的消息</a></li>
+                        <li><a class="" th:href="@{/staff/sendmessage}" href="sendmsg.html">发送消息</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-shield"></i>
+                        <span>系统安全</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon-info"></i>
+                        <span>关于</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a th:href="@{/aboutus}" href="aboutus.html">关于我们</a></li>
+                        <li><a th:href="@{/aboutsystem}" href="aboutsystem.html">关于系统</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end 左侧导航栏结束-->
+    <!--page_start-->
+    <section id="main-content">
+
+        <section class="wrapper tab-container">
+            <div class="home-slider">
+                <!-- Carousel -->
+                <div id="home-slider" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <!--用户显示选择切换如1.2.3-->
+                    <ol class="carousel-indicators">
+                        <li data-target="#home-slider" data-slide-to="0" class="active"></li>
+                        <li data-target="#home-slider" data-slide-to="1"></li>
+                        <li data-target="#home-slider" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active" id="item-1">
+                            <div class="container">
+                                <div class="row">
+
+                                    <div class="col-sm-6 hidden-xs" style="float: left">
+                                        <img class="img-responsive animated bounceInDown" src="../../img/people-1.png"
+                                             alt="..." style="max-width: 500px;height: auto;">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h1 class="first-child animated fadeInUpBig delay-2" style="color: white">
+                                            <strong>
+                                                <span
+                                                        class="">欢迎光临企业增值税
+                                                </span>
+                                            </strong><br>
+                                            <small>
+                                                <span class="" style="color: #000000">发票数据</span>
+                                                <span class="" style="color: #FF6C60">分析系统</span>
+                                            </small>
+                                        </h1>
+
+                                        <ul style="color: white;font-size: 18px;margin-top: 10px">
+                                            <li class="animated bounceInRight delay-4" style="padding: 6px 0"><i
+                                                    class="icon-star"></i>数据管理
+                                            </li>
+
+                                            <li class="animated bounceInDown delay-4" style="padding: 6px 0"><i
+                                                    class="icon-star"></i>数据预测
+                                            </li>
+
+
+                                            <li class="animated bounceInRight delay-6" style="padding: 6px 0"><i
+                                                    class="icon-star"></i>系统安全
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="item" id="item-2">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="head-home">
+                                            <h1 class="animated bounceInDown" style="text-align: center;color: #ffffff">
+                                                发票数据分析系统操作流程</h1>
+                                        </div>
+
+
+                                        <section class="panel animated bounceInDown delay-1">
+                                            <div class="panel-body">
+                                                <ul class="summary-list" style="text-align: center">
+                                                    <li class="animated bounceInLeft delay-2">
+                                                        <a href="javascript:">
+                                                            <i class="icon-upload text-danger"></i>
+                                                            上传发票数据
+                                                        </a>
+
+                                                    </li>
+                                                    <li class="animated bounceInDown delay-3">
+                                                        <a href="javascript:;">
+                                                            <i class="icon-pencil text-danger"></i>
+                                                            操作数据(查看、增加、删除、修改)
+                                                        </a>
+                                                    </li>
+                                                    <li class="animated bounceInUp delay-5">
+                                                        <a href="javascript:;">
+                                                            <i class=" icon-signal text-danger"></i>
+                                                            年、月、分类、分类统计
+                                                        </a>
+
+                                                    </li>
+                                                    <li class="animated bounceInDown delay-7">
+                                                        <a href="javascript:;">
+                                                            <i class="icon-bar-chart text-danger"></i>
+                                                            数据分析(梯度下降、正规式)
+                                                        </a>
+
+                                                    </li>
+                                                    <li class="animated bounceInRight delay-9">
+                                                        <a href="javascript:;">
+                                                            <i class="icon-code-fork text-danger"></i>
+                                                            数据预测
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </section>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" id="item-3">
+                        </div>
+                    </div>
+                    <a class="carousel-arrow carousel-arrow-prev hidden-xs hidden-sm" href="#home-slider"
+                       data-slide="prev">
+                        <i class="icon-chevron-left"></i>
+                    </a>
+                    <a class="carousel-arrow carousel-arrow-next hidden-xs hidden-sm" href="#home-slider"
+                       data-slide="next">
+                        <i class="icon-chevron-right"></i>
+
+                    </a>
+                </div>
+                <!-- page start-->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="morris">
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <section class="panel">
+                                    <header class="panel-heading">
+                                        销售状况对比
+                                    </header>
+                                    <div class="panel-body">
+                                        <div id="hero-area" class="graph"></div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <section class="panel">
+                                    <header class="panel-heading">
+                                        one的单独销售状况
+                                    </header>
+                                    <div class="panel-body">
+                                        <div id="hero-bar" class="graph"></div>
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <section class="panel">
+                                    <header class="panel-heading">
+                                        评分回馈
+                                    </header>
+                                    <div class="panel-body">
+                                        <div id="hero-graph" class="graph"></div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="col-lg-6">
+                                <section class="panel">
+                                    <header class="panel-heading">
+                                        占有企业份额
+                                    </header>
+                                    <div class="panel-body">
+                                        <div id="hero-donut" class="grph"></div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- page end-->
+            </div>
+        </section>
+
+    </section>
+    <!--main content end-->
+</section>
+
+
+</div>
+<!-- js placed at the end of the document so the pages load faster -->
+<script th:src="@{/js/jquery.js}" src="../../js/jquery.js"></script>
+<script th:src="@{/js/jquery-1.8.3.min.js}" src="../../js/jquery-1.8.3.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}" src="../../js/bootstrap.min.js"></script>
+<script th:src="@{/js/jquery.scrollTo.min.js}" src="../../js/jquery.scrollTo.min.js"></script>
+<script th:src="@{/js/jquery.nicescroll.js}" src="../../js/jquery.nicescroll.js" type="text/javascript"></script>
+
+
+<script src="../../assets/morris.js-0.4.3/morris.min.js"></script>
+<script src="../../assets/morris.js-0.4.3/raphael-min.js"></script>
+<script src="../../assets/chart-master/Chart.js"></script>
+<script src="../../js/jquery.sparkline.js"></script>
+
+<script th:src="@{/assets/data-tables/jquery.dataTables.js}" type="text/javascript"
+        src="../../assets/data-tables/jquery.dataTables.js"></script>
+<script th:src="@{/assets/data-tables/DT_bootstrap.js}" type="text/javascript"
+        src="../../assets/data-tables/DT_bootstrap.js"></script>
+
+<!--common script for all pages-->
+<script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
+
+
+<script src="../../js/morris-script.js"></script>
+<script src="../../js/all-chartjs.js"></script>
+<script src="../../js/sparkline-chart.js"></script>
+
+
+<script>
+    //upload download excel tooltip
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+    });
+</script>
+
+</body>
+</html>

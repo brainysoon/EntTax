@@ -19,3 +19,263 @@
     height: 10px;
     line-height: 10px;
 }
+
+#clear-infor, #mark-read, #all-read {
+    border: 0;
+    float: right;
+    font-size: 18px;
+    margin: auto 0;
+    line-height: 30px;
+    color: #246;
+}
+
+/*
+css实现图片的切换
+*/
+.home-slider .carousel-inner > .item {
+    padding: 80px 0 0;
+    height: 490px;
+    overflow: hidden;
+    background-color: #f6f6f6;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover !important;
+}
+
+.carousel {
+    position: relative;
+}
+
+.carousel-inner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-inner > .item {
+    display: none;
+    position: relative;
+    -webkit-transition: 0.6s ease-in-out left;
+    transition: 0.6s ease-in-out left;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    line-height: 1;
+}
+
+.carousel-inner > .active,
+.carousel-inner > .next,
+.carousel-inner > .prev {
+    display: block;
+}
+
+.carousel-inner > .active {
+    left: 0;
+}
+
+.carousel-inner > .next,
+.carousel-inner > .prev {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.carousel-inner > .next {
+    left: 100%;
+}
+
+.carousel-inner > .prev {
+    left: -100%;
+}
+
+.carousel-inner > .next.left,
+.carousel-inner > .prev.right {
+    left: 0;
+}
+
+.carousel-inner > .active.left {
+    left: -100%;
+}
+
+.carousel-inner > .active.right {
+    left: 100%;
+}
+
+/*.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    z-index: 15;
+    width: 100%;
+    margin-left: -5%;
+    padding-left: 0;
+    list-style: none;
+    text-align: right;
+}*/
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    list-style: none;
+    bottom: 10px;
+
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 1px;
+    text-indent: -999px;
+    border: 3px solid rgba(255, 255, 255, .6);
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.carousel-indicators .active {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 1px;
+    text-indent: -999px;
+    border: 3px solid rgba(255, 255, 255, .6);
+    border-radius: 0;
+    cursor: pointer;
+    background: #FFF;
+    border-color: #FFF;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+#item-1 {
+    background-image: url(../img/slide03.jpg);
+    background-position: bottom center;
+}
+
+#item-2 {
+    background-image: url(../img/slide03.jpg);
+}
+
+#item-3 {
+    background-image: url(../img/slide03.jpg);
+}
+
+a.carousel-arrow {
+    height: 60px;
+    width: 60px;
+    border-radius: 0;
+    line-height: 60px;
+    text-align: center;
+    position: absolute;
+    display: block;
+    top: 50%;
+    margin-top: -25px;
+    background: transparent;
+    color: transparent;
+    font-size: 32px;
+    font-weight: 300;
+    cursor: pointer;
+    -webkit-transition: background 300ms, color 300ms;
+    transition: background 300ms, color 300ms;
+}
+
+.carousel:hover a.carousel-arrow {
+    background: none;
+    color: #FFF;
+}
+
+.carousel a.carousel-arrow:hover {
+    background: none;
+}
+
+a.carousel-arrow:hover,
+a.carousel-arrow:active {
+    text-decoration: none;
+}
+
+a.carousel-arrow-prev {
+    left: 10px;
+    right: auto;
+    padding-right: 5px;
+}
+
+a.carousel-arrow-next {
+    right: 10px;
+    left: auto;
+    padding-left: 5px;
+}
+/*用于设置延迟时间,以供anminate的先后顺序显示*/
+.delay-1 {
+    -webkit-animation-delay: 300ms;
+    -moz-animation-delay: none;
+    animation-delay: 300ms;
+}
+.delay-2 {
+    -webkit-animation-delay: 600ms;
+    -moz-animation-delay: none;
+    animation-delay: 600ms;
+}
+.delay-3 {
+    -webkit-animation-delay: 900ms;
+    -moz-animation-delay: none;
+    animation-delay: 900ms;
+}
+.delay-4 {
+    -webkit-animation-delay: 1200ms;
+    -moz-animation-delay: none;
+    animation-delay: 1200ms;
+}
+.delay-5 {
+    -webkit-animation-delay: 1500ms;
+    -moz-animation-delay: none;
+    animation-delay: 1500ms;
+}
+.delay-6 {
+    -webkit-animation-delay: 1800ms;
+    -moz-animation-delay: none;
+    animation-delay: 1800ms;
+}
+.delay-7 {
+    -webkit-animation-delay: 2100ms;
+    -moz-animation-delay: none;
+    animation-delay: 2100ms;
+}
+.delay-8 {
+    -webkit-animation-delay: 2400ms;
+    -moz-animation-delay: none;
+    animation-delay: 2400ms;
+}
+
+.delay-9 {
+    -webkit-animation-delay: 2400ms;
+    -moz-animation-delay: none;
+    animation-delay: 2700ms;
+}
+
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 1030px;
+    }
+}
