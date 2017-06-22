@@ -77,4 +77,9 @@ public class MsgServiceImpl implements MsgService {
     public int deleteByToSId(String toSId) {
         return msgMapper.deleteByToSId(toSId);
     }
+
+    @Override
+    public int markReadAllByToSId(String tosid) {
+        return msgMapper.markReadAllByToSId(tosid);
+    }
 }

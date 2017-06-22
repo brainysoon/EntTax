@@ -1,13 +1,17 @@
 package com.enttax.web;
 
 import com.enttax.model.Staff;
+import com.enttax.service.MsgService;
 import com.enttax.service.StaffService;
 import com.enttax.util.constant.ConstantStr;
+import com.enttax.vo.MsgInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * Created by lcyanxi on 17-3-19.
@@ -18,6 +22,9 @@ public class NavigatController extends BaseController {
     @Autowired
     private StaffService staffService;
 
+    @Autowired
+    private MsgService msgService;
+
     /**
      * @return 由于是分析系统  所以首页面直接返回到  登录页面 暂时没有主页面
      */
@@ -27,6 +34,13 @@ public class NavigatController extends BaseController {
         //用户登录信息
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
         model.addAttribute(ConstantStr.STAFFINFO, staff);
+
+        //当前用户的消息
+        List<MsgInfo> msgInfos = msgService.getMsgByToSIdAndMRead(staff.getSId(), Constant.MARK_UNREAD);
+        model.addAttribute(Constant.MODEL_KEY_UNREAD_MESSAGE, msgInfos);
+
+        //未读消息的个数
+        model.addAttribute(Constant.MODEL_KEY_UNREAD_MESSAGE_COUNT, msgInfos.size());
 
         return "home";
     }
