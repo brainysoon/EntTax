@@ -229,7 +229,7 @@ $().ready(function () {
 
 
     //添加用户手机校验
-   add_staff_validator=$("#add_staff").validate({
+    add_staff_validator = $("#add_staff").validate({
         submitHandler: function (form) {
 
             //验证过后提交表单
@@ -255,12 +255,35 @@ $().ready(function () {
             e.remove();
         }
     });
+
+    //校验发送消息
+    $("#sendmsg_form").validate({
+        submitHandler: function (form) {
+
+            //验证过后提交
+            form.submit();
+        },
+        rules: {
+            tosid: {
+                required: true
+            },
+            content: {
+                required: true
+            }
+        },
+        messages: {
+            tosid: "收件人不能为空",
+            content: "内容不能为空"
+        },
+        highlight: function (e) {
+            $(e).closest(".form-group").removeClass("has-success").addClass("has-error");
+        },
+        success: function (e) {
+            $(e).closest(".form-group").removeClass("has-error").addClass("has-success");
+            e.remove();
+        }
+    });
 });
-
-
-
-
-
 
 
 function checkPhoneNum_addStaff() {

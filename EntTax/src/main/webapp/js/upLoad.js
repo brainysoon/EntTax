@@ -104,11 +104,10 @@ function setPro(per) {
 
 function uploadComplete(evt) {
     /* 当服务器响应后，这个事件就会被触发 */
-    var data=JSON.parse(evt.target.responseText);
+    var data = JSON.parse(evt.target.responseText);
 
     if (data.status > 0) {
 
-        alert("上传文件成功!");
         window.location.href = "/bill/uploadexcel?key=" + data.key;
     }
 }

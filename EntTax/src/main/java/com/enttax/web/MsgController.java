@@ -18,7 +18,7 @@ import java.util.List;
  * Created by brainy on 17-5-24.
  */
 @Controller
-@RequestMapping(value = "/staff/message")
+@RequestMapping(value = "/staff")
 public class MsgController extends BaseController {
 
     @Autowired
@@ -30,7 +30,7 @@ public class MsgController extends BaseController {
      * @param model
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/message", method = RequestMethod.GET)
     public String toMsg(Model model) {
 
         //用户登录信息
@@ -52,7 +52,7 @@ public class MsgController extends BaseController {
         return "inform";
     }
 
-    @RequestMapping(value = "/markread", method = RequestMethod.POST)
+    @RequestMapping(value = "/message/markread", method = RequestMethod.POST)
     public String markReadByMIds(Model model,
                                  @RequestParam(value = "mid", required = false) String[] mIds) {
 
@@ -61,21 +61,50 @@ public class MsgController extends BaseController {
         return "redirect:/staff/message";
     }
 
-    @RequestMapping(value = "/sendmsg", method = RequestMethod.POST)
+    @RequestMapping(value = "/sendmessage", method = RequestMethod.POST)
     public String sendMsg(Model model,
                           @RequestParam(value = "tosid") String toSId,
                           @RequestParam(value = "content") String mContent) {
 
         //拿到登录用户的信息
-        Staff staff = (Staff) session.getAttribute(Constant.CURRENT_LOGIN_STAFF_KEY);
+        //用户登录信息
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        model.addAttribute(ConstantStr.STAFFINFO, staff);
 
-        //发送信息
-        int resutlt = msgService.sendMsg(toSId, mContent, staff.getSId());
+        try {
+
+            //发送信息
+            int resutlt = msgService.sendMsg(toSId, mContent, staff.getSId());
+
+            if (resutlt > 0) {
+
+                model.addAttribute(ConstantStr.MESSAGE, "发送成功!");
+            } else {
+
+                model.addAttribute(ConstantStr.MESSAGE, "发送失败!");
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+            model.addAttribute(ConstantStr.MESSAGE, "服务器错误!");
+        }
 
         return "sendmsg";
     }
 
-    @RequestMapping(value = "/delete/msg/{mid}")
+    @RequestMapping(value = "/sendmessage", method = RequestMethod.GET)
+    public String toSendMsg(Model model) {
+
+        //拿到登录用户的信息
+        //用户登录信息
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        model.addAttribute(ConstantStr.STAFFINFO, staff);
+
+        return "sendmsg";
+    }
+
+    @RequestMapping(value = "/message/delete/msg/{mid}")
     public String deleteByMId(@PathVariable(value = "mid") String mid) {
 
         int result = msgService.deleteByMIds(new String[]{mid});
@@ -83,7 +112,7 @@ public class MsgController extends BaseController {
         return "redirect:/staff/message";
     }
 
-    @RequestMapping(value = "/delete/all")
+    @RequestMapping(value = "/message/delete/all")
     public String deleteAll() {
 
         //用户登录信息
