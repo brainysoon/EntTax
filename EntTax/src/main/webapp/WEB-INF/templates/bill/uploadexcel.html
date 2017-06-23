@@ -230,6 +230,7 @@
                                     <button class="btn btn-info btn-sm" data-toggle="modal" data-placement="right"
                                             title="上传进销项excel数据表" data-target="#upload_excel_myModal"><i
                                             class="icon-upload-alt"></i>
+                                        上传文件
                                     </button>
                                 </th>
                                 <th>项目序号</th>
@@ -262,8 +263,8 @@
                         <div class="row">
                             <div class="col-xs-4"></div>
                             <div class="col-xs-4">
-                                <button class="btn btn-info btn-block btn-lg right"><a
-                                        th:href="@{'/bill/confirmupload/'+${key}}">确认上传</a></button>
+                                <a th:href="@{'/bill/confirmupload/'+${key}}"
+                                   class="btn btn-info btn-block btn-lg right">确认添加</a>
                                 <p class="help-block text-danger btn-lg" th:text="${message}"></p>
                             </div>
                             <div class="col-xs-4"></div>
@@ -296,7 +297,7 @@
 
                 <!--显示的模态框 中间内容-->
                 <div class="modal-body">
-                    <button class="btn btn-warning"><p class="icon-exclamation-sign"></p>注意</button>
+                    <button type="button" class="btn btn-warning"><p class="icon-exclamation-sign"></p>注意</button>
                     <label class="btn-lg">您上传的excel形式应与提供的excel模板一致,不然会出错哟！</label>
                     <div id="extra-border">
                         <div class="btn-lg">
@@ -330,9 +331,6 @@
                     </div>
                     <div class="col-xs-6">
                         <input type="button" class="btn btn-primary" onclick="uploadFile()" value="上传文件"/>
-                        <input type="button" class="btn btn-default btn-success" data-dismiss="modal"
-                               onclick="confirmFile()"
-                               value="完成确认">
                     </div>
                     <h4 id="message" class="help-block text-danger text-center"></h4>
                 </div>
