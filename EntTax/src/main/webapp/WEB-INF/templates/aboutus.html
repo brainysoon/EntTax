@@ -9,7 +9,7 @@
     <meta name="keyword" content="EntTax">
     <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../img/favicon.ico">
 
-    <title>企业增值税发票数据分析系统</title>
+    <title>关于我们</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -25,6 +25,7 @@
     <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
     <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
 
+    <link rel="stylesheet" href="../../css/extra.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--此处未应用 [if lt IE 9]>
     <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
@@ -199,18 +200,112 @@
         </div>
     </aside>
     <!--sidebar end 左侧导航栏结束-->
-    <!--page_start-->
+
     <section id="main-content">
         <section class="wrapper">
-            <div id="diagram" style="min-width:400px;height:400px"></div>
-            <br><br>
+            <!--page start-->
+            <div id="bill_list" class="row">
+                <div class="col-lg-12">
+                    <!--头部开始-->
+                    <div class="panel">
+                        <!--头部 位置显示栏-->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title">
+                                关于我们
+                            </h4>
+                        </div>
+                        <!--头部 位置显示栏结束-->
+                    </div>
+                    <!--头部结束-->
+
+                    <!--主要内容部分开始-->
+                    <div class="panel-content">
+
+                        <ul>
+                            <li>
+                                <div class="info">
+                                    <img class="img-responsive center-block" src="../../img/profile-avatar.jpg"
+                                         alt="...">
+                                    <h2><strong>苗巍</strong></h2>
+                                    <p class="h-donw">指导老师</p>
+                                    <p>&nbsp&nbsp&nbsp&nbsp&nbsp
+                                        个人信息内容部分
+                                    </p>
+                                    <div>
+                                        <!--<a href="https://github.com/" target="_blank">-->
+                                        <!--<i class="icon-github"></i>-->
+                                        <!--</a>-->
+                                        <a href=""><i class="icon-envelope"></i></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info">
+                                    <img class="img-responsive center-block" src="../../img/profile-avatar.jpg"
+                                         alt="...">
+                                    <h2><strong>李畅</strong></h2>
+                                    <p class="h-donw">组长</p>
+                                    <p>&nbsp&nbsp&nbsp&nbsp&nbsp
+                                        个人信息内容部分
+                                    </p>
+                                    <div>
+                                        <a href="https://github.com/" target="_blank">
+                                            <i class="icon-github"></i>
+                                        </a>
+                                        <a href=""><i class="icon-envelope"></i></a>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li>
+                                <div class="info">
+                                    <img class="img-responsive center-block" src="../../img/profile-avatar.jpg"
+                                         alt="...">
+                                    <h2><strong>孙晓聪</strong></h2>
+                                    <p class="h-donw">组员</p>
+                                    <p>&nbsp&nbsp&nbsp&nbsp&nbsp
+                                        个人信息内容部分
+                                    </p>
+                                    <div>
+                                        <a href="https://github.com/" target="_blank">
+                                            <i class="icon-github"></i>
+                                        </a>
+                                        <a href=""><i class="icon-envelope"></i></a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="info">
+                                    <img class="img-responsive center-block" src="../../img/profile-avatar.jpg"
+                                         alt="...">
+                                    <h2><strong>牛明鑫</strong></h2>
+                                    <p class="h-donw">组员</p>
+                                    <p>&nbsp&nbsp&nbsp&nbsp&nbsp
+                                        个人信息内容部分
+                                    </p>
+                                    <div>
+                                        <a href="https://github.com/" target="_blank">
+                                            <i class="icon-github"></i>
+                                        </a>
+                                        <a href=""><i class="icon-envelope"></i></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--主要内容部分结束-->
+
+                </div>
+            </div>
+            <!-- page end-->
         </section>
     </section>
-    <!--main content end-->
 </section>
 
 
-</div>
 <!-- js placed at the end of the document so the pages load faster -->
 <script th:src="@{/js/jquery.js}" src="../../js/jquery.js"></script>
 <script th:src="@{/js/jquery-1.8.3.min.js}" src="../../js/jquery-1.8.3.min.js"></script>
@@ -222,11 +317,23 @@
 <script th:src="@{/assets/data-tables/DT_bootstrap.js}" type="text/javascript"
         src="../../assets/data-tables/DT_bootstrap.js"></script>
 
+<!--Jquery Validate-->
+<script th:src="@{/js/jquery.validate.min.js}" src="../../js/jquery.validate.min.js"></script>
+<!--Custom Validate-->
+<script th:src="@{/js/custom-validate.js}" src="../../js/custom-validate.js"></script>
+<!--Custom function-->
+<script th:src="@{/js/custom-function.js}" src="../../js/custom-function.js"></script>
+
 
 <!--common script for all pages-->
 <script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
 
+<!--script for this page-->
+<script th:src="@{/js/dynamic-table.js}" src="../../js/dynamic-table.js"></script>
 
+
+<!--extra-->
+<script src="../../js/extra.js"></script>
 <script>
     //upload download excel tooltip
     $(function () {
