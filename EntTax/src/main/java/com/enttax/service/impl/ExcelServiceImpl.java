@@ -43,8 +43,8 @@ public class ExcelServiceImpl implements ExcelService {
     @Autowired
     private LogMapper logMapper;
 
-    private int outputNumber;
-    private int inputNumber;
+    private int outputNumber=0;
+    private int inputNumber=0;
     @Override
     public List<Bill> readExcelFromInputStream(int bMark, int sheetAt, InputStream is, String extName) throws Exception {
 
@@ -145,6 +145,10 @@ public class ExcelServiceImpl implements ExcelService {
         //生成系统日志
         String message=":导入进项数据"+inputNumber+"条,销项数据"+outputNumber+"条";
         logMapper.insert(CommonLog.createLogMessage(message,session));
+
+        //把记录值置空
+        inputNumber=0;
+        outputNumber=0;
 
         //存入MySql数据库
         return billService.insertAll(bills);
