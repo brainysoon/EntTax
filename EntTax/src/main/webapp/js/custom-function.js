@@ -283,6 +283,14 @@ function updatebill() {
     var bPrice = $('#bPrice').val();
     var bMonth = $('#bMonth').val();
 
+    //尝试转换金额
+    if (isNaN(bPrice)) {
+
+        alert("请输入正确的金额!");
+
+        return;
+    }
+
     //首先校验邮箱的正确性
     if (bName == null || bName == "") {
         window.wxc.xcConfirm("不能有空数据", window.wxc.xcConfirm.typeEnum.error);

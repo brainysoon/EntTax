@@ -115,42 +115,68 @@ public class BillServiceImpl implements BillService {
 
     @Transactional
     @Override
-    public int deleteBillById(String bId,Session session) {
+    public int deleteBillById(String bId, Session session) {
         Bill bill = billMapper.selectByPrimaryKey(bId);
         //假删除，将Mark置为-1
         bill.setBMark(-1);
 
         //生成系统日志
-        String message=":将项目编号为"+bId+"的数据删除";
+        String message = ":将项目编号为" + bId + "的数据删除";
         logMapper.insert(CommonLog.createLogMessage(message, session));
         return billMapper.updateByPrimaryKey(bill);
     }
 
     @Transactional
     @Override
-    public int updateBill(Bill bill,Session session) {
-        Bill preBill= billMapper.selectByPrimaryKey(bill.getBId());
+    public int updateBill(Bill bill, Session session) {
+        Bill preBill = billMapper.selectByPrimaryKey(bill.getBId());
 
-        String message=":将项目编号为"+bill.getBId()+"的";
+        //标记是否有改变
+        boolean flag = false;
 
-        if (preBill.getBName()!=bill.getBName()){
-            message+="项目名称更改为"+bill.getBName()+",";
+        String message = ":将项目编号为" + bill.getBId() + "的";
+
+        if (!preBill.getBName().equals(bill.getBName())) {
+            message += "项目名称更改为" + bill.getBName() + ",";
+            flag = true;
         }
-        if (preBill.getBMonth()!=bill.getBMonth()){
-            message+="月份改为"+bill.getBMonth()+",";
+        if (!preBill.getBMonth().equals(bill.getBMonth())) {
+            message += "月份改为" + bill.getBMonth() + ",";
+            flag = true;
         }
-        if (preBill.getBPrice()!=bill.getBPrice()){
-            message+="金额改为"+bill.getBPrice()+",";
+        if (!preBill.getBPrice().equals(bill.getBPrice())) {
+            message += "金额改为" + bill.getBPrice() + ",";
+            flag = true;
         }
-        if (preBill.getBType()!=bill.getBType()){
-            message+="项目类型改为"+bill.getBType()+",";
+        if (!preBill.getBType().equals(bill.getBType())) {
+            message += "项目类型改为" + bill.getBType() + ",";
+            flag = true;
         }
 
-        //生成系统日志
-        logMapper.insert(CommonLog.createLogMessage(message,session));
+        int result = 0;
 
-        bill.setBMark(0);
-        return billMapper.updateByPrimaryKey(bill);
+        if (flag) {
+
+            //更新日期
+            bill.setBUpdateTime(new Date());
+            bill.setBMark(1);
+
+            try {
+                result = billMapper.updateByPrimaryKey(bill);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+
+                result = -1;
+            }
+        }
+
+        if (result > 0) {
+            //生成系统日志
+            logMapper.insert(CommonLog.createLogMessage(message, session));
+        }
+
+        return result;
     }
 
     @Override
