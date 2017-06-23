@@ -74,15 +74,21 @@ public class BillController extends BaseController {
                 int lastIndex = fileName.lastIndexOf(".");
                 String extName = fileName.substring(lastIndex);
 
+                //随机生成一个id
+                String key = ToolRandoms.randomId20();
+
                 // 从文件流中读取
                 List<Bill> bills = new ArrayList<>();
                 for (int i = 0; i < bmark.length; i++) {
 
-                    bills.addAll(excelService.readExcelFromInputStream(bmark[i], bmark[i], excelFile.getInputStream(), extName));
-                }
+                    List<Bill> billList = excelService.readExcelFromInputStream(bmark[i], bmark[i], excelFile.getInputStream(), extName);
 
-                //随机生成一个id
-                String key = ToolRandoms.randomId20();
+                    //记录添加的大小
+                    //放入 redis 缓存
+                    excelService.pushRecordToRedis(key + bmark[i], billList.size());
+
+                    bills.addAll(billList);
+                }
 
                 //放入 redis 缓存
                 excelService.pushExcelToCache(key, bills);
