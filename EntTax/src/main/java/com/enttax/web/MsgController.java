@@ -56,7 +56,7 @@ public class MsgController extends BaseController {
     public String markReadByMIds(Model model,
                                  @RequestParam(value = "mid", required = false) String[] mIds) {
 
-        if (mIds == null) {
+        if (mIds != null) {
 
             int result = msgService.markReadByMIds(mIds);
         }
@@ -107,7 +107,7 @@ public class MsgController extends BaseController {
         return "sendmsg";
     }
 
-    @RequestMapping(value = "/message/delete/msg/{mid}")
+    @RequestMapping(value = "/delete/msg/{mid}")
     public String deleteByMId(@PathVariable(value = "mid") String mid) {
 
         int result = msgService.deleteByMIds(new String[]{mid});
@@ -115,13 +115,13 @@ public class MsgController extends BaseController {
         return "redirect:/staff/message";
     }
 
-    @RequestMapping(value = "/message/delete/all")
-    public String deleteAll() {
+    @RequestMapping(value = "/message/delete/all/{index}")
+    public String deleteAll(@PathVariable(value = "index") Integer index) {
 
         //用户登录信息
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
 
-        int result = msgService.deleteByToSId(staff.getSId());
+        int result = msgService.deleteByToSId(staff.getSId(), index);
 
         return "redirect:/staff/message";
     }

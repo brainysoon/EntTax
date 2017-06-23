@@ -16,9 +16,9 @@
     DELETE FROM msg
     WHERE MId = #{mId}
   </delete>
-    <delete id="deleteByToSId" parameterType="java.lang.String">
+    <delete id="deleteByToSIdAndMRead">
     DELETE FROM msg
-    WHERE ToSId = #{toSId}
+    WHERE ToSId = #{toSId} AND MRead=#{mRead}
     </delete>
     <update id="phonyDeleteByPrimaryKey" parameterType="java.lang.String">
         UPDATE msg

@@ -233,7 +233,7 @@
                                     </li>
 
 
-                                    <a th:href="@{/staff/message/delete/all}">
+                                    <a th:href="@{/staff/message/delete/all/3}">
                                         <button type="button" class="tab-bg-dark-navy-blue" id="clear-infor"
                                                 style="display: block">
                                             <i class="icon-trash"></i>
@@ -247,7 +247,7 @@
                                         标记为已读
                                     </button>
 
-                                    <a th:href="@{/staff/message/delete/all}">
+                                    <a th:href="@{/staff/message/delete/all/1}">
                                         <button type="button" class="tab-bg-dark-navy-blue" id="all-read"
                                                 style="display: none">
                                             <i class="icon-trash"></i>
@@ -285,7 +285,7 @@
                                                 </td>
                                                 <td class="hidden-phone">
 
-                                                    <a th:href="@{'/staff/deletemsg/'+${msg_all.mId}}">
+                                                    <a th:href="@{'/staff/delete/msg/'+${msg_all.mId}}">
                                                         <button type="button" class="btn btn-danger btn-xs">
                                                             <i class="icon-trash "></i></button>
                                                     </a>
@@ -326,7 +326,7 @@
                                                 </td>
                                                 <td class="hidden-phone">
 
-                                                    <a th:href="@{'/staff/deletemsg/'+${msg_unread.mId}}">
+                                                    <a th:href="@{'/staff/delete/msg/'+${msg_unread.mId}}">
                                                         <button type="button" class="btn btn-danger btn-xs">
                                                             <i class="icon-trash "></i></button>
                                                     </a>
@@ -365,7 +365,7 @@
                                                 </td>
                                                 <td class="hidden-phone">
 
-                                                    <a th:href="@{'/staff/deletemsg/'+${msg_read.mId}}">
+                                                    <a th:href="@{'/staff/delete/msg/'+${msg_read.mId}}">
                                                         <button type="button" class="btn btn-danger btn-xs">
                                                             <i class="icon-trash "></i></button>
                                                     </a>
