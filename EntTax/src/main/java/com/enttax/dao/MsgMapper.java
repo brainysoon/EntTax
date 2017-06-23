@@ -81,9 +81,10 @@ public interface MsgMapper {
 
     /**
      * @param toSId
+     * @param mRead
      * @return
      */
-    int deleteByToSId(String toSId);
+    int deleteByToSIdAndMRead(@Param("toSId") String toSId, @Param("mRead") Integer mRead);
 
     /**
      * @param toSId
