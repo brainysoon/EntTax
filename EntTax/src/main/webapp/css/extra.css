@@ -279,3 +279,31 @@ a.carousel-arrow-next {
         width: 1030px;
     }
 }
+
+.people-img img{
+    max-width: 500px;
+    height: auto;
+}
+
+.head-title h1{
+    text-align: center;
+}
+
+.content-img ul{
+    font-size: 18px;
+    margin-top: 10px;
+}
+.content-img ul li{
+    padding: 6px 0;
+}
+
+.text-white{
+    color: #ffffff;
+}
+
+.text-black{
+    color: #2e2e2e;
+}
+.text-pink{
+    color: #FF6C60;
+}
