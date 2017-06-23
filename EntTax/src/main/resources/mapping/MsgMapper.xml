@@ -54,19 +54,19 @@
     <select id="selectByToSId" parameterType="java.lang.String" resultType="MsgInfo">
          SELECT MId, ToSId, FromSId,
       MRead,MContent, MDate,MMark,SName AS FromName
-    FROM msg m INNER JOIN staff s ON m.ToSId = s.SId
+    FROM msg m INNER JOIN staff s ON m.FromSId = s.SId
     WHERE ToSId=#{toSId} AND MMark>0
     </select>
     <select id="selectByFromSId" parameterType="java.lang.String" resultType="MsgInfo">
      SELECT MId, ToSId, FromSId,
       MRead,MContent, MDate,MMark,SName AS FromName
-    FROM  msg m INNER JOIN staff s ON m.ToSId = s.SId
+    FROM  msg m INNER JOIN staff s ON m.FromSId = s.SId
     WHERE FromSId=#{fromSId} AND MMark>0
 </select>
     <select id="selectByToSIdAndMRead" resultType="MsgInfo">
         SELECT MId, ToSId, FromSId,
         MRead,MContent, MDate,MMark,SName AS FromName
-        FROM msg m INNER JOIN staff s ON m.ToSId = s.SId
+        FROM msg m INNER JOIN staff s ON m.FromSId = s.SId
         WHERE ToSId=#{toSId,jdbcType=CHAR} AND MRead=#{mRead,jdbcType=INTEGER} AND MMark>0
     </select>
     <update id="markReadByMId" parameterType="java.lang.String">
