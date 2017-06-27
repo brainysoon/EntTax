@@ -192,9 +192,113 @@
     <!--sidebar end 左侧导航栏结束-->
 
     <!--main content start-->
+
     <section id="main-content">
         <section class="wrapper">
-            <!-- page start-->
+            <!--page start-->
+            <div id="bill_list" class="row">
+                <div class="col-lg-12">
+                    <div class="panel">
+                        <!--头部 位置显示栏-->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title">
+                                安全中心
+                            </h4>
+                        </div>
+                        <!--头部 位置显示栏结束-->
+                    </div>
+
+                    <aside class="profile-nav col-lg-3">
+                        <section class="panel">
+                            <div class="user-heading round">
+                                <a href="#">
+                                    <img th:src="${staff.sAvatar}" src="../../../img/profile-avatar.jpg"
+                                         alt="">
+                                </a>
+                                <h1><span th:text="${staff.sName}"></span></h1>
+                                <p th:if="${staff.sMark}==1">账户已激活</p>
+                                <p th:if="${staff.sMark}==0">账户未激活</p>
+                            </div>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a th:href="@{/staff/profile}"> <i class="icon-user"></i>个人信息</a></li>
+                                <li><a th:href="@{/staff/editprofile}"> <i class="icon-edit"></i>修改信息</a></li>
+                                <li class="active"><a> <i
+                                        class="icon-warning-sign"></i>安全中心</a></li>
+                            </ul>
+
+                        </section>
+                    </aside>
+                    <aside class="profile-info col-lg-9">
+                        <section class="panel">
+                            <div class="bio-graph-heading">
+                                <span th:text="${staff.sName}"></span> 的安全中心
+                            </div>
+                            <div class="panel-body bio-graph-info">
+                                <div class="panel">
+                                    <h1>安全验证</h1>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <span class="label label-success">手机验证号码</span>
+                                            </div>
+                                            <div class="col-xs-5">
+                                                <span class="text-info" th:text="${staff.sPhone}"></span>
+                                            </div>
+                                            <div class="col-xs-4"><a th:href="@{/staff/resetphone}"
+                                                                     href="resetphone.htmlphoneedit.html">
+                                                <button type="button" class="btn btn-danger btn-primary btn-sm"><i
+                                                        class="icon-edit-sign"></i>修改号码
+                                                </button>
+                                            </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <span class="label label-success">邮箱验证号码</span>
+                                            </div>
+                                            <div class="col-xs-5">
+                                                <span class="text-info" th:text="${staff.sEmail}"></span>
+                                            </div>
+                                            <div class="col-xs-4"><a th:href="@{/staff/resetemail}"
+                                                                     href="resetmail.htmlmailedit.html">
+                                                <button type="button" class="btn btn-danger btn-primary btn-sm"><i
+                                                        class="icon-edit-sign"></i>修改邮箱
+                                                </button>
+                                            </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h1>修改密码</h1>
+                                    <div class="panel-body">
+                                        <a th:href="@{/staff/phoneresetpass}" href="phoneresetpass.html">
+                                            <button type="button" class="btn btn-primary btn-success">验证手机重置密码</button>
+                                        </a>
+                                    </div>
+                                    <div class="panel-body">
+                                        <a th:href="@{/staff/emailresetpass}" href="mailresetpass.html">
+                                            <button type="button" class="btn btn-primary btn-success">验证邮箱重置密码</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </aside>
+
+                </div>
+            </div>
+            <!-- page end-->
+        </section>
+    </section>
+
+    <!--<section id="main-content">
+        <section class="wrapper">
+            &lt;!&ndash; page start&ndash;&gt;
             <div class="row">
                 <aside class="profile-nav col-lg-3">
                     <section class="panel">
@@ -278,9 +382,9 @@
                 </aside>
             </div>
 
-            <!-- page end-->
+            &lt;!&ndash; page end&ndash;&gt;
         </section>
-    </section>
+    </section>-->
     <!--main content end-->
 </section>
 
