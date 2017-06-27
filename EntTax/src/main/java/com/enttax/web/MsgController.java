@@ -90,7 +90,7 @@ public class MsgController extends BaseController {
         } catch (Exception ex) {
 
             ex.printStackTrace();
-            model.addAttribute(ConstantStr.MESSAGE, "服务器错误!");
+            model.addAttribute(ConstantStr.MESSAGE, "收件人员工号错误!");
         }
 
         return "sendmsg";

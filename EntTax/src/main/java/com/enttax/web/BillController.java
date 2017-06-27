@@ -211,11 +211,16 @@ public class BillController extends BaseController {
             map.put(ConstantStr.MESSAGE, "对不起项目序号不能为空！");
             return map;
         }
-        if (billService.updateBill(bill, session) > 0) {
+
+        int result = billService.updateBill(bill, session);
+
+        if (result > 0) {
             map.put(ConstantStr.STATUS, ConstantStr.str_one);
             map.put(ConstantStr.MESSAGE, "恭喜你，操作成功！");
-        } else {
+        } else if (result < 0) {
             map.put(ConstantStr.MESSAGE, "对不起，操作失败！");
+        } else {
+            map.put(ConstantStr.MESSAGE, "数据没有变更!");
         }
         return map;
 
