@@ -24,36 +24,47 @@ public class AIServiceImpl implements AIService {
     @Override
     public Map doLinearRegByKeyAndCount(String key, Integer count) {
 
-        //返回的信息否放这里面
-        Map map = new HashMap<>();
+        try {
 
-        Bill target = billMapper.selectByPrimaryKey(key);
 
-        int month = target.getBMonth();
+            //返回的信息否放这里面
+            Map map = new HashMap<>();
 
-        //准备前几个月
-        int[] months = ToolDates.getPreSixMonth(month, 6);
+            Bill target = billMapper.selectByPrimaryKey(key);
 
-        //添加到Map
+            int month = target.getBMonth();
+
+            //准备前几个月
+            int[][] months = ToolDates.getPreSixMonth(month, 6);
+
+            //添加到Map
 //        map.put(AIService.PRE_MONTHS, months);
 
-        double[][] series = new double[count][2];
-        //依次拿到那些值
-        for (int i = 0; i < count; i++) {
+            double[][] series = new double[count][2];
+            //依次拿到那些值
+            for (int i = 0; i < count; i++) {
 
-            Bill bill = billMapper.selectMonthAndBName(1, target.getBName(), months[5 - i] + "");
+                Bill bill = billMapper.selectMonthAndBName(1, target.getBName(),
+                        months[5 - i][0] + "", months[5 - i][1] + "");
 
-            if (bill != null) {
-                series[i][0] = 5 - i;
-                series[i][1] = bill.getBPrice();
+                if (bill != null) {
+                    series[i][0] = 5 - i;
+                    series[i][1] = bill.getBPrice();
+                }
             }
+            map.put(SERIES, series);
+
+            //得到预测线
+            map.putAll(getLinearLine(series));
+
+            return map;
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+            return null;
         }
-        map.put(SERIES, series);
 
-        //得到预测线
-        map.putAll(getLinearLine(series));
-
-        return map;
     }
 
     @Override

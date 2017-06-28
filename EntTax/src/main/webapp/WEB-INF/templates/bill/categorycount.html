@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,8 +113,12 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/bill/uploadexcel}" href="bill/uploadexcel.html">导入数据</a></li>
-                        <li><a class="" th:href="@{/bill/managedata}" href="bill/managedata.html">操作数据</a></li>
+                        <li shiro:hasAnyRoles="操作员,管理员"><a class="" th:href="@{/bill/uploadexcel}"
+                                                           href="bill/uploadexcel.html">导入数据</a>
+                        </li>
+                        <li shiro:hasAnyRoles="管理员"><a class="" th:href="@{/bill/managedata}"
+                                                       href="bill/managedata.html">操作数据</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sub-menu active">
@@ -124,11 +128,14 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/bill/monthcount}" href="monthcount.html">月度统计</a></li>
-                        <li><a class="" th:href="@{/bill/yearcount}" href="yearcount.html">年度统计</a></li>
-                        <li class="active"><a class="" th:href="@{/bill/categorycount}"
-                                              href="categorycount.html">分类统计</a></li>
-                        <li><a class="" th:href="@{/bill/ratecount}" href="ratecount.html">比率统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/monthcount}"
+                                                           href="monthcount.html">月度统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/yearcount}" href="yearcount.html">年度统计</a>
+                        </li>
+                        <li shiro:hasAnyRoles="决策员,管理员" class="active"><a class="" th:href="@{/bill/categorycount}"
+                                                                          href="categorycount.html">分类统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/ratecount}" href="ratecount.html">比率统计</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -138,7 +145,8 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/ai/linear}" href="ai/linear.html">线性预测</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/ai/linear}"
+                                                           href="ai/linear.html">线性预测</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -148,8 +156,10 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/staffs/showstaff}" href="#">查看员工</a></li>
-                        <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/staffs/showstaff}" href="#">查看员工</a>
+                        </li>
+                        <li shiro:hasAnyRoles="管理员"><a class="" th:href="@{/staffs/managestaff}"
+                                                       href="staffs/managestaff.html">员工管理</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -182,7 +192,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
+                        <li shiro:hasAnyRoles="管理员"><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

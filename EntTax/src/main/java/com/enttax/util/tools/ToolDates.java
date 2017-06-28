@@ -16,6 +16,8 @@ public class ToolDates {
 
     private static final Logger logger = Logger.getLogger(ToolDates.class);
 
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+
     /**
      * 将date日期转换为字符串的日期
      *
@@ -113,16 +115,20 @@ public class ToolDates {
      * @param month
      * @return
      */
-    public static int[] getPreSixMonth(int month, int count) {
+    public static int[][] getPreSixMonth(int month, int count) {
 
-        int[] months = new int[count];
+        int[][] months = new int[count][2];
+
+        int year = Integer.parseInt(sdf.format(new Date()));
 
         for (int i = count - 1; i >= 0; i--) {
 
-            months[i] = month;
+            months[i][0] = month;
+            months[i][1] = year;
             month--;
             if (month == 0) {
                 month = 12;
+                year--;
             }
         }
 

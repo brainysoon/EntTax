@@ -78,7 +78,7 @@
     <select id="selectMonthAndBName" resultMap="BaseResultMap">
         SELECT BId, BType, BName, BMonth, BPrice, BUpdateTime, BMark
         FROM bill
-        WHERE  BMark =#{bmark} AND BName=#{bname} AND BMonth=#{month} ;
+        WHERE  BMark =#{bmark} AND BName=#{bname} AND BMonth=#{month} AND year(BUpdateTime)=#{year};
     </select>
 
     <select id="selectYearBill" resultType="BillInfo">
