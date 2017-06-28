@@ -157,10 +157,11 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/staffs/showstaff}" href="#">查看员工</a>
+                        <li shiro:hasAnyRoles="决策员,管理员" class="active"><a class="" th:href="@{/staffs/showstaff}"
+                                                                          href="#">查看员工</a>
                         </li>
-                        <li shiro:hasAnyRoles="管理员" class="active"><a class="" th:href="@{/staffs/managestaff}"
-                                                                      href="staffs/managestaff.html">员工管理</a></li>
+                        <li shiro:hasAnyRoles="管理员"><a class="" th:href="@{/staffs/managestaff}"
+                                                       href="staffs/managestaff.html">员工管理</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -224,7 +225,7 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="false"></button>
                             <h4 class="modal-title">
-                                员工管理
+                                查看员工
                             </h4>
                         </div>
                         <!--头部位置显示栏 结束-->
@@ -235,18 +236,16 @@
                             <thead>
                             <tr>
                                 <th style="width: 10px">
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                            data-target="#add_staff_myModal">
-                                        <i class="icon-plus"></i>
+                                    <button class="btn btn-primary btn-sm">
+                                        <i class="icon-male"></i>
                                     </button>
                                 </th>
                                 <th>头像</th>
                                 <th>员工编号</th>
                                 <th>用户名</th>
                                 <th class="hidden-phone">电话号码</th>
+                                <th class="hidden-phone">邮箱</th>
                                 <th class="hidden-phone">角色</th>
-                                <th class="hidden-phone">入职时间</th>
-                                <th class="hidden-phone">操作</th>
                             </tr>
                             </thead>
                             <!--头部显示所包含的内容 结束-->
@@ -259,20 +258,9 @@
                                 <th th:text="${staffInfo.sId}"></th>
                                 <td th:text="${staffInfo.sName}"></td>
                                 <td th:text="${staffInfo.sPhone}"></td>
-                                <td class="hidden-phone" th:text="${staffInfo.rName}"></td>
+                                <td class="hidden-phone" th:text="${staffInfo.sEmail}"></td>
                                 <td class="center hidden-phone"
-                                    th:text="${#dates.format(staffInfo.sEnter, 'yyyy-MM-dd')}"></td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs" onclick="editInfo(this)"
-                                            th:id="${iterStat.index}" data-toggle="modal"
-                                            data-target="#update_staff_myModal">
-                                        <i class="icon-pencil"></i></button>
-
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-danger btn-xs" onclick="delete_staff(this)"
-                                            th:id="${staffInfo.sId}">
-                                        <i class="icon-trash "></i></button>
-                                </td>
+                                    th:text="${staffInfo.rName}"></td>
                             </tr>
                             </tbody>
                             <!--显示每个员工的详细信息 结束-->
@@ -286,120 +274,6 @@
     </section>
     <!--main content end-->
 </section>
-<!-- 添加员工模态框（Modal） -->
-<div class="modal fade" id="add_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!--添加员工和悬浮显示的内容-->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title">
-                    添加员工操作
-                </h4>
-            </div>
-            <!--添加员工和悬浮显示的内容 结束-->
-
-            <!-- page start 添加的主要部分-->
-            <div class="row">
-                <div class="col-lg-12">
-
-                    <section class="panel">
-                        <div class="panel-body">
-                            <form role="form" id="add_staff" class="form-horizontal tasi-form">
-                                <div class="form-group has-success">
-                                    <label class="col-lg-4 control-label">手机号</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" placeholder="" id="sphone" name="sphone" class="form-control"
-                                               autofocus>
-                                        <p class="help-block"></p>
-                                    </div>
-                                </div>
-
-                                <div class="form-group has-success">
-                                    <label class="control-label col-lg-4">角色分配</label>
-                                    <div class="col-lg-8">
-                                        <select class="form-control m-bot15" id="role" name="role">
-                                            <option value="操作员">操作员</option>
-                                            <option value="管理员">管理员</option>
-                                            <option value="决策员">决策员</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-xs-6 col-lg-3">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                                        </button>
-                                    </div>
-                                    <div class="col-xs-6 col-lg-6">
-                                        <button id="add_staff_button" class="btn btn-primary" type="button">添加</button>
-                                        <h4 id="message" class="help-block text-danger text-center"></h4>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                    </section>
-                </div>
-            </div>
-            <!-- page end 添加的主要部分 结束-->
-
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div><!--添加员工 modal完-->
-
-<!-- 更新 员工模态框（Modal） -->
-<div class="modal fade" id="update_staff_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!--更新员工头部-->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    更改员工操作
-                </h4>
-            </div>
-            <!--更新员工头部-->
-
-            <!--显示的员工编号-->
-            <div class="modal-body">
-                <label class="control-label col-lg-4">员工编号：</label>
-                <div class="col-lg-8">
-                    <p><span id="update_sId"></span></p>
-                </div>
-            </div>
-            <!--显示的员工编号结束-->
-
-            <!--员工的角色分配-->
-            <div class="modal-body">
-                <label class="control-label col-lg-4">角色分配</label>
-                <div class="col-lg-8">
-                    <select class="form-control m-bot15" id="update_rName">
-                        <option>操作员</option>
-                        <option>管理员</option>
-                        <option>决策员</option>
-                    </select>
-                </div>
-            </div>
-            <!--员工的角色分配 结束-->
-
-            <!--底部按钮-->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="button" class="btn btn-warning" onclick="update_staff()">确定</button>
-            </div>
-            <!--底部按钮结束-->
-
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div><!--跟新员工 modal 完-->
 
 <!-- js placed at the end of the document so the pages load faster -->
 <script th:src="@{/js/jquery.js}" src="../../../js/jquery.js"></script>
@@ -416,7 +290,7 @@
 <script th:src="@{/js/jquery.validate.min.js}" src="../../../js/jquery.validate.min.js"></script>
 <!--Custom Validate-->
 <script th:src="@{/js/custom-validate.js}" src="../../../js/custom-validate.js"></script>
-<!--Custom function-->
+<!--Custom function-->Ent
 <script th:src="@{/js/custom-function.js}" src="../../../js/custom-function.js"></script>
 
 

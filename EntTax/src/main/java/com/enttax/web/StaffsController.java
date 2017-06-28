@@ -1,6 +1,5 @@
 package com.enttax.web;
 
-import com.enttax.model.Staff;
 import com.enttax.service.StaffService;
 import com.enttax.util.constant.ConstantStr;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +42,17 @@ public class StaffsController extends BaseController {
         return "staffs/managestaff";
     }
 
+    @RequestMapping(value = "/showstaff", method = RequestMethod.GET)
+    public String showStaffsInfo(Model model) {
+
+        List staffInfoList = staffService.selectAllStaffInfo();
+
+        model.addAttribute(ConstantStr.STAFFINFOLIST, staffInfoList);
+        model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
+
+        return "staffs/showstaff";
+    }
+
     /**
      * 管理员通过sid更改员工角色
      *
@@ -61,7 +71,7 @@ public class StaffsController extends BaseController {
             return map;
         }
 
-        if (staffService.updateStaffForRole(sId, rName,session) > 0) {
+        if (staffService.updateStaffForRole(sId, rName, session) > 0) {
             map.put(ConstantStr.MESSAGE, "恭喜您，操作成功！");
         } else {
             map.put(ConstantStr.MESSAGE, "对不起,操作失败！");
@@ -86,7 +96,7 @@ public class StaffsController extends BaseController {
             return map;
         }
 
-        if (staffService.deleteStaffBySid(sid,session) > 0) {
+        if (staffService.deleteStaffBySid(sid, session) > 0) {
             map.put(ConstantStr.MESSAGE, "恭喜您，操作成功！");
         } else {
             map.put(ConstantStr.MESSAGE, "对不起,操作失败！");
@@ -113,8 +123,8 @@ public class StaffsController extends BaseController {
             return map;
         }
 
-        if (staffService.addStaff(sPhone, role,session) > 0) {
-            map.put(ConstantStr.STATUS,ConstantStr.str_one);
+        if (staffService.addStaff(sPhone, role, session) > 0) {
+            map.put(ConstantStr.STATUS, ConstantStr.str_one);
             map.put(ConstantStr.MESSAGE, "添加成功！");
         } else {
             map.put(ConstantStr.MESSAGE, "添加失败,该电话号码已注册！");

@@ -43,7 +43,21 @@ public interface ExcelService {
 
     /**
      * 显示进销项数据
+     *
      * @return
      */
     List<Bill> showData();
+
+    /**
+     * @param key
+     * @param size
+     * @return
+     */
+    long pushRecordToRedis(String key, Integer size);
+
+    /**
+     * @param key
+     * @return
+     */
+    Integer readRecordFromRedis(String key);
 }

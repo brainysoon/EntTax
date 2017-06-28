@@ -265,14 +265,20 @@ $().ready(function () {
         },
         rules: {
             tosid: {
-                required: true
+                required: true,
+                number: true,
+                rangelength: [8, 8]
             },
             content: {
                 required: true
             }
         },
         messages: {
-            tosid: "收件人不能为空",
+            tosid: {
+                required: "收件人不能为空",
+                rangelength: "收件人员工号必须为8位",
+                number: "收件人员工号必须为数字"
+            },
             content: "内容不能为空"
         },
         highlight: function (e) {

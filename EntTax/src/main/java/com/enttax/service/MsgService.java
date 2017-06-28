@@ -43,7 +43,14 @@ public interface MsgService {
 
     /**
      * @param toSId
+     * @param mMark
      * @return
      */
-    int deleteByToSId(String toSId);
+    int deleteByToSId(String toSId, Integer mMark);
+
+    /**
+     * @param tosid
+     * @return
+     */
+    int markReadAllByToSId(String tosid);
 }

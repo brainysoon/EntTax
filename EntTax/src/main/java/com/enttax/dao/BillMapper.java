@@ -110,7 +110,9 @@ public interface BillMapper {
      * @param bmark
      * @param bname
      * @param month
+     * @param year
      * @return
      */
-    Bill selectMonthAndBName(@Param("bmark") Integer bmark, @Param("bname") String bname, @Param("month") String month);
+    Bill selectMonthAndBName(@Param("bmark") Integer bmark, @Param("bname") String bname,
+                             @Param("month") String month, @Param("year") String year);
 }
