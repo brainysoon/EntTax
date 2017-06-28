@@ -141,6 +141,7 @@
                 /staffs/**=ssl, authc
                 /bill/**=ssl, authc
                 /ai/** = ssl, authc
+                /log/** = ssl, user
             </value>
         </property>
     </bean>

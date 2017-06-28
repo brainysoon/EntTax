@@ -11,7 +11,7 @@ CREATE TABLE `bill` (
   `BName`       VARCHAR(20) NOT NULL,
   `BMonth`      SMALLINT    NOT NULL,
   `BPrice`      DOUBLE      NOT NULL,
-  `BUpdateTime` DATETIME    NOT NULL,
+  `BUpdateTime` DATETIME DEFAULT NULL,
   `BMark`       SMALLINT DEFAULT NULL,
   PRIMARY KEY (`BId`)
 )

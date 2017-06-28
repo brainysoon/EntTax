@@ -74,8 +74,26 @@ public class MsgServiceImpl implements MsgService {
     }
 
     @Override
-    public int deleteByToSId(String toSId) {
-        return msgMapper.deleteByToSId(toSId);
+    public int deleteByToSId(String toSId, Integer index) {
+
+        switch (index) {
+
+            case 1:
+
+                return msgMapper.deleteByToSIdAndMRead(toSId, Constant.MSG_MARK_READ);
+            case 2:
+
+                return msgMapper.deleteByToSIdAndMRead(toSId, Constant.MSG_MARK_UNREAD);
+
+            case 3:
+
+                int result1 = msgMapper.deleteByToSIdAndMRead(toSId, Constant.MSG_MARK_READ);
+                int result2 = msgMapper.deleteByToSIdAndMRead(toSId, Constant.MSG_MARK_UNREAD);
+
+                return result1 + result2;
+        }
+
+        return -1;
     }
 
     @Override

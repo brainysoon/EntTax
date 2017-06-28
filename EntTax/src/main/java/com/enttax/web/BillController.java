@@ -74,15 +74,21 @@ public class BillController extends BaseController {
                 int lastIndex = fileName.lastIndexOf(".");
                 String extName = fileName.substring(lastIndex);
 
+                //随机生成一个id
+                String key = ToolRandoms.randomId20();
+
                 // 从文件流中读取
                 List<Bill> bills = new ArrayList<>();
                 for (int i = 0; i < bmark.length; i++) {
 
-                    bills.addAll(excelService.readExcelFromInputStream(bmark[i], bmark[i], excelFile.getInputStream(), extName));
-                }
+                    List<Bill> billList = excelService.readExcelFromInputStream(bmark[i], bmark[i], excelFile.getInputStream(), extName);
 
-                //随机生成一个id
-                String key = ToolRandoms.randomId20();
+                    //记录添加的大小
+                    //放入 redis 缓存
+                    excelService.pushRecordToRedis(key + bmark[i], billList.size());
+
+                    bills.addAll(billList);
+                }
 
                 //放入 redis 缓存
                 excelService.pushExcelToCache(key, bills);
@@ -205,11 +211,16 @@ public class BillController extends BaseController {
             map.put(ConstantStr.MESSAGE, "对不起项目序号不能为空！");
             return map;
         }
-        if (billService.updateBill(bill, session) > 0) {
+
+        int result = billService.updateBill(bill, session);
+
+        if (result > 0) {
             map.put(ConstantStr.STATUS, ConstantStr.str_one);
             map.put(ConstantStr.MESSAGE, "恭喜你，操作成功！");
-        } else {
+        } else if (result < 0) {
             map.put(ConstantStr.MESSAGE, "对不起，操作失败！");
+        } else {
+            map.put(ConstantStr.MESSAGE, "数据没有变更!");
         }
         return map;
 

@@ -37,14 +37,15 @@ public class ExcelServiceImpl implements ExcelService {
     @Resource(name = "redisTemplate")
     private ListOperations<String, List<Bill>> listOps;
 
+    @Resource(name = "redisTemplate")
+    private ListOperations<String, Integer> listOperations;
+
     @Autowired
     private BillService billService;
 
     @Autowired
     private LogMapper logMapper;
 
-    private int outputNumber=0;
-    private int inputNumber=0;
     @Override
     public List<Bill> readExcelFromInputStream(int bMark, int sheetAt, InputStream is, String extName) throws Exception {
 
@@ -62,13 +63,6 @@ public class ExcelServiceImpl implements ExcelService {
         Sheet sheet = wb.getSheetAt(sheetAt);
         int numRows = sheet.getLastRowNum();
         System.out.println("行：" + numRows);
-
-        //记录记录数
-        if (bMark==1){
-            outputNumber=numRows;
-        }else {
-            inputNumber=numRows;
-        }
 
         List<Bill> bills = new ArrayList<>();
 
@@ -132,7 +126,7 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Transactional
     @Override
-    public int moveCacheToDataBase(String key ,Session session) {
+    public int moveCacheToDataBase(String key, Session session) {
 
         //先从缓存取出
         List<Bill> bills = listOps.leftPop(key);
@@ -143,12 +137,19 @@ public class ExcelServiceImpl implements ExcelService {
         }
 
         //生成系统日志
-        String message=":导入进项数据"+inputNumber+"条,销项数据"+outputNumber+"条";
-        logMapper.insert(CommonLog.createLogMessage(message,session));
+        Integer tax_in = readRecordFromRedis(key + 0);
+        Integer tax_out = readRecordFromRedis(key + 1);
 
-        //把记录值置空
-        inputNumber=0;
-        outputNumber=0;
+        if (tax_in == null) {
+            tax_in = 0;
+        }
+
+        if (tax_out == null) {
+            tax_out = 0;
+        }
+
+        String message = ":导入进项数据" + tax_in + "条,销项数据" + tax_out + "条";
+        logMapper.insert(CommonLog.createLogMessage(message, session));
 
         //存入MySql数据库
         return billService.insertAll(bills);
@@ -157,6 +158,17 @@ public class ExcelServiceImpl implements ExcelService {
     @Override
     public List<Bill> showData() {
         return billService.selectAll();
+    }
+
+    @Override
+    public long pushRecordToRedis(String key, Integer size) {
+
+        return listOperations.leftPush(key, size);
+    }
+
+    @Override
+    public Integer readRecordFromRedis(String key) {
+        return listOperations.leftPop(key);
     }
 }
 

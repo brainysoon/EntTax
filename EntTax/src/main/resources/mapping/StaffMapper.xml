@@ -22,7 +22,7 @@
     DELETE FROM staff
     WHERE SId = #{sId}
   </delete>
-    <delete id="deleteStaffRole"  parameterType="java.lang.String">
+    <delete id="deleteStaffRole" parameterType="java.lang.String">
         DELETE FROM staff_role
         WHERE SId = #{sId}
     </delete>
@@ -90,8 +90,8 @@
     FROM staff
   </select>
 
-    <select id="selectAllStaffInfo"  resultType="StaffInfo">
-    SELECT s.SId,s.SName,s.SPhone,s.SEnter,s.SAvatar,r.RName
+    <select id="selectAllStaffInfo" resultType="StaffInfo">
+    SELECT s.SId,s.SName,s.SPhone,s.SEnter,s.SAvatar,r.RName,s.SEmail
      FROM staff s LEFT JOIN staff_role sr ON s.sid=sr.sid LEFT JOIN role r ON r.rid=sr.rid
      WHERE SMark >= 0
     </select>
