@@ -30,10 +30,6 @@ function sampleRead() {
     clearinfo.style.display = "none"
 }
 
-function g(){
-    alert('good');
-}
-
 years();
 /*用于实现年的选择*/
 function years() {
