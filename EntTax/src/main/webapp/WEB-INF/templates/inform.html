@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,8 +113,12 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/bill/uploadexcel}" href="bill/uploadexcel.html">导入数据</a></li>
-                        <li><a class="" th:href="@{/bill/managedata}" href="bill/managedata.html">操作数据</a></li>
+                        <li shiro:hasAnyRoles="操作员,管理员"><a class="" th:href="@{/bill/uploadexcel}"
+                                                           href="bill/uploadexcel.html">导入数据</a>
+                        </li>
+                        <li shiro:hasAnyRoles="管理员"><a class="" th:href="@{/bill/managedata}"
+                                                       href="bill/managedata.html">操作数据</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -124,10 +128,14 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/bill/monthcount}" href="monthcount.html">月度统计</a></li>
-                        <li><a class="" th:href="@{/bill/yearcount}" href="yearcount.html">年度统计</a></li>
-                        <li><a class="" th:href="@{/bill/categorycount}" href="categorycount.html">分类统计</a></li>
-                        <li><a class="" th:href="@{/bill/ratecount}" href="ratecount.html">比率统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/monthcount}"
+                                                           href="monthcount.html">月度统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/yearcount}" href="yearcount.html">年度统计</a>
+                        </li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/categorycount}"
+                                                           href="categorycount.html">分类统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/ratecount}" href="ratecount.html">比率统计</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -137,7 +145,8 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/ai/linear}" href="ai/linear.html">线性预测</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/ai/linear}"
+                                                           href="ai/linear.html">线性预测</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -147,8 +156,10 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="#">查看员工</a></li>
-                        <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/staffs/showstaff}" href="#">查看员工</a>
+                        </li>
+                        <li shiro:hasAnyRoles="管理员"><a class="" th:href="@{/staffs/managestaff}"
+                                                       href="staffs/managestaff.html">员工管理</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -181,7 +192,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
+                        <li shiro:hasAnyRoles="管理员"><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -211,7 +222,7 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                             <h4 class="modal-title">
-                                消息通知页面
+                                消息通知
                             </h4>
                         </div>
                         <!--头部 位置显示栏结束-->
@@ -233,7 +244,7 @@
                                     </li>
 
 
-                                    <a th:href="@{/staff/message/delete/all}">
+                                    <a th:href="@{/staff/message/delete/all/3}">
                                         <button type="button" class="tab-bg-dark-navy-blue" id="clear-infor"
                                                 style="display: block">
                                             <i class="icon-trash"></i>
@@ -247,7 +258,7 @@
                                         标记为已读
                                     </button>
 
-                                    <a th:href="@{/staff/message/delete/all}">
+                                    <a th:href="@{/staff/message/delete/all/1}">
                                         <button type="button" class="tab-bg-dark-navy-blue" id="all-read"
                                                 style="display: none">
                                             <i class="icon-trash"></i>
@@ -285,7 +296,7 @@
                                                 </td>
                                                 <td class="hidden-phone">
 
-                                                    <a th:href="@{'/staff/deletemsg/'+${msg_all.mId}}">
+                                                    <a th:href="@{'/staff/delete/msg/'+${msg_all.mId}}">
                                                         <button type="button" class="btn btn-danger btn-xs">
                                                             <i class="icon-trash "></i></button>
                                                     </a>
@@ -326,7 +337,7 @@
                                                 </td>
                                                 <td class="hidden-phone">
 
-                                                    <a th:href="@{'/staff/deletemsg/'+${msg_unread.mId}}">
+                                                    <a th:href="@{'/staff/delete/msg/'+${msg_unread.mId}}">
                                                         <button type="button" class="btn btn-danger btn-xs">
                                                             <i class="icon-trash "></i></button>
                                                     </a>
@@ -365,7 +376,7 @@
                                                 </td>
                                                 <td class="hidden-phone">
 
-                                                    <a th:href="@{'/staff/deletemsg/'+${msg_read.mId}}">
+                                                    <a th:href="@{'/staff/delete/msg/'+${msg_read.mId}}">
                                                         <button type="button" class="btn btn-danger btn-xs">
                                                             <i class="icon-trash "></i></button>
                                                     </a>

@@ -209,42 +209,50 @@ a.carousel-arrow-next {
     left: auto;
     padding-left: 5px;
 }
+
 /*用于设置延迟时间,以供anminate的先后顺序显示*/
 .delay-1 {
     -webkit-animation-delay: 300ms;
     -moz-animation-delay: none;
     animation-delay: 300ms;
 }
+
 .delay-2 {
     -webkit-animation-delay: 600ms;
     -moz-animation-delay: none;
     animation-delay: 600ms;
 }
+
 .delay-3 {
     -webkit-animation-delay: 900ms;
     -moz-animation-delay: none;
     animation-delay: 900ms;
 }
+
 .delay-4 {
     -webkit-animation-delay: 1200ms;
     -moz-animation-delay: none;
     animation-delay: 1200ms;
 }
+
 .delay-5 {
     -webkit-animation-delay: 1500ms;
     -moz-animation-delay: none;
     animation-delay: 1500ms;
 }
+
 .delay-6 {
     -webkit-animation-delay: 1800ms;
     -moz-animation-delay: none;
     animation-delay: 1800ms;
 }
+
 .delay-7 {
     -webkit-animation-delay: 2100ms;
     -moz-animation-delay: none;
     animation-delay: 2100ms;
 }
+
 .delay-8 {
     -webkit-animation-delay: 2400ms;
     -moz-animation-delay: none;
@@ -257,25 +265,285 @@ a.carousel-arrow-next {
     animation-delay: 2700ms;
 }
 
-
 .container {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
 }
+
 @media (min-width: 768px) {
     .container {
         width: 750px;
     }
 }
+
 @media (min-width: 992px) {
     .container {
         width: 970px;
     }
 }
+
 @media (min-width: 1200px) {
     .container {
         width: 1030px;
     }
+}
+
+/*用于主页图片轮播*/
+.people-img img {
+    max-width: 500px;
+    height: auto;
+}
+
+.head-title h1 {
+    text-align: center;
+}
+
+.content-img ul {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.content-img ul li {
+    padding: 6px 0;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.text-blue {
+    color: #41cac0;
+}
+
+.text-pink {
+    color: #FF6C60;
+}
+
+/*用于关于我们的页面*/
+.panel-content ul {
+    list-style: none;
+
+}
+
+.panel-content ul li {
+    width: 25%;
+    height: 300px;
+    float: left;
+    position: relative;
+}
+
+.panel-content .info {
+    width: 200px;
+    height: 430px;
+    border: 10px solid #f5f5f5;
+    background: #deddcd;
+    position: absolute;
+    right: 0;
+    -webkit-transition: 1s ease;
+    -moz-transition: 1s ease;
+    -moz-transform: rotatey(-30deg);
+    -webkit-transform: rotatey(-30deg);
+}
+
+.panel-content .info img{
+    border-radius:50% ;
+    width: 156px;
+    height: 180px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.center-block{
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.panel-content .info h2 {
+    text-align: center;
+    line-height: 60px;
+    /*color: #000000;*/
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.panel-content .info .h-donw {
+    text-align: center;
+    font-weight: normal;
+    color: #999999;
+    font-size: 15px;
+    margin-top: -20px;
+}
+
+.panel-content .info p {
+    padding: 0 20px;
+    font-size: 14px;
+}
+
+.panel-content .info a {
+
+    color: #2babcf;
+    text-align: center;
+}
+.panel-content .info div{
+    text-align: center;
+}
+
+.panel-content .info a i {
+    font-size: 20px;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #2babcf;
+    background: #2babcf;
+}
+
+.panel-content ul li:hover .info {
+    -webkit-transform: rotatey(10deg);
+    -moz-transform: rotatey(10deg);
+    right: 30px;
+    bottom: -120px;
+}
+
+/*用户关于系统的页面*/
+.panel-content-system {
+    position:relative;
+    width:100%;
+    min-height:100%;
+    margin:0 auto;
+    padding:40px;
+    box-sizing:border-box;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-orient:horizontal;
+    -webkit-box-direction:normal;
+    -ms-flex-direction:row;
+    flex-direction:row;
+    -ms-flex-wrap:wrap;
+    flex-wrap:wrap;
+    -webkit-box-pack:center;
+    -ms-flex-pack:center;
+    justify-content:center;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+}
+.system-card {
+    position:relative;
+    width:100px;
+    height:130px;
+    -webkit-transform-style:preserve-3d;
+    transform-style:preserve-3d;
+    -webkit-transform:rotatey(0deg) translatex(0px) translatey(0px);
+    transform:rotatey(0deg) translatex(0px) translatey(0px);
+    -webkit-transition:all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+    transition:all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+    box-shadow:4px 4px 20px rgba(0,0,0,0.4);
+    margin:20px;
+    cursor:pointer;
+}
+
+
+.system-card:hover {
+    -webkit-transform:rotatey(45deg) translatex(0px) translatey(0px);
+    transform:rotatey(45deg) translatex(0px) translatey(0px);
+}
+.system-card.open {
+    width:400px;
+    max-height: 100%;
+    height: 400px;
+    -webkit-transform:rotatey(-180deg) translatex(0px) translatey(0px);
+    transform:rotatey(-180deg) translatex(0px) translatey(0px);
+}
+.system-card .front-facing {
+    -webkit-transform:rotateY(0deg) translateZ(2px);
+    transform:rotateY(0deg) translateZ(2px);
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background-color:#ecf0f1;
+    border:2px white solid;
+    border-radius:5px;
+}
+.system-card .front-facing .technique {
+    width:100%;
+    position:absolute;
+    top:60%;
+    left:0;
+    font-size:20px;
+    margin:-35px 0 0 0;
+    text-align:center;
+    color:#3498db;
+}
+.system-card .front-facing .title {
+    width:100%;
+    position:absolute;
+    top: 50%;
+    left:0;
+    text-transform:uppercase;
+    font-size:12px;
+    margin:15px 0 0 0;
+    text-align:center;
+    color:#999999;
+}
+.system-card .front-facing .number {
+    position:absolute;
+    top:10px;
+    left:10px;
+    font-size:12px;
+    color:#000000;
+}
+
+.system-card .back-facing {
+    -webkit-transform:rotateY(180deg) translateZ(0px);
+    transform:rotateY(180deg) translateZ(0px);
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-orient:vertical;
+    -webkit-box-direction:normal;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    -ms-flex-wrap:nowrap;
+    flex-wrap:nowrap;
+    -webkit-box-pack:center;
+    -ms-flex-pack:center;
+    justify-content:center;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background-color:#ecf0f1;
+    border:2px  solid white;
+    border-radius:5px;
+    padding:20px;
+    text-align:center;
+    overflow:hidden;
+}
+/*.system-card .back-facing p {*/
+    /*font-size:14px;*/
+    /*margin-top: 120px;*/
+/*}*/
+.system-card .back-facing a.btn {
+    display:inline-block;
+    padding:5px 15px;
+    margin:20px 0 0 0;
+    color:#eee;
+    background-color:#3498db;
+    text-decoration:none;
+    border-radius:3px;
+}
+.system-card .back-facing a.btn:hover,.system-card .back-facing a.btn:focus {
+    color:#fff;
+    background-color:#2980b9;
 }

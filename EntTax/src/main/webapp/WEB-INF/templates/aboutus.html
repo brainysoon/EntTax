@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
     <meta name="keyword" content="EntTax">
     <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../img/favicon.ico">
 
-    <title>企业增值税发票数据分析系统</title>
+    <title>关于我们</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -25,6 +25,7 @@
     <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
     <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
 
+    <link rel="stylesheet" href="../../css/extra.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--此处未应用 [if lt IE 9]>
     <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
@@ -112,8 +113,12 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/bill/uploadexcel}" href="bill/uploadexcel.html">导入数据</a></li>
-                        <li><a class="" th:href="@{/bill/managedata}" href="bill/managedata.html">操作数据</a></li>
+                        <li shiro:hasAnyRoles="操作员,管理员"><a class="" th:href="@{/bill/uploadexcel}"
+                                                           href="bill/uploadexcel.html">导入数据</a>
+                        </li>
+                        <li shiro:hasAnyRoles="管理员"><a class="" th:href="@{/bill/managedata}"
+                                                       href="bill/managedata.html">操作数据</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -123,10 +128,14 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/bill/monthcount}" href="monthcount.html">月度统计</a></li>
-                        <li><a class="" th:href="@{/bill/yearcount}" href="yearcount.html">年度统计</a></li>
-                        <li><a class="" th:href="@{/bill/categorycount}" href="categorycount.html">分类统计</a></li>
-                        <li><a class="" th:href="@{/bill/ratecount}" href="ratecount.html">比率统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/monthcount}"
+                                                           href="monthcount.html">月度统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/yearcount}" href="yearcount.html">年度统计</a>
+                        </li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/categorycount}"
+                                                           href="categorycount.html">分类统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/ratecount}" href="ratecount.html">比率统计</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -136,7 +145,8 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/ai/linear}" href="ai/linear.html">线性预测</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/ai/linear}"
+                                                           href="ai/linear.html">线性预测</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -146,8 +156,10 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="#">查看员工</a></li>
-                        <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/staffs/showstaff}" href="#">查看员工</a>
+                        </li>
+                        <li shiro:hasAnyRoles="管理员"><a class="" th:href="@{/staffs/managestaff}"
+                                                       href="staffs/managestaff.html">员工管理</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -180,7 +192,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
+                        <li shiro:hasAnyRoles="管理员"><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu active">
@@ -199,18 +211,106 @@
         </div>
     </aside>
     <!--sidebar end 左侧导航栏结束-->
-    <!--page_start-->
+
     <section id="main-content">
         <section class="wrapper">
-            <div id="diagram" style="min-width:400px;height:400px"></div>
-            <br><br>
+            <!--page start-->
+            <div id="bill_list" class="row">
+                <div class="col-lg-12">
+                    <!--头部开始-->
+                    <div class="panel">
+                        <!--头部 位置显示栏-->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title">
+                                关于我们
+                            </h4>
+                        </div>
+                        <!--头部 位置显示栏结束-->
+                    </div>
+                    <!--头部结束-->
+
+                    <!--主要内容部分开始-->
+                    <div class="panel-content">
+
+                        <ul>
+                            <li>
+                                <div class="info">
+                                    <img class="img-responsive center-block" src="../../img/mls.jpeg"
+                                         th:src="@{/img/mls.jpeg}" alt="...">
+                                    <h2><strong>苗巍</strong></h2>
+                                    <p class="h-donw">指导老师</p>
+                                    <p>
+                                        &nbsp;&nbsp;家乡吉林省吉林市,北华大学计算机学院副教授，主要从事数据库方面教学。
+                                    </p>
+                                    <div>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="info">
+                                    <img class="img-responsive center-block" src="../../img/lcyanxi.jpeg"
+                                         th:src="@{/img/lcyanxi.jpeg}" alt="...">
+                                    <h2><strong>李常</strong></h2>
+                                    <p class="h-donw">组长</p>
+                                    <p>
+                                        &nbsp;&nbsp;家乡山城重庆，现大三，主要学习Java,写一些J2EE,JavaWeb项目。
+                                    </p>
+                                    <div>
+                                        <a href="https://github.com/lcyanxi" target="_blank">
+                                            <i class="icon-github"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li>
+                                <div class="info">
+                                    <img class="img-responsive center-block" src="../../img/brainysoon.jpeg"
+                                         th:src="@{/img/brainysoon.jpeg}" alt="...">
+                                    <h2><strong>孙晓聪</strong></h2>
+                                    <p class="h-donw">组员</p>
+                                    <p>
+                                        &nbsp;&nbsp;家乡四川南充，现大三，主要学习Java，写过一些关于Anroid，JaveWeb。
+                                    </p>
+                                    <div>
+                                        <a href="https://github.com/brainysoon" target="_blank">
+                                            <i class="icon-github"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="info">
+                                    <img class="img-responsive center-block" src="../../img/nmx.jpg"
+                                         th:src="@{/img/nmx.jpg}" alt="...">
+                                    <h2><strong>牛明鑫</strong></h2>
+                                    <p class="h-donw">组员</p>
+                                    <p>
+                                        &nbsp;&nbsp;家乡山东菏泽，现大三，主要学习web前端，熟悉一些常用的框架，学习过Java。
+                                    </p>
+                                    <div>
+                                        <a href="https://github.com/Hxmic" target="_blank">
+                                            <i class="icon-github"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--主要内容部分结束-->
+
+                </div>
+            </div>
+            <!-- page end-->
         </section>
     </section>
-    <!--main content end-->
 </section>
 
 
-</div>
 <!-- js placed at the end of the document so the pages load faster -->
 <script th:src="@{/js/jquery.js}" src="../../js/jquery.js"></script>
 <script th:src="@{/js/jquery-1.8.3.min.js}" src="../../js/jquery-1.8.3.min.js"></script>
@@ -222,11 +322,23 @@
 <script th:src="@{/assets/data-tables/DT_bootstrap.js}" type="text/javascript"
         src="../../assets/data-tables/DT_bootstrap.js"></script>
 
+<!--Jquery Validate-->
+<script th:src="@{/js/jquery.validate.min.js}" src="../../js/jquery.validate.min.js"></script>
+<!--Custom Validate-->
+<script th:src="@{/js/custom-validate.js}" src="../../js/custom-validate.js"></script>
+<!--Custom function-->
+<script th:src="@{/js/custom-function.js}" src="../../js/custom-function.js"></script>
+
 
 <!--common script for all pages-->
 <script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
 
+<!--script for this page-->
+<script th:src="@{/js/dynamic-table.js}" src="../../js/dynamic-table.js"></script>
 
+
+<!--extra-->
+<script src="../../js/extra.js"></script>
 <script>
     //upload download excel tooltip
     $(function () {

@@ -15,6 +15,15 @@ public class StaffInfo {
     private String sAvatar;
     private Date sEnter;
     private String rName;
+    private String sEmail;
+
+    public String getsEmail() {
+        return sEmail;
+    }
+
+    public void setsEmail(String sEmail) {
+        this.sEmail = sEmail;
+    }
 
     public String getsId() {
         return sId;

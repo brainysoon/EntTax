@@ -56,7 +56,10 @@ public class MsgController extends BaseController {
     public String markReadByMIds(Model model,
                                  @RequestParam(value = "mid", required = false) String[] mIds) {
 
-        int result = msgService.markReadByMIds(mIds);
+        if (mIds != null) {
+
+            int result = msgService.markReadByMIds(mIds);
+        }
 
         return "redirect:/staff/message";
     }
@@ -87,7 +90,7 @@ public class MsgController extends BaseController {
         } catch (Exception ex) {
 
             ex.printStackTrace();
-            model.addAttribute(ConstantStr.MESSAGE, "服务器错误!");
+            model.addAttribute(ConstantStr.MESSAGE, "收件人员工号错误!");
         }
 
         return "sendmsg";
@@ -104,7 +107,7 @@ public class MsgController extends BaseController {
         return "sendmsg";
     }
 
-    @RequestMapping(value = "/message/delete/msg/{mid}")
+    @RequestMapping(value = "/delete/msg/{mid}")
     public String deleteByMId(@PathVariable(value = "mid") String mid) {
 
         int result = msgService.deleteByMIds(new String[]{mid});
@@ -112,14 +115,25 @@ public class MsgController extends BaseController {
         return "redirect:/staff/message";
     }
 
-    @RequestMapping(value = "/message/delete/all")
-    public String deleteAll() {
+    @RequestMapping(value = "/message/delete/all/{index}")
+    public String deleteAll(@PathVariable(value = "index") Integer index) {
 
         //用户登录信息
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
 
-        int result = msgService.deleteByToSId(staff.getSId());
+        int result = msgService.deleteByToSId(staff.getSId(), index);
 
         return "redirect:/staff/message";
+    }
+
+    @RequestMapping(value = "/message/markread/all", method = RequestMethod.GET)
+    public String markReadAll() {
+
+        //用户登录信息
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+
+        int result = msgService.markReadAllByToSId(staff.getSId());
+
+        return "redirect:/";
     }
 }

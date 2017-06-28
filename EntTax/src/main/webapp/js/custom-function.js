@@ -192,8 +192,11 @@ function delete_staff(obj) {
 function editInfo(obj) {
     var id = $(obj).attr("id");
     //获取表格中的一行数据
-    var sId = document.getElementById("tbody").rows[id].cells[2].innerText;
-    var rName = document.getElementById("tbody").rows[id].cells[5].innerText;
+
+    var table = $("#sample_1").DataTable();
+
+    var sId = table.row(id).data()[2];
+    var rName = table.row(id).data()[5];
     //向模态框中传值
     $('#update_sId').html(sId);
     $('#update_rName').val(rName);
@@ -254,12 +257,17 @@ function deletebill(obj) {
 //触发更新bill模态框的同时调用此方法  -----用于模态框传值
 function editbill(obj) {
     var id = $(obj).attr("id");
+
+
     //获取表格中的一行数据
-    var bId = document.getElementById("tbody").rows[id].cells[0].innerText;
-    var bName = document.getElementById("tbody").rows[id].cells[1].innerText;
-    var bType = document.getElementById("tbody").rows[id].cells[2].innerText;
-    var bPrice = document.getElementById("tbody").rows[id].cells[3].innerText;
-    var bMonth = document.getElementById("tbody").rows[id].cells[4].innerText;
+    var table = $("#sample_1").DataTable();
+
+    var bId = table.row(id).data()[0];
+    var bName = table.row(id).data()[1];
+    var bType = table.row(id).data()[2];
+    var bPrice = table.row(id).data()[3];
+    var bMonth = table.row(id).data()[4];
+
     //向模态框中传值
     $('#bId').html(bId);
     $('#bName').val(bName);
@@ -282,6 +290,14 @@ function updatebill() {
     var bType = $('input[name="bType"]').filter(':checked').val();
     var bPrice = $('#bPrice').val();
     var bMonth = $('#bMonth').val();
+
+    //尝试转换金额
+    if (isNaN(bPrice)) {
+
+        alert("请输入正确的金额!");
+
+        return;
+    }
 
     //首先校验邮箱的正确性
     if (bName == null || bName == "") {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
     <meta name="keyword" content="EntTax">
     <link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="../../img/favicon.ico">
 
-    <title>企业增值税发票数据分析系统</title>
+    <title>关于我们</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -25,6 +25,7 @@
     <link th:href="@{/css/style.css}" href="../../css/style.css" rel="stylesheet">
     <link th:href="@{/css/style-responsive.css}" href="../../css/style-responsive.css" rel="stylesheet"/>
 
+    <link rel="stylesheet" href="../../css/extra.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--此处未应用 [if lt IE 9]>
     <script th:src="@{/js/html5shiv.js}" src="../../js/html5shiv.js"></script>
@@ -112,8 +113,12 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/bill/uploadexcel}" href="bill/uploadexcel.html">导入数据</a></li>
-                        <li><a class="" th:href="@{/bill/managedata}" href="bill/managedata.html">操作数据</a></li>
+                        <li shiro:hasAnyRoles="操作员,管理员"><a class="" th:href="@{/bill/uploadexcel}"
+                                                           href="bill/uploadexcel.html">导入数据</a>
+                        </li>
+                        <li shiro:hasAnyRoles="管理员"><a class="" th:href="@{/bill/managedata}"
+                                                       href="bill/managedata.html">操作数据</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -123,10 +128,14 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/bill/monthcount}" href="monthcount.html">月度统计</a></li>
-                        <li><a class="" th:href="@{/bill/yearcount}" href="yearcount.html">年度统计</a></li>
-                        <li><a class="" th:href="@{/bill/categorycount}" href="categorycount.html">分类统计</a></li>
-                        <li><a class="" th:href="@{/bill/ratecount}" href="ratecount.html">比率统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/monthcount}"
+                                                           href="monthcount.html">月度统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/yearcount}" href="yearcount.html">年度统计</a>
+                        </li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/categorycount}"
+                                                           href="categorycount.html">分类统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/ratecount}" href="ratecount.html">比率统计</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -136,7 +145,8 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/ai/linear}" href="ai/linear.html">线性预测</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/ai/linear}"
+                                                           href="ai/linear.html">线性预测</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -146,8 +156,10 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="#">查看员工</a></li>
-                        <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/staffs/showstaff}" href="#">查看员工</a>
+                        </li>
+                        <li shiro:hasAnyRoles="管理员"><a class="" th:href="@{/staffs/managestaff}"
+                                                       href="staffs/managestaff.html">员工管理</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -180,7 +192,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
+                        <li shiro:hasAnyRoles="管理员"><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu active">
@@ -199,18 +211,110 @@
         </div>
     </aside>
     <!--sidebar end 左侧导航栏结束-->
-    <!--page_start-->
+
     <section id="main-content">
         <section class="wrapper">
-            <div id="diagram" style="min-width:400px;height:400px"></div>
-            <br><br>
+            <!--page start-->
+            <div id="bill_list" class="row">
+                <div class="col-lg-12">
+                    <!--头部开始-->
+                    <div class="panel">
+                        <!--头部 位置显示栏-->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title">
+                                关于系统
+                            </h4>
+                        </div>
+                        <!--头部 位置显示栏结束-->
+                    </div>
+                    <!--头部结束-->
+
+                    <!--主要内容部分开始-->
+                    <div class="panel-content-system">
+                        <div class="system-card card">
+                            <div class="front-facing front">
+                                <h1 class="technique">数据管理</h1>
+                                <p class="title">技术</p>
+                                <span class="number">1</span>
+                            </div>
+
+                            <div class="back-facing back">
+
+                                <p>Copper is a chemical element with symbol Cu (from Latin: cuprum) and atomic number
+                                    29. It is a soft,
+                                    malleable, and ductile metal with very high thermal and electrical conductivity.</p>
+                                <p> More info</p>
+                            </div>
+                        </div>
+
+                        <div class="system-card card1">
+                            <div class="front-facing front1">
+                                <h1 class="technique">Cu</h1>
+                                <p class="title">Gopper</p>
+                                <span class="number">29</span>
+                            </div>
+                            <div class="back-facing back1">
+                                <p>Copper is a chemical element with symbol Cu (from Latin: cuprum) and atomic number
+                                    29. It is a soft,
+                                    malleable, and ductile metal with very high thermal and electrical conductivity.</p>
+                                <p> More info</p>
+                            </div>
+                        </div>
+
+                        <div class="system-card card2">
+                            <div class="front-facing front2">
+                                <h1 class="technique">Cu</h1>
+                                <p class="title">Gopper</p>
+                                <span class="number">29</span>
+                            </div>
+                            <div class="back-facing back2">
+                                <p>Copper is a chemical element with symbol Cu (from Latin: cuprum) and atomic number
+                                    29. It is a soft,
+                                    malleable, and ductile metal with very high thermal and electrical conductivity.</p>
+                                <p> More info</p>
+                            </div>
+                        </div>
+
+                        <div class="system-card card3">
+                            <div class="front-facing front3">
+                                <h1 class="technique">Cu</h1>
+                                <p class="title">Gopper</p>
+                                <span class="number">29</span>
+                            </div>
+                            <div class="back-facing back3">
+                                <p>Copper is a chemical element with symbol Cu (from Latin: cuprum) and atomic number
+                                    29. It is a soft,
+                                    malleable, and ductile metal with very high thermal and electrical conductivity.</p>
+                                <p> More info</p>
+                            </div>
+                        </div>
+
+                        <div class="system-card card4">
+                            <div class="front-facing front4">
+                                <h1 class="technique">Cu</h1>
+                                <p class="title">Gopper</p>
+                                <span class="number">29</span>
+                            </div>
+                            <div class="back-facing back4">
+                                <p>Copper is a chemical element with symbol Cu (from Latin: cuprum) and atomic number
+                                    29. It is a soft,
+                                    malleable, and ductile metal with very high thermal and electrical conductivity.</p>
+                                <p> More info</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--主要内容部分结束-->
+
+                </div>
+            </div>
+            <!-- page end-->
         </section>
     </section>
-    <!--main content end-->
 </section>
 
 
-</div>
 <!-- js placed at the end of the document so the pages load faster -->
 <script th:src="@{/js/jquery.js}" src="../../js/jquery.js"></script>
 <script th:src="@{/js/jquery-1.8.3.min.js}" src="../../js/jquery-1.8.3.min.js"></script>
@@ -222,9 +326,22 @@
 <script th:src="@{/assets/data-tables/DT_bootstrap.js}" type="text/javascript"
         src="../../assets/data-tables/DT_bootstrap.js"></script>
 
+<!--Jquery Validate-->
+<script th:src="@{/js/jquery.validate.min.js}" src="../../js/jquery.validate.min.js"></script>
+<!--Custom Validate-->
+<script th:src="@{/js/custom-validate.js}" src="../../js/custom-validate.js"></script>
+<!--Custom function-->
+<script th:src="@{/js/custom-function.js}" src="../../js/custom-function.js"></script>
+
 
 <!--common script for all pages-->
 <script th:src="@{/js/common-scripts.js}" src="../../js/common-scripts.js"></script>
+
+<!--script for this page-->
+<script th:src="@{/js/dynamic-table.js}" src="../../js/dynamic-table.js"></script>
+
+<!--extra-->
+<script th:src="@{/js/about.js}" src="../../js/about.js"></script>
 
 
 <script>

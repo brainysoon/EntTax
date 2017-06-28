@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,7 +114,8 @@
                     </a>
                     <ul class="sub">
                         <li><a class="" th:href="@{/bill/uploadexcel}" href="bill/uploadexcel.html">导入数据</a></li>
-                        <li><a class="" th:href="@{/bill/managedata}" href="bill/managedata.html">操作数据</a></li>
+                        <li shiro:hasRole="admin"><a class="" th:href="@{/bill/managedata}" href="bill/managedata.html">操作数据</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -146,7 +148,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="#">查看员工</a></li>
+                        <li><a class="" th:href="@{/staffs/showstaff}" href="#">查看员工</a></li>
                         <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
                     </ul>
                 </li>

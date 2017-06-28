@@ -16,9 +16,9 @@
     DELETE FROM msg
     WHERE MId = #{mId}
   </delete>
-    <delete id="deleteByToSId" parameterType="java.lang.String">
+    <delete id="deleteByToSIdAndMRead">
     DELETE FROM msg
-    WHERE ToSId = #{toSId}
+    WHERE ToSId = #{toSId} AND MRead=#{mRead}
     </delete>
     <update id="phonyDeleteByPrimaryKey" parameterType="java.lang.String">
         UPDATE msg
@@ -54,19 +54,19 @@
     <select id="selectByToSId" parameterType="java.lang.String" resultType="MsgInfo">
          SELECT MId, ToSId, FromSId,
       MRead,MContent, MDate,MMark,SName AS FromName
-    FROM msg m INNER JOIN staff s ON m.ToSId = s.SId
+    FROM msg m INNER JOIN staff s ON m.FromSId = s.SId
     WHERE ToSId=#{toSId} AND MMark>0
     </select>
     <select id="selectByFromSId" parameterType="java.lang.String" resultType="MsgInfo">
      SELECT MId, ToSId, FromSId,
       MRead,MContent, MDate,MMark,SName AS FromName
-    FROM  msg m INNER JOIN staff s ON m.ToSId = s.SId
+    FROM  msg m INNER JOIN staff s ON m.FromSId = s.SId
     WHERE FromSId=#{fromSId} AND MMark>0
 </select>
     <select id="selectByToSIdAndMRead" resultType="MsgInfo">
         SELECT MId, ToSId, FromSId,
         MRead,MContent, MDate,MMark,SName AS FromName
-        FROM msg m INNER JOIN staff s ON m.ToSId = s.SId
+        FROM msg m INNER JOIN staff s ON m.FromSId = s.SId
         WHERE ToSId=#{toSId,jdbcType=CHAR} AND MRead=#{mRead,jdbcType=INTEGER} AND MMark>0
     </select>
     <update id="markReadByMId" parameterType="java.lang.String">
@@ -78,5 +78,10 @@
         UPDATE msg
         SET MRead=-1
         WHERE MId=#{mId} AND MMark>0
+    </update>
+    <update id="markReadAllByToSId" parameterType="java.lang.String">
+        UPDATE msg
+        SET MRead=1
+        WHERE ToSId=#{toSId} AND MMark>0
     </update>
 </mapper>

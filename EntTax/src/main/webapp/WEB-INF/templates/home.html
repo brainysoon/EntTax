@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,10 +61,32 @@
                 <li class="dropdown">
                     <a th:href="@{/resources/data_template.xlsx}" href="../../resources/data_template.xlsx"
                        data-toggle="tooltip" data-placement="bottom" title="进销excel模板">
+                        <span class="badge bg-info">模板</span>
                         <i class="icon-cloud-download"></i>
                     </a>
                 </li>
                 <!-- settings end -->
+                <!-- notification dropdown start 消息提示-->
+                <li id="header_notification_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="icon-bell-alt"></i>
+                        <span th:if="${unreadcount}>0" class="badge bg-warning" th:text="${unreadcount}">0</span>
+                    </a>
+                    <ul class="dropdown-menu extended notification">
+                        <div class="notify-arrow notify-arrow-yellow"></div>
+                        <li>
+                            <p class="yellow" th:text="'你有'+${unreadcount}+'个新通知'"></p>
+                        </li>
+                        <li th:each="msg,msgStat:${unreadmessage}" style="margin: 4px;">
+                            <span class="label label-info"><i class="icon-envelope"></i></span>
+                            <span th:text="${msg.mContent}">Welcome !</span>
+                        </li>
+                        <li>
+                            <a href="#" th:href="@{/staff/message/markread/all}">所有标记为已读</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- notification dropdown end -->
             </ul>
             <!--  notification end -->
         </div>
@@ -118,8 +141,12 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/bill/uploadexcel}" href="bill/uploadexcel.html">导入数据</a></li>
-                        <li><a class="" th:href="@{/bill/managedata}" href="bill/managedata.html">操作数据</a></li>
+                        <li shiro:hasAnyRoles="操作员,管理员"><a class="" th:href="@{/bill/uploadexcel}"
+                                                           href="bill/uploadexcel.html">导入数据</a>
+                        </li>
+                        <li shiro:hasAnyRoles="管理员"><a class="" th:href="@{/bill/managedata}"
+                                                       href="bill/managedata.html">操作数据</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -129,10 +156,14 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/bill/monthcount}" href="monthcount.html">月度统计</a></li>
-                        <li><a class="" th:href="@{/bill/yearcount}" href="yearcount.html">年度统计</a></li>
-                        <li><a class="" th:href="@{/bill/categorycount}" href="categorycount.html">分类统计</a></li>
-                        <li><a class="" th:href="@{/bill/ratecount}" href="ratecount.html">比率统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/monthcount}"
+                                                           href="monthcount.html">月度统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/yearcount}" href="yearcount.html">年度统计</a>
+                        </li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/categorycount}"
+                                                           href="categorycount.html">分类统计</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/bill/ratecount}" href="ratecount.html">比率统计</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -142,7 +173,8 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/ai/linear}" href="ai/linear.html">线性预测</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/ai/linear}"
+                                                           href="ai/linear.html">线性预测</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -152,8 +184,10 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="#">查看员工</a></li>
-                        <li><a class="" th:href="@{/staffs/managestaff}" href="staffs/managestaff.html">员工管理</a></li>
+                        <li shiro:hasAnyRoles="决策员,管理员"><a class="" th:href="@{/staffs/showstaff}" href="#">查看员工</a>
+                        </li>
+                        <li shiro:hasAnyRoles="管理员"><a class="" th:href="@{/staffs/managestaff}"
+                                                       href="staffs/managestaff.html">员工管理</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -186,7 +220,7 @@
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub">
-                        <li><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
+                        <li shiro:hasAnyRoles="管理员"><a th:href="@{/log/systemlog}" href="systemlog.html">系统日志</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -207,187 +241,151 @@
     <!--sidebar end 左侧导航栏结束-->
     <!--page_start-->
     <section id="main-content">
-
-        <section class="wrapper tab-container">
-            <div class="home-slider">
-                <!-- Carousel -->
-                <div id="home-slider" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <!--用户显示选择切换如1.2.3-->
-                    <ol class="carousel-indicators">
-                        <li data-target="#home-slider" data-slide-to="0" class="active"></li>
-                        <li data-target="#home-slider" data-slide-to="1"></li>
-                        <li data-target="#home-slider" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="item active" id="item-1">
-                            <div class="container">
-                                <div class="row">
-
-                                    <div class="col-sm-6 hidden-xs" style="float: left">
-                                        <img class="img-responsive animated bounceInDown" src="../../img/people-1.png"
-                                             alt="..." style="max-width: 500px;height: auto;">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <h1 class="first-child animated fadeInUpBig delay-2" style="color: white">
-                                            <strong>
-                                                <span
-                                                        class="">欢迎光临企业增值税
-                                                </span>
-                                            </strong><br>
-                                            <small>
-                                                <span class="" style="color: #000000">发票数据</span>
-                                                <span class="" style="color: #FF6C60">分析系统</span>
-                                            </small>
-                                        </h1>
-
-                                        <ul style="color: white;font-size: 18px;margin-top: 10px">
-                                            <li class="animated bounceInRight delay-4" style="padding: 6px 0"><i
-                                                    class="icon-star"></i>数据管理
-                                            </li>
-
-                                            <li class="animated bounceInDown delay-4" style="padding: 6px 0"><i
-                                                    class="icon-star"></i>数据预测
-                                            </li>
-
-
-                                            <li class="animated bounceInRight delay-6" style="padding: 6px 0"><i
-                                                    class="icon-star"></i>系统安全
-                                            </li>
-
-                                        </ul>
-                                    </div>
-
-                                </div>
-                            </div>
-
+        <section class="wrapper">
+            <!--page start-->
+            <div id="bill_list" class="row">
+                <div class="col-lg-12">
+                    <div class="panel">
+                        <!--头部 位置显示栏-->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title">
+                                首页
+                            </h4>
                         </div>
-                        <div class="item" id="item-2">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="head-home">
-                                            <h1 class="animated bounceInDown" style="text-align: center;color: #ffffff">
-                                                发票数据分析系统操作流程</h1>
-                                        </div>
+                        <!--头部 位置显示栏结束-->
+                    </div>
+                    <div class="home-slider">
+                        <!-- Carousel -->
+                        <div id="home-slider" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <!--用户显示选择切换如1.2.3-->
+                            <ol class="carousel-indicators">
+                                <li data-target="#home-slider" data-slide-to="0" class="active"></li>
+                                <li data-target="#home-slider" data-slide-to="1"></li>
+                                <!--<li data-target="#home-slider" data-slide-to="2"></li>-->
+                            </ol>
+                            <div class="carousel-inner">
+
+                                <!--第一个页面所要显示的内容-->
+                                <div class="item active" id="item-1">
+                                    <div class="container">
+                                        <div class="row">
+
+                                            <!--用于显示人物欢迎图片-->
+                                            <div class="col-sm-6 hidden-xs people-img">
+                                                <img class="img-responsive animated bounceInDown"
+                                                     src="../../img/people-1.png"
+                                                     alt="...">
+                                            </div>
+                                            <!--用于显示欢迎的内容-->
+
+                                            <div class="col-sm-6 content-img">
+                                                <h1 class="first-child animated fadeInUpBig delay-2 text-white">
+                                                    <strong>
+                                                        <span class="">欢迎光临企业增值税</span>
+                                                    </strong><br>
+                                                    <small>
+                                                        <span class="text-blue">发票数据</span>
+                                                        <span class="text-pink">分析系统</span>
+                                                    </small>
+                                                </h1>
+
+                                                <ul class="text-white">
+                                                    <li class="animated bounceInRight delay-4"><i
+                                                            class="icon-star"></i>数据管理
+                                                    </li>
+
+                                                    <li class="animated bounceInDown delay-4"><i
+                                                            class="icon-star"></i>数据预测
+                                                    </li>
 
 
-                                        <section class="panel animated bounceInDown delay-1">
-                                            <div class="panel-body">
-                                                <ul class="summary-list" style="text-align: center">
-                                                    <li class="animated bounceInLeft delay-2">
-                                                        <a href="javascript:">
-                                                            <i class="icon-upload text-danger"></i>
-                                                            上传发票数据
-                                                        </a>
+                                                    <li class="animated bounceInRight delay-6"><i
+                                                            class="icon-star"></i>系统安全
+                                                    </li>
 
-                                                    </li>
-                                                    <li class="animated bounceInDown delay-3">
-                                                        <a href="javascript:;">
-                                                            <i class="icon-pencil text-danger"></i>
-                                                            操作数据(查看、增加、删除、修改)
-                                                        </a>
-                                                    </li>
-                                                    <li class="animated bounceInUp delay-5">
-                                                        <a href="javascript:;">
-                                                            <i class=" icon-signal text-danger"></i>
-                                                            年、月、分类、分类统计
-                                                        </a>
-
-                                                    </li>
-                                                    <li class="animated bounceInDown delay-7">
-                                                        <a href="javascript:;">
-                                                            <i class="icon-bar-chart text-danger"></i>
-                                                            数据分析(梯度下降、正规式)
-                                                        </a>
-
-                                                    </li>
-                                                    <li class="animated bounceInRight delay-9">
-                                                        <a href="javascript:;">
-                                                            <i class="icon-code-fork text-danger"></i>
-                                                            数据预测
-                                                        </a>
-                                                    </li>
                                                 </ul>
                                             </div>
-                                        </section>
 
+                                        </div>
+                                    </div>
 
+                                </div>
+
+                                <!--第二个页面所要显示的内容-->
+                                <div class="item" id="item-2">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <!--头部标题-->
+                                                <div class="head-title">
+                                                    <h1 class="animated bounceInDown text-white">
+                                                        发票数据分析系统操作流程</h1>
+                                                </div>
+                                                <!--流程部分-->
+                                                <section class="panel animated bounceInDown delay-1">
+                                                    <div class="panel-body">
+                                                        <ul class="summary-list">
+                                                            <li class="animated bounceInLeft delay-2">
+                                                                <a href="javascript:">
+                                                                    <i class="icon-upload text-danger"></i>
+                                                                    上传发票数据
+                                                                </a>
+
+                                                            </li>
+                                                            <li class="animated bounceInDown delay-3">
+                                                                <a href="javascript:;">
+                                                                    <i class="icon-pencil text-danger"></i>
+                                                                    操作发票数据
+                                                                </a>
+                                                            </li>
+                                                            <li class="animated bounceInUp delay-5">
+                                                                <a href="javascript:;">
+                                                                    <i class=" icon-bar-chart text-danger"></i>
+                                                                    年、月、分类、分类统计
+                                                                </a>
+
+                                                            </li>
+                                                            <li class="animated bounceInDown delay-7">
+                                                                <a href="javascript:;">
+                                                                    <i class="icon-code-fork text-danger"></i>
+                                                                    数据分析(线性回归)
+                                                                </a>
+
+                                                            </li>
+                                                            <li class="animated bounceInRight delay-9">
+                                                                <a href="javascript:;">
+                                                                    <i class="icon-shield text-danger"></i>
+                                                                    操作日志记录
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
+
                             </div>
+                            <a class="carousel-arrow carousel-arrow-prev hidden-xs hidden-sm" href="#home-slider"
+                               data-slide="prev">
+                                <i class="icon-chevron-left"></i>
+                            </a>
+                            <a class="carousel-arrow carousel-arrow-next hidden-xs hidden-sm" href="#home-slider"
+                               data-slide="next">
+                                <i class="icon-chevron-right"></i>
+
+                            </a>
                         </div>
-                        <div class="item" id="item-3">
-                        </div>
-                    </div>
-                    <a class="carousel-arrow carousel-arrow-prev hidden-xs hidden-sm" href="#home-slider"
-                       data-slide="prev">
-                        <i class="icon-chevron-left"></i>
-                    </a>
-                    <a class="carousel-arrow carousel-arrow-next hidden-xs hidden-sm" href="#home-slider"
-                       data-slide="next">
-                        <i class="icon-chevron-right"></i>
-
-                    </a>
-                </div>
-                <!-- page start-->
-                <div class="tab-content">
-                    <div class="tab-pane active" id="morris">
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <section class="panel">
-                                    <header class="panel-heading">
-                                        销售状况对比
-                                    </header>
-                                    <div class="panel-body">
-                                        <div id="hero-area" class="graph"></div>
-                                    </div>
-                                </section>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <section class="panel">
-                                    <header class="panel-heading">
-                                        one的单独销售状况
-                                    </header>
-                                    <div class="panel-body">
-                                        <div id="hero-bar" class="graph"></div>
-                                    </div>
-                                </section>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <section class="panel">
-                                    <header class="panel-heading">
-                                        评分回馈
-                                    </header>
-                                    <div class="panel-body">
-                                        <div id="hero-graph" class="graph"></div>
-                                    </div>
-                                </section>
-                            </div>
-                            <div class="col-lg-6">
-                                <section class="panel">
-                                    <header class="panel-heading">
-                                        占有企业份额
-                                    </header>
-                                    <div class="panel-body">
-                                        <div id="hero-donut" class="grph"></div>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-
+                        <!-- page end-->
                     </div>
                 </div>
-                <!-- page end-->
             </div>
+            <!-- page end-->
         </section>
-
     </section>
     <!--main content end-->
 </section>

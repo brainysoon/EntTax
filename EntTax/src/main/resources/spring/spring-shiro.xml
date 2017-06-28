@@ -114,6 +114,9 @@
         <property name="port" value="8443"/>
     </bean>
 
+    <!--自定义角色判定 其中任何一个都可以-->
+    <bean id="anyRoles" class="com.enttax.shiro.CustomRolesAuthorizationFilter"/>
+
     <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
@@ -130,6 +133,18 @@
                 / = ssl, user
                 /index =ssl, user
                 /unauthorized = anon
+                /bill/downloadExcelModel=ssl,user
+                /bill/managedata=ssl,authc,anyRoles[管理员]
+                /bill/deletebill=ssl,authc,anyRoles[管理员]
+                /bill/updatebill=ssl,authc,anyRoles[管理员]
+                /bill/uploadexcel=ssl, authc,anyRoles[管理员,操作员]
+                /bill/confirmupload/**=ssl, authc,anyRoles[管理员,操作员]
+                /bill/yearcount=ssl, authc,anyRoles[管理员,决策员]
+                /bill/monthcount=ssl, authc,anyRoles[管理员,决策员]
+                /bill/categorycount=ssl, authc,anyRoles[管理员,决策员]
+                /bill/ratecount=ssl, authc,anyRoles[管理员,决策员]
+                /bill/**=ssl,authc
+                /ai/** = ssl, authc,anyRoles[管理员,决策员]
                 /staff/login = ssl, anon
                 /staff/chooseway=ssl, anon
                 /staff/phoneresetpass=ssl,anon
@@ -138,9 +153,13 @@
                 /staff/logout = logout
                 /staff/security = ssl, authc
                 /staff/** = ssl, user
+                /staffs/showstaff=ssl, authc,anyRoles[管理员,决策员]
+                /staffs/managestaff=ssl,authc,anyRoles[管理员]
+                /staffs/updatestaff=ssl,authc,anyRoles[管理员]
+                /staffs/deletestaff=ssl,authc,anyRoles[管理员]
+                /staffs/addstaff=ssl,authc,anyRoles[管理员]
                 /staffs/**=ssl, authc
-                /bill/**=ssl, authc
-                /ai/** = ssl, authc
+                /log/** = ssl, authc,anyRoles[管理员]
             </value>
         </property>
     </bean>

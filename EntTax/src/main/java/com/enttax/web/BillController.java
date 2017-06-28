@@ -9,7 +9,6 @@ import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.ToolRandoms;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -75,15 +74,21 @@ public class BillController extends BaseController {
                 int lastIndex = fileName.lastIndexOf(".");
                 String extName = fileName.substring(lastIndex);
 
+                //随机生成一个id
+                String key = ToolRandoms.randomId20();
+
                 // 从文件流中读取
                 List<Bill> bills = new ArrayList<>();
                 for (int i = 0; i < bmark.length; i++) {
 
-                    bills.addAll(excelService.readExcelFromInputStream(bmark[i], bmark[i], excelFile.getInputStream(), extName));
-                }
+                    List<Bill> billList = excelService.readExcelFromInputStream(bmark[i], bmark[i], excelFile.getInputStream(), extName);
 
-                //随机生成一个id
-                String key = ToolRandoms.randomId20();
+                    //记录添加的大小
+                    //放入 redis 缓存
+                    excelService.pushRecordToRedis(key + bmark[i], billList.size());
+
+                    bills.addAll(billList);
+                }
 
                 //放入 redis 缓存
                 excelService.pushExcelToCache(key, bills);
@@ -103,8 +108,8 @@ public class BillController extends BaseController {
     }
 
     @RequestMapping(value = "/uploadexcel", method = RequestMethod.GET)
-    public  String toUploadExcel(Model model,
-                                 @RequestParam(value = "key", required = false) String key) {
+    public String toUploadExcel(Model model,
+                                @RequestParam(value = "key", required = false) String key) {
 
         //用户登录信息
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
@@ -124,7 +129,7 @@ public class BillController extends BaseController {
 
     @RequestMapping(value = "/confirmupload/{key}", method = RequestMethod.GET)
     public String confirmUpload(Model model,
-                                 @PathVariable(value = "key") String key) {
+                                @PathVariable(value = "key") String key) {
 
         //用户登录信息
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
@@ -134,17 +139,16 @@ public class BillController extends BaseController {
         if (!(key == null || key.equals("null"))) {
 
             try {
-                int result = excelService.moveCacheToDataBase(key,session);
+                int result = excelService.moveCacheToDataBase(key, session);
                 model.addAttribute(ConstantStr.STATUS, result > 0 ? ConstantCode.CODE_SUCCESSED : ConstantCode.CODE_FAILED);
                 model.addAttribute(ConstantStr.MESSAGE,
                         result > 0 ? Constant.UPLOAD_EXCEL_AND_CONFIRM_SUCCESSED : Constant.UPLOAD_EXCEL_AND_CONFIRM_FAILED);
             } catch (Exception ex) {
 
                 model.addAttribute(ConstantStr.STATUS, ConstantCode.CODE_FAILED);
-                model.addAttribute(ConstantStr.MESSAGE, ex.getLocalizedMessage());
+                model.addAttribute(ConstantStr.MESSAGE, "添加失败,请检查数据后再添加!");
+
             }
-
-
         }
 
         return "bill/uploadexcel";
@@ -157,35 +161,36 @@ public class BillController extends BaseController {
      */
     @RequestMapping(value = "/managedata", method = RequestMethod.GET)
     public String toManageData(Model model) {
-        List<Bill> dataList=excelService.showData();
+        List<Bill> dataList = excelService.showData();
         model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
-        model.addAttribute(ConstantStr.DATALIST,dataList);
+        model.addAttribute(ConstantStr.DATALIST, dataList);
         return "bill/managedata";
     }
 
     /**
      * 删除bill数据
+     *
      * @param bId
      * @return
      */
     @RequestMapping(value = "/deletebill", method = RequestMethod.GET)
     @ResponseBody
-    public Map deleteBill(@RequestParam(value = "bId") String bId){
-        Map map=new HashMap();
+    public Map deleteBill(@RequestParam(value = "bId") String bId) {
+        Map map = new HashMap();
         System.out.println(bId);
 
-        if (bId == null || bId == ""){
-            map.put(ConstantStr.STATUS,ConstantStr.str_zero);
-            map.put(ConstantStr.MESSAGE,"对不起你输入的员工序号为空！");
+        if (bId == null || bId == "") {
+            map.put(ConstantStr.STATUS, ConstantStr.str_zero);
+            map.put(ConstantStr.MESSAGE, "对不起你输入的员工序号为空！");
             return map;
         }
 
-        if (billService.deleteBillById(bId,session)>0){
-            map.put(ConstantStr.STATUS,ConstantStr.str_one);
-            map.put(ConstantStr.MESSAGE,"恭喜你，操作成功！");
-        }else {
-            map.put(ConstantStr.STATUS,ConstantStr.str_zero);
-            map.put(ConstantStr.MESSAGE,"对不起，操作失败！");
+        if (billService.deleteBillById(bId, session) > 0) {
+            map.put(ConstantStr.STATUS, ConstantStr.str_one);
+            map.put(ConstantStr.MESSAGE, "恭喜你，操作成功！");
+        } else {
+            map.put(ConstantStr.STATUS, ConstantStr.str_zero);
+            map.put(ConstantStr.MESSAGE, "对不起，操作失败！");
         }
 
         return map;
@@ -193,23 +198,29 @@ public class BillController extends BaseController {
 
     /**
      * 更新bill数据
+     *
      * @param bill
      * @return
      */
-    @RequestMapping(value = "/updatebill",method = RequestMethod.POST)
+    @RequestMapping(value = "/updatebill", method = RequestMethod.POST)
     @ResponseBody
-    public Map updateBill(Bill bill){
-        Map map=new HashMap();
+    public Map updateBill(Bill bill) {
+        Map map = new HashMap();
 
-        if (bill.getBId() == null || bill.getBId() == ""){
-            map.put(ConstantStr.MESSAGE,"对不起项目序号不能为空！");
+        if (bill.getBId() == null || bill.getBId() == "") {
+            map.put(ConstantStr.MESSAGE, "对不起项目序号不能为空！");
             return map;
         }
-       if (billService.updateBill(bill,session)>0){
-            map.put(ConstantStr.STATUS,ConstantStr.str_one);
-            map.put(ConstantStr.MESSAGE,"恭喜你，操作成功！");
-        }else {
-            map.put(ConstantStr.MESSAGE,"对不起，操作失败！");
+
+        int result = billService.updateBill(bill, session);
+
+        if (result > 0) {
+            map.put(ConstantStr.STATUS, ConstantStr.str_one);
+            map.put(ConstantStr.MESSAGE, "恭喜你，操作成功！");
+        } else if (result < 0) {
+            map.put(ConstantStr.MESSAGE, "对不起，操作失败！");
+        } else {
+            map.put(ConstantStr.MESSAGE, "数据没有变更!");
         }
         return map;
 
@@ -217,105 +228,113 @@ public class BillController extends BaseController {
 
     /**
      * 跳转到年度统计页面
+     *
      * @param model
      * @return
      */
-    @RequestMapping(value = "/yearcount",method = RequestMethod.GET)
-    public String yearCount(Model model){
-        model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
+    @RequestMapping(value = "/yearcount", method = RequestMethod.GET)
+    public String yearCount(Model model) {
+        model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
         return "bill/yearcount";
     }
 
     /**
      * 跳转到月度统计页面
+     *
      * @param model
      * @return
      */
-    @RequestMapping(value = "/monthcount",method = RequestMethod.GET)
-    public String monthCount(Model model){
-        model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
+    @RequestMapping(value = "/monthcount", method = RequestMethod.GET)
+    public String monthCount(Model model) {
+        model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
         return "bill/monthcount";
     }
 
     /**
      * 跳转到分类统计页面
+     *
      * @param model
      * @return
      */
-    @RequestMapping(value = "/categorycount",method = RequestMethod.GET)
-    public String categoryCount(Model model){
-        model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
+    @RequestMapping(value = "/categorycount", method = RequestMethod.GET)
+    public String categoryCount(Model model) {
+        model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
         return "bill/categorycount";
     }
 
     /**
      * 跳转到比率统计页面
+     *
      * @param model
      * @return
      */
-    @RequestMapping(value = "/ratecount",method = RequestMethod.GET)
-    public String rateCount(Model model){
-        model.addAttribute(ConstantStr.STAFFINFO,session.getAttribute(ConstantStr.STAFFINFO));
+    @RequestMapping(value = "/ratecount", method = RequestMethod.GET)
+    public String rateCount(Model model) {
+        model.addAttribute(ConstantStr.STAFFINFO, session.getAttribute(ConstantStr.STAFFINFO));
         return "bill/ratecount";
     }
 
 
     /**
      * 显示月度统计数据
+     *
      * @param year
      * @return
      */
-    @RequestMapping(value = "/showmonthbill",method = RequestMethod.GET)
+    @RequestMapping(value = "/showmonthbill", method = RequestMethod.GET)
     @ResponseBody
-    public Map showMonthBill(@RequestParam(value = "year") String year){
+    public Map showMonthBill(@RequestParam(value = "year") String year) {
 
-        Map map =billService.showMonthBill(year);
+        Map map = billService.showMonthBill(year);
 
-        return  map;
+        return map;
     }
 
     /**
      * 显示年度统计数据
+     *
      * @return
      */
-    @RequestMapping(value = "/showyearbill",method = RequestMethod.GET)
+    @RequestMapping(value = "/showyearbill", method = RequestMethod.GET)
     @ResponseBody
-    public Map showYearBill(){
+    public Map showYearBill() {
         return billService.showYearBill();
     }
 
     /**
      * 显示进销项名称下拉列表
+     *
      * @return
      */
-    @RequestMapping(value = "/showbnames",method = RequestMethod.GET)
+    @RequestMapping(value = "/showbnames", method = RequestMethod.GET)
     @ResponseBody
-    public Map showCategoryName(){
+    public Map showCategoryName() {
         return billService.showCategoryName();
     }
 
     /**
      * 分类统计数据展示
+     *
      * @param year
      * @param inputbName
      * @param outputbName
      * @return
      */
-    @RequestMapping(value = "/showcategorybill",method = RequestMethod.POST)
+    @RequestMapping(value = "/showcategorybill", method = RequestMethod.POST)
     @ResponseBody
     public Map showCategoryBill(@RequestParam(value = "year") String year,
                                 @RequestParam(value = "inputbName") String inputbName,
-                                @RequestParam(value = "outputbName") String outputbName){
+                                @RequestParam(value = "outputbName") String outputbName) {
 
-        Map map=billService.showCategoryBill(year,inputbName,outputbName);
+        Map map = billService.showCategoryBill(year, inputbName, outputbName);
         return map;
     }
 
-    @RequestMapping(value = "/showratebill",method = RequestMethod.GET)
+    @RequestMapping(value = "/showratebill", method = RequestMethod.GET)
     @ResponseBody
-    public Map showRateCountBill(@RequestParam("year") String year){
+    public Map showRateCountBill(@RequestParam("year") String year) {
 
-        Map map=billService.showRateCountBill(year);
+        Map map = billService.showRateCountBill(year);
         return map;
     }
 
