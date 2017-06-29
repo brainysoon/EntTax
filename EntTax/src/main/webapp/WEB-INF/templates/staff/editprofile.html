@@ -25,6 +25,8 @@
     <!-- Custom styles for this template -->
     <link th:href="@{/css/style.css}" href="../../../css/style.css" rel="stylesheet">
     <link th:href="@{/css/style-responsive.css}" href="../../../css/style-responsive.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../../css/extra.css">
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -269,9 +271,11 @@
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">姓名</label>
                                         <div class="col-lg-6 has-success">
-                                            <input type="text" class="form-control" name="sName" id="sname"
-                                                   th:value="${staff.sName}" placeholder="姓名">
-                                            <p class="help-block"></p>
+                                            <div class="col-xs-8">
+                                                <input type="text" class="form-control" name="sName" id="sname"
+                                                       th:value="${staff.sName}" placeholder="姓名">
+                                                <p class="help-block"></p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -299,28 +303,56 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+
+
+                                    <div class="form-group birth">
 
                                         <label class="col-lg-2 control-label">出生日期</label>
-                                        <div class="col-lg-6" th:if="${staff.sBirthday==null}">
-                                            <input type="date" name="sBirthday" class="dataTables_info"
-                                                   th:value="${null}" value="1994-01-15">
+
+                                        <div class="col-lg-6">
+                                            <div class="col-xs-12">
+                                                <div class="control-input" style="">
+                                                    <label class="inline time-line">
+                                                        <select name="year" id="year"></select> 年
+                                                    </label>
+                                                    <label class="inline time-line">
+                                                        <select name="month" id="month"></select> 月
+                                                    </label>
+                                                    <label class="inline time-line">
+                                                        <select name="day" id="day"></select>日
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-lg-6" th:if="${staff.sBirthday!=null}">
-                                            <input type="date" name="sBirthday" class="dataTables_info"
-                                                   th:value="${#dates.format(staff.sBirthday, 'yyyy-MM-dd')}"
-                                                   value="1994-01-15">
-                                        </div>
+
+
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group city">
                                         <label class="col-lg-2 control-label">详细地址</label>
-                                        <div class="col-lg-6 has-success">
+
+                                        <div class="col-lg-6">
+                                            <div class="col-xs-12">
+                                                <div class="control-input" id="distpicker5">
+                                                    <label class="inline" for="province">
+                                                        <select id="province"></select>
+                                                    </label>
+
+                                                    <label class="inline" for="city">
+                                                        <select id="city"></select>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="col-lg-6 has-success">
                                             <input type="text" class="form-control" name="sAddress"
                                                    th:value="${staff.sAddress}"
                                                    placeholder="请输入你的详细地址">
                                             <p class="help-block"></p>
-                                        </div>
+                                        </div>-->
                                     </div>
+
+
                                     <div class="form-group">
                                         <div class="col-lg-offset-2 col-lg-10">
                                             <button type="submit" class="btn btn-success">保存修改</button>
@@ -420,6 +452,12 @@
 <script th:src="@{/js/sparkline-chart.js}" src="../../../js/sparkline-chart.js"></script>
 <script th:src="@{/js/easy-pie-chart.js}" src="../../../js/easy-pie-chart.js"></script>
 
+<!--出生日期-->
+<script th:src="@{/js/DateSelect.js}" src="../../../js/DateSelect.js"></script>
+<!--省份选择-->
+<script th:src="@{/js/DateSelect.js}" src="../../../js/city/distpicker.data.js"></script>
+<script th:src="@{/js/DateSelect.js}" src="../../../js/city/distpicker.js"></script>
+<script th:src="@{/js/DateSelect.js}" src="../../../js/city/main.js"></script>
 <script>
 
     //upload download excel tooltip

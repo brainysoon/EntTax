@@ -349,6 +349,8 @@ a.carousel-arrow-next {
 
 .panel-content .info img{
     border-radius:50% ;
+    width: 156px;
+    height: 180px;
     margin-top: 5px;
     margin-bottom: 5px;
     text-align: center;
@@ -544,4 +546,17 @@ a.carousel-arrow-next {
 .system-card .back-facing a.btn:hover,.system-card .back-facing a.btn:focus {
     color:#fff;
     background-color:#2980b9;
+}
+
+.birth label,.city select{
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.birth select,.city select{
+    border-radius: 0;
+    box-shadow: none !important;
+    color: #858585;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
 }
