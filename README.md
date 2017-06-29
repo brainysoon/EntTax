@@ -33,3 +33,8 @@
 * 主要框架： Spring MVC, Spring , MyBatis
 * 模板渲染引擎：Thymeleaf
 * 安全控制：Shiro
+
+### 项目相关
+* 构建工具：Maven
+* 版本控制：Git
+* UML软件：StarUML
