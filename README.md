@@ -1,4 +1,4 @@
-# 企业增值税发票数据分析系统
+# 企业增值税发票数据分析系统 
 
 ## 项目目录说明
 * JavaWeb 项目目录 ： [EntTax](https://github.com/brainysoon/EntTax/tree/master/EntTax)
@@ -23,3 +23,13 @@
 * 我的消息 (当前用户)：我的站内消息
 * 发送消息 (当前用户)：站内简短消息发送
 * 系统日志 (管理员)：查看敏感信息操作日志
+
+## 主要技术
+### 前端技术
+* 前端主要： Html5, CSS3,JavaScript, BootStrap, JQuery
+* 图表： Highcharts
+* 图标： FontAwesome
+### 后端技术
+* 主要框架： Spring MVC, Spring , MyBatis
+* 模板渲染引擎：Thymeleaf
+* 安全控制：Shiro
