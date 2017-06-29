@@ -1,11 +1,11 @@
 # 企业增值税发票数据分析系统 
 
 ## 项目目录说明
-* JavaWeb 项目目录 ： [EntTax](https://github.com/brainysoon/EntTax/tree/master/EntTax)
-* 项目UML目录 : [UML]()
-* 项目文档目录 :[DOC]()
-* 项目视频目录 :[Videos]()
-* 项目可执行文件：[War]()
+* JavaWeb 项目目录 ： [EntTax](/EntTax)
+* 项目UML目录 : [UML](/UML)
+* 项目文档目录 :[DOC](/DOC)
+* 项目视频目录 :[Videos](/Videos)
+* 项目可执行文件：[War](/War)
 
 ## 主要功能
 * 导入数据 (操作员，管理员)： 通过Excel模板导入数据
