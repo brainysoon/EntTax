@@ -307,21 +307,21 @@
 
                                     <div class="form-group birth">
                                         <label class="col-lg-2 control-label">出生日期</label>
+                                      
                                         <div class="col-lg-6" th:if="${staff.sBirthday==null}">
                                             <input type="date" name="sBirthday" class="dataTables_info"
                                                       th:value="${null}" value="1994-01-15">
-
                                         </div>
                                         <div class="col-lg-6" th:if="${staff.sBirthday!=null}">
                                             <input type="date" name="sBirthday" class="dataTables_info"
                                                      th:value="${#dates.format(staff.sBirthday, 'yyyy-MM-dd')}"
                                                       value="1994-01-15">
+
                                         </div>
-
-
                                     </div>
                                     <div class="form-group city">
                                         <label class="col-lg-2 control-label">详细地址</label>
+
                                         <div class="col-lg-6 has-success">
                                             <input type="text" class="form-control" name="sAddress"
                                                    th:value="${staff.sAddress}"
