@@ -25,11 +25,11 @@
 * 系统日志 (管理员)：查看敏感信息操作日志
 
 ## 主要技术
-### 前端技术
+### 前端主要技术
 * 前端主要： Html5, CSS3,JavaScript, BootStrap, JQuery
 * 图表： Highcharts
 * 图标： FontAwesome
-### 后端技术
+### 后端主要技术
 * 主要框架： Spring MVC, Spring , MyBatis
 * 模板渲染引擎：Thymeleaf
 * 安全控制：Shiro
