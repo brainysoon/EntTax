@@ -7,7 +7,7 @@ target/
 
 # Package Files #
 *.jar
-*.war
+/EntTax/*.war
 *.ear
 *.iml
 
