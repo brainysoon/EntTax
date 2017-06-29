@@ -44,8 +44,8 @@
                 year: '%Y'
             }
         },
-        exporting: {url: protocol + '//export.highcharts.com.cn'},
-        credits: {text: 'Highcharts.com.cn', href: 'https://www.highcharts.com.cn'},
+        // exporting: {url: protocol + '//export.highcharts.com.cn'},
+        // credits: {text: 'Highcharts.com.cn', href: 'https://www.highcharts.com.cn'},
         xAxis: {
             dateTimeLabelFormats: {
                 millisecond: '%H:%M:%S.%L',
