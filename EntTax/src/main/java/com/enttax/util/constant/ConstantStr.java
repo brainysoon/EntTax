@@ -29,7 +29,7 @@ public interface ConstantStr {
     /**
      * 图片上传的域名前缀
      */
-    String IMAGE_UPLOAD_DOMAIN = "http://192.168.0.104/";
+    String IMAGE_UPLOAD_DOMAIN = "http://www.coolbhu.cn:8081/";
 
     /**
      * 图片上传路径地址
@@ -66,7 +66,7 @@ public interface ConstantStr {
     /**
      * 保存进销项数据集合
      */
-    String DATALIST="datalist";
+    String DATALIST = "datalist";
     /**
      * 状态
      */
@@ -128,17 +128,17 @@ public interface ConstantStr {
     /**
      *
      */
-    String INPUTDATA="进项数据";
+    String INPUTDATA = "进项数据";
 
     /**
      *
      */
-    String OUTPUTDATA="销项数据";
+    String OUTPUTDATA = "销项数据";
 
     /**
      * 系统消息
      */
-    String LOGMESSAGE="logmessage";
+    String LOGMESSAGE = "logmessage";
 
 
 }
