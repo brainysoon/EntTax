@@ -1,6 +1,10 @@
 # 企业增值税发票数据分析系统 
 >企业数据分析系统主要使用者是企业财务管理人员或者运营管理层，对企业的销项发票数据、进项发票数据进行管理，并根据进销项数据比对，分析企业的经营情况，出具分析报表。
 
+<video controls="" preload="none">
+      <source  src="http://42.123.127.93:10080/lcyanxi/EntTax_md/blob/master/Videos/EntTax_1.0.1-alpha.mp4" type="video/mp4">
+</video>
+
 ## 项目目录说明
 * JavaWeb 项目目录 ： [EntTax](/EntTax)
 * 项目UML目录 : [UML](/UML)
