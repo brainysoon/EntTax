@@ -347,15 +347,16 @@ a.carousel-arrow-next {
     -webkit-transform: rotatey(-30deg);
 }
 
-.panel-content .info img{
-    border-radius:50% ;
+.panel-content .info img {
+    border-radius: 50%;
     width: 156px;
     height: 180px;
     margin-top: 5px;
     margin-bottom: 5px;
     text-align: center;
 }
-.center-block{
+
+.center-block {
     margin-right: auto;
     margin-left: auto;
 }
@@ -386,7 +387,8 @@ a.carousel-arrow-next {
     color: #2babcf;
     text-align: center;
 }
-.panel-content .info div{
+
+.panel-content .info div {
     text-align: center;
 }
 
@@ -410,25 +412,25 @@ a.carousel-arrow-next {
 
 /*用户关于系统的页面*/
 .panel-content-system {
-    position:relative;
-    width:100%;
-    min-height:100%;
-    margin:0 auto;
-    padding:40px;
-    box-sizing:border-box;
-    display:-webkit-box;
-    display:-ms-flexbox;
-    display:flex;
-    -webkit-box-orient:horizontal;
-    -webkit-box-direction:normal;
-    -ms-flex-direction:row;
-    flex-direction:row;
-    -ms-flex-wrap:wrap;
-    flex-wrap:wrap;
-    -webkit-box-pack:center;
-    -ms-flex-pack:center;
-    justify-content:center;
-    -webkit-box-align:center;
-    -ms-flex-align:center;
-    align-items:center;
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
