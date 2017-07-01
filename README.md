@@ -1,9 +1,5 @@
-# 企业增值税发票数据分析系统 
+# 企业增值税发票数据分析系统
 >企业数据分析系统主要使用者是企业财务管理人员或者运营管理层，对企业的销项发票数据、进项发票数据进行管理，并根据进销项数据比对，分析企业的经营情况，出具分析报表。
-
-<video controls="" preload="none">
-      <source  src="http://42.123.127.93:10080/lcyanxi/EntTax_md/blob/master/Videos/EntTax_1.0.1-alpha.mp4" type="video/mp4">
-</video>
 
 ## 项目目录说明
 * JavaWeb 项目目录 ： [EntTax](/EntTax)
@@ -12,14 +8,21 @@
 * 项目视频目录 :[Videos](/Videos)
 * 项目可执行文件：[War](/War)
 
-## 公网演示
+## 项目视频演示
+* 公网服务器(无广告) : [演示视频地址](http://www.coolbhu.cn:8081/video/index.html)
+* YouKu服务器(播放密码:2017): [演示视频地址](http://v.youku.com/v_show/id_XMjg1NzAyNjcyNA==.html?spm=a2h3j.8428770.3416059.1#paction)
+
+## 项目公网演示
 * 演示地址：[www.coolbhu.cn](http://www.coolbhu.cn)
+
 #### 管理员
 * 管理员测试号：20171111
 * 管理员密码 :dbroom1411
+
 #### 操作员
 * 操作员测试号：20172222
 * 操作员密码：dbroom1411
+
 #### 决策员
 * 决策员测试号：20173333
 * 决策员密码：dbroom1411
@@ -46,6 +49,7 @@
 * 前端主要： Html5, CSS3,JavaScript, BootStrap, JQuery
 * 图表： Highcharts
 * 图标： FontAwesome
+
 ### 后端主要技术
 * 主要框架： Spring MVC, Spring , MyBatis
 * 模板渲染引擎：Thymeleaf
