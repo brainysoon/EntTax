@@ -44,7 +44,17 @@ public class AIController extends BaseController {
 
         //拿出当前月份有的
         Date date = new Date();
-        List<Bill> bills = billService.getBillByYearAndMonth(SDF_YEAR.format(date), SDF_MONTH.format(date));
+
+        int month = Integer.parseInt(SDF_MONTH.format(date));
+        int year = Integer.parseInt(SDF_YEAR.format(date));
+
+        if (--month == 0) {
+
+            month = 12;
+            year--;
+        }
+
+        List<Bill> bills = billService.getBillByYearAndMonth(year + "", month + "");
         model.addAttribute(Constant.MODEL_KEY_BILLS, bills);
 
         return "ai/linear";
