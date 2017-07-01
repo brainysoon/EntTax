@@ -1,7 +1,9 @@
 package com.enttax.dao;
 
+import com.enttax.model.Role;
 import com.enttax.model.Staff;
 import com.enttax.service.SecurityService;
+import com.enttax.service.impl.CommonLog;
 import com.enttax.util.tools.ToolRandoms;
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,6 +27,9 @@ public class StaffMapperTest {
 
     @Autowired
     private StaffMapper staffMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     @Autowired
     private SecurityService securityService;
@@ -79,6 +84,48 @@ public class StaffMapperTest {
         //断言 影响一行记录
         Assert.assertEquals(resultCode, 1);
     }
+
+    @Test
+    public void insertStaffTest(){
+        //添加员工
+        Staff staff = new Staff();
+        String sId = "20173333";
+
+        //拿到加密后的密码和摘要
+        Map map = securityService.encodePassword("dbroom1411", sId);
+        String sPassword = (String) map.get(SecurityService.ENCODE_RESULT_KEY_PASSWORD);
+        String Ssalt = (String) map.get(SecurityService.ENCODE_RESULT_KEY_SALT);
+
+
+            staff.setSId(sId);
+            staff.setSName("李华");
+            staff.setSPassword(sPassword);
+            staff.setSSalt(Ssalt);
+            staff.setSEnter(new Date());
+            staff.setSSex(true);
+            staff.setSMark(0);
+            staff.setSPhone("13166956162");
+            staff.setSAvatar("../../img/avatar.jpg");
+
+            staffMapper.insert(staff);
+
+
+            //添加角色
+            Role role1 = new Role();
+            String rId = ToolRandoms.randomId4();
+            role1.setRId(rId);
+            role1.setRName("决策员");
+            role1.setRMark(1);
+            role1.setRUpdateTime(new Date());
+
+            roleMapper.insert(role1);
+
+
+            //添加员工与角之间的关系
+            staffMapper.insertStaffAndRoleRelation(sId, rId);
+
+
+        }
 
     /**
      * 测试更新员工信息
