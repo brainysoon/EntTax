@@ -1,12 +1,12 @@
 package com.enttax.web;
 
 import com.enttax.model.Staff;
+import com.enttax.service.RoleService;
 import com.enttax.service.StaffService;
 import com.enttax.util.constant.ConstantException;
 import com.enttax.util.constant.ConstantStr;
 import com.enttax.util.tools.CookieUtil;
 import com.enttax.util.tools.FileUploadUtil;
-import com.enttax.util.tools.ToolDates;
 import com.enttax.vo.Profile;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,6 +32,9 @@ public class StaffController extends BaseController {
 
     @Autowired
     private StaffService staffService;
+
+    @Autowired
+    private RoleService roleService;
 
     /**
      * 更新个人信息
@@ -69,7 +73,7 @@ public class StaffController extends BaseController {
         }
         Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
         staff.setSPhone(sphone);
-        try{
+        try {
             if (staffService.updateStaff(staff) > 0) {
                 session.setAttribute(ConstantStr.STAFFINFO, staff);
                 model.addAttribute(ConstantStr.STAFFINFO, staff);
@@ -77,7 +81,7 @@ public class StaffController extends BaseController {
             }
             model.addAttribute(ConstantStr.MESSAGE, "电话号码绑定失败");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             model.addAttribute(ConstantStr.MESSAGE, "该电话号码已经被注册了");
 
         }
@@ -99,17 +103,17 @@ public class StaffController extends BaseController {
             model.addAttribute(ConstantStr.MESSAGE, "邮箱不能为空");
             return "staff/resetemail";
         }
-            Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
-            staff.setSEmail(semail);
+        Staff staff = (Staff) session.getAttribute(ConstantStr.STAFFINFO);
+        staff.setSEmail(semail);
 
-            try{
+        try {
             if (staffService.updateStaff(staff) > 0) {
                 session.setAttribute(ConstantStr.STAFFINFO, staff);
                 model.addAttribute(ConstantStr.STAFFINFO, staff);
                 return "staff/security";
             }
             model.addAttribute(ConstantStr.MESSAGE, "邮箱绑定失败");
-        }catch (Exception e){
+        } catch (Exception e) {
             model.addAttribute(ConstantStr.MESSAGE, "该邮箱已经被注册了");
         }
 
@@ -235,7 +239,14 @@ public class StaffController extends BaseController {
 
                 //设置 登录信息
                 String principal = (String) subject.getPrincipal();
-                session.setAttribute(ConstantStr.STAFFINFO, staffService.selectByIdentify(principal));
+                Staff staff = staffService.selectByIdentify(principal);
+                //拿到角色集合
+                List roleNames = roleService.listRoleNameBySId(staff.getSId());
+
+
+                session.setAttribute(ConstantStr.STAFFINFO, staff);
+                session.setAttribute("role",roleNames.get(0));
+
 
                 //添加  Cookie
                 CookieUtil.getInstance().addCookie(response, "sname", sname, CookieUtil.COOKIE_MAX_AGE);

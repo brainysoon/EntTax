@@ -74,7 +74,8 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" th:src="${staff.sAvatar}" id="avatarsm" width="35" height="35"
                              src="../../img/avatar-mini4.jpg">
-                        <span class="username" th:text="${staff.sName}"></span>
+                        <span th:text="${staff.sName}"></span>
+                        <span th:text="${session.role}"></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">

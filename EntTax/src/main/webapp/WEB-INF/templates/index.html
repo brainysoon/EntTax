@@ -73,6 +73,7 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" th:src="${staff.sAvatar}" width="35" height="35" src="../../img/avatar-mini4.jpg">
                         <span class="username" th:text="${staff.sName}"></span>
+                        <span>身份：<span th:text="${role}"></span></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
