@@ -25,12 +25,12 @@ function showlinear(key, count) {
         $('#diagram').highcharts({
             xAxis: {
                 categories: [
+                    '前六月',
                     '前五月',
                     '前四月',
                     '前三月',
                     '前二月',
                     '前一月',
-                    '当前月',
                     '预测月'
                 ]
             },

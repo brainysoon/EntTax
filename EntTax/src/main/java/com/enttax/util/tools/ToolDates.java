@@ -123,13 +123,14 @@ public class ToolDates {
 
         for (int i = count - 1; i >= 0; i--) {
 
-            months[i][0] = month;
-            months[i][1] = year;
             month--;
             if (month == 0) {
                 month = 12;
                 year--;
             }
+
+            months[i][0] = month;
+            months[i][1] = year;
         }
 
         return months;
