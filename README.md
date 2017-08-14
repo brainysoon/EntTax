@@ -9,12 +9,12 @@
 * 项目可执行文件：[War](/War)
 
 ## 项目视频演示
-* 公网服务器(无广告) : [演示视频地址](http://www.coolbhu.cn:8081/video/index.html)
+* 公网服务器(无广告) : [演示视频地址](http://www.coolbhu.cn:8081/video/index.html)(服务器到期)
 * YouKu服务器(播放密码:2017): [演示视频地址](http://v.youku.com/v_show/id_XMjg1NzAyNjcyNA==.html?spm=a2h3j.8428770.3416059.1#paction)
 * youtube服务器：[演示视频地址](https://youtu.be/z4Zj2SHp54w)
 
 ## 项目公网演示
-* 演示地址：[www.coolbhu.cn](http://www.coolbhu.cn)
+* 演示地址：[www.coolbhu.cn](http://www.coolbhu.cn)(服务器到期)
 
 #### 管理员
 * 管理员测试号：20171111
